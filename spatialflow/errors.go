@@ -16,6 +16,7 @@ var (
 	ErrPermission     = errors.New("permission denied")
 	ErrNotFound       = errors.New("resource not found")
 	ErrValidation     = errors.New("validation failed")
+	ErrConflict       = errors.New("resource conflict")
 	ErrRateLimit      = errors.New("rate limit exceeded")
 	ErrServer         = errors.New("server error")
 	ErrTimeout        = errors.New("request timeout")
@@ -102,6 +103,8 @@ func NewAPIError(resp *http.Response) *APIError {
 		apiErr.Err = ErrNotFound
 	case http.StatusBadRequest, http.StatusUnprocessableEntity:
 		apiErr.Err = ErrValidation
+	case http.StatusConflict:
+		apiErr.Err = ErrConflict
 	case http.StatusTooManyRequests:
 		apiErr.Err = ErrRateLimit
 	default:
