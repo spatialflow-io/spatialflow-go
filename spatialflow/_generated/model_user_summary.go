@@ -31,6 +31,7 @@ type UserSummary struct {
 	AdminApprovedAt NullableString `json:"admin_approved_at,omitempty"`
 	CreatedAt NullableString `json:"created_at"`
 	LastLogin NullableString `json:"last_login"`
+	LastSeenAt NullableString `json:"last_seen_at,omitempty"`
 	UpdatedAt NullableString `json:"updated_at,omitempty"`
 	SubscriptionTier *string `json:"subscription_tier,omitempty"`
 	ApiKeysCount int32 `json:"api_keys_count"`
@@ -356,6 +357,48 @@ func (o *UserSummary) SetLastLogin(v string) {
 	o.LastLogin.Set(&v)
 }
 
+// GetLastSeenAt returns the LastSeenAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UserSummary) GetLastSeenAt() string {
+	if o == nil || IsNil(o.LastSeenAt.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.LastSeenAt.Get()
+}
+
+// GetLastSeenAtOk returns a tuple with the LastSeenAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UserSummary) GetLastSeenAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastSeenAt.Get(), o.LastSeenAt.IsSet()
+}
+
+// HasLastSeenAt returns a boolean if a field has been set.
+func (o *UserSummary) HasLastSeenAt() bool {
+	if o != nil && o.LastSeenAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastSeenAt gets a reference to the given NullableString and assigns it to the LastSeenAt field.
+func (o *UserSummary) SetLastSeenAt(v string) {
+	o.LastSeenAt.Set(&v)
+}
+// SetLastSeenAtNil sets the value for LastSeenAt to be an explicit nil
+func (o *UserSummary) SetLastSeenAtNil() {
+	o.LastSeenAt.Set(nil)
+}
+
+// UnsetLastSeenAt ensures that no value is present for LastSeenAt, not even an explicit nil
+func (o *UserSummary) UnsetLastSeenAt() {
+	o.LastSeenAt.Unset()
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserSummary) GetUpdatedAt() string {
 	if o == nil || IsNil(o.UpdatedAt.Get()) {
@@ -522,6 +565,9 @@ func (o UserSummary) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["created_at"] = o.CreatedAt.Get()
 	toSerialize["last_login"] = o.LastLogin.Get()
+	if o.LastSeenAt.IsSet() {
+		toSerialize["last_seen_at"] = o.LastSeenAt.Get()
+	}
 	if o.UpdatedAt.IsSet() {
 		toSerialize["updated_at"] = o.UpdatedAt.Get()
 	}

@@ -9,17 +9,26 @@ Method | HTTP request | Description
 [**AppsAdminPortalApiAdminPing**](AdminAPI.md#AppsAdminPortalApiAdminPing) | **Get** /api/v1/admin/ping | Admin Ping
 [**AppsAdminPortalApiAdminResetPassword**](AdminAPI.md#AppsAdminPortalApiAdminResetPassword) | **Post** /api/v1/admin/users/{user_id}/reset-password | Admin Reset Password
 [**AppsAdminPortalApiApproveUser**](AdminAPI.md#AppsAdminPortalApiApproveUser) | **Post** /api/v1/admin/users/{user_id}/approve | Approve User
+[**AppsAdminPortalApiBulkApproveUsers**](AdminAPI.md#AppsAdminPortalApiBulkApproveUsers) | **Post** /api/v1/admin/users/bulk-approve | Bulk Approve Users
+[**AppsAdminPortalApiBulkDeactivateUsers**](AdminAPI.md#AppsAdminPortalApiBulkDeactivateUsers) | **Post** /api/v1/admin/users/bulk-deactivate | Bulk Deactivate Users
+[**AppsAdminPortalApiBulkInviteUsers**](AdminAPI.md#AppsAdminPortalApiBulkInviteUsers) | **Post** /api/v1/admin/users/bulk-invite | Bulk Invite Users
 [**AppsAdminPortalApiDeactivateUser**](AdminAPI.md#AppsAdminPortalApiDeactivateUser) | **Put** /api/v1/admin/users/{user_id}/deactivate | Deactivate User
 [**AppsAdminPortalApiDeleteUser**](AdminAPI.md#AppsAdminPortalApiDeleteUser) | **Delete** /api/v1/admin/users/{user_id} | Delete User
 [**AppsAdminPortalApiDeleteWorkspace**](AdminAPI.md#AppsAdminPortalApiDeleteWorkspace) | **Delete** /api/v1/admin/workspaces/{workspace_id} | Delete Workspace
 [**AppsAdminPortalApiExportMarketingSubscribers**](AdminAPI.md#AppsAdminPortalApiExportMarketingSubscribers) | **Get** /api/v1/admin/users/marketing-subscribers | Export Marketing Subscribers
+[**AppsAdminPortalApiExportUsers**](AdminAPI.md#AppsAdminPortalApiExportUsers) | **Get** /api/v1/admin/users/export | Export Users
+[**AppsAdminPortalApiGetAdminSystemHealth**](AdminAPI.md#AppsAdminPortalApiGetAdminSystemHealth) | **Get** /api/v1/admin/system-health | Get Admin System Health
 [**AppsAdminPortalApiGetConfiguration**](AdminAPI.md#AppsAdminPortalApiGetConfiguration) | **Get** /api/v1/admin/configurations/{key} | Get Configuration
 [**AppsAdminPortalApiGetDashboardStats**](AdminAPI.md#AppsAdminPortalApiGetDashboardStats) | **Get** /api/v1/admin/dashboard-stats | Get Dashboard Stats
+[**AppsAdminPortalApiGetDashboardTrends**](AdminAPI.md#AppsAdminPortalApiGetDashboardTrends) | **Get** /api/v1/admin/dashboard-stats/trends | Get Dashboard Trends
+[**AppsAdminPortalApiGetDormantWorkspaces**](AdminAPI.md#AppsAdminPortalApiGetDormantWorkspaces) | **Get** /api/v1/admin/workspaces/dormant | Get Dormant Workspaces
 [**AppsAdminPortalApiGetNotificationConfig**](AdminAPI.md#AppsAdminPortalApiGetNotificationConfig) | **Get** /api/v1/admin/slack-config | Get Notification Config
+[**AppsAdminPortalApiGetUserActivity**](AdminAPI.md#AppsAdminPortalApiGetUserActivity) | **Get** /api/v1/admin/users/{user_id}/activity | Get User Activity
 [**AppsAdminPortalApiGetUserDetail**](AdminAPI.md#AppsAdminPortalApiGetUserDetail) | **Get** /api/v1/admin/users/{user_id} | Get User Detail
 [**AppsAdminPortalApiGetUserUsage**](AdminAPI.md#AppsAdminPortalApiGetUserUsage) | **Get** /api/v1/admin/users/{user_id}/usage | Get User Usage
 [**AppsAdminPortalApiGetUsersWithStats**](AdminAPI.md#AppsAdminPortalApiGetUsersWithStats) | **Get** /api/v1/admin/users/stats | Get Users With Stats
 [**AppsAdminPortalApiGetWorkspace**](AdminAPI.md#AppsAdminPortalApiGetWorkspace) | **Get** /api/v1/admin/workspaces/{workspace_id} | Get Workspace
+[**AppsAdminPortalApiGetWorkspaceAnalytics**](AdminAPI.md#AppsAdminPortalApiGetWorkspaceAnalytics) | **Get** /api/v1/admin/workspaces/analytics | Get Workspace Analytics
 [**AppsAdminPortalApiGetWorkspaceMembers**](AdminAPI.md#AppsAdminPortalApiGetWorkspaceMembers) | **Get** /api/v1/admin/workspaces/{workspace_id}/members | Get Workspace Members
 [**AppsAdminPortalApiInviteUser**](AdminAPI.md#AppsAdminPortalApiInviteUser) | **Post** /api/v1/admin/users/invite | Invite User
 [**AppsAdminPortalApiListConfigurations**](AdminAPI.md#AppsAdminPortalApiListConfigurations) | **Get** /api/v1/admin/configurations | List Configurations
@@ -35,6 +44,7 @@ Method | HTTP request | Description
 [**AppsAdminPortalApiRevokeInvitation**](AdminAPI.md#AppsAdminPortalApiRevokeInvitation) | **Delete** /api/v1/admin/invitations/{invite_id} | Revoke Invitation
 [**AppsAdminPortalApiSendTestEmail**](AdminAPI.md#AppsAdminPortalApiSendTestEmail) | **Post** /api/v1/admin/email/test | Send Test Email
 [**AppsAdminPortalApiTestNotification**](AdminAPI.md#AppsAdminPortalApiTestNotification) | **Post** /api/v1/admin/slack-config/test | Test Notification
+[**AppsAdminPortalApiTransferWorkspaceOwnership**](AdminAPI.md#AppsAdminPortalApiTransferWorkspaceOwnership) | **Post** /api/v1/admin/workspaces/{workspace_id}/transfer-ownership | Transfer Workspace Ownership
 [**AppsAdminPortalApiUpdateConfiguration**](AdminAPI.md#AppsAdminPortalApiUpdateConfiguration) | **Put** /api/v1/admin/configurations/{key} | Update Configuration
 [**AppsAdminPortalApiUpdateMemberRole**](AdminAPI.md#AppsAdminPortalApiUpdateMemberRole) | **Patch** /api/v1/admin/workspaces/{workspace_id}/members/{user_id} | Update Member Role
 [**AppsAdminPortalApiUpdateNotificationConfig**](AdminAPI.md#AppsAdminPortalApiUpdateNotificationConfig) | **Put** /api/v1/admin/slack-config | Update Notification Config
@@ -377,6 +387,204 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## AppsAdminPortalApiBulkApproveUsers
+
+> BulkOperationResponse AppsAdminPortalApiBulkApproveUsers(ctx).BulkApproveRequest(bulkApproveRequest).Execute()
+
+Bulk Approve Users
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	bulkApproveRequest := *openapiclient.NewBulkApproveRequest([]string{"UserIds_example"}) // BulkApproveRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiBulkApproveUsers(context.Background()).BulkApproveRequest(bulkApproveRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiBulkApproveUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiBulkApproveUsers`: BulkOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiBulkApproveUsers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiBulkApproveUsersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bulkApproveRequest** | [**BulkApproveRequest**](BulkApproveRequest.md) |  | 
+
+### Return type
+
+[**BulkOperationResponse**](BulkOperationResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAdminPortalApiBulkDeactivateUsers
+
+> BulkOperationResponse AppsAdminPortalApiBulkDeactivateUsers(ctx).BulkDeactivateRequest(bulkDeactivateRequest).Execute()
+
+Bulk Deactivate Users
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	bulkDeactivateRequest := *openapiclient.NewBulkDeactivateRequest([]string{"UserIds_example"}) // BulkDeactivateRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiBulkDeactivateUsers(context.Background()).BulkDeactivateRequest(bulkDeactivateRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiBulkDeactivateUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiBulkDeactivateUsers`: BulkOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiBulkDeactivateUsers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiBulkDeactivateUsersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bulkDeactivateRequest** | [**BulkDeactivateRequest**](BulkDeactivateRequest.md) |  | 
+
+### Return type
+
+[**BulkOperationResponse**](BulkOperationResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAdminPortalApiBulkInviteUsers
+
+> BulkOperationResponse AppsAdminPortalApiBulkInviteUsers(ctx).BulkInviteRequest(bulkInviteRequest).Execute()
+
+Bulk Invite Users
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	bulkInviteRequest := *openapiclient.NewBulkInviteRequest([]openapiclient.BulkInviteItem{*openapiclient.NewBulkInviteItem("Email_example")}) // BulkInviteRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiBulkInviteUsers(context.Background()).BulkInviteRequest(bulkInviteRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiBulkInviteUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiBulkInviteUsers`: BulkOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiBulkInviteUsers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiBulkInviteUsersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bulkInviteRequest** | [**BulkInviteRequest**](BulkInviteRequest.md) |  | 
+
+### Return type
+
+[**BulkOperationResponse**](BulkOperationResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsAdminPortalApiDeactivateUser
 
 > UserActionResponse AppsAdminPortalApiDeactivateUser(ctx, userId).Execute()
@@ -655,6 +863,133 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## AppsAdminPortalApiExportUsers
+
+> []interface{} AppsAdminPortalApiExportUsers(ctx).Format(format).Execute()
+
+Export Users
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	format := "format_example" // string |  (optional) (default to "json")
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiExportUsers(context.Background()).Format(format).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiExportUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiExportUsers`: []interface{}
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiExportUsers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiExportUsersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **format** | **string** |  | [default to &quot;json&quot;]
+
+### Return type
+
+**[]interface{}**
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAdminPortalApiGetAdminSystemHealth
+
+> SystemHealthResponse AppsAdminPortalApiGetAdminSystemHealth(ctx).Execute()
+
+Get Admin System Health
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiGetAdminSystemHealth(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiGetAdminSystemHealth``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiGetAdminSystemHealth`: SystemHealthResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiGetAdminSystemHealth`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiGetAdminSystemHealthRequest struct via the builder pattern
+
+
+### Return type
+
+[**SystemHealthResponse**](SystemHealthResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsAdminPortalApiGetConfiguration
 
 > ConfigurationItem AppsAdminPortalApiGetConfiguration(ctx, key).Execute()
@@ -727,7 +1062,7 @@ Name | Type | Description  | Notes
 
 ## AppsAdminPortalApiGetDashboardStats
 
-> DashboardStatsResponse AppsAdminPortalApiGetDashboardStats(ctx).Execute()
+> EnhancedDashboardStatsResponse AppsAdminPortalApiGetDashboardStats(ctx).Execute()
 
 Get Dashboard Stats
 
@@ -754,7 +1089,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiGetDashboardStats``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsAdminPortalApiGetDashboardStats`: DashboardStatsResponse
+	// response from `AppsAdminPortalApiGetDashboardStats`: EnhancedDashboardStatsResponse
 	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiGetDashboardStats`: %v\n", resp)
 }
 ```
@@ -770,7 +1105,139 @@ Other parameters are passed through a pointer to a apiAppsAdminPortalApiGetDashb
 
 ### Return type
 
-[**DashboardStatsResponse**](DashboardStatsResponse.md)
+[**EnhancedDashboardStatsResponse**](EnhancedDashboardStatsResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAdminPortalApiGetDashboardTrends
+
+> DashboardTrendsResponse AppsAdminPortalApiGetDashboardTrends(ctx).Days(days).Execute()
+
+Get Dashboard Trends
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	days := int32(56) // int32 |  (optional) (default to 30)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiGetDashboardTrends(context.Background()).Days(days).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiGetDashboardTrends``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiGetDashboardTrends`: DashboardTrendsResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiGetDashboardTrends`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiGetDashboardTrendsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **days** | **int32** |  | [default to 30]
+
+### Return type
+
+[**DashboardTrendsResponse**](DashboardTrendsResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAdminPortalApiGetDormantWorkspaces
+
+> DormantWorkspaceResponse AppsAdminPortalApiGetDormantWorkspaces(ctx).InactiveDays(inactiveDays).Execute()
+
+Get Dormant Workspaces
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	inactiveDays := int32(56) // int32 |  (optional) (default to 30)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiGetDormantWorkspaces(context.Background()).InactiveDays(inactiveDays).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiGetDormantWorkspaces``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiGetDormantWorkspaces`: DormantWorkspaceResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiGetDormantWorkspaces`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiGetDormantWorkspacesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inactiveDays** | **int32** |  | [default to 30]
+
+### Return type
+
+[**DormantWorkspaceResponse**](DormantWorkspaceResponse.md)
 
 ### Authorization
 
@@ -832,6 +1299,80 @@ Other parameters are passed through a pointer to a apiAppsAdminPortalApiGetNotif
 ### Return type
 
 [**NotificationConfigResponse**](NotificationConfigResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAdminPortalApiGetUserActivity
+
+> UserActivityResponse AppsAdminPortalApiGetUserActivity(ctx, userId).Limit(limit).Offset(offset).Execute()
+
+Get User Activity
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	userId := "userId_example" // string | 
+	limit := int32(56) // int32 |  (optional) (default to 50)
+	offset := int32(56) // int32 |  (optional) (default to 0)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiGetUserActivity(context.Background(), userId).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiGetUserActivity``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiGetUserActivity`: UserActivityResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiGetUserActivity`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiGetUserActivityRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **limit** | **int32** |  | [default to 50]
+ **offset** | **int32** |  | [default to 0]
+
+### Return type
+
+[**UserActivityResponse**](UserActivityResponse.md)
 
 ### Authorization
 
@@ -1063,7 +1604,7 @@ Name | Type | Description  | Notes
 
 ## AppsAdminPortalApiGetWorkspace
 
-> WorkspaceDetailResponse AppsAdminPortalApiGetWorkspace(ctx, workspaceId).Execute()
+> EnhancedWorkspaceDetailResponse AppsAdminPortalApiGetWorkspace(ctx, workspaceId).Execute()
 
 Get Workspace
 
@@ -1091,7 +1632,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiGetWorkspace``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsAdminPortalApiGetWorkspace`: WorkspaceDetailResponse
+	// response from `AppsAdminPortalApiGetWorkspace`: EnhancedWorkspaceDetailResponse
 	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiGetWorkspace`: %v\n", resp)
 }
 ```
@@ -1115,7 +1656,77 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WorkspaceDetailResponse**](WorkspaceDetailResponse.md)
+[**EnhancedWorkspaceDetailResponse**](EnhancedWorkspaceDetailResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAdminPortalApiGetWorkspaceAnalytics
+
+> WorkspaceAnalyticsResponse AppsAdminPortalApiGetWorkspaceAnalytics(ctx).Sort(sort).Limit(limit).Offset(offset).Execute()
+
+Get Workspace Analytics
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	sort := "sort_example" // string |  (optional) (default to "event_units")
+	limit := int32(56) // int32 |  (optional) (default to 20)
+	offset := int32(56) // int32 |  (optional) (default to 0)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiGetWorkspaceAnalytics(context.Background()).Sort(sort).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiGetWorkspaceAnalytics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiGetWorkspaceAnalytics`: WorkspaceAnalyticsResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiGetWorkspaceAnalytics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiGetWorkspaceAnalyticsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sort** | **string** |  | [default to &quot;event_units&quot;]
+ **limit** | **int32** |  | [default to 20]
+ **offset** | **int32** |  | [default to 0]
+
+### Return type
+
+[**WorkspaceAnalyticsResponse**](WorkspaceAnalyticsResponse.md)
 
 ### Authorization
 
@@ -1402,7 +2013,7 @@ Name | Type | Description  | Notes
 
 ## AppsAdminPortalApiListUsers
 
-> UserListResponse AppsAdminPortalApiListUsers(ctx).Page(page).Limit(limit).Search(search).Role(role).Status(status).Execute()
+> UserListResponse AppsAdminPortalApiListUsers(ctx).Page(page).Limit(limit).Search(search).Role(role).Status(status).WorkspaceId(workspaceId).SortBy(sortBy).SortOrder(sortOrder).Execute()
 
 List Users
 
@@ -1426,10 +2037,13 @@ func main() {
 	search := "search_example" // string |  (optional)
 	role := "role_example" // string |  (optional)
 	status := "status_example" // string |  (optional)
+	workspaceId := "workspaceId_example" // string |  (optional)
+	sortBy := "sortBy_example" // string |  (optional) (default to "date_joined")
+	sortOrder := "sortOrder_example" // string |  (optional) (default to "desc")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiListUsers(context.Background()).Page(page).Limit(limit).Search(search).Role(role).Status(status).Execute()
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiListUsers(context.Background()).Page(page).Limit(limit).Search(search).Role(role).Status(status).WorkspaceId(workspaceId).SortBy(sortBy).SortOrder(sortOrder).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiListUsers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1455,6 +2069,9 @@ Name | Type | Description  | Notes
  **search** | **string** |  | 
  **role** | **string** |  | 
  **status** | **string** |  | 
+ **workspaceId** | **string** |  | 
+ **sortBy** | **string** |  | [default to &quot;date_joined&quot;]
+ **sortOrder** | **string** |  | [default to &quot;desc&quot;]
 
 ### Return type
 
@@ -1476,7 +2093,7 @@ Name | Type | Description  | Notes
 
 ## AppsAdminPortalApiListWorkspaces
 
-> WorkspaceListResponse AppsAdminPortalApiListWorkspaces(ctx).Page(page).Limit(limit).Search(search).Execute()
+> EnhancedWorkspaceListResponse AppsAdminPortalApiListWorkspaces(ctx).Page(page).Limit(limit).Search(search).SortBy(sortBy).SortOrder(sortOrder).Execute()
 
 List Workspaces
 
@@ -1498,15 +2115,17 @@ func main() {
 	page := int32(56) // int32 |  (optional) (default to 1)
 	limit := int32(56) // int32 |  (optional) (default to 20)
 	search := "search_example" // string |  (optional)
+	sortBy := "sortBy_example" // string |  (optional) (default to "created_at")
+	sortOrder := "sortOrder_example" // string |  (optional) (default to "desc")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiListWorkspaces(context.Background()).Page(page).Limit(limit).Search(search).Execute()
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiListWorkspaces(context.Background()).Page(page).Limit(limit).Search(search).SortBy(sortBy).SortOrder(sortOrder).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiListWorkspaces``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsAdminPortalApiListWorkspaces`: WorkspaceListResponse
+	// response from `AppsAdminPortalApiListWorkspaces`: EnhancedWorkspaceListResponse
 	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiListWorkspaces`: %v\n", resp)
 }
 ```
@@ -1525,10 +2144,12 @@ Name | Type | Description  | Notes
  **page** | **int32** |  | [default to 1]
  **limit** | **int32** |  | [default to 20]
  **search** | **string** |  | 
+ **sortBy** | **string** |  | [default to &quot;created_at&quot;]
+ **sortOrder** | **string** |  | [default to &quot;desc&quot;]
 
 ### Return type
 
-[**WorkspaceListResponse**](WorkspaceListResponse.md)
+[**EnhancedWorkspaceListResponse**](EnhancedWorkspaceListResponse.md)
 
 ### Authorization
 
@@ -2154,6 +2775,78 @@ Other parameters are passed through a pointer to a apiAppsAdminPortalApiTestNoti
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAdminPortalApiTransferWorkspaceOwnership
+
+> OwnershipTransferResponse AppsAdminPortalApiTransferWorkspaceOwnership(ctx, workspaceId).OwnershipTransferRequest(ownershipTransferRequest).Execute()
+
+Transfer Workspace Ownership
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	workspaceId := "workspaceId_example" // string | 
+	ownershipTransferRequest := *openapiclient.NewOwnershipTransferRequest("NewOwnerId_example") // OwnershipTransferRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiTransferWorkspaceOwnership(context.Background(), workspaceId).OwnershipTransferRequest(ownershipTransferRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiTransferWorkspaceOwnership``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiTransferWorkspaceOwnership`: OwnershipTransferResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiTransferWorkspaceOwnership`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workspaceId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiTransferWorkspaceOwnershipRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ownershipTransferRequest** | [**OwnershipTransferRequest**](OwnershipTransferRequest.md) |  | 
+
+### Return type
+
+[**OwnershipTransferResponse**](OwnershipTransferResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

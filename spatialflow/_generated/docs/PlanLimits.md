@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **WebhooksDelivered** | **int32** | Monthly webhook delivery limit (-1 for unlimited) | 
 **TestPoints** | **int32** | Monthly test point limit (-1 for unlimited) | 
 **RateLimitPerHour** | **int32** | Hourly rate limit | 
+**Devices** | Pointer to **int32** | Maximum devices per workspace (-1 for unlimited) | [optional] [default to 5]
 **LogRetentionDays** | Pointer to **int32** | Log retention in days (-1 for unlimited) | [optional] [default to 7]
 **LocationRetentionDays** | Pointer to **int32** | Location data retention in days | [optional] [default to 90]
 
@@ -130,6 +131,31 @@ and a boolean to check if the value has been set.
 
 SetRateLimitPerHour sets RateLimitPerHour field to given value.
 
+
+### GetDevices
+
+`func (o *PlanLimits) GetDevices() int32`
+
+GetDevices returns the Devices field if non-nil, zero value otherwise.
+
+### GetDevicesOk
+
+`func (o *PlanLimits) GetDevicesOk() (*int32, bool)`
+
+GetDevicesOk returns a tuple with the Devices field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDevices
+
+`func (o *PlanLimits) SetDevices(v int32)`
+
+SetDevices sets Devices field to given value.
+
+### HasDevices
+
+`func (o *PlanLimits) HasDevices() bool`
+
+HasDevices returns a boolean if a field has been set.
 
 ### GetLogRetentionDays
 

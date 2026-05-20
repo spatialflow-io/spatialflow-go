@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## AppsWebhooksApiDeleteWebhook
 
-> SuccessResponse AppsWebhooksApiDeleteWebhook(ctx, webhookId).Execute()
+> AppsWebhooksApiDeleteWebhook(ctx, webhookId).Execute()
 
 Delete Webhook
 
@@ -114,13 +114,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksAPI.AppsWebhooksApiDeleteWebhook(context.Background(), webhookId).Execute()
+	r, err := apiClient.WebhooksAPI.AppsWebhooksApiDeleteWebhook(context.Background(), webhookId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.AppsWebhooksApiDeleteWebhook``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWebhooksApiDeleteWebhook`: SuccessResponse
-	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.AppsWebhooksApiDeleteWebhook`: %v\n", resp)
 }
 ```
 
@@ -143,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccessResponse**](SuccessResponse.md)
+ (empty response body)
 
 ### Authorization
 

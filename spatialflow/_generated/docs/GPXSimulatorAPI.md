@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## AppsDevicesApiGpxDeleteGpxRoute
 
-> map[string]interface{} AppsDevicesApiGpxDeleteGpxRoute(ctx, routeId).Execute()
+> AppsDevicesApiGpxDeleteGpxRoute(ctx, routeId).Execute()
 
 Delete Gpx Route
 
@@ -112,13 +112,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GPXSimulatorAPI.AppsDevicesApiGpxDeleteGpxRoute(context.Background(), routeId).Execute()
+	r, err := apiClient.GPXSimulatorAPI.AppsDevicesApiGpxDeleteGpxRoute(context.Background(), routeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GPXSimulatorAPI.AppsDevicesApiGpxDeleteGpxRoute``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsDevicesApiGpxDeleteGpxRoute`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `GPXSimulatorAPI.AppsDevicesApiGpxDeleteGpxRoute`: %v\n", resp)
 }
 ```
 
@@ -141,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+ (empty response body)
 
 ### Authorization
 

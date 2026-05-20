@@ -23,6 +23,7 @@ type UsageMetrics struct {
 	Geofences *int32 `json:"geofences,omitempty"`
 	WebhooksDelivered *int32 `json:"webhooks_delivered,omitempty"`
 	TestPoints *int32 `json:"test_points,omitempty"`
+	Devices *int32 `json:"devices,omitempty"`
 }
 
 // NewUsageMetrics instantiates a new UsageMetrics object
@@ -39,6 +40,8 @@ func NewUsageMetrics() *UsageMetrics {
 	this.WebhooksDelivered = &webhooksDelivered
 	var testPoints int32 = 0
 	this.TestPoints = &testPoints
+	var devices int32 = 0
+	this.Devices = &devices
 	return &this
 }
 
@@ -55,6 +58,8 @@ func NewUsageMetricsWithDefaults() *UsageMetrics {
 	this.WebhooksDelivered = &webhooksDelivered
 	var testPoints int32 = 0
 	this.TestPoints = &testPoints
+	var devices int32 = 0
+	this.Devices = &devices
 	return &this
 }
 
@@ -186,6 +191,38 @@ func (o *UsageMetrics) SetTestPoints(v int32) {
 	o.TestPoints = &v
 }
 
+// GetDevices returns the Devices field value if set, zero value otherwise.
+func (o *UsageMetrics) GetDevices() int32 {
+	if o == nil || IsNil(o.Devices) {
+		var ret int32
+		return ret
+	}
+	return *o.Devices
+}
+
+// GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageMetrics) GetDevicesOk() (*int32, bool) {
+	if o == nil || IsNil(o.Devices) {
+		return nil, false
+	}
+	return o.Devices, true
+}
+
+// HasDevices returns a boolean if a field has been set.
+func (o *UsageMetrics) HasDevices() bool {
+	if o != nil && !IsNil(o.Devices) {
+		return true
+	}
+
+	return false
+}
+
+// SetDevices gets a reference to the given int32 and assigns it to the Devices field.
+func (o *UsageMetrics) SetDevices(v int32) {
+	o.Devices = &v
+}
+
 func (o UsageMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -207,6 +244,9 @@ func (o UsageMetrics) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TestPoints) {
 		toSerialize["test_points"] = o.TestPoints
+	}
+	if !IsNil(o.Devices) {
+		toSerialize["devices"] = o.Devices
 	}
 	return toSerialize, nil
 }

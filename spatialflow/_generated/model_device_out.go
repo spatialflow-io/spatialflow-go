@@ -32,11 +32,11 @@ type DeviceOut struct {
 	ShiftPausedAt NullableTime `json:"shift_paused_at,omitempty"`
 	ShiftEndedAt NullableTime `json:"shift_ended_at,omitempty"`
 	ShiftResumedAt NullableTime `json:"shift_resumed_at,omitempty"`
-	LastLocation map[string]interface{} `json:"last_location,omitempty"`
+	LastLocation NullableLatLonOut `json:"last_location,omitempty"`
 	LastLocationTime NullableTime `json:"last_location_time,omitempty"`
 	LastHeading NullableFloat32 `json:"last_heading,omitempty"`
 	CurrentSessionNotes *string `json:"current_session_notes,omitempty"`
-	InGeofenceIds []*string `json:"in_geofence_ids,omitempty"`
+	InGeofenceIds []string `json:"in_geofence_ids,omitempty"`
 	InGeofenceEntries map[string]string `json:"in_geofence_entries,omitempty"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
@@ -386,36 +386,45 @@ func (o *DeviceOut) UnsetShiftResumedAt() {
 }
 
 // GetLastLocation returns the LastLocation field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DeviceOut) GetLastLocation() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+func (o *DeviceOut) GetLastLocation() LatLonOut {
+	if o == nil || IsNil(o.LastLocation.Get()) {
+		var ret LatLonOut
 		return ret
 	}
-	return o.LastLocation
+	return *o.LastLocation.Get()
 }
 
 // GetLastLocationOk returns a tuple with the LastLocation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DeviceOut) GetLastLocationOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.LastLocation) {
-		return map[string]interface{}{}, false
+func (o *DeviceOut) GetLastLocationOk() (*LatLonOut, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return o.LastLocation, true
+	return o.LastLocation.Get(), o.LastLocation.IsSet()
 }
 
 // HasLastLocation returns a boolean if a field has been set.
 func (o *DeviceOut) HasLastLocation() bool {
-	if o != nil && !IsNil(o.LastLocation) {
+	if o != nil && o.LastLocation.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetLastLocation gets a reference to the given map[string]interface{} and assigns it to the LastLocation field.
-func (o *DeviceOut) SetLastLocation(v map[string]interface{}) {
-	o.LastLocation = v
+// SetLastLocation gets a reference to the given NullableLatLonOut and assigns it to the LastLocation field.
+func (o *DeviceOut) SetLastLocation(v LatLonOut) {
+	o.LastLocation.Set(&v)
+}
+// SetLastLocationNil sets the value for LastLocation to be an explicit nil
+func (o *DeviceOut) SetLastLocationNil() {
+	o.LastLocation.Set(nil)
+}
+
+// UnsetLastLocation ensures that no value is present for LastLocation, not even an explicit nil
+func (o *DeviceOut) UnsetLastLocation() {
+	o.LastLocation.Unset()
 }
 
 // GetLastLocationTime returns the LastLocationTime field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -535,9 +544,9 @@ func (o *DeviceOut) SetCurrentSessionNotes(v string) {
 }
 
 // GetInGeofenceIds returns the InGeofenceIds field value if set, zero value otherwise.
-func (o *DeviceOut) GetInGeofenceIds() []*string {
+func (o *DeviceOut) GetInGeofenceIds() []string {
 	if o == nil || IsNil(o.InGeofenceIds) {
-		var ret []*string
+		var ret []string
 		return ret
 	}
 	return o.InGeofenceIds
@@ -545,7 +554,7 @@ func (o *DeviceOut) GetInGeofenceIds() []*string {
 
 // GetInGeofenceIdsOk returns a tuple with the InGeofenceIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceOut) GetInGeofenceIdsOk() ([]*string, bool) {
+func (o *DeviceOut) GetInGeofenceIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.InGeofenceIds) {
 		return nil, false
 	}
@@ -561,8 +570,8 @@ func (o *DeviceOut) HasInGeofenceIds() bool {
 	return false
 }
 
-// SetInGeofenceIds gets a reference to the given []*string and assigns it to the InGeofenceIds field.
-func (o *DeviceOut) SetInGeofenceIds(v []*string) {
+// SetInGeofenceIds gets a reference to the given []string and assigns it to the InGeofenceIds field.
+func (o *DeviceOut) SetInGeofenceIds(v []string) {
 	o.InGeofenceIds = v
 }
 
@@ -674,8 +683,8 @@ func (o DeviceOut) ToMap() (map[string]interface{}, error) {
 	if o.ShiftResumedAt.IsSet() {
 		toSerialize["shift_resumed_at"] = o.ShiftResumedAt.Get()
 	}
-	if o.LastLocation != nil {
-		toSerialize["last_location"] = o.LastLocation
+	if o.LastLocation.IsSet() {
+		toSerialize["last_location"] = o.LastLocation.Get()
 	}
 	if o.LastLocationTime.IsSet() {
 		toSerialize["last_location_time"] = o.LastLocationTime.Get()

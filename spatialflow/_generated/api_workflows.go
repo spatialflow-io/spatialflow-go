@@ -318,7 +318,7 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiCreateWorkflowExecute(r ApiAppsWor
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
+		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -329,7 +329,7 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiCreateWorkflowExecute(r ApiAppsWor
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 422 {
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -489,18 +489,7 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiCreateWorkflowFromTemplateExecute(
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -511,7 +500,7 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiCreateWorkflowFromTemplateExecute(
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -564,7 +553,7 @@ type ApiAppsWorkflowsApiDeleteWorkflowRequest struct {
 	workflowId string
 }
 
-func (r ApiAppsWorkflowsApiDeleteWorkflowRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsWorkflowsApiDeleteWorkflowRequest) Execute() (*http.Response, error) {
 	return r.ApiService.AppsWorkflowsApiDeleteWorkflowExecute(r)
 }
 
@@ -586,18 +575,16 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiDeleteWorkflow(ctx context.Context
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *WorkflowsAPIService) AppsWorkflowsApiDeleteWorkflowExecute(r ApiAppsWorkflowsApiDeleteWorkflowRequest) (map[string]interface{}, *http.Response, error) {
+func (a *WorkflowsAPIService) AppsWorkflowsApiDeleteWorkflowExecute(r ApiAppsWorkflowsApiDeleteWorkflowRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkflowsAPIService.AppsWorkflowsApiDeleteWorkflow")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/workflows/{workflow_id}"
@@ -640,19 +627,19 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiDeleteWorkflowExecute(r ApiAppsWor
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -665,68 +652,59 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiDeleteWorkflowExecute(r ApiAppsWor
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiAppsWorkflowsApiDuplicateWorkflowRequest struct {
@@ -1032,6 +1010,17 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiExecuteWorkflowExecute(r ApiAppsWo
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v map[string]interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1056,17 +1045,6 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiExecuteWorkflowExecute(r ApiAppsWo
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v map[string]interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1423,7 +1401,7 @@ type ApiAppsWorkflowsApiGetExecutionDetailsRequest struct {
 	executionId string
 }
 
-func (r ApiAppsWorkflowsApiGetExecutionDetailsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsWorkflowsApiGetExecutionDetailsRequest) Execute() (*ExecutionDetailOut, *http.Response, error) {
 	return r.ApiService.AppsWorkflowsApiGetExecutionDetailsExecute(r)
 }
 
@@ -1445,13 +1423,13 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiGetExecutionDetails(ctx context.Co
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *WorkflowsAPIService) AppsWorkflowsApiGetExecutionDetailsExecute(r ApiAppsWorkflowsApiGetExecutionDetailsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return ExecutionDetailOut
+func (a *WorkflowsAPIService) AppsWorkflowsApiGetExecutionDetailsExecute(r ApiAppsWorkflowsApiGetExecutionDetailsRequest) (*ExecutionDetailOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *ExecutionDetailOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkflowsAPIService.AppsWorkflowsApiGetExecutionDetails")
@@ -1519,17 +1497,6 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiGetExecutionDetailsExecute(r ApiAp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1593,7 +1560,7 @@ type ApiAppsWorkflowsApiGetSystemPerformanceSummaryRequest struct {
 	ApiService *WorkflowsAPIService
 }
 
-func (r ApiAppsWorkflowsApiGetSystemPerformanceSummaryRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsWorkflowsApiGetSystemPerformanceSummaryRequest) Execute() (*PerformanceSummaryOut, *http.Response, error) {
 	return r.ApiService.AppsWorkflowsApiGetSystemPerformanceSummaryExecute(r)
 }
 
@@ -1613,13 +1580,13 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiGetSystemPerformanceSummary(ctx co
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *WorkflowsAPIService) AppsWorkflowsApiGetSystemPerformanceSummaryExecute(r ApiAppsWorkflowsApiGetSystemPerformanceSummaryRequest) (map[string]interface{}, *http.Response, error) {
+//  @return PerformanceSummaryOut
+func (a *WorkflowsAPIService) AppsWorkflowsApiGetSystemPerformanceSummaryExecute(r ApiAppsWorkflowsApiGetSystemPerformanceSummaryRequest) (*PerformanceSummaryOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *PerformanceSummaryOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkflowsAPIService.AppsWorkflowsApiGetSystemPerformanceSummary")
@@ -2076,7 +2043,7 @@ type ApiAppsWorkflowsApiGetWorkflowBottlenecksRequest struct {
 	workflowId string
 }
 
-func (r ApiAppsWorkflowsApiGetWorkflowBottlenecksRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
+func (r ApiAppsWorkflowsApiGetWorkflowBottlenecksRequest) Execute() ([]*map[string]interface{}, *http.Response, error) {
 	return r.ApiService.AppsWorkflowsApiGetWorkflowBottlenecksExecute(r)
 }
 
@@ -2098,13 +2065,13 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowBottlenecks(ctx context
 }
 
 // Execute executes the request
-//  @return []map[string]interface{}
-func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowBottlenecksExecute(r ApiAppsWorkflowsApiGetWorkflowBottlenecksRequest) ([]map[string]interface{}, *http.Response, error) {
+//  @return []*map[string]interface{}
+func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowBottlenecksExecute(r ApiAppsWorkflowsApiGetWorkflowBottlenecksRequest) ([]*map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []map[string]interface{}
+		localVarReturnValue  []*map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkflowsAPIService.AppsWorkflowsApiGetWorkflowBottlenecks")
@@ -2237,7 +2204,7 @@ type ApiAppsWorkflowsApiGetWorkflowExecutionDetailRequest struct {
 	executionId string
 }
 
-func (r ApiAppsWorkflowsApiGetWorkflowExecutionDetailRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsWorkflowsApiGetWorkflowExecutionDetailRequest) Execute() (*WorkflowExecutionDetailOut, *http.Response, error) {
 	return r.ApiService.AppsWorkflowsApiGetWorkflowExecutionDetailExecute(r)
 }
 
@@ -2261,13 +2228,13 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowExecutionDetail(ctx con
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowExecutionDetailExecute(r ApiAppsWorkflowsApiGetWorkflowExecutionDetailRequest) (map[string]interface{}, *http.Response, error) {
+//  @return WorkflowExecutionDetailOut
+func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowExecutionDetailExecute(r ApiAppsWorkflowsApiGetWorkflowExecutionDetailRequest) (*WorkflowExecutionDetailOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *WorkflowExecutionDetailOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkflowsAPIService.AppsWorkflowsApiGetWorkflowExecutionDetail")
@@ -2931,7 +2898,7 @@ type ApiAppsWorkflowsApiGetWorkflowStatisticsRequest struct {
 	workflowId string
 }
 
-func (r ApiAppsWorkflowsApiGetWorkflowStatisticsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsWorkflowsApiGetWorkflowStatisticsRequest) Execute() (*WorkflowStatisticsOut, *http.Response, error) {
 	return r.ApiService.AppsWorkflowsApiGetWorkflowStatisticsExecute(r)
 }
 
@@ -2953,13 +2920,13 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowStatistics(ctx context.
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowStatisticsExecute(r ApiAppsWorkflowsApiGetWorkflowStatisticsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return WorkflowStatisticsOut
+func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowStatisticsExecute(r ApiAppsWorkflowsApiGetWorkflowStatisticsRequest) (*WorkflowStatisticsOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *WorkflowStatisticsOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkflowsAPIService.AppsWorkflowsApiGetWorkflowStatistics")
@@ -3091,7 +3058,7 @@ type ApiAppsWorkflowsApiGetWorkflowStepPerformanceRequest struct {
 	workflowId string
 }
 
-func (r ApiAppsWorkflowsApiGetWorkflowStepPerformanceRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
+func (r ApiAppsWorkflowsApiGetWorkflowStepPerformanceRequest) Execute() ([]*map[string]interface{}, *http.Response, error) {
 	return r.ApiService.AppsWorkflowsApiGetWorkflowStepPerformanceExecute(r)
 }
 
@@ -3113,13 +3080,13 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowStepPerformance(ctx con
 }
 
 // Execute executes the request
-//  @return []map[string]interface{}
-func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowStepPerformanceExecute(r ApiAppsWorkflowsApiGetWorkflowStepPerformanceRequest) ([]map[string]interface{}, *http.Response, error) {
+//  @return []*map[string]interface{}
+func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowStepPerformanceExecute(r ApiAppsWorkflowsApiGetWorkflowStepPerformanceRequest) ([]*map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []map[string]interface{}
+		localVarReturnValue  []*map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkflowsAPIService.AppsWorkflowsApiGetWorkflowStepPerformance")
@@ -3251,7 +3218,7 @@ type ApiAppsWorkflowsApiGetWorkflowTemplateRequest struct {
 	templateId string
 }
 
-func (r ApiAppsWorkflowsApiGetWorkflowTemplateRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsWorkflowsApiGetWorkflowTemplateRequest) Execute() (*WorkflowTemplateDetailOut, *http.Response, error) {
 	return r.ApiService.AppsWorkflowsApiGetWorkflowTemplateExecute(r)
 }
 
@@ -3273,13 +3240,13 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowTemplate(ctx context.Co
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowTemplateExecute(r ApiAppsWorkflowsApiGetWorkflowTemplateRequest) (map[string]interface{}, *http.Response, error) {
+//  @return WorkflowTemplateDetailOut
+func (a *WorkflowsAPIService) AppsWorkflowsApiGetWorkflowTemplateExecute(r ApiAppsWorkflowsApiGetWorkflowTemplateRequest) (*WorkflowTemplateDetailOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *WorkflowTemplateDetailOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkflowsAPIService.AppsWorkflowsApiGetWorkflowTemplate")
@@ -3656,8 +3623,8 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiImportWorkflowExecute(r ApiAppsWor
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v map[string]interface{}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3679,17 +3646,6 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiImportWorkflowExecute(r ApiAppsWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4114,7 +4070,7 @@ type ApiAppsWorkflowsApiListWorkflowVersionsRequest struct {
 	workflowId string
 }
 
-func (r ApiAppsWorkflowsApiListWorkflowVersionsRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
+func (r ApiAppsWorkflowsApiListWorkflowVersionsRequest) Execute() ([]*map[string]interface{}, *http.Response, error) {
 	return r.ApiService.AppsWorkflowsApiListWorkflowVersionsExecute(r)
 }
 
@@ -4138,13 +4094,13 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiListWorkflowVersions(ctx context.C
 }
 
 // Execute executes the request
-//  @return []map[string]interface{}
-func (a *WorkflowsAPIService) AppsWorkflowsApiListWorkflowVersionsExecute(r ApiAppsWorkflowsApiListWorkflowVersionsRequest) ([]map[string]interface{}, *http.Response, error) {
+//  @return []*map[string]interface{}
+func (a *WorkflowsAPIService) AppsWorkflowsApiListWorkflowVersionsExecute(r ApiAppsWorkflowsApiListWorkflowVersionsRequest) ([]*map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []map[string]interface{}
+		localVarReturnValue  []*map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkflowsAPIService.AppsWorkflowsApiListWorkflowVersions")
@@ -4756,6 +4712,17 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiTestWorkflowExecute(r ApiAppsWorkf
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v map[string]interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4780,17 +4747,6 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiTestWorkflowExecute(r ApiAppsWorkf
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v map[string]interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5120,6 +5076,17 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiUpdateWorkflowExecute(r ApiAppsWor
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -5143,17 +5110,6 @@ func (a *WorkflowsAPIService) AppsWorkflowsApiUpdateWorkflowExecute(r ApiAppsWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

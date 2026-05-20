@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkflowsApiDeleteWorkflow
 
-> map[string]interface{} AppsWorkflowsApiDeleteWorkflow(ctx, workflowId).Execute()
+> AppsWorkflowsApiDeleteWorkflow(ctx, workflowId).Execute()
 
 Delete Workflow
 
@@ -271,13 +271,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkflowsAPI.AppsWorkflowsApiDeleteWorkflow(context.Background(), workflowId).Execute()
+	r, err := apiClient.WorkflowsAPI.AppsWorkflowsApiDeleteWorkflow(context.Background(), workflowId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiDeleteWorkflow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkflowsApiDeleteWorkflow`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiDeleteWorkflow`: %v\n", resp)
 }
 ```
 
@@ -300,7 +298,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+ (empty response body)
 
 ### Authorization
 
@@ -593,7 +591,7 @@ Other parameters are passed through a pointer to a apiAppsWorkflowsApiGetAvailab
 
 ## AppsWorkflowsApiGetExecutionDetails
 
-> map[string]interface{} AppsWorkflowsApiGetExecutionDetails(ctx, executionId).Execute()
+> ExecutionDetailOut AppsWorkflowsApiGetExecutionDetails(ctx, executionId).Execute()
 
 Get Execution Details
 
@@ -621,7 +619,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiGetExecutionDetails``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkflowsApiGetExecutionDetails`: map[string]interface{}
+	// response from `AppsWorkflowsApiGetExecutionDetails`: ExecutionDetailOut
 	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiGetExecutionDetails`: %v\n", resp)
 }
 ```
@@ -645,7 +643,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**ExecutionDetailOut**](ExecutionDetailOut.md)
 
 ### Authorization
 
@@ -663,7 +661,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkflowsApiGetSystemPerformanceSummary
 
-> map[string]interface{} AppsWorkflowsApiGetSystemPerformanceSummary(ctx).Execute()
+> PerformanceSummaryOut AppsWorkflowsApiGetSystemPerformanceSummary(ctx).Execute()
 
 Get System Performance Summary
 
@@ -690,7 +688,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiGetSystemPerformanceSummary``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkflowsApiGetSystemPerformanceSummary`: map[string]interface{}
+	// response from `AppsWorkflowsApiGetSystemPerformanceSummary`: PerformanceSummaryOut
 	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiGetSystemPerformanceSummary`: %v\n", resp)
 }
 ```
@@ -706,7 +704,7 @@ Other parameters are passed through a pointer to a apiAppsWorkflowsApiGetSystemP
 
 ### Return type
 
-**map[string]interface{}**
+[**PerformanceSummaryOut**](PerformanceSummaryOut.md)
 
 ### Authorization
 
@@ -867,7 +865,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkflowsApiGetWorkflowBottlenecks
 
-> []map[string]interface{} AppsWorkflowsApiGetWorkflowBottlenecks(ctx, workflowId).Execute()
+> []*map[string]interface{} AppsWorkflowsApiGetWorkflowBottlenecks(ctx, workflowId).Execute()
 
 Get Workflow Bottlenecks
 
@@ -895,7 +893,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiGetWorkflowBottlenecks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkflowsApiGetWorkflowBottlenecks`: []map[string]interface{}
+	// response from `AppsWorkflowsApiGetWorkflowBottlenecks`: []*map[string]interface{}
 	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiGetWorkflowBottlenecks`: %v\n", resp)
 }
 ```
@@ -919,7 +917,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]map[string]interface{}**](map.md)
+[**[]*map[string]interface{}**](map.md)
 
 ### Authorization
 
@@ -937,7 +935,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkflowsApiGetWorkflowExecutionDetail
 
-> map[string]interface{} AppsWorkflowsApiGetWorkflowExecutionDetail(ctx, workflowId, executionId).Execute()
+> WorkflowExecutionDetailOut AppsWorkflowsApiGetWorkflowExecutionDetail(ctx, workflowId, executionId).Execute()
 
 Get Workflow Execution Detail
 
@@ -966,7 +964,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiGetWorkflowExecutionDetail``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkflowsApiGetWorkflowExecutionDetail`: map[string]interface{}
+	// response from `AppsWorkflowsApiGetWorkflowExecutionDetail`: WorkflowExecutionDetailOut
 	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiGetWorkflowExecutionDetail`: %v\n", resp)
 }
 ```
@@ -992,7 +990,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**WorkflowExecutionDetailOut**](WorkflowExecutionDetailOut.md)
 
 ### Authorization
 
@@ -1231,7 +1229,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkflowsApiGetWorkflowStatistics
 
-> map[string]interface{} AppsWorkflowsApiGetWorkflowStatistics(ctx, workflowId).Execute()
+> WorkflowStatisticsOut AppsWorkflowsApiGetWorkflowStatistics(ctx, workflowId).Execute()
 
 Get Workflow Statistics
 
@@ -1259,7 +1257,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiGetWorkflowStatistics``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkflowsApiGetWorkflowStatistics`: map[string]interface{}
+	// response from `AppsWorkflowsApiGetWorkflowStatistics`: WorkflowStatisticsOut
 	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiGetWorkflowStatistics`: %v\n", resp)
 }
 ```
@@ -1283,7 +1281,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**WorkflowStatisticsOut**](WorkflowStatisticsOut.md)
 
 ### Authorization
 
@@ -1301,7 +1299,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkflowsApiGetWorkflowStepPerformance
 
-> []map[string]interface{} AppsWorkflowsApiGetWorkflowStepPerformance(ctx, workflowId).Execute()
+> []*map[string]interface{} AppsWorkflowsApiGetWorkflowStepPerformance(ctx, workflowId).Execute()
 
 Get Workflow Step Performance
 
@@ -1329,7 +1327,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiGetWorkflowStepPerformance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkflowsApiGetWorkflowStepPerformance`: []map[string]interface{}
+	// response from `AppsWorkflowsApiGetWorkflowStepPerformance`: []*map[string]interface{}
 	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiGetWorkflowStepPerformance`: %v\n", resp)
 }
 ```
@@ -1353,7 +1351,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]map[string]interface{}**](map.md)
+[**[]*map[string]interface{}**](map.md)
 
 ### Authorization
 
@@ -1371,7 +1369,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkflowsApiGetWorkflowTemplate
 
-> map[string]interface{} AppsWorkflowsApiGetWorkflowTemplate(ctx, templateId).Execute()
+> WorkflowTemplateDetailOut AppsWorkflowsApiGetWorkflowTemplate(ctx, templateId).Execute()
 
 Get Workflow Template
 
@@ -1399,7 +1397,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiGetWorkflowTemplate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkflowsApiGetWorkflowTemplate`: map[string]interface{}
+	// response from `AppsWorkflowsApiGetWorkflowTemplate`: WorkflowTemplateDetailOut
 	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiGetWorkflowTemplate`: %v\n", resp)
 }
 ```
@@ -1423,7 +1421,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**WorkflowTemplateDetailOut**](WorkflowTemplateDetailOut.md)
 
 ### Authorization
 
@@ -1708,7 +1706,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkflowsApiListWorkflowVersions
 
-> []map[string]interface{} AppsWorkflowsApiListWorkflowVersions(ctx, workflowId).Execute()
+> []*map[string]interface{} AppsWorkflowsApiListWorkflowVersions(ctx, workflowId).Execute()
 
 List Workflow Versions
 
@@ -1736,7 +1734,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiListWorkflowVersions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkflowsApiListWorkflowVersions`: []map[string]interface{}
+	// response from `AppsWorkflowsApiListWorkflowVersions`: []*map[string]interface{}
 	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiListWorkflowVersions`: %v\n", resp)
 }
 ```
@@ -1760,7 +1758,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]map[string]interface{}**](map.md)
+[**[]*map[string]interface{}**](map.md)
 
 ### Authorization
 

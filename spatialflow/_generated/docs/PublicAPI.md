@@ -83,7 +83,7 @@ No authorization required
 
 ## AppsPublicApiGetApiDocs
 
-> map[string]interface{} AppsPublicApiGetApiDocs(ctx).Execute()
+> ApiDocsOut AppsPublicApiGetApiDocs(ctx).Execute()
 
 Get Api Docs
 
@@ -110,7 +110,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicAPI.AppsPublicApiGetApiDocs``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsPublicApiGetApiDocs`: map[string]interface{}
+	// response from `AppsPublicApiGetApiDocs`: ApiDocsOut
 	fmt.Fprintf(os.Stdout, "Response from `PublicAPI.AppsPublicApiGetApiDocs`: %v\n", resp)
 }
 ```
@@ -126,7 +126,7 @@ Other parameters are passed through a pointer to a apiAppsPublicApiGetApiDocsReq
 
 ### Return type
 
-**map[string]interface{}**
+[**ApiDocsOut**](ApiDocsOut.md)
 
 ### Authorization
 
@@ -144,7 +144,7 @@ No authorization required
 
 ## AppsPublicApiGetWebsocketRoutes
 
-> map[string]interface{} AppsPublicApiGetWebsocketRoutes(ctx).Execute()
+> WebSocketRoutesOut AppsPublicApiGetWebsocketRoutes(ctx).Execute()
 
 Get Websocket Routes
 
@@ -171,7 +171,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicAPI.AppsPublicApiGetWebsocketRoutes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsPublicApiGetWebsocketRoutes`: map[string]interface{}
+	// response from `AppsPublicApiGetWebsocketRoutes`: WebSocketRoutesOut
 	fmt.Fprintf(os.Stdout, "Response from `PublicAPI.AppsPublicApiGetWebsocketRoutes`: %v\n", resp)
 }
 ```
@@ -187,7 +187,7 @@ Other parameters are passed through a pointer to a apiAppsPublicApiGetWebsocketR
 
 ### Return type
 
-**map[string]interface{}**
+[**WebSocketRoutesOut**](WebSocketRoutesOut.md)
 
 ### Authorization
 
@@ -205,7 +205,7 @@ No authorization required
 
 ## AppsPublicApiHealthCheck
 
-> map[string]interface{} AppsPublicApiHealthCheck(ctx).Execute()
+> HealthOut AppsPublicApiHealthCheck(ctx).Execute()
 
 Health Check
 
@@ -232,7 +232,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicAPI.AppsPublicApiHealthCheck``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsPublicApiHealthCheck`: map[string]interface{}
+	// response from `AppsPublicApiHealthCheck`: HealthOut
 	fmt.Fprintf(os.Stdout, "Response from `PublicAPI.AppsPublicApiHealthCheck`: %v\n", resp)
 }
 ```
@@ -248,7 +248,7 @@ Other parameters are passed through a pointer to a apiAppsPublicApiHealthCheckRe
 
 ### Return type
 
-**map[string]interface{}**
+[**HealthOut**](HealthOut.md)
 
 ### Authorization
 
@@ -266,7 +266,7 @@ No authorization required
 
 ## AppsPublicApiRuntimeConfig
 
-> map[string]interface{} AppsPublicApiRuntimeConfig(ctx).Execute()
+> RuntimeConfigOut AppsPublicApiRuntimeConfig(ctx).Execute()
 
 Runtime Config
 
@@ -293,7 +293,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicAPI.AppsPublicApiRuntimeConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsPublicApiRuntimeConfig`: map[string]interface{}
+	// response from `AppsPublicApiRuntimeConfig`: RuntimeConfigOut
 	fmt.Fprintf(os.Stdout, "Response from `PublicAPI.AppsPublicApiRuntimeConfig`: %v\n", resp)
 }
 ```
@@ -309,7 +309,7 @@ Other parameters are passed through a pointer to a apiAppsPublicApiRuntimeConfig
 
 ### Return type
 
-**map[string]interface{}**
+[**RuntimeConfigOut**](RuntimeConfigOut.md)
 
 ### Authorization
 
@@ -393,7 +393,7 @@ No authorization required
 
 ## AppsPublicApiStatus
 
-> map[string]interface{} AppsPublicApiStatus(ctx).Execute()
+> StatusOut AppsPublicApiStatus(ctx).Execute()
 
 Status
 
@@ -420,7 +420,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicAPI.AppsPublicApiStatus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsPublicApiStatus`: map[string]interface{}
+	// response from `AppsPublicApiStatus`: StatusOut
 	fmt.Fprintf(os.Stdout, "Response from `PublicAPI.AppsPublicApiStatus`: %v\n", resp)
 }
 ```
@@ -436,7 +436,7 @@ Other parameters are passed through a pointer to a apiAppsPublicApiStatusRequest
 
 ### Return type
 
-**map[string]interface{}**
+[**StatusOut**](StatusOut.md)
 
 ### Authorization
 
@@ -454,7 +454,7 @@ No authorization required
 
 ## AppsPublicApiSwaggerUi
 
-> map[string]interface{} AppsPublicApiSwaggerUi(ctx).Execute()
+> DocsUiOut AppsPublicApiSwaggerUi(ctx).Execute()
 
 Swagger Ui
 
@@ -481,7 +481,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicAPI.AppsPublicApiSwaggerUi``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsPublicApiSwaggerUi`: map[string]interface{}
+	// response from `AppsPublicApiSwaggerUi`: DocsUiOut
 	fmt.Fprintf(os.Stdout, "Response from `PublicAPI.AppsPublicApiSwaggerUi`: %v\n", resp)
 }
 ```
@@ -497,7 +497,7 @@ Other parameters are passed through a pointer to a apiAppsPublicApiSwaggerUiRequ
 
 ### Return type
 
-**map[string]interface{}**
+[**DocsUiOut**](DocsUiOut.md)
 
 ### Authorization
 

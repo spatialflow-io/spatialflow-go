@@ -5,11 +5,11 @@ All URIs are relative to *https://api.spatialflow.io*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AppsDevicesApiPoliciesCreatePolicy**](PoliciesAPI.md#AppsDevicesApiPoliciesCreatePolicy) | **Post** /api/v1/policies/ | Create policy
-[**AppsDevicesApiPoliciesDeletePolicy**](PoliciesAPI.md#AppsDevicesApiPoliciesDeletePolicy) | **Delete** /api/v1/policies/{policy_id}/ | Delete policy
-[**AppsDevicesApiPoliciesGetPolicy**](PoliciesAPI.md#AppsDevicesApiPoliciesGetPolicy) | **Get** /api/v1/policies/{policy_id}/ | Get policy detail
+[**AppsDevicesApiPoliciesDeletePolicy**](PoliciesAPI.md#AppsDevicesApiPoliciesDeletePolicy) | **Delete** /api/v1/policies/{policy_id} | Delete policy
+[**AppsDevicesApiPoliciesGetPolicy**](PoliciesAPI.md#AppsDevicesApiPoliciesGetPolicy) | **Get** /api/v1/policies/{policy_id} | Get policy detail
 [**AppsDevicesApiPoliciesListPolicies**](PoliciesAPI.md#AppsDevicesApiPoliciesListPolicies) | **Get** /api/v1/policies/ | List policies
 [**AppsDevicesApiPoliciesListTemplates**](PoliciesAPI.md#AppsDevicesApiPoliciesListTemplates) | **Get** /api/v1/policies/templates | List policy templates
-[**AppsDevicesApiPoliciesUpdatePolicy**](PoliciesAPI.md#AppsDevicesApiPoliciesUpdatePolicy) | **Put** /api/v1/policies/{policy_id}/ | Update policy
+[**AppsDevicesApiPoliciesUpdatePolicy**](PoliciesAPI.md#AppsDevicesApiPoliciesUpdatePolicy) | **Put** /api/v1/policies/{policy_id} | Update policy
 
 
 

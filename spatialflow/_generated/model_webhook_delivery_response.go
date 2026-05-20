@@ -35,6 +35,8 @@ type WebhookDeliveryResponse struct {
 	ResponseTimeMs NullableFloat32 `json:"response_time_ms"`
 	ErrorMessage NullableString `json:"error_message"`
 	AttemptCount int32 `json:"attempt_count"`
+	// Deprecated — use attempt_count
+	// Deprecated
 	RetryCount *int32 `json:"retry_count,omitempty"`
 	CreatedAt time.Time `json:"created_at"`
 	DeliveredAt NullableTime `json:"delivered_at"`
@@ -420,6 +422,7 @@ func (o *WebhookDeliveryResponse) SetAttemptCount(v int32) {
 }
 
 // GetRetryCount returns the RetryCount field value if set, zero value otherwise.
+// Deprecated
 func (o *WebhookDeliveryResponse) GetRetryCount() int32 {
 	if o == nil || IsNil(o.RetryCount) {
 		var ret int32
@@ -430,6 +433,7 @@ func (o *WebhookDeliveryResponse) GetRetryCount() int32 {
 
 // GetRetryCountOk returns a tuple with the RetryCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *WebhookDeliveryResponse) GetRetryCountOk() (*int32, bool) {
 	if o == nil || IsNil(o.RetryCount) {
 		return nil, false
@@ -447,6 +451,7 @@ func (o *WebhookDeliveryResponse) HasRetryCount() bool {
 }
 
 // SetRetryCount gets a reference to the given int32 and assigns it to the RetryCount field.
+// Deprecated
 func (o *WebhookDeliveryResponse) SetRetryCount(v int32) {
 	o.RetryCount = &v
 }

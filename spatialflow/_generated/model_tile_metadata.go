@@ -27,7 +27,7 @@ type TileMetadata struct {
 	Maxzoom int32 `json:"maxzoom"`
 	Bounds []float32 `json:"bounds"`
 	Center []float32 `json:"center"`
-	Layers []*map[string]interface{} `json:"layers"`
+	Layers []map[string]interface{} `json:"layers"`
 }
 
 type _TileMetadata TileMetadata
@@ -36,7 +36,7 @@ type _TileMetadata TileMetadata
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTileMetadata(name string, format string, minzoom int32, maxzoom int32, bounds []float32, center []float32, layers []*map[string]interface{}) *TileMetadata {
+func NewTileMetadata(name string, format string, minzoom int32, maxzoom int32, bounds []float32, center []float32, layers []map[string]interface{}) *TileMetadata {
 	this := TileMetadata{}
 	this.Name = name
 	this.Format = format
@@ -201,9 +201,9 @@ func (o *TileMetadata) SetCenter(v []float32) {
 }
 
 // GetLayers returns the Layers field value
-func (o *TileMetadata) GetLayers() []*map[string]interface{} {
+func (o *TileMetadata) GetLayers() []map[string]interface{} {
 	if o == nil {
-		var ret []*map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -212,7 +212,7 @@ func (o *TileMetadata) GetLayers() []*map[string]interface{} {
 
 // GetLayersOk returns a tuple with the Layers field value
 // and a boolean to check if the value has been set.
-func (o *TileMetadata) GetLayersOk() ([]*map[string]interface{}, bool) {
+func (o *TileMetadata) GetLayersOk() ([]map[string]interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -220,7 +220,7 @@ func (o *TileMetadata) GetLayersOk() ([]*map[string]interface{}, bool) {
 }
 
 // SetLayers sets field value
-func (o *TileMetadata) SetLayers(v []*map[string]interface{}) {
+func (o *TileMetadata) SetLayers(v []map[string]interface{}) {
 	o.Layers = v
 }
 

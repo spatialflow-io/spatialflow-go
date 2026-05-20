@@ -37,6 +37,8 @@ func (r ApiAppsDevicesApiTripsCancelTripRequest) Execute() (*TripOut, *http.Resp
 /*
 AppsDevicesApiTripsCancelTrip Cancel a planned trip
 
+Cancel a planned trip. Only trips with status 'planned' can be cancelled.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param tripId
  @return ApiAppsDevicesApiTripsCancelTripRequest
@@ -197,6 +199,8 @@ func (r ApiAppsDevicesApiTripsCreateTripRequest) Execute() (*TripOut, *http.Resp
 /*
 AppsDevicesApiTripsCreateTrip Create a planned trip
 
+Create a new planned trip for a device with an optional route.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAppsDevicesApiTripsCreateTripRequest
 */
@@ -354,6 +358,8 @@ func (r ApiAppsDevicesApiTripsGetTripRequest) Execute() (*TripDetailOut, *http.R
 /*
 AppsDevicesApiTripsGetTrip Get trip detail
 
+Retrieve a single trip with planned route and track geometry.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param tripId
  @return ApiAppsDevicesApiTripsGetTripRequest
@@ -381,7 +387,7 @@ func (a *TripsAPIService) AppsDevicesApiTripsGetTripExecute(r ApiAppsDevicesApiT
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/trips/{trip_id}/"
+	localVarPath := localBasePath + "/api/v1/trips/{trip_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"trip_id"+"}", url.PathEscape(parameterValueToString(r.tripId, "tripId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -532,6 +538,8 @@ func (r ApiAppsDevicesApiTripsListTripsRequest) Execute() (*TripsListOut, *http.
 
 /*
 AppsDevicesApiTripsListTrips List trips
+
+List trips for the authenticated user's workspace with optional filtering.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAppsDevicesApiTripsListTripsRequest
@@ -715,6 +723,8 @@ func (r ApiAppsDevicesApiTripsUpdateTripRequest) Execute() (*TripOut, *http.Resp
 /*
 AppsDevicesApiTripsUpdateTrip Update a trip
 
+Update a trip's name, planned route, or metadata.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param tripId
  @return ApiAppsDevicesApiTripsUpdateTripRequest
@@ -742,7 +752,7 @@ func (a *TripsAPIService) AppsDevicesApiTripsUpdateTripExecute(r ApiAppsDevicesA
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/trips/{trip_id}/"
+	localVarPath := localBasePath + "/api/v1/trips/{trip_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"trip_id"+"}", url.PathEscape(parameterValueToString(r.tripId, "tripId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

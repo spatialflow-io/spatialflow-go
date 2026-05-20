@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **ResourceType** | **string** |  | 
 **ResourceId** | Pointer to **NullableString** |  | [optional] 
 **Description** | **string** |  | 
-**Changes** | **map[string]interface{}** |  | 
+**Changes** | **interface{}** |  | 
 **IpAddress** | Pointer to **NullableString** |  | [optional] 
 **UserAgent** | Pointer to **NullableString** |  | [optional] 
 **HttpMethod** | **string** |  | 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewAuditLogOut
 
-`func NewAuditLogOut(id string, userEmail string, action string, resourceType string, description string, changes map[string]interface{}, httpMethod string, path string, createdAt string, ) *AuditLogOut`
+`func NewAuditLogOut(id string, userEmail string, action string, resourceType string, description string, changes interface{}, httpMethod string, path string, createdAt string, ) *AuditLogOut`
 
 NewAuditLogOut instantiates a new AuditLogOut object
 This constructor will assign default values to properties that have it defined,
@@ -174,24 +174,34 @@ SetDescription sets Description field to given value.
 
 ### GetChanges
 
-`func (o *AuditLogOut) GetChanges() map[string]interface{}`
+`func (o *AuditLogOut) GetChanges() interface{}`
 
 GetChanges returns the Changes field if non-nil, zero value otherwise.
 
 ### GetChangesOk
 
-`func (o *AuditLogOut) GetChangesOk() (*map[string]interface{}, bool)`
+`func (o *AuditLogOut) GetChangesOk() (*interface{}, bool)`
 
 GetChangesOk returns a tuple with the Changes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChanges
 
-`func (o *AuditLogOut) SetChanges(v map[string]interface{})`
+`func (o *AuditLogOut) SetChanges(v interface{})`
 
 SetChanges sets Changes field to given value.
 
 
+### SetChangesNil
+
+`func (o *AuditLogOut) SetChangesNil(b bool)`
+
+ SetChangesNil sets the value for Changes to be an explicit nil
+
+### UnsetChanges
+`func (o *AuditLogOut) UnsetChanges()`
+
+UnsetChanges ensures that no value is present for Changes, not even an explicit nil
 ### GetIpAddress
 
 `func (o *AuditLogOut) GetIpAddress() string`

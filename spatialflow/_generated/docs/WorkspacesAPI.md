@@ -7,14 +7,17 @@ Method | HTTP request | Description
 [**AppsWorkspacesApiCancelInvitation**](WorkspacesAPI.md#AppsWorkspacesApiCancelInvitation) | **Delete** /api/v1/workspaces/invitations/{invite_id} | Cancel Invitation
 [**AppsWorkspacesApiCreateInvitation**](WorkspacesAPI.md#AppsWorkspacesApiCreateInvitation) | **Post** /api/v1/workspaces/invitations | Create Invitation
 [**AppsWorkspacesApiDeleteSamlConfig**](WorkspacesAPI.md#AppsWorkspacesApiDeleteSamlConfig) | **Delete** /api/v1/workspaces/saml-config | Delete Saml Config
+[**AppsWorkspacesApiExtendInvitation**](WorkspacesAPI.md#AppsWorkspacesApiExtendInvitation) | **Patch** /api/v1/workspaces/invitations/{invite_id} | Extend Invitation
 [**AppsWorkspacesApiGetSamlConfig**](WorkspacesAPI.md#AppsWorkspacesApiGetSamlConfig) | **Get** /api/v1/workspaces/saml-config | Get Saml Config
 [**AppsWorkspacesApiGetWorkspace**](WorkspacesAPI.md#AppsWorkspacesApiGetWorkspace) | **Get** /api/v1/workspaces/ | Get Workspace
 [**AppsWorkspacesApiGetWorkspaceUsage**](WorkspacesAPI.md#AppsWorkspacesApiGetWorkspaceUsage) | **Get** /api/v1/workspaces/usage | Get Workspace Usage
 [**AppsWorkspacesApiListInvitations**](WorkspacesAPI.md#AppsWorkspacesApiListInvitations) | **Get** /api/v1/workspaces/invitations | List Invitations
 [**AppsWorkspacesApiListWorkspaceMembers**](WorkspacesAPI.md#AppsWorkspacesApiListWorkspaceMembers) | **Get** /api/v1/workspaces/members | List Workspace Members
+[**AppsWorkspacesApiMobileWorkspaceBootstrap**](WorkspacesAPI.md#AppsWorkspacesApiMobileWorkspaceBootstrap) | **Get** /api/v1/workspaces/mobile/bootstrap | Mobile Workspace Bootstrap
 [**AppsWorkspacesApiRemoveMember**](WorkspacesAPI.md#AppsWorkspacesApiRemoveMember) | **Delete** /api/v1/workspaces/members/{user_id} | Remove Member
 [**AppsWorkspacesApiResendInvitation**](WorkspacesAPI.md#AppsWorkspacesApiResendInvitation) | **Post** /api/v1/workspaces/invitations/{invite_id}/resend | Resend Invitation
 [**AppsWorkspacesApiRevokeAllWorkspaceSessions**](WorkspacesAPI.md#AppsWorkspacesApiRevokeAllWorkspaceSessions) | **Post** /api/v1/workspaces/revoke-all-sessions | Revoke All Workspace Sessions
+[**AppsWorkspacesApiSelectMobileWorkspace**](WorkspacesAPI.md#AppsWorkspacesApiSelectMobileWorkspace) | **Post** /api/v1/workspaces/mobile/select | Select Mobile Workspace
 [**AppsWorkspacesApiUpdateMemberRole**](WorkspacesAPI.md#AppsWorkspacesApiUpdateMemberRole) | **Patch** /api/v1/workspaces/members/{user_id} | Update Member Role
 [**AppsWorkspacesApiUpdateWorkspace**](WorkspacesAPI.md#AppsWorkspacesApiUpdateWorkspace) | **Put** /api/v1/workspaces/ | Update Workspace
 [**AppsWorkspacesApiUpsertSamlConfig**](WorkspacesAPI.md#AppsWorkspacesApiUpsertSamlConfig) | **Put** /api/v1/workspaces/saml-config | Upsert Saml Config
@@ -211,6 +214,79 @@ Other parameters are passed through a pointer to a apiAppsWorkspacesApiDeleteSam
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWorkspacesApiExtendInvitation
+
+> InvitationOut AppsWorkspacesApiExtendInvitation(ctx, inviteId).ExtendInvitationIn(extendInvitationIn).Execute()
+
+Extend Invitation
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+    "time"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	inviteId := "inviteId_example" // string | 
+	extendInvitationIn := *openapiclient.NewExtendInvitationIn(time.Now()) // ExtendInvitationIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiExtendInvitation(context.Background(), inviteId).ExtendInvitationIn(extendInvitationIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiExtendInvitation``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkspacesApiExtendInvitation`: InvitationOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiExtendInvitation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**inviteId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkspacesApiExtendInvitationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **extendInvitationIn** | [**ExtendInvitationIn**](ExtendInvitationIn.md) |  | 
+
+### Return type
+
+[**InvitationOut**](InvitationOut.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -523,9 +599,70 @@ Other parameters are passed through a pointer to a apiAppsWorkspacesApiListWorks
 [[Back to README]](../README.md)
 
 
+## AppsWorkspacesApiMobileWorkspaceBootstrap
+
+> MobileWorkspaceBootstrapOut AppsWorkspacesApiMobileWorkspaceBootstrap(ctx).Execute()
+
+Mobile Workspace Bootstrap
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiMobileWorkspaceBootstrap(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiMobileWorkspaceBootstrap``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkspacesApiMobileWorkspaceBootstrap`: MobileWorkspaceBootstrapOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiMobileWorkspaceBootstrap`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkspacesApiMobileWorkspaceBootstrapRequest struct via the builder pattern
+
+
+### Return type
+
+[**MobileWorkspaceBootstrapOut**](MobileWorkspaceBootstrapOut.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsWorkspacesApiRemoveMember
 
-> MemberActionOut AppsWorkspacesApiRemoveMember(ctx, userId).Execute()
+> AppsWorkspacesApiRemoveMember(ctx, userId).Execute()
 
 Remove Member
 
@@ -548,13 +685,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiRemoveMember(context.Background(), userId).Execute()
+	r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiRemoveMember(context.Background(), userId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiRemoveMember``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkspacesApiRemoveMember`: MemberActionOut
-	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiRemoveMember`: %v\n", resp)
 }
 ```
 
@@ -577,7 +712,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MemberActionOut**](MemberActionOut.md)
+ (empty response body)
 
 ### Authorization
 
@@ -717,6 +852,72 @@ Other parameters are passed through a pointer to a apiAppsWorkspacesApiRevokeAll
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWorkspacesApiSelectMobileWorkspace
+
+> MobileWorkspaceSelectionOut AppsWorkspacesApiSelectMobileWorkspace(ctx).MobileWorkspaceSelectIn(mobileWorkspaceSelectIn).Execute()
+
+Select Mobile Workspace
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	mobileWorkspaceSelectIn := *openapiclient.NewMobileWorkspaceSelectIn("WorkspaceId_example") // MobileWorkspaceSelectIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiSelectMobileWorkspace(context.Background()).MobileWorkspaceSelectIn(mobileWorkspaceSelectIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiSelectMobileWorkspace``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkspacesApiSelectMobileWorkspace`: MobileWorkspaceSelectionOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiSelectMobileWorkspace`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkspacesApiSelectMobileWorkspaceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mobileWorkspaceSelectIn** | [**MobileWorkspaceSelectIn**](MobileWorkspaceSelectIn.md) |  | 
+
+### Return type
+
+[**MobileWorkspaceSelectionOut**](MobileWorkspaceSelectionOut.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

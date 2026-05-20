@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateGeofenceRequest{}
 type UpdateGeofenceRequest struct {
 	Name NullableString `json:"name,omitempty"`
 	Description NullableString `json:"description,omitempty"`
-	Geometry map[string]interface{} `json:"geometry,omitempty"`
+	Geometry NullableGeometry1 `json:"geometry,omitempty"`
 	WebhookUrl NullableString `json:"webhook_url,omitempty"`
 	WebhookEvents []string `json:"webhook_events,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
@@ -131,36 +131,45 @@ func (o *UpdateGeofenceRequest) UnsetDescription() {
 }
 
 // GetGeometry returns the Geometry field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateGeofenceRequest) GetGeometry() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+func (o *UpdateGeofenceRequest) GetGeometry() Geometry1 {
+	if o == nil || IsNil(o.Geometry.Get()) {
+		var ret Geometry1
 		return ret
 	}
-	return o.Geometry
+	return *o.Geometry.Get()
 }
 
 // GetGeometryOk returns a tuple with the Geometry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateGeofenceRequest) GetGeometryOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Geometry) {
-		return map[string]interface{}{}, false
+func (o *UpdateGeofenceRequest) GetGeometryOk() (*Geometry1, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return o.Geometry, true
+	return o.Geometry.Get(), o.Geometry.IsSet()
 }
 
 // HasGeometry returns a boolean if a field has been set.
 func (o *UpdateGeofenceRequest) HasGeometry() bool {
-	if o != nil && !IsNil(o.Geometry) {
+	if o != nil && o.Geometry.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetGeometry gets a reference to the given map[string]interface{} and assigns it to the Geometry field.
-func (o *UpdateGeofenceRequest) SetGeometry(v map[string]interface{}) {
-	o.Geometry = v
+// SetGeometry gets a reference to the given NullableGeometry1 and assigns it to the Geometry field.
+func (o *UpdateGeofenceRequest) SetGeometry(v Geometry1) {
+	o.Geometry.Set(&v)
+}
+// SetGeometryNil sets the value for Geometry to be an explicit nil
+func (o *UpdateGeofenceRequest) SetGeometryNil() {
+	o.Geometry.Set(nil)
+}
+
+// UnsetGeometry ensures that no value is present for Geometry, not even an explicit nil
+func (o *UpdateGeofenceRequest) UnsetGeometry() {
+	o.Geometry.Unset()
 }
 
 // GetWebhookUrl returns the WebhookUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -371,8 +380,8 @@ func (o UpdateGeofenceRequest) ToMap() (map[string]interface{}, error) {
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	if o.Geometry != nil {
-		toSerialize["geometry"] = o.Geometry
+	if o.Geometry.IsSet() {
+		toSerialize["geometry"] = o.Geometry.Get()
 	}
 	if o.WebhookUrl.IsSet() {
 		toSerialize["webhook_url"] = o.WebhookUrl.Get()

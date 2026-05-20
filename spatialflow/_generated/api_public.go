@@ -207,7 +207,7 @@ type ApiAppsPublicApiGetApiDocsRequest struct {
 	ApiService *PublicAPIService
 }
 
-func (r ApiAppsPublicApiGetApiDocsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsPublicApiGetApiDocsRequest) Execute() (*ApiDocsOut, *http.Response, error) {
 	return r.ApiService.AppsPublicApiGetApiDocsExecute(r)
 }
 
@@ -227,13 +227,13 @@ func (a *PublicAPIService) AppsPublicApiGetApiDocs(ctx context.Context) ApiAppsP
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *PublicAPIService) AppsPublicApiGetApiDocsExecute(r ApiAppsPublicApiGetApiDocsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return ApiDocsOut
+func (a *PublicAPIService) AppsPublicApiGetApiDocsExecute(r ApiAppsPublicApiGetApiDocsRequest) (*ApiDocsOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *ApiDocsOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PublicAPIService.AppsPublicApiGetApiDocs")
@@ -349,7 +349,7 @@ type ApiAppsPublicApiGetWebsocketRoutesRequest struct {
 	ApiService *PublicAPIService
 }
 
-func (r ApiAppsPublicApiGetWebsocketRoutesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsPublicApiGetWebsocketRoutesRequest) Execute() (*WebSocketRoutesOut, *http.Response, error) {
 	return r.ApiService.AppsPublicApiGetWebsocketRoutesExecute(r)
 }
 
@@ -372,13 +372,13 @@ func (a *PublicAPIService) AppsPublicApiGetWebsocketRoutes(ctx context.Context) 
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *PublicAPIService) AppsPublicApiGetWebsocketRoutesExecute(r ApiAppsPublicApiGetWebsocketRoutesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return WebSocketRoutesOut
+func (a *PublicAPIService) AppsPublicApiGetWebsocketRoutesExecute(r ApiAppsPublicApiGetWebsocketRoutesRequest) (*WebSocketRoutesOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *WebSocketRoutesOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PublicAPIService.AppsPublicApiGetWebsocketRoutes")
@@ -494,7 +494,7 @@ type ApiAppsPublicApiHealthCheckRequest struct {
 	ApiService *PublicAPIService
 }
 
-func (r ApiAppsPublicApiHealthCheckRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsPublicApiHealthCheckRequest) Execute() (*HealthOut, *http.Response, error) {
 	return r.ApiService.AppsPublicApiHealthCheckExecute(r)
 }
 
@@ -514,13 +514,13 @@ func (a *PublicAPIService) AppsPublicApiHealthCheck(ctx context.Context) ApiApps
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *PublicAPIService) AppsPublicApiHealthCheckExecute(r ApiAppsPublicApiHealthCheckRequest) (map[string]interface{}, *http.Response, error) {
+//  @return HealthOut
+func (a *PublicAPIService) AppsPublicApiHealthCheckExecute(r ApiAppsPublicApiHealthCheckRequest) (*HealthOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *HealthOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PublicAPIService.AppsPublicApiHealthCheck")
@@ -636,7 +636,7 @@ type ApiAppsPublicApiRuntimeConfigRequest struct {
 	ApiService *PublicAPIService
 }
 
-func (r ApiAppsPublicApiRuntimeConfigRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsPublicApiRuntimeConfigRequest) Execute() (*RuntimeConfigOut, *http.Response, error) {
 	return r.ApiService.AppsPublicApiRuntimeConfigExecute(r)
 }
 
@@ -672,13 +672,13 @@ func (a *PublicAPIService) AppsPublicApiRuntimeConfig(ctx context.Context) ApiAp
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *PublicAPIService) AppsPublicApiRuntimeConfigExecute(r ApiAppsPublicApiRuntimeConfigRequest) (map[string]interface{}, *http.Response, error) {
+//  @return RuntimeConfigOut
+func (a *PublicAPIService) AppsPublicApiRuntimeConfigExecute(r ApiAppsPublicApiRuntimeConfigRequest) (*RuntimeConfigOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *RuntimeConfigOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PublicAPIService.AppsPublicApiRuntimeConfig")
@@ -730,17 +730,6 @@ func (a *PublicAPIService) AppsPublicApiRuntimeConfigExecute(r ApiAppsPublicApiR
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -982,7 +971,7 @@ type ApiAppsPublicApiStatusRequest struct {
 	ApiService *PublicAPIService
 }
 
-func (r ApiAppsPublicApiStatusRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsPublicApiStatusRequest) Execute() (*StatusOut, *http.Response, error) {
 	return r.ApiService.AppsPublicApiStatusExecute(r)
 }
 
@@ -1002,13 +991,13 @@ func (a *PublicAPIService) AppsPublicApiStatus(ctx context.Context) ApiAppsPubli
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *PublicAPIService) AppsPublicApiStatusExecute(r ApiAppsPublicApiStatusRequest) (map[string]interface{}, *http.Response, error) {
+//  @return StatusOut
+func (a *PublicAPIService) AppsPublicApiStatusExecute(r ApiAppsPublicApiStatusRequest) (*StatusOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *StatusOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PublicAPIService.AppsPublicApiStatus")
@@ -1124,7 +1113,7 @@ type ApiAppsPublicApiSwaggerUiRequest struct {
 	ApiService *PublicAPIService
 }
 
-func (r ApiAppsPublicApiSwaggerUiRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsPublicApiSwaggerUiRequest) Execute() (*DocsUiOut, *http.Response, error) {
 	return r.ApiService.AppsPublicApiSwaggerUiExecute(r)
 }
 
@@ -1147,13 +1136,13 @@ func (a *PublicAPIService) AppsPublicApiSwaggerUi(ctx context.Context) ApiAppsPu
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *PublicAPIService) AppsPublicApiSwaggerUiExecute(r ApiAppsPublicApiSwaggerUiRequest) (map[string]interface{}, *http.Response, error) {
+//  @return DocsUiOut
+func (a *PublicAPIService) AppsPublicApiSwaggerUiExecute(r ApiAppsPublicApiSwaggerUiRequest) (*DocsUiOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *DocsUiOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PublicAPIService.AppsPublicApiSwaggerUi")

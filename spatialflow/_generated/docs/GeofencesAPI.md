@@ -45,7 +45,7 @@ import (
 )
 
 func main() {
-	bulkGeofenceRequest := *openapiclient.NewBulkGeofenceRequest([]openapiclient.CreateGeofenceRequest{*openapiclient.NewCreateGeofenceRequest("Name_example", map[string]interface{}{"key": interface{}(123)})}) // BulkGeofenceRequest | 
+	bulkGeofenceRequest := *openapiclient.NewBulkGeofenceRequest([]openapiclient.CreateGeofenceRequest{*openapiclient.NewCreateGeofenceRequest("Name_example", *openapiclient.NewGeometry("Type_example", [][][][]float32{[][][]float32{[][]float32{[]float32{float32(123)}}}}, []float32{float32(123)}, float32(123)))}) // BulkGeofenceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -111,7 +111,7 @@ import (
 )
 
 func main() {
-	createGeofenceRequest := *openapiclient.NewCreateGeofenceRequest("Name_example", map[string]interface{}{"key": interface{}(123)}) // CreateGeofenceRequest | 
+	createGeofenceRequest := *openapiclient.NewCreateGeofenceRequest("Name_example", *openapiclient.NewGeometry("Type_example", [][][][]float32{[][][]float32{[][]float32{[]float32{float32(123)}}}}, []float32{float32(123)}, float32(123))) // CreateGeofenceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## AppsGeofencesApiDeleteGeofence
 
-> map[string]interface{} AppsGeofencesApiDeleteGeofence(ctx, geofenceId).Execute()
+> AppsGeofencesApiDeleteGeofence(ctx, geofenceId).Execute()
 
 Delete Geofence
 
@@ -181,13 +181,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiDeleteGeofence(context.Background(), geofenceId).Execute()
+	r, err := apiClient.GeofencesAPI.AppsGeofencesApiDeleteGeofence(context.Background(), geofenceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiDeleteGeofence``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsGeofencesApiDeleteGeofence`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiDeleteGeofence`: %v\n", resp)
 }
 ```
 
@@ -210,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+ (empty response body)
 
 ### Authorization
 
@@ -289,7 +287,7 @@ No authorization required
 
 ## AppsGeofencesApiGetActiveGeofencesSummary
 
-> map[string]interface{} AppsGeofencesApiGetActiveGeofencesSummary(ctx).Execute()
+> ActiveGeofenceSummaryOut AppsGeofencesApiGetActiveGeofencesSummary(ctx).Execute()
 
 Get Active Geofences Summary
 
@@ -316,7 +314,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiGetActiveGeofencesSummary``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsGeofencesApiGetActiveGeofencesSummary`: map[string]interface{}
+	// response from `AppsGeofencesApiGetActiveGeofencesSummary`: ActiveGeofenceSummaryOut
 	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiGetActiveGeofencesSummary`: %v\n", resp)
 }
 ```
@@ -332,7 +330,7 @@ Other parameters are passed through a pointer to a apiAppsGeofencesApiGetActiveG
 
 ### Return type
 
-**map[string]interface{}**
+[**ActiveGeofenceSummaryOut**](ActiveGeofenceSummaryOut.md)
 
 ### Authorization
 
@@ -420,7 +418,7 @@ Name | Type | Description  | Notes
 
 ## AppsGeofencesApiGetTestEventHistory
 
-> map[string]interface{} AppsGeofencesApiGetTestEventHistory(ctx, geofenceId).Limit(limit).Offset(offset).Execute()
+> TestEventHistoryOut AppsGeofencesApiGetTestEventHistory(ctx, geofenceId).Limit(limit).Offset(offset).Execute()
 
 Get Test Event History
 
@@ -450,7 +448,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiGetTestEventHistory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsGeofencesApiGetTestEventHistory`: map[string]interface{}
+	// response from `AppsGeofencesApiGetTestEventHistory`: TestEventHistoryOut
 	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiGetTestEventHistory`: %v\n", resp)
 }
 ```
@@ -476,7 +474,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**TestEventHistoryOut**](TestEventHistoryOut.md)
 
 ### Authorization
 
@@ -564,7 +562,7 @@ Name | Type | Description  | Notes
 
 ## AppsGeofencesApiListGeofenceGroups
 
-> map[string]interface{} AppsGeofencesApiListGeofenceGroups(ctx).Execute()
+> GeofenceGroupsOut AppsGeofencesApiListGeofenceGroups(ctx).Execute()
 
 List Geofence Groups
 
@@ -591,7 +589,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiListGeofenceGroups``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsGeofencesApiListGeofenceGroups`: map[string]interface{}
+	// response from `AppsGeofencesApiListGeofenceGroups`: GeofenceGroupsOut
 	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiListGeofenceGroups`: %v\n", resp)
 }
 ```
@@ -607,7 +605,7 @@ Other parameters are passed through a pointer to a apiAppsGeofencesApiListGeofen
 
 ### Return type
 
-**map[string]interface{}**
+[**GeofenceGroupsOut**](GeofenceGroupsOut.md)
 
 ### Authorization
 
@@ -695,7 +693,7 @@ Name | Type | Description  | Notes
 
 ## AppsGeofencesApiListGroupGeofences
 
-> map[string]interface{} AppsGeofencesApiListGroupGeofences(ctx, groupId).Execute()
+> GroupGeofencesOut AppsGeofencesApiListGroupGeofences(ctx, groupId).Execute()
 
 List Group Geofences
 
@@ -723,7 +721,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiListGroupGeofences``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsGeofencesApiListGroupGeofences`: map[string]interface{}
+	// response from `AppsGeofencesApiListGroupGeofences`: GroupGeofencesOut
 	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiListGroupGeofences`: %v\n", resp)
 }
 ```
@@ -747,7 +745,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GroupGeofencesOut**](GroupGeofencesOut.md)
 
 ### Authorization
 
@@ -765,7 +763,7 @@ Name | Type | Description  | Notes
 
 ## AppsGeofencesApiTestGroupPoint
 
-> map[string]interface{} AppsGeofencesApiTestGroupPoint(ctx, groupId).TestPointRequest(testPointRequest).Execute()
+> GroupTestPointOut AppsGeofencesApiTestGroupPoint(ctx, groupId).TestPointRequest(testPointRequest).Execute()
 
 Test Group Point
 
@@ -794,7 +792,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiTestGroupPoint``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsGeofencesApiTestGroupPoint`: map[string]interface{}
+	// response from `AppsGeofencesApiTestGroupPoint`: GroupTestPointOut
 	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiTestGroupPoint`: %v\n", resp)
 }
 ```
@@ -819,7 +817,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GroupTestPointOut**](GroupTestPointOut.md)
 
 ### Authorization
 
@@ -903,7 +901,7 @@ Name | Type | Description  | Notes
 
 ## AppsGeofencesApiTriggerTestEvent
 
-> map[string]interface{} AppsGeofencesApiTriggerTestEvent(ctx, geofenceId).EventType(eventType).TestEventRequest(testEventRequest).Execute()
+> map[string]interface{} AppsGeofencesApiTriggerTestEvent(ctx, geofenceId).TestEventRequest(testEventRequest).Execute()
 
 Trigger Test Event
 
@@ -923,12 +921,11 @@ import (
 
 func main() {
 	geofenceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	eventType := "eventType_example" // string | 
-	testEventRequest := *openapiclient.NewTestEventRequest() // TestEventRequest |  (optional)
+	testEventRequest := *openapiclient.NewTestEventRequest("EventType_example") // TestEventRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiTriggerTestEvent(context.Background(), geofenceId).EventType(eventType).TestEventRequest(testEventRequest).Execute()
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiTriggerTestEvent(context.Background(), geofenceId).TestEventRequest(testEventRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiTriggerTestEvent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -954,7 +951,6 @@ Other parameters are passed through a pointer to a apiAppsGeofencesApiTriggerTes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **eventType** | **string** |  | 
  **testEventRequest** | [**TestEventRequest**](TestEventRequest.md) |  | 
 
 ### Return type
@@ -1049,7 +1045,7 @@ Name | Type | Description  | Notes
 
 ## AppsGeofencesApiUpdateGeofenceGroup
 
-> map[string]interface{} AppsGeofencesApiUpdateGeofenceGroup(ctx, geofenceId).GroupName(groupName).Execute()
+> GeofenceGroupUpdateOut AppsGeofencesApiUpdateGeofenceGroup(ctx, geofenceId).Body(body).Execute()
 
 Update Geofence Group
 
@@ -1069,16 +1065,16 @@ import (
 
 func main() {
 	geofenceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	groupName := "groupName_example" // string |  (optional)
+	body := "body_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiUpdateGeofenceGroup(context.Background(), geofenceId).GroupName(groupName).Execute()
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiUpdateGeofenceGroup(context.Background(), geofenceId).Body(body).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiUpdateGeofenceGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsGeofencesApiUpdateGeofenceGroup`: map[string]interface{}
+	// response from `AppsGeofencesApiUpdateGeofenceGroup`: GeofenceGroupUpdateOut
 	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiUpdateGeofenceGroup`: %v\n", resp)
 }
 ```
@@ -1099,11 +1095,11 @@ Other parameters are passed through a pointer to a apiAppsGeofencesApiUpdateGeof
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **groupName** | **string** |  | 
+ **body** | **string** |  | 
 
 ### Return type
 
-**map[string]interface{}**
+[**GeofenceGroupUpdateOut**](GeofenceGroupUpdateOut.md)
 
 ### Authorization
 
@@ -1111,7 +1107,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

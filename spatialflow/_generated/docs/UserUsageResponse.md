@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **RecentActivities** | [**[]RecentActivity**](RecentActivity.md) |  | 
 **AccountCreated** | **NullableString** |  | 
 **LastLogin** | **NullableString** |  | 
+**LastSeenAt** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -269,6 +270,41 @@ SetLastLogin sets LastLogin field to given value.
 `func (o *UserUsageResponse) UnsetLastLogin()`
 
 UnsetLastLogin ensures that no value is present for LastLogin, not even an explicit nil
+### GetLastSeenAt
+
+`func (o *UserUsageResponse) GetLastSeenAt() string`
+
+GetLastSeenAt returns the LastSeenAt field if non-nil, zero value otherwise.
+
+### GetLastSeenAtOk
+
+`func (o *UserUsageResponse) GetLastSeenAtOk() (*string, bool)`
+
+GetLastSeenAtOk returns a tuple with the LastSeenAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastSeenAt
+
+`func (o *UserUsageResponse) SetLastSeenAt(v string)`
+
+SetLastSeenAt sets LastSeenAt field to given value.
+
+### HasLastSeenAt
+
+`func (o *UserUsageResponse) HasLastSeenAt() bool`
+
+HasLastSeenAt returns a boolean if a field has been set.
+
+### SetLastSeenAtNil
+
+`func (o *UserUsageResponse) SetLastSeenAtNil(b bool)`
+
+ SetLastSeenAtNil sets the value for LastSeenAt to be an explicit nil
+
+### UnsetLastSeenAt
+`func (o *UserUsageResponse) UnsetLastSeenAt()`
+
+UnsetLastSeenAt ensures that no value is present for LastSeenAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

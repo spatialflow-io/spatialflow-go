@@ -31,6 +31,8 @@ type PlanLimits struct {
 	TestPoints int32 `json:"test_points"`
 	// Hourly rate limit
 	RateLimitPerHour int32 `json:"rate_limit_per_hour"`
+	// Maximum devices per workspace (-1 for unlimited)
+	Devices *int32 `json:"devices,omitempty"`
 	// Log retention in days (-1 for unlimited)
 	LogRetentionDays *int32 `json:"log_retention_days,omitempty"`
 	// Location data retention in days
@@ -50,6 +52,8 @@ func NewPlanLimits(apiCalls int32, geofences int32, webhooksDelivered int32, tes
 	this.WebhooksDelivered = webhooksDelivered
 	this.TestPoints = testPoints
 	this.RateLimitPerHour = rateLimitPerHour
+	var devices int32 = 5
+	this.Devices = &devices
 	var logRetentionDays int32 = 7
 	this.LogRetentionDays = &logRetentionDays
 	var locationRetentionDays int32 = 90
@@ -62,6 +66,8 @@ func NewPlanLimits(apiCalls int32, geofences int32, webhooksDelivered int32, tes
 // but it doesn't guarantee that properties required by API are set
 func NewPlanLimitsWithDefaults() *PlanLimits {
 	this := PlanLimits{}
+	var devices int32 = 5
+	this.Devices = &devices
 	var logRetentionDays int32 = 7
 	this.LogRetentionDays = &logRetentionDays
 	var locationRetentionDays int32 = 90
@@ -189,6 +195,38 @@ func (o *PlanLimits) SetRateLimitPerHour(v int32) {
 	o.RateLimitPerHour = v
 }
 
+// GetDevices returns the Devices field value if set, zero value otherwise.
+func (o *PlanLimits) GetDevices() int32 {
+	if o == nil || IsNil(o.Devices) {
+		var ret int32
+		return ret
+	}
+	return *o.Devices
+}
+
+// GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlanLimits) GetDevicesOk() (*int32, bool) {
+	if o == nil || IsNil(o.Devices) {
+		return nil, false
+	}
+	return o.Devices, true
+}
+
+// HasDevices returns a boolean if a field has been set.
+func (o *PlanLimits) HasDevices() bool {
+	if o != nil && !IsNil(o.Devices) {
+		return true
+	}
+
+	return false
+}
+
+// SetDevices gets a reference to the given int32 and assigns it to the Devices field.
+func (o *PlanLimits) SetDevices(v int32) {
+	o.Devices = &v
+}
+
 // GetLogRetentionDays returns the LogRetentionDays field value if set, zero value otherwise.
 func (o *PlanLimits) GetLogRetentionDays() int32 {
 	if o == nil || IsNil(o.LogRetentionDays) {
@@ -268,6 +306,9 @@ func (o PlanLimits) ToMap() (map[string]interface{}, error) {
 	toSerialize["webhooks_delivered"] = o.WebhooksDelivered
 	toSerialize["test_points"] = o.TestPoints
 	toSerialize["rate_limit_per_hour"] = o.RateLimitPerHour
+	if !IsNil(o.Devices) {
+		toSerialize["devices"] = o.Devices
+	}
 	if !IsNil(o.LogRetentionDays) {
 		toSerialize["log_retention_days"] = o.LogRetentionDays
 	}

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **NullableString** |  | [optional] 
 **Description** | Pointer to **NullableString** |  | [optional] 
-**Geometry** | Pointer to **map[string]interface{}** |  | [optional] 
+**Geometry** | Pointer to [**NullableGeometry1**](Geometry1.md) |  | [optional] 
 **WebhookUrl** | Pointer to **NullableString** |  | [optional] 
 **WebhookEvents** | Pointer to **[]string** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -104,20 +104,20 @@ HasDescription returns a boolean if a field has been set.
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetGeometry
 
-`func (o *UpdateGeofenceRequest) GetGeometry() map[string]interface{}`
+`func (o *UpdateGeofenceRequest) GetGeometry() Geometry1`
 
 GetGeometry returns the Geometry field if non-nil, zero value otherwise.
 
 ### GetGeometryOk
 
-`func (o *UpdateGeofenceRequest) GetGeometryOk() (*map[string]interface{}, bool)`
+`func (o *UpdateGeofenceRequest) GetGeometryOk() (*Geometry1, bool)`
 
 GetGeometryOk returns a tuple with the Geometry field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGeometry
 
-`func (o *UpdateGeofenceRequest) SetGeometry(v map[string]interface{})`
+`func (o *UpdateGeofenceRequest) SetGeometry(v Geometry1)`
 
 SetGeometry sets Geometry field to given value.
 

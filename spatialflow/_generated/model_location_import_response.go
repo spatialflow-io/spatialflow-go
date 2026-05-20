@@ -30,7 +30,7 @@ type LocationImportResponse struct {
 	InvalidRows *int32 `json:"invalid_rows,omitempty"`
 	ProcessedRows *int32 `json:"processed_rows,omitempty"`
 	ErrorRate *float32 `json:"error_rate,omitempty"`
-	Errors []*map[string]interface{} `json:"errors,omitempty"`
+	Errors []map[string]interface{} `json:"errors,omitempty"`
 	CreatedAt time.Time `json:"created_at"`
 	StartedAt NullableTime `json:"started_at,omitempty"`
 	CompletedAt NullableTime `json:"completed_at,omitempty"`
@@ -312,9 +312,9 @@ func (o *LocationImportResponse) SetErrorRate(v float32) {
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *LocationImportResponse) GetErrors() []*map[string]interface{} {
+func (o *LocationImportResponse) GetErrors() []map[string]interface{} {
 	if o == nil || IsNil(o.Errors) {
-		var ret []*map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Errors
@@ -322,7 +322,7 @@ func (o *LocationImportResponse) GetErrors() []*map[string]interface{} {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LocationImportResponse) GetErrorsOk() ([]*map[string]interface{}, bool) {
+func (o *LocationImportResponse) GetErrorsOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
@@ -338,8 +338,8 @@ func (o *LocationImportResponse) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []*map[string]interface{} and assigns it to the Errors field.
-func (o *LocationImportResponse) SetErrors(v []*map[string]interface{}) {
+// SetErrors gets a reference to the given []map[string]interface{} and assigns it to the Errors field.
+func (o *LocationImportResponse) SetErrors(v []map[string]interface{}) {
 	o.Errors = v
 }
 

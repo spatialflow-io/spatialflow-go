@@ -24,6 +24,8 @@ type PresignedUrlRequest struct {
 	FileType string `json:"file_type"`
 	Filename string `json:"filename"`
 	FileSize int32 `json:"file_size"`
+	RelatedObjectType NullableString `json:"related_object_type,omitempty"`
+	RelatedObjectId NullableString `json:"related_object_id,omitempty"`
 }
 
 type _PresignedUrlRequest PresignedUrlRequest
@@ -120,6 +122,90 @@ func (o *PresignedUrlRequest) SetFileSize(v int32) {
 	o.FileSize = v
 }
 
+// GetRelatedObjectType returns the RelatedObjectType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PresignedUrlRequest) GetRelatedObjectType() string {
+	if o == nil || IsNil(o.RelatedObjectType.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RelatedObjectType.Get()
+}
+
+// GetRelatedObjectTypeOk returns a tuple with the RelatedObjectType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PresignedUrlRequest) GetRelatedObjectTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RelatedObjectType.Get(), o.RelatedObjectType.IsSet()
+}
+
+// HasRelatedObjectType returns a boolean if a field has been set.
+func (o *PresignedUrlRequest) HasRelatedObjectType() bool {
+	if o != nil && o.RelatedObjectType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRelatedObjectType gets a reference to the given NullableString and assigns it to the RelatedObjectType field.
+func (o *PresignedUrlRequest) SetRelatedObjectType(v string) {
+	o.RelatedObjectType.Set(&v)
+}
+// SetRelatedObjectTypeNil sets the value for RelatedObjectType to be an explicit nil
+func (o *PresignedUrlRequest) SetRelatedObjectTypeNil() {
+	o.RelatedObjectType.Set(nil)
+}
+
+// UnsetRelatedObjectType ensures that no value is present for RelatedObjectType, not even an explicit nil
+func (o *PresignedUrlRequest) UnsetRelatedObjectType() {
+	o.RelatedObjectType.Unset()
+}
+
+// GetRelatedObjectId returns the RelatedObjectId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PresignedUrlRequest) GetRelatedObjectId() string {
+	if o == nil || IsNil(o.RelatedObjectId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RelatedObjectId.Get()
+}
+
+// GetRelatedObjectIdOk returns a tuple with the RelatedObjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PresignedUrlRequest) GetRelatedObjectIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RelatedObjectId.Get(), o.RelatedObjectId.IsSet()
+}
+
+// HasRelatedObjectId returns a boolean if a field has been set.
+func (o *PresignedUrlRequest) HasRelatedObjectId() bool {
+	if o != nil && o.RelatedObjectId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRelatedObjectId gets a reference to the given NullableString and assigns it to the RelatedObjectId field.
+func (o *PresignedUrlRequest) SetRelatedObjectId(v string) {
+	o.RelatedObjectId.Set(&v)
+}
+// SetRelatedObjectIdNil sets the value for RelatedObjectId to be an explicit nil
+func (o *PresignedUrlRequest) SetRelatedObjectIdNil() {
+	o.RelatedObjectId.Set(nil)
+}
+
+// UnsetRelatedObjectId ensures that no value is present for RelatedObjectId, not even an explicit nil
+func (o *PresignedUrlRequest) UnsetRelatedObjectId() {
+	o.RelatedObjectId.Unset()
+}
+
 func (o PresignedUrlRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -133,6 +219,12 @@ func (o PresignedUrlRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["file_type"] = o.FileType
 	toSerialize["filename"] = o.Filename
 	toSerialize["file_size"] = o.FileSize
+	if o.RelatedObjectType.IsSet() {
+		toSerialize["related_object_type"] = o.RelatedObjectType.Get()
+	}
+	if o.RelatedObjectId.IsSet() {
+		toSerialize["related_object_id"] = o.RelatedObjectId.Get()
+	}
 	return toSerialize, nil
 }
 

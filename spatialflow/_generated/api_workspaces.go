@@ -461,7 +461,172 @@ func (a *WorkspacesAPIService) AppsWorkspacesApiDeleteSamlConfigExecute(r ApiApp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiAppsWorkspacesApiExtendInvitationRequest struct {
+	ctx context.Context
+	ApiService *WorkspacesAPIService
+	inviteId string
+	extendInvitationIn *ExtendInvitationIn
+}
+
+func (r ApiAppsWorkspacesApiExtendInvitationRequest) ExtendInvitationIn(extendInvitationIn ExtendInvitationIn) ApiAppsWorkspacesApiExtendInvitationRequest {
+	r.extendInvitationIn = &extendInvitationIn
+	return r
+}
+
+func (r ApiAppsWorkspacesApiExtendInvitationRequest) Execute() (*InvitationOut, *http.Response, error) {
+	return r.ApiService.AppsWorkspacesApiExtendInvitationExecute(r)
+}
+
+/*
+AppsWorkspacesApiExtendInvitation Extend Invitation
+
+Extend the expiry of a pending invitation (PRD §4 — Phase 78).
+
+Available to owners and managers. Permits extending an already-expired
+invitation (recovery path) but blocks extending a used or revoked one.
+The original invitation token is preserved — no new email is sent;
+the recipient's existing email link will continue to work until the
+new expires_at. Validates expires_at strictly in the future and at
+most 90 days from now. Atomic with select_for_update to prevent
+race conditions with concurrent revoke.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param inviteId
+ @return ApiAppsWorkspacesApiExtendInvitationRequest
+*/
+func (a *WorkspacesAPIService) AppsWorkspacesApiExtendInvitation(ctx context.Context, inviteId string) ApiAppsWorkspacesApiExtendInvitationRequest {
+	return ApiAppsWorkspacesApiExtendInvitationRequest{
+		ApiService: a,
+		ctx: ctx,
+		inviteId: inviteId,
+	}
+}
+
+// Execute executes the request
+//  @return InvitationOut
+func (a *WorkspacesAPIService) AppsWorkspacesApiExtendInvitationExecute(r ApiAppsWorkspacesApiExtendInvitationRequest) (*InvitationOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *InvitationOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspacesAPIService.AppsWorkspacesApiExtendInvitation")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/workspaces/invitations/{invite_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"invite_id"+"}", url.PathEscape(parameterValueToString(r.inviteId, "inviteId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.extendInvitationIn == nil {
+		return localVarReturnValue, nil, reportError("extendInvitationIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.extendInvitationIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -484,6 +649,17 @@ func (a *WorkspacesAPIService) AppsWorkspacesApiDeleteSamlConfigExecute(r ApiApp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1272,62 +1448,46 @@ func (a *WorkspacesAPIService) AppsWorkspacesApiListWorkspaceMembersExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAppsWorkspacesApiRemoveMemberRequest struct {
+type ApiAppsWorkspacesApiMobileWorkspaceBootstrapRequest struct {
 	ctx context.Context
 	ApiService *WorkspacesAPIService
-	userId string
 }
 
-func (r ApiAppsWorkspacesApiRemoveMemberRequest) Execute() (*MemberActionOut, *http.Response, error) {
-	return r.ApiService.AppsWorkspacesApiRemoveMemberExecute(r)
+func (r ApiAppsWorkspacesApiMobileWorkspaceBootstrapRequest) Execute() (*MobileWorkspaceBootstrapOut, *http.Response, error) {
+	return r.ApiService.AppsWorkspacesApiMobileWorkspaceBootstrapExecute(r)
 }
 
 /*
-AppsWorkspacesApiRemoveMember Remove Member
+AppsWorkspacesApiMobileWorkspaceBootstrap Mobile Workspace Bootstrap
 
-Remove a member from the workspace (PRD §4).
-
-Role-based removal rules:
-- Owners: Can remove any member (including other owners, except last)
-- Managers: Can remove field_workers and members (NOT owners or managers)
-- Field workers/members: Cannot remove anyone
-
-Immediately invalidates all tokens for the removed user.
-The user will receive 401 on subsequent requests and must re-authenticate.
-
-Note: This assumes single-workspace-per-user model. On removal, user.workspace
-is cleared. If multi-workspace membership is added later, this logic and the
-last-owner checks will need to be updated.
+Return mobile workspace-picker state for signed-in mobile tracking users.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userId
- @return ApiAppsWorkspacesApiRemoveMemberRequest
+ @return ApiAppsWorkspacesApiMobileWorkspaceBootstrapRequest
 */
-func (a *WorkspacesAPIService) AppsWorkspacesApiRemoveMember(ctx context.Context, userId string) ApiAppsWorkspacesApiRemoveMemberRequest {
-	return ApiAppsWorkspacesApiRemoveMemberRequest{
+func (a *WorkspacesAPIService) AppsWorkspacesApiMobileWorkspaceBootstrap(ctx context.Context) ApiAppsWorkspacesApiMobileWorkspaceBootstrapRequest {
+	return ApiAppsWorkspacesApiMobileWorkspaceBootstrapRequest{
 		ApiService: a,
 		ctx: ctx,
-		userId: userId,
 	}
 }
 
 // Execute executes the request
-//  @return MemberActionOut
-func (a *WorkspacesAPIService) AppsWorkspacesApiRemoveMemberExecute(r ApiAppsWorkspacesApiRemoveMemberRequest) (*MemberActionOut, *http.Response, error) {
+//  @return MobileWorkspaceBootstrapOut
+func (a *WorkspacesAPIService) AppsWorkspacesApiMobileWorkspaceBootstrapExecute(r ApiAppsWorkspacesApiMobileWorkspaceBootstrapRequest) (*MobileWorkspaceBootstrapOut, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MemberActionOut
+		localVarReturnValue  *MobileWorkspaceBootstrapOut
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspacesAPIService.AppsWorkspacesApiRemoveMember")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspacesAPIService.AppsWorkspacesApiMobileWorkspaceBootstrap")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/workspaces/members/{user_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_id"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
+	localVarPath := localBasePath + "/api/v1/workspaces/mobile/bootstrap"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1383,7 +1543,7 @@ func (a *WorkspacesAPIService) AppsWorkspacesApiRemoveMemberExecute(r ApiAppsWor
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1394,7 +1554,7 @@ func (a *WorkspacesAPIService) AppsWorkspacesApiRemoveMemberExecute(r ApiAppsWor
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1428,6 +1588,153 @@ func (a *WorkspacesAPIService) AppsWorkspacesApiRemoveMemberExecute(r ApiAppsWor
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiAppsWorkspacesApiRemoveMemberRequest struct {
+	ctx context.Context
+	ApiService *WorkspacesAPIService
+	userId string
+}
+
+func (r ApiAppsWorkspacesApiRemoveMemberRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AppsWorkspacesApiRemoveMemberExecute(r)
+}
+
+/*
+AppsWorkspacesApiRemoveMember Remove Member
+
+Remove a member from the workspace (PRD §4).
+
+Role-based removal rules:
+- Owners: Can remove any member (including other owners, except last)
+- Managers: Can remove field_workers and members (NOT owners or managers)
+- Field workers/members: Cannot remove anyone
+
+Immediately invalidates all tokens for the removed user.
+The user will receive 401 on subsequent requests and must re-authenticate.
+
+Note: This assumes single-workspace-per-user model. On removal, user.workspace
+is cleared. If multi-workspace membership is added later, this logic and the
+last-owner checks will need to be updated.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId
+ @return ApiAppsWorkspacesApiRemoveMemberRequest
+*/
+func (a *WorkspacesAPIService) AppsWorkspacesApiRemoveMember(ctx context.Context, userId string) ApiAppsWorkspacesApiRemoveMemberRequest {
+	return ApiAppsWorkspacesApiRemoveMemberRequest{
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
+	}
+}
+
+// Execute executes the request
+func (a *WorkspacesAPIService) AppsWorkspacesApiRemoveMemberExecute(r ApiAppsWorkspacesApiRemoveMemberRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspacesAPIService.AppsWorkspacesApiRemoveMember")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/workspaces/members/{user_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"user_id"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type ApiAppsWorkspacesApiResendInvitationRequest struct {
@@ -1732,6 +2039,159 @@ func (a *WorkspacesAPIService) AppsWorkspacesApiRevokeAllWorkspaceSessionsExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiAppsWorkspacesApiSelectMobileWorkspaceRequest struct {
+	ctx context.Context
+	ApiService *WorkspacesAPIService
+	mobileWorkspaceSelectIn *MobileWorkspaceSelectIn
+}
+
+func (r ApiAppsWorkspacesApiSelectMobileWorkspaceRequest) MobileWorkspaceSelectIn(mobileWorkspaceSelectIn MobileWorkspaceSelectIn) ApiAppsWorkspacesApiSelectMobileWorkspaceRequest {
+	r.mobileWorkspaceSelectIn = &mobileWorkspaceSelectIn
+	return r
+}
+
+func (r ApiAppsWorkspacesApiSelectMobileWorkspaceRequest) Execute() (*MobileWorkspaceSelectionOut, *http.Response, error) {
+	return r.ApiService.AppsWorkspacesApiSelectMobileWorkspaceExecute(r)
+}
+
+/*
+AppsWorkspacesApiSelectMobileWorkspace Select Mobile Workspace
+
+Set or confirm the selected mobile workspace and return fresh tokens.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAppsWorkspacesApiSelectMobileWorkspaceRequest
+*/
+func (a *WorkspacesAPIService) AppsWorkspacesApiSelectMobileWorkspace(ctx context.Context) ApiAppsWorkspacesApiSelectMobileWorkspaceRequest {
+	return ApiAppsWorkspacesApiSelectMobileWorkspaceRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return MobileWorkspaceSelectionOut
+func (a *WorkspacesAPIService) AppsWorkspacesApiSelectMobileWorkspaceExecute(r ApiAppsWorkspacesApiSelectMobileWorkspaceRequest) (*MobileWorkspaceSelectionOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MobileWorkspaceSelectionOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspacesAPIService.AppsWorkspacesApiSelectMobileWorkspace")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/workspaces/mobile/select"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.mobileWorkspaceSelectIn == nil {
+		return localVarReturnValue, nil, reportError("mobileWorkspaceSelectIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.mobileWorkspaceSelectIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

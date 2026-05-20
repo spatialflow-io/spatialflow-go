@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Description** | Pointer to **NullableString** |  | [optional] 
-**Geometry** | **map[string]interface{}** | GeoJSON geometry (Polygon, MultiPolygon, or Circle) | 
+**Geometry** | [**Geometry**](Geometry.md) |  | 
 **WebhookUrl** | Pointer to **NullableString** |  | [optional] 
 **WebhookEvents** | Pointer to **[]string** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewCreateGeofenceRequest
 
-`func NewCreateGeofenceRequest(name string, geometry map[string]interface{}, ) *CreateGeofenceRequest`
+`func NewCreateGeofenceRequest(name string, geometry Geometry, ) *CreateGeofenceRequest`
 
 NewCreateGeofenceRequest instantiates a new CreateGeofenceRequest object
 This constructor will assign default values to properties that have it defined,
@@ -88,20 +88,20 @@ HasDescription returns a boolean if a field has been set.
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetGeometry
 
-`func (o *CreateGeofenceRequest) GetGeometry() map[string]interface{}`
+`func (o *CreateGeofenceRequest) GetGeometry() Geometry`
 
 GetGeometry returns the Geometry field if non-nil, zero value otherwise.
 
 ### GetGeometryOk
 
-`func (o *CreateGeofenceRequest) GetGeometryOk() (*map[string]interface{}, bool)`
+`func (o *CreateGeofenceRequest) GetGeometryOk() (*Geometry, bool)`
 
 GetGeometryOk returns a tuple with the Geometry field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGeometry
 
-`func (o *CreateGeofenceRequest) SetGeometry(v map[string]interface{})`
+`func (o *CreateGeofenceRequest) SetGeometry(v Geometry)`
 
 SetGeometry sets Geometry field to given value.
 

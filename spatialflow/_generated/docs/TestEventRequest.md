@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**EventType** | **string** |  | 
 **TestMetadata** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
 ### NewTestEventRequest
 
-`func NewTestEventRequest() *TestEventRequest`
+`func NewTestEventRequest(eventType string, ) *TestEventRequest`
 
 NewTestEventRequest instantiates a new TestEventRequest object
 This constructor will assign default values to properties that have it defined,
@@ -24,6 +25,26 @@ will change when the set of required properties is changed
 NewTestEventRequestWithDefaults instantiates a new TestEventRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetEventType
+
+`func (o *TestEventRequest) GetEventType() string`
+
+GetEventType returns the EventType field if non-nil, zero value otherwise.
+
+### GetEventTypeOk
+
+`func (o *TestEventRequest) GetEventTypeOk() (*string, bool)`
+
+GetEventTypeOk returns a tuple with the EventType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEventType
+
+`func (o *TestEventRequest) SetEventType(v string)`
+
+SetEventType sets EventType field to given value.
+
 
 ### GetTestMetadata
 

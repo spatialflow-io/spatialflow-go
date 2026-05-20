@@ -21,7 +21,7 @@ var _ MappedNullable = &TestPointResponse{}
 
 // TestPointResponse Schema for test point response.  Provides both the legacy `results` array (unchanged for backward compatibility) and the new `matched_geofences` array with enhanced group information.
 type TestPointResponse struct {
-	Point map[string]interface{} `json:"point"`
+	Point GeoJSONPoint `json:"point"`
 	InsideGeofences int32 `json:"inside_geofences"`
 	TotalGeofences int32 `json:"total_geofences"`
 	Results []GeofenceTestResult `json:"results"`
@@ -36,7 +36,7 @@ type _TestPointResponse TestPointResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTestPointResponse(point map[string]interface{}, insideGeofences int32, totalGeofences int32, results []GeofenceTestResult) *TestPointResponse {
+func NewTestPointResponse(point GeoJSONPoint, insideGeofences int32, totalGeofences int32, results []GeofenceTestResult) *TestPointResponse {
 	this := TestPointResponse{}
 	this.Point = point
 	this.InsideGeofences = insideGeofences
@@ -54,9 +54,9 @@ func NewTestPointResponseWithDefaults() *TestPointResponse {
 }
 
 // GetPoint returns the Point field value
-func (o *TestPointResponse) GetPoint() map[string]interface{} {
+func (o *TestPointResponse) GetPoint() GeoJSONPoint {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret GeoJSONPoint
 		return ret
 	}
 
@@ -65,15 +65,15 @@ func (o *TestPointResponse) GetPoint() map[string]interface{} {
 
 // GetPointOk returns a tuple with the Point field value
 // and a boolean to check if the value has been set.
-func (o *TestPointResponse) GetPointOk() (map[string]interface{}, bool) {
+func (o *TestPointResponse) GetPointOk() (*GeoJSONPoint, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Point, true
+	return &o.Point, true
 }
 
 // SetPoint sets field value
-func (o *TestPointResponse) SetPoint(v map[string]interface{}) {
+func (o *TestPointResponse) SetPoint(v GeoJSONPoint) {
 	o.Point = v
 }
 

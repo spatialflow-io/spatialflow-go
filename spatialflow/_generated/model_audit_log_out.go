@@ -27,7 +27,7 @@ type AuditLogOut struct {
 	ResourceType string `json:"resource_type"`
 	ResourceId NullableString `json:"resource_id,omitempty"`
 	Description string `json:"description"`
-	Changes map[string]interface{} `json:"changes"`
+	Changes interface{} `json:"changes"`
 	IpAddress NullableString `json:"ip_address,omitempty"`
 	UserAgent NullableString `json:"user_agent,omitempty"`
 	HttpMethod string `json:"http_method"`
@@ -42,7 +42,7 @@ type _AuditLogOut AuditLogOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuditLogOut(id string, userEmail string, action string, resourceType string, description string, changes map[string]interface{}, httpMethod string, path string, createdAt string) *AuditLogOut {
+func NewAuditLogOut(id string, userEmail string, action string, resourceType string, description string, changes interface{}, httpMethod string, path string, createdAt string) *AuditLogOut {
 	this := AuditLogOut{}
 	this.Id = id
 	this.UserEmail = userEmail
@@ -227,9 +227,10 @@ func (o *AuditLogOut) SetDescription(v string) {
 }
 
 // GetChanges returns the Changes field value
-func (o *AuditLogOut) GetChanges() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *AuditLogOut) GetChanges() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -238,15 +239,16 @@ func (o *AuditLogOut) GetChanges() map[string]interface{} {
 
 // GetChangesOk returns a tuple with the Changes field value
 // and a boolean to check if the value has been set.
-func (o *AuditLogOut) GetChangesOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AuditLogOut) GetChangesOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Changes) {
+		return nil, false
 	}
-	return o.Changes, true
+	return &o.Changes, true
 }
 
 // SetChanges sets field value
-func (o *AuditLogOut) SetChanges(v map[string]interface{}) {
+func (o *AuditLogOut) SetChanges(v interface{}) {
 	o.Changes = v
 }
 
@@ -466,7 +468,9 @@ func (o AuditLogOut) ToMap() (map[string]interface{}, error) {
 		toSerialize["resource_id"] = o.ResourceId.Get()
 	}
 	toSerialize["description"] = o.Description
-	toSerialize["changes"] = o.Changes
+	if o.Changes != nil {
+		toSerialize["changes"] = o.Changes
+	}
 	if o.IpAddress.IsSet() {
 		toSerialize["ip_address"] = o.IpAddress.Get()
 	}

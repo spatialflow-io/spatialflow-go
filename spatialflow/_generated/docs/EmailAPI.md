@@ -11,12 +11,14 @@ Method | HTTP request | Description
 [**AppsEmailApiPreviewEmailTemplate**](EmailAPI.md#AppsEmailApiPreviewEmailTemplate) | **Get** /api/v1/email/preview/{template_name} | Preview Email Template
 [**AppsEmailApiSendEmail**](EmailAPI.md#AppsEmailApiSendEmail) | **Post** /api/v1/email/send | Send Email
 [**AppsEmailApiSendTestEmail**](EmailAPI.md#AppsEmailApiSendTestEmail) | **Post** /api/v1/email/test | Send Test Email
+[**AppsEmailUnsubscribeUnsubscribe**](EmailAPI.md#AppsEmailUnsubscribeUnsubscribe) | **Post** /api/v1/email/unsubscribe | Unsubscribe
+[**AppsEmailUnsubscribeVerifyUnsubscribeToken**](EmailAPI.md#AppsEmailUnsubscribeVerifyUnsubscribeToken) | **Get** /api/v1/email/unsubscribe/verify | Verify Unsubscribe Token
 
 
 
 ## AppsEmailApiGetEmailHistory
 
-> map[string]interface{} AppsEmailApiGetEmailHistory(ctx).Limit(limit).Offset(offset).Execute()
+> EmailHistoryOut AppsEmailApiGetEmailHistory(ctx).Limit(limit).Offset(offset).Execute()
 
 Get Email History
 
@@ -45,7 +47,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EmailAPI.AppsEmailApiGetEmailHistory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsEmailApiGetEmailHistory`: map[string]interface{}
+	// response from `AppsEmailApiGetEmailHistory`: EmailHistoryOut
 	fmt.Fprintf(os.Stdout, "Response from `EmailAPI.AppsEmailApiGetEmailHistory`: %v\n", resp)
 }
 ```
@@ -66,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**EmailHistoryOut**](EmailHistoryOut.md)
 
 ### Authorization
 
@@ -460,6 +462,138 @@ Other parameters are passed through a pointer to a apiAppsEmailApiSendTestEmailR
 ### Authorization
 
 [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsEmailUnsubscribeUnsubscribe
+
+> UnsubscribeResponse AppsEmailUnsubscribeUnsubscribe(ctx).UnsubscribeRequest(unsubscribeRequest).Execute()
+
+Unsubscribe
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	unsubscribeRequest := *openapiclient.NewUnsubscribeRequest("Token_example") // UnsubscribeRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EmailAPI.AppsEmailUnsubscribeUnsubscribe(context.Background()).UnsubscribeRequest(unsubscribeRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EmailAPI.AppsEmailUnsubscribeUnsubscribe``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsEmailUnsubscribeUnsubscribe`: UnsubscribeResponse
+	fmt.Fprintf(os.Stdout, "Response from `EmailAPI.AppsEmailUnsubscribeUnsubscribe`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsEmailUnsubscribeUnsubscribeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **unsubscribeRequest** | [**UnsubscribeRequest**](UnsubscribeRequest.md) |  | 
+
+### Return type
+
+[**UnsubscribeResponse**](UnsubscribeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsEmailUnsubscribeVerifyUnsubscribeToken
+
+> map[string]interface{} AppsEmailUnsubscribeVerifyUnsubscribeToken(ctx).Token(token).Execute()
+
+Verify Unsubscribe Token
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	token := "token_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EmailAPI.AppsEmailUnsubscribeVerifyUnsubscribeToken(context.Background()).Token(token).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EmailAPI.AppsEmailUnsubscribeVerifyUnsubscribeToken``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsEmailUnsubscribeVerifyUnsubscribeToken`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `EmailAPI.AppsEmailUnsubscribeVerifyUnsubscribeToken`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsEmailUnsubscribeVerifyUnsubscribeTokenRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **string** |  | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 

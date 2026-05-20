@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Geofences** | Pointer to **int32** |  | [optional] [default to 0]
 **WebhooksDelivered** | Pointer to **int32** |  | [optional] [default to 0]
 **TestPoints** | Pointer to **int32** |  | [optional] [default to 0]
+**Devices** | Pointer to **int32** |  | [optional] [default to 0]
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetTestPoints sets TestPoints field to given value.
 `func (o *UsageMetrics) HasTestPoints() bool`
 
 HasTestPoints returns a boolean if a field has been set.
+
+### GetDevices
+
+`func (o *UsageMetrics) GetDevices() int32`
+
+GetDevices returns the Devices field if non-nil, zero value otherwise.
+
+### GetDevicesOk
+
+`func (o *UsageMetrics) GetDevicesOk() (*int32, bool)`
+
+GetDevicesOk returns a tuple with the Devices field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDevices
+
+`func (o *UsageMetrics) SetDevices(v int32)`
+
+SetDevices sets Devices field to given value.
+
+### HasDevices
+
+`func (o *UsageMetrics) HasDevices() bool`
+
+HasDevices returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

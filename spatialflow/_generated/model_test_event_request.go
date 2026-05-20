@@ -12,6 +12,8 @@ package generated
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TestEventRequest type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,19 @@ var _ MappedNullable = &TestEventRequest{}
 
 // TestEventRequest struct for TestEventRequest
 type TestEventRequest struct {
+	EventType string `json:"event_type"`
 	TestMetadata map[string]interface{} `json:"test_metadata,omitempty"`
 }
+
+type _TestEventRequest TestEventRequest
 
 // NewTestEventRequest instantiates a new TestEventRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTestEventRequest() *TestEventRequest {
+func NewTestEventRequest(eventType string) *TestEventRequest {
 	this := TestEventRequest{}
+	this.EventType = eventType
 	return &this
 }
 
@@ -37,6 +43,30 @@ func NewTestEventRequest() *TestEventRequest {
 func NewTestEventRequestWithDefaults() *TestEventRequest {
 	this := TestEventRequest{}
 	return &this
+}
+
+// GetEventType returns the EventType field value
+func (o *TestEventRequest) GetEventType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EventType
+}
+
+// GetEventTypeOk returns a tuple with the EventType field value
+// and a boolean to check if the value has been set.
+func (o *TestEventRequest) GetEventTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EventType, true
+}
+
+// SetEventType sets field value
+func (o *TestEventRequest) SetEventType(v string) {
+	o.EventType = v
 }
 
 // GetTestMetadata returns the TestMetadata field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -82,10 +112,48 @@ func (o TestEventRequest) MarshalJSON() ([]byte, error) {
 
 func (o TestEventRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["event_type"] = o.EventType
 	if o.TestMetadata != nil {
 		toSerialize["test_metadata"] = o.TestMetadata
 	}
 	return toSerialize, nil
+}
+
+func (o *TestEventRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"event_type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTestEventRequest := _TestEventRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTestEventRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TestEventRequest(varTestEventRequest)
+
+	return err
 }
 
 type NullableTestEventRequest struct {

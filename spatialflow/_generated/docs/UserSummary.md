@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **AdminApprovedAt** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | **NullableString** |  | 
 **LastLogin** | **NullableString** |  | 
+**LastSeenAt** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionTier** | Pointer to **string** |  | [optional] [default to "free"]
 **ApiKeysCount** | **int32** |  | 
@@ -293,6 +294,41 @@ SetLastLogin sets LastLogin field to given value.
 `func (o *UserSummary) UnsetLastLogin()`
 
 UnsetLastLogin ensures that no value is present for LastLogin, not even an explicit nil
+### GetLastSeenAt
+
+`func (o *UserSummary) GetLastSeenAt() string`
+
+GetLastSeenAt returns the LastSeenAt field if non-nil, zero value otherwise.
+
+### GetLastSeenAtOk
+
+`func (o *UserSummary) GetLastSeenAtOk() (*string, bool)`
+
+GetLastSeenAtOk returns a tuple with the LastSeenAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastSeenAt
+
+`func (o *UserSummary) SetLastSeenAt(v string)`
+
+SetLastSeenAt sets LastSeenAt field to given value.
+
+### HasLastSeenAt
+
+`func (o *UserSummary) HasLastSeenAt() bool`
+
+HasLastSeenAt returns a boolean if a field has been set.
+
+### SetLastSeenAtNil
+
+`func (o *UserSummary) SetLastSeenAtNil(b bool)`
+
+ SetLastSeenAtNil sets the value for LastSeenAt to be an explicit nil
+
+### UnsetLastSeenAt
+`func (o *UserSummary) UnsetLastSeenAt()`
+
+UnsetLastSeenAt ensures that no value is present for LastSeenAt, not even an explicit nil
 ### GetUpdatedAt
 
 `func (o *UserSummary) GetUpdatedAt() string`

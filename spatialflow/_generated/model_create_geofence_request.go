@@ -23,8 +23,7 @@ var _ MappedNullable = &CreateGeofenceRequest{}
 type CreateGeofenceRequest struct {
 	Name string `json:"name"`
 	Description NullableString `json:"description,omitempty"`
-	// GeoJSON geometry (Polygon, MultiPolygon, or Circle)
-	Geometry map[string]interface{} `json:"geometry"`
+	Geometry Geometry `json:"geometry"`
 	WebhookUrl NullableString `json:"webhook_url,omitempty"`
 	WebhookEvents []string `json:"webhook_events,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
@@ -37,7 +36,7 @@ type _CreateGeofenceRequest CreateGeofenceRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateGeofenceRequest(name string, geometry map[string]interface{}) *CreateGeofenceRequest {
+func NewCreateGeofenceRequest(name string, geometry Geometry) *CreateGeofenceRequest {
 	this := CreateGeofenceRequest{}
 	this.Name = name
 	this.Geometry = geometry
@@ -119,9 +118,9 @@ func (o *CreateGeofenceRequest) UnsetDescription() {
 }
 
 // GetGeometry returns the Geometry field value
-func (o *CreateGeofenceRequest) GetGeometry() map[string]interface{} {
+func (o *CreateGeofenceRequest) GetGeometry() Geometry {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret Geometry
 		return ret
 	}
 
@@ -130,15 +129,15 @@ func (o *CreateGeofenceRequest) GetGeometry() map[string]interface{} {
 
 // GetGeometryOk returns a tuple with the Geometry field value
 // and a boolean to check if the value has been set.
-func (o *CreateGeofenceRequest) GetGeometryOk() (map[string]interface{}, bool) {
+func (o *CreateGeofenceRequest) GetGeometryOk() (*Geometry, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Geometry, true
+	return &o.Geometry, true
 }
 
 // SetGeometry sets field value
-func (o *CreateGeofenceRequest) SetGeometry(v map[string]interface{}) {
+func (o *CreateGeofenceRequest) SetGeometry(v Geometry) {
 	o.Geometry = v
 }
 

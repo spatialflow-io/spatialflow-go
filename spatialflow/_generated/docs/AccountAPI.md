@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## AppsAccountsApiDeleteApiKey
 
-> map[string]interface{} AppsAccountsApiDeleteApiKey(ctx, apiKeyId).Execute()
+> AppsAccountsApiDeleteApiKey(ctx, apiKeyId).Execute()
 
 Delete Api Key
 
@@ -244,13 +244,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountAPI.AppsAccountsApiDeleteApiKey(context.Background(), apiKeyId).Execute()
+	r, err := apiClient.AccountAPI.AppsAccountsApiDeleteApiKey(context.Background(), apiKeyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.AppsAccountsApiDeleteApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsAccountsApiDeleteApiKey`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.AppsAccountsApiDeleteApiKey`: %v\n", resp)
 }
 ```
 
@@ -273,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+ (empty response body)
 
 ### Authorization
 
@@ -291,7 +289,7 @@ Name | Type | Description  | Notes
 
 ## AppsAccountsApiDeleteOwnAccount
 
-> map[string]interface{} AppsAccountsApiDeleteOwnAccount(ctx).Execute()
+> AppsAccountsApiDeleteOwnAccount(ctx).Execute()
 
 Delete Own Account
 
@@ -313,13 +311,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountAPI.AppsAccountsApiDeleteOwnAccount(context.Background()).Execute()
+	r, err := apiClient.AccountAPI.AppsAccountsApiDeleteOwnAccount(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.AppsAccountsApiDeleteOwnAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsAccountsApiDeleteOwnAccount`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.AppsAccountsApiDeleteOwnAccount`: %v\n", resp)
 }
 ```
 
@@ -334,7 +330,7 @@ Other parameters are passed through a pointer to a apiAppsAccountsApiDeleteOwnAc
 
 ### Return type
 
-**map[string]interface{}**
+ (empty response body)
 
 ### Authorization
 
@@ -624,7 +620,7 @@ Name | Type | Description  | Notes
 
 ## AppsAccountsApiGetNotifications
 
-> map[string]interface{} AppsAccountsApiGetNotifications(ctx).UnreadOnly(unreadOnly).Execute()
+> AppsAccountsApiGetNotifications(ctx).UnreadOnly(unreadOnly).Execute()
 
 Get Notifications
 
@@ -647,13 +643,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountAPI.AppsAccountsApiGetNotifications(context.Background()).UnreadOnly(unreadOnly).Execute()
+	r, err := apiClient.AccountAPI.AppsAccountsApiGetNotifications(context.Background()).UnreadOnly(unreadOnly).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.AppsAccountsApiGetNotifications``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsAccountsApiGetNotifications`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.AppsAccountsApiGetNotifications`: %v\n", resp)
 }
 ```
 
@@ -672,7 +666,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+ (empty response body)
 
 ### Authorization
 
@@ -751,7 +745,7 @@ Other parameters are passed through a pointer to a apiAppsAccountsApiGetUserProf
 
 ## AppsAccountsApiListExpiringApiKeys
 
-> []map[string]interface{} AppsAccountsApiListExpiringApiKeys(ctx).Days(days).Execute()
+> []*map[string]interface{} AppsAccountsApiListExpiringApiKeys(ctx).Days(days).Execute()
 
 List Expiring Api Keys
 
@@ -779,7 +773,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.AppsAccountsApiListExpiringApiKeys``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsAccountsApiListExpiringApiKeys`: []map[string]interface{}
+	// response from `AppsAccountsApiListExpiringApiKeys`: []*map[string]interface{}
 	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.AppsAccountsApiListExpiringApiKeys`: %v\n", resp)
 }
 ```
@@ -799,7 +793,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]map[string]interface{}**](map.md)
+[**[]*map[string]interface{}**](map.md)
 
 ### Authorization
 

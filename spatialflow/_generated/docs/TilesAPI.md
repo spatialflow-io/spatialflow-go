@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 ## AppsTilesApiHealthCheck
 
-> map[string]interface{} AppsTilesApiHealthCheck(ctx).Execute()
+> AppsTilesApiHealthCheck(ctx).Execute()
 
 Health Check
 
@@ -316,13 +316,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TilesAPI.AppsTilesApiHealthCheck(context.Background()).Execute()
+	r, err := apiClient.TilesAPI.AppsTilesApiHealthCheck(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TilesAPI.AppsTilesApiHealthCheck``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsTilesApiHealthCheck`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `TilesAPI.AppsTilesApiHealthCheck`: %v\n", resp)
 }
 ```
 
@@ -337,7 +335,7 @@ Other parameters are passed through a pointer to a apiAppsTilesApiHealthCheckReq
 
 ### Return type
 
-**map[string]interface{}**
+ (empty response body)
 
 ### Authorization
 

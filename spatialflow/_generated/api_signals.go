@@ -37,6 +37,8 @@ func (r ApiAppsDevicesApiSignalsGetSignalRequest) Execute() (*SignalEventDetailO
 /*
 AppsDevicesApiSignalsGetSignal Get signal event detail
 
+Retrieve a single signal event with contributing locations and geofence geometry.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param signalId
  @return ApiAppsDevicesApiSignalsGetSignalRequest
@@ -64,7 +66,7 @@ func (a *SignalsAPIService) AppsDevicesApiSignalsGetSignalExecute(r ApiAppsDevic
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/signals/{signal_id}/"
+	localVarPath := localBasePath + "/api/v1/signals/{signal_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", url.PathEscape(parameterValueToString(r.signalId, "signalId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -227,6 +229,8 @@ func (r ApiAppsDevicesApiSignalsListSignalsRequest) Execute() (*SignalEventsList
 
 /*
 AppsDevicesApiSignalsListSignals List signal events
+
+List signal events for the authenticated user's workspace with optional filtering.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAppsDevicesApiSignalsListSignalsRequest

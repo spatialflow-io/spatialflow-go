@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## AppsPublicLocationsApiGetIngestStats
 
-> map[string]interface{} AppsPublicLocationsApiGetIngestStats(ctx).Execute()
+> IngestStatsOut AppsPublicLocationsApiGetIngestStats(ctx).Execute()
 
 Get Ingest Stats
 
@@ -39,7 +39,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicLocationIngestAPI.AppsPublicLocationsApiGetIngestStats``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsPublicLocationsApiGetIngestStats`: map[string]interface{}
+	// response from `AppsPublicLocationsApiGetIngestStats`: IngestStatsOut
 	fmt.Fprintf(os.Stdout, "Response from `PublicLocationIngestAPI.AppsPublicLocationsApiGetIngestStats`: %v\n", resp)
 }
 ```
@@ -55,7 +55,7 @@ Other parameters are passed through a pointer to a apiAppsPublicLocationsApiGetI
 
 ### Return type
 
-**map[string]interface{}**
+[**IngestStatsOut**](IngestStatsOut.md)
 
 ### Authorization
 

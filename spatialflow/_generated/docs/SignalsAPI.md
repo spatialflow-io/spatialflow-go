@@ -4,7 +4,7 @@ All URIs are relative to *https://api.spatialflow.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AppsDevicesApiSignalsGetSignal**](SignalsAPI.md#AppsDevicesApiSignalsGetSignal) | **Get** /api/v1/signals/{signal_id}/ | Get signal event detail
+[**AppsDevicesApiSignalsGetSignal**](SignalsAPI.md#AppsDevicesApiSignalsGetSignal) | **Get** /api/v1/signals/{signal_id} | Get signal event detail
 [**AppsDevicesApiSignalsListSignals**](SignalsAPI.md#AppsDevicesApiSignalsListSignals) | **Get** /api/v1/signals/ | List signal events
 
 
@@ -14,6 +14,8 @@ Method | HTTP request | Description
 > SignalEventDetailOut AppsDevicesApiSignalsGetSignal(ctx, signalId).Execute()
 
 Get signal event detail
+
+
 
 ### Example
 
@@ -82,6 +84,8 @@ Name | Type | Description  | Notes
 > SignalEventsListOut AppsDevicesApiSignalsListSignals(ctx).SignalType(signalType).State(state).DeviceId(deviceId).GeofenceId(geofenceId).StartDate(startDate).EndDate(endDate).Limit(limit).Offset(offset).Execute()
 
 List signal events
+
+
 
 ### Example
 

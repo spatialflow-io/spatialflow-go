@@ -227,7 +227,7 @@ func (a *PoliciesAPIService) AppsDevicesApiPoliciesDeletePolicyExecute(r ApiApps
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/policies/{policy_id}/"
+	localVarPath := localBasePath + "/api/v1/policies/{policy_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"policy_id"+"}", url.PathEscape(parameterValueToString(r.policyId, "policyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -273,7 +273,7 @@ func (a *PoliciesAPIService) AppsDevicesApiPoliciesDeletePolicyExecute(r ApiApps
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -295,7 +295,7 @@ func (a *PoliciesAPIService) AppsDevicesApiPoliciesDeletePolicyExecute(r ApiApps
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -364,7 +364,7 @@ func (a *PoliciesAPIService) AppsDevicesApiPoliciesGetPolicyExecute(r ApiAppsDev
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/policies/{policy_id}/"
+	localVarPath := localBasePath + "/api/v1/policies/{policy_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"policy_id"+"}", url.PathEscape(parameterValueToString(r.policyId, "policyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -847,7 +847,7 @@ func (a *PoliciesAPIService) AppsDevicesApiPoliciesUpdatePolicyExecute(r ApiApps
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/policies/{policy_id}/"
+	localVarPath := localBasePath + "/api/v1/policies/{policy_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"policy_id"+"}", url.PathEscape(parameterValueToString(r.policyId, "policyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

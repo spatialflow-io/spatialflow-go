@@ -59,8 +59,6 @@ type APIClient struct {
 
 	BillingAPI *BillingAPIService
 
-	DefaultAPI *DefaultAPIService
-
 	DevicesAPI *DevicesAPIService
 
 	E2ETestAPI *E2ETestAPIService
@@ -79,11 +77,7 @@ type APIClient struct {
 
 	PublicLocationIngestAPI *PublicLocationIngestAPIService
 
-	RouteTesterAPI *RouteTesterAPIService
-
 	SignalsAPI *SignalsAPIService
-
-	SimulationCenterAPI *SimulationCenterAPIService
 
 	StorageAPI *StorageAPIService
 
@@ -123,7 +117,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AuditLogsAPI = (*AuditLogsAPIService)(&c.common)
 	c.AuthenticationAPI = (*AuthenticationAPIService)(&c.common)
 	c.BillingAPI = (*BillingAPIService)(&c.common)
-	c.DefaultAPI = (*DefaultAPIService)(&c.common)
 	c.DevicesAPI = (*DevicesAPIService)(&c.common)
 	c.E2ETestAPI = (*E2ETestAPIService)(&c.common)
 	c.EmailAPI = (*EmailAPIService)(&c.common)
@@ -133,9 +126,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PoliciesAPI = (*PoliciesAPIService)(&c.common)
 	c.PublicAPI = (*PublicAPIService)(&c.common)
 	c.PublicLocationIngestAPI = (*PublicLocationIngestAPIService)(&c.common)
-	c.RouteTesterAPI = (*RouteTesterAPIService)(&c.common)
 	c.SignalsAPI = (*SignalsAPIService)(&c.common)
-	c.SimulationCenterAPI = (*SimulationCenterAPIService)(&c.common)
 	c.StorageAPI = (*StorageAPIService)(&c.common)
 	c.SubscriptionsAPI = (*SubscriptionsAPIService)(&c.common)
 	c.SystemAPI = (*SystemAPIService)(&c.common)

@@ -20,15 +20,14 @@ import (
 // checks if the DeviceSessionOut type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeviceSessionOut{}
 
-// DeviceSessionOut Response schema for a completed tracking session.
+// DeviceSessionOut Response schema for a tracking session (active or completed).
 type DeviceSessionOut struct {
 	Id string `json:"id"`
 	StartedAt time.Time `json:"started_at"`
-	EndedAt time.Time `json:"ended_at"`
-	DurationSeconds int32 `json:"duration_seconds"`
+	EndedAt NullableTime `json:"ended_at,omitempty"`
+	DurationSeconds NullableInt32 `json:"duration_seconds,omitempty"`
 	LocationCount int32 `json:"location_count"`
 	DistanceMeters NullableFloat32 `json:"distance_meters,omitempty"`
-	Notes string `json:"notes"`
 	HasTrackGeometry *bool `json:"has_track_geometry,omitempty"`
 }
 
@@ -38,14 +37,11 @@ type _DeviceSessionOut DeviceSessionOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceSessionOut(id string, startedAt time.Time, endedAt time.Time, durationSeconds int32, locationCount int32, notes string) *DeviceSessionOut {
+func NewDeviceSessionOut(id string, startedAt time.Time, locationCount int32) *DeviceSessionOut {
 	this := DeviceSessionOut{}
 	this.Id = id
 	this.StartedAt = startedAt
-	this.EndedAt = endedAt
-	this.DurationSeconds = durationSeconds
 	this.LocationCount = locationCount
-	this.Notes = notes
 	var hasTrackGeometry bool = false
 	this.HasTrackGeometry = &hasTrackGeometry
 	return &this
@@ -109,52 +105,88 @@ func (o *DeviceSessionOut) SetStartedAt(v time.Time) {
 	o.StartedAt = v
 }
 
-// GetEndedAt returns the EndedAt field value
+// GetEndedAt returns the EndedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeviceSessionOut) GetEndedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.EndedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.EndedAt
+	return *o.EndedAt.Get()
 }
 
-// GetEndedAtOk returns a tuple with the EndedAt field value
+// GetEndedAtOk returns a tuple with the EndedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceSessionOut) GetEndedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.EndedAt, true
+	return o.EndedAt.Get(), o.EndedAt.IsSet()
 }
 
-// SetEndedAt sets field value
+// HasEndedAt returns a boolean if a field has been set.
+func (o *DeviceSessionOut) HasEndedAt() bool {
+	if o != nil && o.EndedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndedAt gets a reference to the given NullableTime and assigns it to the EndedAt field.
 func (o *DeviceSessionOut) SetEndedAt(v time.Time) {
-	o.EndedAt = v
+	o.EndedAt.Set(&v)
+}
+// SetEndedAtNil sets the value for EndedAt to be an explicit nil
+func (o *DeviceSessionOut) SetEndedAtNil() {
+	o.EndedAt.Set(nil)
 }
 
-// GetDurationSeconds returns the DurationSeconds field value
+// UnsetEndedAt ensures that no value is present for EndedAt, not even an explicit nil
+func (o *DeviceSessionOut) UnsetEndedAt() {
+	o.EndedAt.Unset()
+}
+
+// GetDurationSeconds returns the DurationSeconds field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeviceSessionOut) GetDurationSeconds() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.DurationSeconds.Get()) {
 		var ret int32
 		return ret
 	}
-
-	return o.DurationSeconds
+	return *o.DurationSeconds.Get()
 }
 
-// GetDurationSecondsOk returns a tuple with the DurationSeconds field value
+// GetDurationSecondsOk returns a tuple with the DurationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceSessionOut) GetDurationSecondsOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DurationSeconds, true
+	return o.DurationSeconds.Get(), o.DurationSeconds.IsSet()
 }
 
-// SetDurationSeconds sets field value
+// HasDurationSeconds returns a boolean if a field has been set.
+func (o *DeviceSessionOut) HasDurationSeconds() bool {
+	if o != nil && o.DurationSeconds.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDurationSeconds gets a reference to the given NullableInt32 and assigns it to the DurationSeconds field.
 func (o *DeviceSessionOut) SetDurationSeconds(v int32) {
-	o.DurationSeconds = v
+	o.DurationSeconds.Set(&v)
+}
+// SetDurationSecondsNil sets the value for DurationSeconds to be an explicit nil
+func (o *DeviceSessionOut) SetDurationSecondsNil() {
+	o.DurationSeconds.Set(nil)
+}
+
+// UnsetDurationSeconds ensures that no value is present for DurationSeconds, not even an explicit nil
+func (o *DeviceSessionOut) UnsetDurationSeconds() {
+	o.DurationSeconds.Unset()
 }
 
 // GetLocationCount returns the LocationCount field value
@@ -223,30 +255,6 @@ func (o *DeviceSessionOut) UnsetDistanceMeters() {
 	o.DistanceMeters.Unset()
 }
 
-// GetNotes returns the Notes field value
-func (o *DeviceSessionOut) GetNotes() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Notes
-}
-
-// GetNotesOk returns a tuple with the Notes field value
-// and a boolean to check if the value has been set.
-func (o *DeviceSessionOut) GetNotesOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Notes, true
-}
-
-// SetNotes sets field value
-func (o *DeviceSessionOut) SetNotes(v string) {
-	o.Notes = v
-}
-
 // GetHasTrackGeometry returns the HasTrackGeometry field value if set, zero value otherwise.
 func (o *DeviceSessionOut) GetHasTrackGeometry() bool {
 	if o == nil || IsNil(o.HasTrackGeometry) {
@@ -291,13 +299,16 @@ func (o DeviceSessionOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["started_at"] = o.StartedAt
-	toSerialize["ended_at"] = o.EndedAt
-	toSerialize["duration_seconds"] = o.DurationSeconds
+	if o.EndedAt.IsSet() {
+		toSerialize["ended_at"] = o.EndedAt.Get()
+	}
+	if o.DurationSeconds.IsSet() {
+		toSerialize["duration_seconds"] = o.DurationSeconds.Get()
+	}
 	toSerialize["location_count"] = o.LocationCount
 	if o.DistanceMeters.IsSet() {
 		toSerialize["distance_meters"] = o.DistanceMeters.Get()
 	}
-	toSerialize["notes"] = o.Notes
 	if !IsNil(o.HasTrackGeometry) {
 		toSerialize["has_track_geometry"] = o.HasTrackGeometry
 	}
@@ -311,10 +322,7 @@ func (o *DeviceSessionOut) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"started_at",
-		"ended_at",
-		"duration_seconds",
 		"location_count",
-		"notes",
 	}
 
 	allProperties := make(map[string]interface{})

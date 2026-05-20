@@ -17,6 +17,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
+	"reflect"
 	"os"
 )
 
@@ -27,7 +29,7 @@ type DevicesAPIService service
 type ApiAppsDevicesApiActivateDeviceRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 }
 
 func (r ApiAppsDevicesApiActivateDeviceRequest) Execute() (*DeviceOut, *http.Response, error) {
@@ -44,14 +46,14 @@ This is an administrative action that enables the device.
 - Field workers: Can only activate their own device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiActivateDeviceRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiActivateDevice(ctx context.Context, uuid string) ApiAppsDevicesApiActivateDeviceRequest {
+func (a *DevicesAPIService) AppsDevicesApiActivateDevice(ctx context.Context, deviceId string) ApiAppsDevicesApiActivateDeviceRequest {
 	return ApiAppsDevicesApiActivateDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -70,8 +72,8 @@ func (a *DevicesAPIService) AppsDevicesApiActivateDeviceExecute(r ApiAppsDevices
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/activate"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/activate"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -491,6 +493,203 @@ func (a *DevicesAPIService) AppsDevicesApiCreateDeviceExecute(r ApiAppsDevicesAp
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiAppsDevicesApiCreateManagerSessionNoteRequest struct {
+	ctx context.Context
+	ApiService *DevicesAPIService
+	deviceUuid string
+	sessionId string
+	sessionNoteIn *SessionNoteIn
+}
+
+func (r ApiAppsDevicesApiCreateManagerSessionNoteRequest) SessionNoteIn(sessionNoteIn SessionNoteIn) ApiAppsDevicesApiCreateManagerSessionNoteRequest {
+	r.sessionNoteIn = &sessionNoteIn
+	return r
+}
+
+func (r ApiAppsDevicesApiCreateManagerSessionNoteRequest) Execute() (*SessionNoteOut, *http.Response, error) {
+	return r.ApiService.AppsDevicesApiCreateManagerSessionNoteExecute(r)
+}
+
+/*
+AppsDevicesApiCreateManagerSessionNote Create Manager Session Note
+
+Append a manager-authored SessionNote (manager + owner only per D-04, append-only per D-03).
+
+Body is truncated to 2000 chars to match the field-worker constraint.
+Allowed on active OR closed sessions (D-03 supports retroactive annotation).
+Each POST inserts a NEW SessionNote row — no upsert.
+
+WR-05: returns 201 Created (RFC 7231 §6.3.2) since this is genuine
+resource creation. The mobile NotesUpdateOut endpoint still returns 200
+because it is an upsert, not a create.
+
+WR-06: rejects an empty / whitespace-only body with 400 +
+error_code="EMPTY_BODY" rather than inserting a noise row.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceUuid
+ @param sessionId
+ @return ApiAppsDevicesApiCreateManagerSessionNoteRequest
+*/
+func (a *DevicesAPIService) AppsDevicesApiCreateManagerSessionNote(ctx context.Context, deviceUuid string, sessionId string) ApiAppsDevicesApiCreateManagerSessionNoteRequest {
+	return ApiAppsDevicesApiCreateManagerSessionNoteRequest{
+		ApiService: a,
+		ctx: ctx,
+		deviceUuid: deviceUuid,
+		sessionId: sessionId,
+	}
+}
+
+// Execute executes the request
+//  @return SessionNoteOut
+func (a *DevicesAPIService) AppsDevicesApiCreateManagerSessionNoteExecute(r ApiAppsDevicesApiCreateManagerSessionNoteRequest) (*SessionNoteOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SessionNoteOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiCreateManagerSessionNote")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/devices/{device_uuid}/sessions/{session_id}/notes"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_uuid"+"}", url.PathEscape(parameterValueToString(r.deviceUuid, "deviceUuid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"session_id"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.sessionNoteIn == nil {
+		return localVarReturnValue, nil, reportError("sessionNoteIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.sessionNoteIn
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["APIKeyBearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -552,7 +751,7 @@ func (a *DevicesAPIService) AppsDevicesApiCreateDeviceExecute(r ApiAppsDevicesAp
 type ApiAppsDevicesApiDeactivateDeviceRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 }
 
 func (r ApiAppsDevicesApiDeactivateDeviceRequest) Execute() (*DeviceOut, *http.Response, error) {
@@ -569,14 +768,14 @@ This is an administrative action that disables the device entirely.
 - Field workers: Can only deactivate their own device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiDeactivateDeviceRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiDeactivateDevice(ctx context.Context, uuid string) ApiAppsDevicesApiDeactivateDeviceRequest {
+func (a *DevicesAPIService) AppsDevicesApiDeactivateDevice(ctx context.Context, deviceId string) ApiAppsDevicesApiDeactivateDeviceRequest {
 	return ApiAppsDevicesApiDeactivateDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -595,8 +794,8 @@ func (a *DevicesAPIService) AppsDevicesApiDeactivateDeviceExecute(r ApiAppsDevic
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/deactivate"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/deactivate"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -716,7 +915,7 @@ func (a *DevicesAPIService) AppsDevicesApiDeactivateDeviceExecute(r ApiAppsDevic
 type ApiAppsDevicesApiDeleteDeviceRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 }
 
 func (r ApiAppsDevicesApiDeleteDeviceRequest) Execute() (*http.Response, error) {
@@ -732,14 +931,14 @@ Delete a device (PRD §4.2).
 - Field workers: Can only delete their own device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiDeleteDeviceRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiDeleteDevice(ctx context.Context, uuid string) ApiAppsDevicesApiDeleteDeviceRequest {
+func (a *DevicesAPIService) AppsDevicesApiDeleteDevice(ctx context.Context, deviceId string) ApiAppsDevicesApiDeleteDeviceRequest {
 	return ApiAppsDevicesApiDeleteDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -756,8 +955,8 @@ func (a *DevicesAPIService) AppsDevicesApiDeleteDeviceExecute(r ApiAppsDevicesAp
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -816,7 +1015,7 @@ func (a *DevicesAPIService) AppsDevicesApiDeleteDeviceExecute(r ApiAppsDevicesAp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -838,7 +1037,7 @@ func (a *DevicesAPIService) AppsDevicesApiDeleteDeviceExecute(r ApiAppsDevicesAp
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -868,7 +1067,7 @@ func (a *DevicesAPIService) AppsDevicesApiDeleteDeviceExecute(r ApiAppsDevicesAp
 type ApiAppsDevicesApiEndShiftRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 }
 
 func (r ApiAppsDevicesApiEndShiftRequest) Execute() (*ShiftActionOut, *http.Response, error) {
@@ -887,14 +1086,14 @@ within the shift window will still be accepted.
 State transition: ACTIVE → OFF (or PAUSED → OFF)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiEndShiftRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiEndShift(ctx context.Context, uuid string) ApiAppsDevicesApiEndShiftRequest {
+func (a *DevicesAPIService) AppsDevicesApiEndShift(ctx context.Context, deviceId string) ApiAppsDevicesApiEndShiftRequest {
 	return ApiAppsDevicesApiEndShiftRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -913,8 +1112,8 @@ func (a *DevicesAPIService) AppsDevicesApiEndShiftExecute(r ApiAppsDevicesApiEnd
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/end-shift"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/end-shift"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -984,17 +1183,6 @@ func (a *DevicesAPIService) AppsDevicesApiEndShiftExecute(r ApiAppsDevicesApiEnd
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1007,6 +1195,17 @@ func (a *DevicesAPIService) AppsDevicesApiEndShiftExecute(r ApiAppsDevicesApiEnd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1250,12 +1449,183 @@ func (a *DevicesAPIService) AppsDevicesApiExportEventsEndpointExecute(r ApiAppsD
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiAppsDevicesApiGetActiveSessionRequest struct {
+	ctx context.Context
+	ApiService *DevicesAPIService
+	deviceUuid string
+}
+
+func (r ApiAppsDevicesApiGetActiveSessionRequest) Execute() (*DeviceSessionOut, *http.Response, error) {
+	return r.ApiService.AppsDevicesApiGetActiveSessionExecute(r)
+}
+
+/*
+AppsDevicesApiGetActiveSession Get Active Session
+
+Get the open DeviceSession for the device's current shift.
+
+Returns 200 + DeviceSessionOut when the device has an open session (ended_at IS NULL).
+Returns 404 when the device is not currently on shift (shift_status='off').
+
+Lazy-creates a session row for legacy in-flight v1.19 shifts (device.shift_status='active'
+but no open DeviceSession row), using device.shift_started_at as the started_at value.
+This reconciliation is idempotent: a second call returns the same session row.
+
+Role scoping (via get_device_with_permission):
+- field_worker: only own device (other device → 404)
+- manager/owner: any workspace device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceUuid
+ @return ApiAppsDevicesApiGetActiveSessionRequest
+*/
+func (a *DevicesAPIService) AppsDevicesApiGetActiveSession(ctx context.Context, deviceUuid string) ApiAppsDevicesApiGetActiveSessionRequest {
+	return ApiAppsDevicesApiGetActiveSessionRequest{
+		ApiService: a,
+		ctx: ctx,
+		deviceUuid: deviceUuid,
+	}
+}
+
+// Execute executes the request
+//  @return DeviceSessionOut
+func (a *DevicesAPIService) AppsDevicesApiGetActiveSessionExecute(r ApiAppsDevicesApiGetActiveSessionRequest) (*DeviceSessionOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeviceSessionOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiGetActiveSession")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/devices/{device_uuid}/active-session"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_uuid"+"}", url.PathEscape(parameterValueToString(r.deviceUuid, "deviceUuid")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["APIKeyBearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiAppsDevicesApiGetDashboardStatsRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
 }
 
-func (r ApiAppsDevicesApiGetDashboardStatsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsDevicesApiGetDashboardStatsRequest) Execute() (*DashboardStatsOut, *http.Response, error) {
 	return r.ApiService.AppsDevicesApiGetDashboardStatsExecute(r)
 }
 
@@ -1286,13 +1656,13 @@ func (a *DevicesAPIService) AppsDevicesApiGetDashboardStats(ctx context.Context)
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *DevicesAPIService) AppsDevicesApiGetDashboardStatsExecute(r ApiAppsDevicesApiGetDashboardStatsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return DashboardStatsOut
+func (a *DevicesAPIService) AppsDevicesApiGetDashboardStatsExecute(r ApiAppsDevicesApiGetDashboardStatsRequest) (*DashboardStatsOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *DashboardStatsOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiGetDashboardStats")
@@ -1443,7 +1813,7 @@ func (r ApiAppsDevicesApiGetDashboardStatsTimelineRequest) EndDate(endDate strin
 	return r
 }
 
-func (r ApiAppsDevicesApiGetDashboardStatsTimelineRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsDevicesApiGetDashboardStatsTimelineRequest) Execute() (*DashboardStatsTimelineOut, *http.Response, error) {
 	return r.ApiService.AppsDevicesApiGetDashboardStatsTimelineExecute(r)
 }
 
@@ -1466,13 +1836,13 @@ func (a *DevicesAPIService) AppsDevicesApiGetDashboardStatsTimeline(ctx context.
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *DevicesAPIService) AppsDevicesApiGetDashboardStatsTimelineExecute(r ApiAppsDevicesApiGetDashboardStatsTimelineRequest) (map[string]interface{}, *http.Response, error) {
+//  @return DashboardStatsTimelineOut
+func (a *DevicesAPIService) AppsDevicesApiGetDashboardStatsTimelineExecute(r ApiAppsDevicesApiGetDashboardStatsTimelineRequest) (*DashboardStatsTimelineOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *DashboardStatsTimelineOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiGetDashboardStatsTimeline")
@@ -1551,17 +1921,6 @@ func (a *DevicesAPIService) AppsDevicesApiGetDashboardStatsTimelineExecute(r Api
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1623,7 +1982,7 @@ func (a *DevicesAPIService) AppsDevicesApiGetDashboardStatsTimelineExecute(r Api
 type ApiAppsDevicesApiGetDeviceRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 }
 
 func (r ApiAppsDevicesApiGetDeviceRequest) Execute() (*DeviceOut, *http.Response, error) {
@@ -1639,14 +1998,14 @@ Get device details by UUID (PRD §4).
 - Field workers: Can only view their own device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiGetDeviceRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiGetDevice(ctx context.Context, uuid string) ApiAppsDevicesApiGetDeviceRequest {
+func (a *DevicesAPIService) AppsDevicesApiGetDevice(ctx context.Context, deviceId string) ApiAppsDevicesApiGetDeviceRequest {
 	return ApiAppsDevicesApiGetDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -1665,8 +2024,8 @@ func (a *DevicesAPIService) AppsDevicesApiGetDeviceExecute(r ApiAppsDevicesApiGe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1786,7 +2145,7 @@ func (a *DevicesAPIService) AppsDevicesApiGetDeviceExecute(r ApiAppsDevicesApiGe
 type ApiAppsDevicesApiGetDeviceEventsRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 	limit *int32
 	offset *int32
 }
@@ -1801,7 +2160,7 @@ func (r ApiAppsDevicesApiGetDeviceEventsRequest) Offset(offset int32) ApiAppsDev
 	return r
 }
 
-func (r ApiAppsDevicesApiGetDeviceEventsRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
+func (r ApiAppsDevicesApiGetDeviceEventsRequest) Execute() ([]GeofenceEventOut, *http.Response, error) {
 	return r.ApiService.AppsDevicesApiGetDeviceEventsExecute(r)
 }
 
@@ -1814,25 +2173,25 @@ Get geofence events for a device (PRD §4).
 - Field workers: Can only view events for their own device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiGetDeviceEventsRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiGetDeviceEvents(ctx context.Context, uuid string) ApiAppsDevicesApiGetDeviceEventsRequest {
+func (a *DevicesAPIService) AppsDevicesApiGetDeviceEvents(ctx context.Context, deviceId string) ApiAppsDevicesApiGetDeviceEventsRequest {
 	return ApiAppsDevicesApiGetDeviceEventsRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//  @return []map[string]interface{}
-func (a *DevicesAPIService) AppsDevicesApiGetDeviceEventsExecute(r ApiAppsDevicesApiGetDeviceEventsRequest) ([]map[string]interface{}, *http.Response, error) {
+//  @return []GeofenceEventOut
+func (a *DevicesAPIService) AppsDevicesApiGetDeviceEventsExecute(r ApiAppsDevicesApiGetDeviceEventsRequest) ([]GeofenceEventOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []map[string]interface{}
+		localVarReturnValue  []GeofenceEventOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiGetDeviceEvents")
@@ -1840,8 +2199,8 @@ func (a *DevicesAPIService) AppsDevicesApiGetDeviceEventsExecute(r ApiAppsDevice
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/events"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1973,7 +2332,7 @@ func (a *DevicesAPIService) AppsDevicesApiGetDeviceEventsExecute(r ApiAppsDevice
 type ApiAppsDevicesApiGetDeviceSessionsRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 	limit *int32
 	offset *int32
 }
@@ -2004,14 +2363,14 @@ computed stats like duration, location count, and distance traveled.
 - Field workers: Can only view sessions for their own device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiGetDeviceSessionsRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiGetDeviceSessions(ctx context.Context, uuid string) ApiAppsDevicesApiGetDeviceSessionsRequest {
+func (a *DevicesAPIService) AppsDevicesApiGetDeviceSessions(ctx context.Context, deviceId string) ApiAppsDevicesApiGetDeviceSessionsRequest {
 	return ApiAppsDevicesApiGetDeviceSessionsRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -2030,8 +2389,8 @@ func (a *DevicesAPIService) AppsDevicesApiGetDeviceSessionsExecute(r ApiAppsDevi
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/sessions"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/sessions"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2264,6 +2623,17 @@ func (a *DevicesAPIService) AppsDevicesApiGetEventDetailExecute(r ApiAppsDevices
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2276,17 +2646,6 @@ func (a *DevicesAPIService) AppsDevicesApiGetEventDetailExecute(r ApiAppsDevices
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2490,7 +2849,7 @@ type ApiAppsDevicesApiGetLocationStatsRequest struct {
 	ApiService *DevicesAPIService
 }
 
-func (r ApiAppsDevicesApiGetLocationStatsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsDevicesApiGetLocationStatsRequest) Execute() (*DeviceStatsOut, *http.Response, error) {
 	return r.ApiService.AppsDevicesApiGetLocationStatsExecute(r)
 }
 
@@ -2513,13 +2872,13 @@ func (a *DevicesAPIService) AppsDevicesApiGetLocationStats(ctx context.Context) 
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *DevicesAPIService) AppsDevicesApiGetLocationStatsExecute(r ApiAppsDevicesApiGetLocationStatsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return DeviceStatsOut
+func (a *DevicesAPIService) AppsDevicesApiGetLocationStatsExecute(r ApiAppsDevicesApiGetLocationStatsRequest) (*DeviceStatsOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *DeviceStatsOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiGetLocationStats")
@@ -2707,7 +3066,7 @@ func (r ApiAppsDevicesApiGetRecentEventsRequest) Sort(sort string) ApiAppsDevice
 	return r
 }
 
-func (r ApiAppsDevicesApiGetRecentEventsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsDevicesApiGetRecentEventsRequest) Execute() (*RecentEventsOut, *http.Response, error) {
 	return r.ApiService.AppsDevicesApiGetRecentEventsExecute(r)
 }
 
@@ -2730,13 +3089,13 @@ func (a *DevicesAPIService) AppsDevicesApiGetRecentEvents(ctx context.Context) A
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *DevicesAPIService) AppsDevicesApiGetRecentEventsExecute(r ApiAppsDevicesApiGetRecentEventsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return RecentEventsOut
+func (a *DevicesAPIService) AppsDevicesApiGetRecentEventsExecute(r ApiAppsDevicesApiGetRecentEventsRequest) (*RecentEventsOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *RecentEventsOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiGetRecentEvents")
@@ -2908,7 +3267,7 @@ func (a *DevicesAPIService) AppsDevicesApiGetRecentEventsExecute(r ApiAppsDevice
 type ApiAppsDevicesApiGetRecentLocationsRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 	limit *int32
 }
 
@@ -2928,20 +3287,20 @@ Get recent locations for a device, independent of sessions.
 
 Returns the most recent GPS points for the device, ordered newest-first.
 Useful for rendering device trails when no session history exists
-(e.g. simulation devices or devices that haven't started shifts).
+(e.g. devices that haven't started shifts).
 
 - Managers/owners: Can view locations for any workspace device
 - Field workers: Can only view locations for their own device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiGetRecentLocationsRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiGetRecentLocations(ctx context.Context, uuid string) ApiAppsDevicesApiGetRecentLocationsRequest {
+func (a *DevicesAPIService) AppsDevicesApiGetRecentLocations(ctx context.Context, deviceId string) ApiAppsDevicesApiGetRecentLocationsRequest {
 	return ApiAppsDevicesApiGetRecentLocationsRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -2960,8 +3319,8 @@ func (a *DevicesAPIService) AppsDevicesApiGetRecentLocationsExecute(r ApiAppsDev
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/locations/recent"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/locations/recent"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3087,7 +3446,7 @@ func (a *DevicesAPIService) AppsDevicesApiGetRecentLocationsExecute(r ApiAppsDev
 type ApiAppsDevicesApiGetSessionDetailRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 	sessionId string
 }
 
@@ -3107,15 +3466,15 @@ including time bounds needed for location queries.
 - Field workers: Can only view sessions for their own device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @param sessionId
  @return ApiAppsDevicesApiGetSessionDetailRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiGetSessionDetail(ctx context.Context, uuid string, sessionId string) ApiAppsDevicesApiGetSessionDetailRequest {
+func (a *DevicesAPIService) AppsDevicesApiGetSessionDetail(ctx context.Context, deviceId string, sessionId string) ApiAppsDevicesApiGetSessionDetailRequest {
 	return ApiAppsDevicesApiGetSessionDetailRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 		sessionId: sessionId,
 	}
 }
@@ -3135,8 +3494,8 @@ func (a *DevicesAPIService) AppsDevicesApiGetSessionDetailExecute(r ApiAppsDevic
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/sessions/{session_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/sessions/{session_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"session_id"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -3257,7 +3616,7 @@ func (a *DevicesAPIService) AppsDevicesApiGetSessionDetailExecute(r ApiAppsDevic
 type ApiAppsDevicesApiGetSessionLocationsRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 	sessionId string
 	limit *int32
 	offset *int32
@@ -3310,15 +3669,15 @@ without jitter or poor-quality readings.
 - Field workers: Can only view locations for their own device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @param sessionId
  @return ApiAppsDevicesApiGetSessionLocationsRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiGetSessionLocations(ctx context.Context, uuid string, sessionId string) ApiAppsDevicesApiGetSessionLocationsRequest {
+func (a *DevicesAPIService) AppsDevicesApiGetSessionLocations(ctx context.Context, deviceId string, sessionId string) ApiAppsDevicesApiGetSessionLocationsRequest {
 	return ApiAppsDevicesApiGetSessionLocationsRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 		sessionId: sessionId,
 	}
 }
@@ -3338,8 +3697,8 @@ func (a *DevicesAPIService) AppsDevicesApiGetSessionLocationsExecute(r ApiAppsDe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/sessions/{session_id}/locations"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/sessions/{session_id}/locations"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"session_id"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -3656,60 +4015,638 @@ func (a *DevicesAPIService) AppsDevicesApiListDevicesExecute(r ApiAppsDevicesApi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAppsDevicesApiPauseShiftRequest struct {
+type ApiAppsDevicesApiListSessionAttachmentsRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceUuid string
+	sessionId string
 }
 
-func (r ApiAppsDevicesApiPauseShiftRequest) Execute() (*ShiftActionOut, *http.Response, error) {
-	return r.ApiService.AppsDevicesApiPauseShiftExecute(r)
+func (r ApiAppsDevicesApiListSessionAttachmentsRequest) Execute() ([]StoredFileAttachmentOut, *http.Response, error) {
+	return r.ApiService.AppsDevicesApiListSessionAttachmentsExecute(r)
 }
 
 /*
-AppsDevicesApiPauseShift Pause Shift
+AppsDevicesApiListSessionAttachments List Session Attachments
 
-Pause a tracking shift (PRD §5.3).
+List attachments (StoredFile records) linked to a device session.
 
-BYOD Security: Only the device owner can pause their shift.
-Location uploads are paused until resumed.
-
-State transition: ACTIVE → PAUSED
+Role scoping (D-09):
+- field_worker: sees only attachments from their own sessions.
+- manager/owner: sees all workspace-wide attachments for the session.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
- @return ApiAppsDevicesApiPauseShiftRequest
+ @param deviceUuid
+ @param sessionId
+ @return ApiAppsDevicesApiListSessionAttachmentsRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiPauseShift(ctx context.Context, uuid string) ApiAppsDevicesApiPauseShiftRequest {
-	return ApiAppsDevicesApiPauseShiftRequest{
+func (a *DevicesAPIService) AppsDevicesApiListSessionAttachments(ctx context.Context, deviceUuid string, sessionId string) ApiAppsDevicesApiListSessionAttachmentsRequest {
+	return ApiAppsDevicesApiListSessionAttachmentsRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceUuid: deviceUuid,
+		sessionId: sessionId,
 	}
 }
 
 // Execute executes the request
-//  @return ShiftActionOut
-func (a *DevicesAPIService) AppsDevicesApiPauseShiftExecute(r ApiAppsDevicesApiPauseShiftRequest) (*ShiftActionOut, *http.Response, error) {
+//  @return []StoredFileAttachmentOut
+func (a *DevicesAPIService) AppsDevicesApiListSessionAttachmentsExecute(r ApiAppsDevicesApiListSessionAttachmentsRequest) ([]StoredFileAttachmentOut, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ShiftActionOut
+		localVarReturnValue  []StoredFileAttachmentOut
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiPauseShift")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiListSessionAttachments")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/pause-shift"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_uuid}/sessions/{session_id}/attachments"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_uuid"+"}", url.PathEscape(parameterValueToString(r.deviceUuid, "deviceUuid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"session_id"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["APIKeyBearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiAppsDevicesApiListSessionNotesRequest struct {
+	ctx context.Context
+	ApiService *DevicesAPIService
+	deviceUuid string
+	sessionId string
+}
+
+func (r ApiAppsDevicesApiListSessionNotesRequest) Execute() ([]SessionNoteOut, *http.Response, error) {
+	return r.ApiService.AppsDevicesApiListSessionNotesExecute(r)
+}
+
+/*
+AppsDevicesApiListSessionNotes List Session Notes
+
+List SessionNote rows for a session (oldest first per D-20).
+
+Role scoping (D-09 / D-14):
+- field_worker: only own device's session notes
+- manager/owner: any workspace device's session notes
+
+Returns a uniform 403 for non-existent / cross-device / cross-workspace /
+unauthorized-field-worker cases (prevents session-ID enumeration via
+differential 403 vs 404).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceUuid
+ @param sessionId
+ @return ApiAppsDevicesApiListSessionNotesRequest
+*/
+func (a *DevicesAPIService) AppsDevicesApiListSessionNotes(ctx context.Context, deviceUuid string, sessionId string) ApiAppsDevicesApiListSessionNotesRequest {
+	return ApiAppsDevicesApiListSessionNotesRequest{
+		ApiService: a,
+		ctx: ctx,
+		deviceUuid: deviceUuid,
+		sessionId: sessionId,
+	}
+}
+
+// Execute executes the request
+//  @return []SessionNoteOut
+func (a *DevicesAPIService) AppsDevicesApiListSessionNotesExecute(r ApiAppsDevicesApiListSessionNotesRequest) ([]SessionNoteOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []SessionNoteOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiListSessionNotes")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/devices/{device_uuid}/sessions/{session_id}/notes"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_uuid"+"}", url.PathEscape(parameterValueToString(r.deviceUuid, "deviceUuid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"session_id"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["APIKeyBearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiAppsDevicesApiListSessionPhotosRequest struct {
+	ctx context.Context
+	ApiService *DevicesAPIService
+	deviceUuid string
+	sessionId string
+}
+
+func (r ApiAppsDevicesApiListSessionPhotosRequest) Execute() ([]PhotoOut, *http.Response, error) {
+	return r.ApiService.AppsDevicesApiListSessionPhotosExecute(r)
+}
+
+/*
+AppsDevicesApiListSessionPhotos List Session Photos
+
+List image-typed StoredFile attachments for a session with derived GPS coords.
+
+Phase 120-04 (D-11). Each row is a PhotoOut whose lat/lon are resolved per
+D-07 (nearest DeviceLocation within ±60s of captured_at, falling back to
+PostGIS ST_LineInterpolatePoint on the session's track_geometry for closed
+sessions, falling back to null). Newest-first ordering (D-17). Presigned
+download URL with TTL=3600 (D-18).
+
+Coexists with GET .../sessions/{session_id}/attachments which returns ALL
+attachment types — that endpoint is preserved unchanged for the v1.20
+mobile consumer (Plan 105) per CONTEXT D-11.
+
+Role scoping (D-12 = v1.20 D-09):
+- field_worker: only own device's photos
+- manager/owner: any workspace device's photos
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceUuid
+ @param sessionId
+ @return ApiAppsDevicesApiListSessionPhotosRequest
+*/
+func (a *DevicesAPIService) AppsDevicesApiListSessionPhotos(ctx context.Context, deviceUuid string, sessionId string) ApiAppsDevicesApiListSessionPhotosRequest {
+	return ApiAppsDevicesApiListSessionPhotosRequest{
+		ApiService: a,
+		ctx: ctx,
+		deviceUuid: deviceUuid,
+		sessionId: sessionId,
+	}
+}
+
+// Execute executes the request
+//  @return []PhotoOut
+func (a *DevicesAPIService) AppsDevicesApiListSessionPhotosExecute(r ApiAppsDevicesApiListSessionPhotosRequest) ([]PhotoOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []PhotoOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiListSessionPhotos")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/devices/{device_uuid}/sessions/{session_id}/photos"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_uuid"+"}", url.PathEscape(parameterValueToString(r.deviceUuid, "deviceUuid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"session_id"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["APIKeyBearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiAppsDevicesApiListWorkspacePhotosRequest struct {
+	ctx context.Context
+	ApiService *DevicesAPIService
+	from *time.Time
+	to *time.Time
+	deviceIds *[]*string
+	limit *int32
+}
+
+// Earliest captured_at (default: now - 24h)
+func (r ApiAppsDevicesApiListWorkspacePhotosRequest) From(from time.Time) ApiAppsDevicesApiListWorkspacePhotosRequest {
+	r.from = &from
+	return r
+}
+
+// Latest captured_at (default: now)
+func (r ApiAppsDevicesApiListWorkspacePhotosRequest) To(to time.Time) ApiAppsDevicesApiListWorkspacePhotosRequest {
+	r.to = &to
+	return r
+}
+
+// Restrict to these device IDs (max 50)
+func (r ApiAppsDevicesApiListWorkspacePhotosRequest) DeviceIds(deviceIds []*string) ApiAppsDevicesApiListWorkspacePhotosRequest {
+	r.deviceIds = &deviceIds
+	return r
+}
+
+// Soft cap; max 500 newest
+func (r ApiAppsDevicesApiListWorkspacePhotosRequest) Limit(limit int32) ApiAppsDevicesApiListWorkspacePhotosRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiAppsDevicesApiListWorkspacePhotosRequest) Execute() (*WorkspacePhotosOut, *http.Response, error) {
+	return r.ApiService.AppsDevicesApiListWorkspacePhotosExecute(r)
+}
+
+/*
+AppsDevicesApiListWorkspacePhotos List Workspace Photos
+
+List workspace-wide photos with renderable GPS coords (Phase 122-01).
+
+Returns the newest ``limit`` photos (max 500) whose captured_at is in
+[from, to] across all workspace devices the requester can see. Photos
+whose coordinate resolution returns null are excluded (D-05) — only
+renderable photos cross the wire for the dashboard map layer.
+
+Role scoping (D-04 / v1.20 D-09):
+- field_worker: only own device's photos
+- manager/owner: all workspace devices
+
+Cross-workspace ``device_ids`` are silently filtered out (no information
+leak via differential 403). Over 50 ``device_ids`` returns 400
+TOO_MANY_DEVICE_IDS to bound query parameter abuse.
+
+Coexists with GET /devices/{uuid}/sessions/{sid}/photos which is preserved
+unchanged (Phase 120-04). The two endpoints have intentionally different
+null-coord semantics: per-session keeps null-coord rows (still listed in
+the session detail panel), workspace-wide drops them (can't render).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAppsDevicesApiListWorkspacePhotosRequest
+*/
+func (a *DevicesAPIService) AppsDevicesApiListWorkspacePhotos(ctx context.Context) ApiAppsDevicesApiListWorkspacePhotosRequest {
+	return ApiAppsDevicesApiListWorkspacePhotosRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return WorkspacePhotosOut
+func (a *DevicesAPIService) AppsDevicesApiListWorkspacePhotosExecute(r ApiAppsDevicesApiListWorkspacePhotosRequest) (*WorkspacePhotosOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *WorkspacePhotosOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiListWorkspacePhotos")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/devices/photos"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.from != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
+	}
+	if r.to != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
+	}
+	if r.deviceIds != nil {
+		t := *r.deviceIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "device_ids", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "device_ids", t, "form", "multi")
+		}
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 500
+		r.limit = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3797,6 +4734,182 @@ func (a *DevicesAPIService) AppsDevicesApiPauseShiftExecute(r ApiAppsDevicesApiP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiAppsDevicesApiPauseShiftRequest struct {
+	ctx context.Context
+	ApiService *DevicesAPIService
+	deviceId string
+}
+
+func (r ApiAppsDevicesApiPauseShiftRequest) Execute() (*ShiftActionOut, *http.Response, error) {
+	return r.ApiService.AppsDevicesApiPauseShiftExecute(r)
+}
+
+/*
+AppsDevicesApiPauseShift Pause Shift
+
+Pause a tracking shift (PRD §5.3).
+
+BYOD Security: Only the device owner can pause their shift.
+Location uploads are paused until resumed.
+
+State transition: ACTIVE → PAUSED
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId
+ @return ApiAppsDevicesApiPauseShiftRequest
+*/
+func (a *DevicesAPIService) AppsDevicesApiPauseShift(ctx context.Context, deviceId string) ApiAppsDevicesApiPauseShiftRequest {
+	return ApiAppsDevicesApiPauseShiftRequest{
+		ApiService: a,
+		ctx: ctx,
+		deviceId: deviceId,
+	}
+}
+
+// Execute executes the request
+//  @return ShiftActionOut
+func (a *DevicesAPIService) AppsDevicesApiPauseShiftExecute(r ApiAppsDevicesApiPauseShiftRequest) (*ShiftActionOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ShiftActionOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.AppsDevicesApiPauseShift")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/pause-shift"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["APIKeyBearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3835,7 +4948,7 @@ func (a *DevicesAPIService) AppsDevicesApiPauseShiftExecute(r ApiAppsDevicesApiP
 type ApiAppsDevicesApiResumeShiftRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 }
 
 func (r ApiAppsDevicesApiResumeShiftRequest) Execute() (*ShiftActionOut, *http.Response, error) {
@@ -3853,14 +4966,14 @@ Location uploads resume.
 State transition: PAUSED → ACTIVE
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiResumeShiftRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiResumeShift(ctx context.Context, uuid string) ApiAppsDevicesApiResumeShiftRequest {
+func (a *DevicesAPIService) AppsDevicesApiResumeShift(ctx context.Context, deviceId string) ApiAppsDevicesApiResumeShiftRequest {
 	return ApiAppsDevicesApiResumeShiftRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -3879,8 +4992,8 @@ func (a *DevicesAPIService) AppsDevicesApiResumeShiftExecute(r ApiAppsDevicesApi
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/resume-shift"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/resume-shift"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3950,17 +5063,6 @@ func (a *DevicesAPIService) AppsDevicesApiResumeShiftExecute(r ApiAppsDevicesApi
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3973,6 +5075,17 @@ func (a *DevicesAPIService) AppsDevicesApiResumeShiftExecute(r ApiAppsDevicesApi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4011,7 +5124,7 @@ func (a *DevicesAPIService) AppsDevicesApiResumeShiftExecute(r ApiAppsDevicesApi
 type ApiAppsDevicesApiStartShiftRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 }
 
 func (r ApiAppsDevicesApiStartShiftRequest) Execute() (*ShiftActionOut, *http.Response, error) {
@@ -4030,14 +5143,14 @@ State transition: OFF → ACTIVE
 Note: If paused, use resume-shift instead.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiStartShiftRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiStartShift(ctx context.Context, uuid string) ApiAppsDevicesApiStartShiftRequest {
+func (a *DevicesAPIService) AppsDevicesApiStartShift(ctx context.Context, deviceId string) ApiAppsDevicesApiStartShiftRequest {
 	return ApiAppsDevicesApiStartShiftRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -4056,8 +5169,8 @@ func (a *DevicesAPIService) AppsDevicesApiStartShiftExecute(r ApiAppsDevicesApiS
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/start-shift"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/start-shift"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4127,17 +5240,6 @@ func (a *DevicesAPIService) AppsDevicesApiStartShiftExecute(r ApiAppsDevicesApiS
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4150,6 +5252,17 @@ func (a *DevicesAPIService) AppsDevicesApiStartShiftExecute(r ApiAppsDevicesApiS
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4188,7 +5301,7 @@ func (a *DevicesAPIService) AppsDevicesApiStartShiftExecute(r ApiAppsDevicesApiS
 type ApiAppsDevicesApiUpdateDeviceRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 	updateDeviceIn *UpdateDeviceIn
 }
 
@@ -4212,14 +5325,14 @@ Update device name, type, or metadata.
 Note: device_id (external identifier) is NOT editable for BYOD security.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiUpdateDeviceRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiUpdateDevice(ctx context.Context, uuid string) ApiAppsDevicesApiUpdateDeviceRequest {
+func (a *DevicesAPIService) AppsDevicesApiUpdateDevice(ctx context.Context, deviceId string) ApiAppsDevicesApiUpdateDeviceRequest {
 	return ApiAppsDevicesApiUpdateDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -4238,8 +5351,8 @@ func (a *DevicesAPIService) AppsDevicesApiUpdateDeviceExecute(r ApiAppsDevicesAp
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4375,7 +5488,7 @@ func (a *DevicesAPIService) AppsDevicesApiUpdateDeviceExecute(r ApiAppsDevicesAp
 type ApiAppsDevicesApiUpdateDeviceLocationRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 	locationUpdateIn *LocationUpdateIn
 }
 
@@ -4399,14 +5512,14 @@ PRD §4.2 & §5.3: BYOD Security + Shift Enforcement
 - Shift must be active, OR timestamp falls within past shift window
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiUpdateDeviceLocationRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiUpdateDeviceLocation(ctx context.Context, uuid string) ApiAppsDevicesApiUpdateDeviceLocationRequest {
+func (a *DevicesAPIService) AppsDevicesApiUpdateDeviceLocation(ctx context.Context, deviceId string) ApiAppsDevicesApiUpdateDeviceLocationRequest {
 	return ApiAppsDevicesApiUpdateDeviceLocationRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -4425,8 +5538,8 @@ func (a *DevicesAPIService) AppsDevicesApiUpdateDeviceLocationExecute(r ApiAppsD
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/location"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/location"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4573,7 +5686,7 @@ func (a *DevicesAPIService) AppsDevicesApiUpdateDeviceLocationExecute(r ApiAppsD
 type ApiAppsDevicesApiUpdateSessionNotesRequest struct {
 	ctx context.Context
 	ApiService *DevicesAPIService
-	uuid string
+	deviceId string
 	notesUpdateIn *NotesUpdateIn
 }
 
@@ -4591,23 +5704,39 @@ AppsDevicesApiUpdateSessionNotes Update Session Notes
 
 Update notes for the current active session.
 
-Notes are stored on the device during the active session and
-persisted to the DeviceSession record when the shift ends.
+Mobile-facing endpoint (preserved contract from v1.20). Each call:
+  1. Truncates the payload to 2000 chars.
+  2. Writes the truncated body to device.current_session_notes (mobile pre-fill cache).
+  3. Upserts a SessionNote row keyed on (active_session, author=request.auth)
+     so the manager-side GET in v1.23 sees an authored note row.
 
-BYOD Security: Only the device owner can update notes.
+The upsert is idempotent across repeated POSTs during the same shift — calls 2..N
+update the same row's body and refresh created_at. A new shift gets a new SessionNote
+because the (session, author) key differs.
+
+Concurrency (CR-01): the (session, author) upsert is serialized via
+select_for_update() on the Device row inside transaction.atomic(). Two
+concurrent POSTs from the same authenticated user (offline-buffered flush,
+mobile retry storm, multi-tab race) block at the lock so the second caller
+sees the first caller's row via update_or_create.get() and falls into the
+UPDATE branch — preventing duplicate (session, author) rows. The Device
+row lock serializes per-device POSTs without holding a workspace-wide lock.
+
+BYOD Security: Only the device owner can update notes (enforced by
+get_device_with_permission(require_write=True)).
 Must have an active or paused shift to update notes.
 
 Notes are limited to 2000 characters.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param deviceId
  @return ApiAppsDevicesApiUpdateSessionNotesRequest
 */
-func (a *DevicesAPIService) AppsDevicesApiUpdateSessionNotes(ctx context.Context, uuid string) ApiAppsDevicesApiUpdateSessionNotesRequest {
+func (a *DevicesAPIService) AppsDevicesApiUpdateSessionNotes(ctx context.Context, deviceId string) ApiAppsDevicesApiUpdateSessionNotesRequest {
 	return ApiAppsDevicesApiUpdateSessionNotesRequest{
 		ApiService: a,
 		ctx: ctx,
-		uuid: uuid,
+		deviceId: deviceId,
 	}
 }
 
@@ -4626,8 +5755,8 @@ func (a *DevicesAPIService) AppsDevicesApiUpdateSessionNotesExecute(r ApiAppsDev
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/devices/{uuid}/notes"
-	localVarPath = strings.Replace(localVarPath, "{"+"uuid"+"}", url.PathEscape(parameterValueToString(r.uuid, "uuid")), -1)
+	localVarPath := localBasePath + "/api/v1/devices/{device_id}/notes"
+	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

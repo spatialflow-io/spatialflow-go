@@ -6,18 +6,17 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
 **StartedAt** | **time.Time** |  | 
-**EndedAt** | **time.Time** |  | 
-**DurationSeconds** | **int32** |  | 
+**EndedAt** | Pointer to **NullableTime** |  | [optional] 
+**DurationSeconds** | Pointer to **NullableInt32** |  | [optional] 
 **LocationCount** | **int32** |  | 
 **DistanceMeters** | Pointer to **NullableFloat32** |  | [optional] 
-**Notes** | **string** |  | 
 **HasTrackGeometry** | Pointer to **bool** |  | [optional] [default to false]
 
 ## Methods
 
 ### NewDeviceSessionOut
 
-`func NewDeviceSessionOut(id string, startedAt time.Time, endedAt time.Time, durationSeconds int32, locationCount int32, notes string, ) *DeviceSessionOut`
+`func NewDeviceSessionOut(id string, startedAt time.Time, locationCount int32, ) *DeviceSessionOut`
 
 NewDeviceSessionOut instantiates a new DeviceSessionOut object
 This constructor will assign default values to properties that have it defined,
@@ -91,7 +90,22 @@ and a boolean to check if the value has been set.
 
 SetEndedAt sets EndedAt field to given value.
 
+### HasEndedAt
 
+`func (o *DeviceSessionOut) HasEndedAt() bool`
+
+HasEndedAt returns a boolean if a field has been set.
+
+### SetEndedAtNil
+
+`func (o *DeviceSessionOut) SetEndedAtNil(b bool)`
+
+ SetEndedAtNil sets the value for EndedAt to be an explicit nil
+
+### UnsetEndedAt
+`func (o *DeviceSessionOut) UnsetEndedAt()`
+
+UnsetEndedAt ensures that no value is present for EndedAt, not even an explicit nil
 ### GetDurationSeconds
 
 `func (o *DeviceSessionOut) GetDurationSeconds() int32`
@@ -111,7 +125,22 @@ and a boolean to check if the value has been set.
 
 SetDurationSeconds sets DurationSeconds field to given value.
 
+### HasDurationSeconds
 
+`func (o *DeviceSessionOut) HasDurationSeconds() bool`
+
+HasDurationSeconds returns a boolean if a field has been set.
+
+### SetDurationSecondsNil
+
+`func (o *DeviceSessionOut) SetDurationSecondsNil(b bool)`
+
+ SetDurationSecondsNil sets the value for DurationSeconds to be an explicit nil
+
+### UnsetDurationSeconds
+`func (o *DeviceSessionOut) UnsetDurationSeconds()`
+
+UnsetDurationSeconds ensures that no value is present for DurationSeconds, not even an explicit nil
 ### GetLocationCount
 
 `func (o *DeviceSessionOut) GetLocationCount() int32`
@@ -167,26 +196,6 @@ HasDistanceMeters returns a boolean if a field has been set.
 `func (o *DeviceSessionOut) UnsetDistanceMeters()`
 
 UnsetDistanceMeters ensures that no value is present for DistanceMeters, not even an explicit nil
-### GetNotes
-
-`func (o *DeviceSessionOut) GetNotes() string`
-
-GetNotes returns the Notes field if non-nil, zero value otherwise.
-
-### GetNotesOk
-
-`func (o *DeviceSessionOut) GetNotesOk() (*string, bool)`
-
-GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNotes
-
-`func (o *DeviceSessionOut) SetNotes(v string)`
-
-SetNotes sets Notes field to given value.
-
-
 ### GetHasTrackGeometry
 
 `func (o *DeviceSessionOut) GetHasTrackGeometry() bool`

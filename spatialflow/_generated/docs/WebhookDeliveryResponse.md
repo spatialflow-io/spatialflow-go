@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **ResponseTimeMs** | **NullableFloat32** |  | 
 **ErrorMessage** | **NullableString** |  | 
 **AttemptCount** | **int32** |  | 
-**RetryCount** | Pointer to **int32** |  | [optional] [default to 0]
+**RetryCount** | Pointer to **int32** | Deprecated — use attempt_count | [optional] [default to 0]
 **CreatedAt** | **time.Time** |  | 
 **DeliveredAt** | **NullableTime** |  | 
 **NextRetryAt** | **NullableTime** |  | 

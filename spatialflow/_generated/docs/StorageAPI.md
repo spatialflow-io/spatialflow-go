@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## AppsStorageApiDeleteFile
 
-> DeleteFileResponse AppsStorageApiDeleteFile(ctx, fileType, filename).Execute()
+> AppsStorageApiDeleteFile(ctx, fileType, filename).Execute()
 
 Delete File
 
@@ -105,13 +105,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageAPI.AppsStorageApiDeleteFile(context.Background(), fileType, filename).Execute()
+	r, err := apiClient.StorageAPI.AppsStorageApiDeleteFile(context.Background(), fileType, filename).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.AppsStorageApiDeleteFile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsStorageApiDeleteFile`: DeleteFileResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.AppsStorageApiDeleteFile`: %v\n", resp)
 }
 ```
 
@@ -136,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteFileResponse**](DeleteFileResponse.md)
+ (empty response body)
 
 ### Authorization
 
@@ -224,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## AppsStorageApiGetFileTypes
 
-> map[string]interface{} AppsStorageApiGetFileTypes(ctx).Execute()
+> FileTypesOut AppsStorageApiGetFileTypes(ctx).Execute()
 
 Get File Types
 
@@ -251,7 +249,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.AppsStorageApiGetFileTypes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsStorageApiGetFileTypes`: map[string]interface{}
+	// response from `AppsStorageApiGetFileTypes`: FileTypesOut
 	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.AppsStorageApiGetFileTypes`: %v\n", resp)
 }
 ```
@@ -267,7 +265,7 @@ Other parameters are passed through a pointer to a apiAppsStorageApiGetFileTypes
 
 ### Return type
 
-**map[string]interface{}**
+[**FileTypesOut**](FileTypesOut.md)
 
 ### Authorization
 

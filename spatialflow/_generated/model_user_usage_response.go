@@ -31,6 +31,7 @@ type UserUsageResponse struct {
 	RecentActivities []RecentActivity `json:"recent_activities"`
 	AccountCreated NullableString `json:"account_created"`
 	LastLogin NullableString `json:"last_login"`
+	LastSeenAt NullableString `json:"last_seen_at,omitempty"`
 }
 
 type _UserUsageResponse UserUsageResponse
@@ -323,6 +324,48 @@ func (o *UserUsageResponse) SetLastLogin(v string) {
 	o.LastLogin.Set(&v)
 }
 
+// GetLastSeenAt returns the LastSeenAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UserUsageResponse) GetLastSeenAt() string {
+	if o == nil || IsNil(o.LastSeenAt.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.LastSeenAt.Get()
+}
+
+// GetLastSeenAtOk returns a tuple with the LastSeenAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UserUsageResponse) GetLastSeenAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastSeenAt.Get(), o.LastSeenAt.IsSet()
+}
+
+// HasLastSeenAt returns a boolean if a field has been set.
+func (o *UserUsageResponse) HasLastSeenAt() bool {
+	if o != nil && o.LastSeenAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastSeenAt gets a reference to the given NullableString and assigns it to the LastSeenAt field.
+func (o *UserUsageResponse) SetLastSeenAt(v string) {
+	o.LastSeenAt.Set(&v)
+}
+// SetLastSeenAtNil sets the value for LastSeenAt to be an explicit nil
+func (o *UserUsageResponse) SetLastSeenAtNil() {
+	o.LastSeenAt.Set(nil)
+}
+
+// UnsetLastSeenAt ensures that no value is present for LastSeenAt, not even an explicit nil
+func (o *UserUsageResponse) UnsetLastSeenAt() {
+	o.LastSeenAt.Unset()
+}
+
 func (o UserUsageResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -345,6 +388,9 @@ func (o UserUsageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["recent_activities"] = o.RecentActivities
 	toSerialize["account_created"] = o.AccountCreated.Get()
 	toSerialize["last_login"] = o.LastLogin.Get()
+	if o.LastSeenAt.IsSet() {
+		toSerialize["last_seen_at"] = o.LastSeenAt.Get()
+	}
 	return toSerialize, nil
 }
 

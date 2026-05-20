@@ -6,9 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AppsDevicesApiTripsCancelTrip**](TripsAPI.md#AppsDevicesApiTripsCancelTrip) | **Post** /api/v1/trips/{trip_id}/cancel | Cancel a planned trip
 [**AppsDevicesApiTripsCreateTrip**](TripsAPI.md#AppsDevicesApiTripsCreateTrip) | **Post** /api/v1/trips/ | Create a planned trip
-[**AppsDevicesApiTripsGetTrip**](TripsAPI.md#AppsDevicesApiTripsGetTrip) | **Get** /api/v1/trips/{trip_id}/ | Get trip detail
+[**AppsDevicesApiTripsGetTrip**](TripsAPI.md#AppsDevicesApiTripsGetTrip) | **Get** /api/v1/trips/{trip_id} | Get trip detail
 [**AppsDevicesApiTripsListTrips**](TripsAPI.md#AppsDevicesApiTripsListTrips) | **Get** /api/v1/trips/ | List trips
-[**AppsDevicesApiTripsUpdateTrip**](TripsAPI.md#AppsDevicesApiTripsUpdateTrip) | **Put** /api/v1/trips/{trip_id}/ | Update a trip
+[**AppsDevicesApiTripsUpdateTrip**](TripsAPI.md#AppsDevicesApiTripsUpdateTrip) | **Put** /api/v1/trips/{trip_id} | Update a trip
 
 
 
@@ -17,6 +17,8 @@ Method | HTTP request | Description
 > TripOut AppsDevicesApiTripsCancelTrip(ctx, tripId).Execute()
 
 Cancel a planned trip
+
+
 
 ### Example
 
@@ -86,6 +88,8 @@ Name | Type | Description  | Notes
 
 Create a planned trip
 
+
+
 ### Example
 
 ```go
@@ -149,6 +153,8 @@ Name | Type | Description  | Notes
 > TripDetailOut AppsDevicesApiTripsGetTrip(ctx, tripId).Execute()
 
 Get trip detail
+
+
 
 ### Example
 
@@ -217,6 +223,8 @@ Name | Type | Description  | Notes
 > TripsListOut AppsDevicesApiTripsListTrips(ctx).DeviceId(deviceId).Status(status).StartDate(startDate).EndDate(endDate).Limit(limit).Offset(offset).Execute()
 
 List trips
+
+
 
 ### Example
 
@@ -292,6 +300,8 @@ Name | Type | Description  | Notes
 > TripOut AppsDevicesApiTripsUpdateTrip(ctx, tripId).TripUpdateIn(tripUpdateIn).Execute()
 
 Update a trip
+
+
 
 ### Example
 

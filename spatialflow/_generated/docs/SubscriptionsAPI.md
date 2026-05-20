@@ -394,7 +394,7 @@ Other parameters are passed through a pointer to a apiAppsSubscriptionsApiGetUsa
 
 ## AppsSubscriptionsApiHandleStripeWebhook
 
-> map[string]interface{} AppsSubscriptionsApiHandleStripeWebhook(ctx).Execute()
+> AppsSubscriptionsApiHandleStripeWebhook(ctx).Execute()
 
 Handle Stripe Webhook
 
@@ -416,13 +416,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscriptionsAPI.AppsSubscriptionsApiHandleStripeWebhook(context.Background()).Execute()
+	r, err := apiClient.SubscriptionsAPI.AppsSubscriptionsApiHandleStripeWebhook(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.AppsSubscriptionsApiHandleStripeWebhook``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsSubscriptionsApiHandleStripeWebhook`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.AppsSubscriptionsApiHandleStripeWebhook`: %v\n", resp)
 }
 ```
 
@@ -437,7 +435,7 @@ Other parameters are passed through a pointer to a apiAppsSubscriptionsApiHandle
 
 ### Return type
 
-**map[string]interface{}**
+ (empty response body)
 
 ### Authorization
 

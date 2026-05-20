@@ -25,12 +25,12 @@ type UserResponse struct {
 	Email string `json:"email"`
 	Name string `json:"name"`
 	Role string `json:"role"`
-	EmailVerified bool `json:"emailVerified"`
+	EmailVerified bool `json:"email_verified"`
 	SelectedPlan string `json:"selected_plan"`
 	Company NullableString `json:"company"`
-	LanguagePreference string `json:"languagePreference"`
-	CreatedAt string `json:"createdAt"`
-	UpdatedAt string `json:"updatedAt"`
+	LanguagePreference string `json:"language_preference"`
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
 	IsSuperuser bool `json:"is_superuser"`
 	IsStaff bool `json:"is_staff"`
 	Roles []string `json:"roles,omitempty"`
@@ -662,12 +662,12 @@ func (o UserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["email"] = o.Email
 	toSerialize["name"] = o.Name
 	toSerialize["role"] = o.Role
-	toSerialize["emailVerified"] = o.EmailVerified
+	toSerialize["email_verified"] = o.EmailVerified
 	toSerialize["selected_plan"] = o.SelectedPlan
 	toSerialize["company"] = o.Company.Get()
-	toSerialize["languagePreference"] = o.LanguagePreference
-	toSerialize["createdAt"] = o.CreatedAt
-	toSerialize["updatedAt"] = o.UpdatedAt
+	toSerialize["language_preference"] = o.LanguagePreference
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["updated_at"] = o.UpdatedAt
 	toSerialize["is_superuser"] = o.IsSuperuser
 	toSerialize["is_staff"] = o.IsStaff
 	if o.Roles != nil {
@@ -703,12 +703,12 @@ func (o *UserResponse) UnmarshalJSON(data []byte) (err error) {
 		"email",
 		"name",
 		"role",
-		"emailVerified",
+		"email_verified",
 		"selected_plan",
 		"company",
-		"languagePreference",
-		"createdAt",
-		"updatedAt",
+		"language_preference",
+		"created_at",
+		"updated_at",
 		"is_superuser",
 		"is_staff",
 	}

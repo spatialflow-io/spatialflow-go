@@ -223,20 +223,20 @@ HasErrorRate returns a boolean if a field has been set.
 
 ### GetErrors
 
-`func (o *LocationImportResponse) GetErrors() []*map[string]interface{}`
+`func (o *LocationImportResponse) GetErrors() []map[string]interface{}`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *LocationImportResponse) GetErrorsOk() (*[]*map[string]interface{}, bool)`
+`func (o *LocationImportResponse) GetErrorsOk() (*[]map[string]interface{}, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *LocationImportResponse) SetErrors(v []*map[string]interface{})`
+`func (o *LocationImportResponse) SetErrors(v []map[string]interface{})`
 
 SetErrors sets Errors field to given value.
 

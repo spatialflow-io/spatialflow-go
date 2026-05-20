@@ -454,7 +454,7 @@ type ApiAppsGeofencesApiDeleteGeofenceRequest struct {
 	geofenceId string
 }
 
-func (r ApiAppsGeofencesApiDeleteGeofenceRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsGeofencesApiDeleteGeofenceRequest) Execute() (*http.Response, error) {
 	return r.ApiService.AppsGeofencesApiDeleteGeofenceExecute(r)
 }
 
@@ -476,18 +476,16 @@ func (a *GeofencesAPIService) AppsGeofencesApiDeleteGeofence(ctx context.Context
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *GeofencesAPIService) AppsGeofencesApiDeleteGeofenceExecute(r ApiAppsGeofencesApiDeleteGeofenceRequest) (map[string]interface{}, *http.Response, error) {
+func (a *GeofencesAPIService) AppsGeofencesApiDeleteGeofenceExecute(r ApiAppsGeofencesApiDeleteGeofenceRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GeofencesAPIService.AppsGeofencesApiDeleteGeofence")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/geofences/{geofence_id}"
@@ -530,19 +528,19 @@ func (a *GeofencesAPIService) AppsGeofencesApiDeleteGeofenceExecute(r ApiAppsGeo
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -555,112 +553,103 @@ func (a *GeofencesAPIService) AppsGeofencesApiDeleteGeofenceExecute(r ApiAppsGeo
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 501 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 504 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiAppsGeofencesApiGeofenceHealthCheckRequest struct {
@@ -810,7 +799,7 @@ type ApiAppsGeofencesApiGetActiveGeofencesSummaryRequest struct {
 	ApiService *GeofencesAPIService
 }
 
-func (r ApiAppsGeofencesApiGetActiveGeofencesSummaryRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsGeofencesApiGetActiveGeofencesSummaryRequest) Execute() (*ActiveGeofenceSummaryOut, *http.Response, error) {
 	return r.ApiService.AppsGeofencesApiGetActiveGeofencesSummaryExecute(r)
 }
 
@@ -830,13 +819,13 @@ func (a *GeofencesAPIService) AppsGeofencesApiGetActiveGeofencesSummary(ctx cont
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *GeofencesAPIService) AppsGeofencesApiGetActiveGeofencesSummaryExecute(r ApiAppsGeofencesApiGetActiveGeofencesSummaryRequest) (map[string]interface{}, *http.Response, error) {
+//  @return ActiveGeofenceSummaryOut
+func (a *GeofencesAPIService) AppsGeofencesApiGetActiveGeofencesSummaryExecute(r ApiAppsGeofencesApiGetActiveGeofencesSummaryRequest) (*ActiveGeofenceSummaryOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *ActiveGeofenceSummaryOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GeofencesAPIService.AppsGeofencesApiGetActiveGeofencesSummary")
@@ -1194,7 +1183,7 @@ func (r ApiAppsGeofencesApiGetTestEventHistoryRequest) Offset(offset int32) ApiA
 	return r
 }
 
-func (r ApiAppsGeofencesApiGetTestEventHistoryRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsGeofencesApiGetTestEventHistoryRequest) Execute() (*TestEventHistoryOut, *http.Response, error) {
 	return r.ApiService.AppsGeofencesApiGetTestEventHistoryExecute(r)
 }
 
@@ -1224,13 +1213,13 @@ func (a *GeofencesAPIService) AppsGeofencesApiGetTestEventHistory(ctx context.Co
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *GeofencesAPIService) AppsGeofencesApiGetTestEventHistoryExecute(r ApiAppsGeofencesApiGetTestEventHistoryRequest) (map[string]interface{}, *http.Response, error) {
+//  @return TestEventHistoryOut
+func (a *GeofencesAPIService) AppsGeofencesApiGetTestEventHistoryExecute(r ApiAppsGeofencesApiGetTestEventHistoryRequest) (*TestEventHistoryOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *TestEventHistoryOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GeofencesAPIService.AppsGeofencesApiGetTestEventHistory")
@@ -1590,7 +1579,7 @@ type ApiAppsGeofencesApiListGeofenceGroupsRequest struct {
 	ApiService *GeofencesAPIService
 }
 
-func (r ApiAppsGeofencesApiListGeofenceGroupsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsGeofencesApiListGeofenceGroupsRequest) Execute() (*GeofenceGroupsOut, *http.Response, error) {
 	return r.ApiService.AppsGeofencesApiListGeofenceGroupsExecute(r)
 }
 
@@ -1610,13 +1599,13 @@ func (a *GeofencesAPIService) AppsGeofencesApiListGeofenceGroups(ctx context.Con
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *GeofencesAPIService) AppsGeofencesApiListGeofenceGroupsExecute(r ApiAppsGeofencesApiListGeofenceGroupsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return GeofenceGroupsOut
+func (a *GeofencesAPIService) AppsGeofencesApiListGeofenceGroupsExecute(r ApiAppsGeofencesApiListGeofenceGroupsRequest) (*GeofenceGroupsOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *GeofenceGroupsOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GeofencesAPIService.AppsGeofencesApiListGeofenceGroups")
@@ -2016,7 +2005,7 @@ type ApiAppsGeofencesApiListGroupGeofencesRequest struct {
 	groupId string
 }
 
-func (r ApiAppsGeofencesApiListGroupGeofencesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsGeofencesApiListGroupGeofencesRequest) Execute() (*GroupGeofencesOut, *http.Response, error) {
 	return r.ApiService.AppsGeofencesApiListGroupGeofencesExecute(r)
 }
 
@@ -2038,13 +2027,13 @@ func (a *GeofencesAPIService) AppsGeofencesApiListGroupGeofences(ctx context.Con
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *GeofencesAPIService) AppsGeofencesApiListGroupGeofencesExecute(r ApiAppsGeofencesApiListGroupGeofencesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return GroupGeofencesOut
+func (a *GeofencesAPIService) AppsGeofencesApiListGroupGeofencesExecute(r ApiAppsGeofencesApiListGroupGeofencesRequest) (*GroupGeofencesOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *GroupGeofencesOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GeofencesAPIService.AppsGeofencesApiListGroupGeofences")
@@ -2193,7 +2182,7 @@ func (r ApiAppsGeofencesApiTestGroupPointRequest) TestPointRequest(testPointRequ
 	return r
 }
 
-func (r ApiAppsGeofencesApiTestGroupPointRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsGeofencesApiTestGroupPointRequest) Execute() (*GroupTestPointOut, *http.Response, error) {
 	return r.ApiService.AppsGeofencesApiTestGroupPointExecute(r)
 }
 
@@ -2215,13 +2204,13 @@ func (a *GeofencesAPIService) AppsGeofencesApiTestGroupPoint(ctx context.Context
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *GeofencesAPIService) AppsGeofencesApiTestGroupPointExecute(r ApiAppsGeofencesApiTestGroupPointRequest) (map[string]interface{}, *http.Response, error) {
+//  @return GroupTestPointOut
+func (a *GeofencesAPIService) AppsGeofencesApiTestGroupPointExecute(r ApiAppsGeofencesApiTestGroupPointRequest) (*GroupTestPointOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *GroupTestPointOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GeofencesAPIService.AppsGeofencesApiTestGroupPoint")
@@ -2622,13 +2611,7 @@ type ApiAppsGeofencesApiTriggerTestEventRequest struct {
 	ctx context.Context
 	ApiService *GeofencesAPIService
 	geofenceId string
-	eventType *string
 	testEventRequest *TestEventRequest
-}
-
-func (r ApiAppsGeofencesApiTriggerTestEventRequest) EventType(eventType string) ApiAppsGeofencesApiTriggerTestEventRequest {
-	r.eventType = &eventType
-	return r
 }
 
 func (r ApiAppsGeofencesApiTriggerTestEventRequest) TestEventRequest(testEventRequest TestEventRequest) ApiAppsGeofencesApiTriggerTestEventRequest {
@@ -2689,11 +2672,10 @@ func (a *GeofencesAPIService) AppsGeofencesApiTriggerTestEventExecute(r ApiAppsG
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.eventType == nil {
-		return localVarReturnValue, nil, reportError("eventType is required and must be specified")
+	if r.testEventRequest == nil {
+		return localVarReturnValue, nil, reportError("testEventRequest is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "event_type", r.eventType, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -3114,15 +3096,15 @@ type ApiAppsGeofencesApiUpdateGeofenceGroupRequest struct {
 	ctx context.Context
 	ApiService *GeofencesAPIService
 	geofenceId string
-	groupName *string
+	body *string
 }
 
-func (r ApiAppsGeofencesApiUpdateGeofenceGroupRequest) GroupName(groupName string) ApiAppsGeofencesApiUpdateGeofenceGroupRequest {
-	r.groupName = &groupName
+func (r ApiAppsGeofencesApiUpdateGeofenceGroupRequest) Body(body string) ApiAppsGeofencesApiUpdateGeofenceGroupRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAppsGeofencesApiUpdateGeofenceGroupRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsGeofencesApiUpdateGeofenceGroupRequest) Execute() (*GeofenceGroupUpdateOut, *http.Response, error) {
 	return r.ApiService.AppsGeofencesApiUpdateGeofenceGroupExecute(r)
 }
 
@@ -3144,13 +3126,13 @@ func (a *GeofencesAPIService) AppsGeofencesApiUpdateGeofenceGroup(ctx context.Co
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *GeofencesAPIService) AppsGeofencesApiUpdateGeofenceGroupExecute(r ApiAppsGeofencesApiUpdateGeofenceGroupRequest) (map[string]interface{}, *http.Response, error) {
+//  @return GeofenceGroupUpdateOut
+func (a *GeofencesAPIService) AppsGeofencesApiUpdateGeofenceGroupExecute(r ApiAppsGeofencesApiUpdateGeofenceGroupRequest) (*GeofenceGroupUpdateOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *GeofenceGroupUpdateOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GeofencesAPIService.AppsGeofencesApiUpdateGeofenceGroup")
@@ -3165,11 +3147,8 @@ func (a *GeofencesAPIService) AppsGeofencesApiUpdateGeofenceGroupExecute(r ApiAp
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.groupName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "group_name", r.groupName, "form", "")
-	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3185,6 +3164,8 @@ func (a *GeofencesAPIService) AppsGeofencesApiUpdateGeofenceGroupExecute(r ApiAp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

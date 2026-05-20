@@ -27,6 +27,8 @@ Name | Type | Description | Notes
 **DefaultMapStyle** | Pointer to **string** |  | [optional] [default to "streets"]
 **DefaultGeofenceColor** | Pointer to **string** |  | [optional] [default to "#3B82F6"]
 **ShowTutorialTooltips** | Pointer to **bool** |  | [optional] [default to true]
+**HasCompletedTour** | Pointer to **bool** |  | [optional] [default to false]
+**HasCompletedWorkflowTour** | Pointer to **bool** |  | [optional] [default to false]
 **DefaultApiVersion** | Pointer to **string** |  | [optional] [default to "v1"]
 **WorkspaceRole** | Pointer to **NullableString** |  | [optional] 
 **WorkspaceId** | Pointer to **NullableString** |  | [optional] 
@@ -621,6 +623,56 @@ SetShowTutorialTooltips sets ShowTutorialTooltips field to given value.
 `func (o *UserProfileResponse) HasShowTutorialTooltips() bool`
 
 HasShowTutorialTooltips returns a boolean if a field has been set.
+
+### GetHasCompletedTour
+
+`func (o *UserProfileResponse) GetHasCompletedTour() bool`
+
+GetHasCompletedTour returns the HasCompletedTour field if non-nil, zero value otherwise.
+
+### GetHasCompletedTourOk
+
+`func (o *UserProfileResponse) GetHasCompletedTourOk() (*bool, bool)`
+
+GetHasCompletedTourOk returns a tuple with the HasCompletedTour field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasCompletedTour
+
+`func (o *UserProfileResponse) SetHasCompletedTour(v bool)`
+
+SetHasCompletedTour sets HasCompletedTour field to given value.
+
+### HasHasCompletedTour
+
+`func (o *UserProfileResponse) HasHasCompletedTour() bool`
+
+HasHasCompletedTour returns a boolean if a field has been set.
+
+### GetHasCompletedWorkflowTour
+
+`func (o *UserProfileResponse) GetHasCompletedWorkflowTour() bool`
+
+GetHasCompletedWorkflowTour returns the HasCompletedWorkflowTour field if non-nil, zero value otherwise.
+
+### GetHasCompletedWorkflowTourOk
+
+`func (o *UserProfileResponse) GetHasCompletedWorkflowTourOk() (*bool, bool)`
+
+GetHasCompletedWorkflowTourOk returns a tuple with the HasCompletedWorkflowTour field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasCompletedWorkflowTour
+
+`func (o *UserProfileResponse) SetHasCompletedWorkflowTour(v bool)`
+
+SetHasCompletedWorkflowTour sets HasCompletedWorkflowTour field to given value.
+
+### HasHasCompletedWorkflowTour
+
+`func (o *UserProfileResponse) HasHasCompletedWorkflowTour() bool`
+
+HasHasCompletedWorkflowTour returns a boolean if a field has been set.
 
 ### GetDefaultApiVersion
 

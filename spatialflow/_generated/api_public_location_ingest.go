@@ -27,7 +27,7 @@ type ApiAppsPublicLocationsApiGetIngestStatsRequest struct {
 	ApiService *PublicLocationIngestAPIService
 }
 
-func (r ApiAppsPublicLocationsApiGetIngestStatsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAppsPublicLocationsApiGetIngestStatsRequest) Execute() (*IngestStatsOut, *http.Response, error) {
 	return r.ApiService.AppsPublicLocationsApiGetIngestStatsExecute(r)
 }
 
@@ -61,13 +61,13 @@ func (a *PublicLocationIngestAPIService) AppsPublicLocationsApiGetIngestStats(ct
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *PublicLocationIngestAPIService) AppsPublicLocationsApiGetIngestStatsExecute(r ApiAppsPublicLocationsApiGetIngestStatsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return IngestStatsOut
+func (a *PublicLocationIngestAPIService) AppsPublicLocationsApiGetIngestStatsExecute(r ApiAppsPublicLocationsApiGetIngestStatsRequest) (*IngestStatsOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *IngestStatsOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PublicLocationIngestAPIService.AppsPublicLocationsApiGetIngestStats")

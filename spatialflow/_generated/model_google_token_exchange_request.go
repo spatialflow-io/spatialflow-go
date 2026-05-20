@@ -22,6 +22,8 @@ var _ MappedNullable = &GoogleTokenExchangeRequest{}
 // GoogleTokenExchangeRequest struct for GoogleTokenExchangeRequest
 type GoogleTokenExchangeRequest struct {
 	IdToken string `json:"id_token"`
+	InviteId NullableString `json:"invite_id,omitempty"`
+	InviteToken NullableString `json:"invite_token,omitempty"`
 }
 
 type _GoogleTokenExchangeRequest GoogleTokenExchangeRequest
@@ -68,6 +70,90 @@ func (o *GoogleTokenExchangeRequest) SetIdToken(v string) {
 	o.IdToken = v
 }
 
+// GetInviteId returns the InviteId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GoogleTokenExchangeRequest) GetInviteId() string {
+	if o == nil || IsNil(o.InviteId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.InviteId.Get()
+}
+
+// GetInviteIdOk returns a tuple with the InviteId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GoogleTokenExchangeRequest) GetInviteIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InviteId.Get(), o.InviteId.IsSet()
+}
+
+// HasInviteId returns a boolean if a field has been set.
+func (o *GoogleTokenExchangeRequest) HasInviteId() bool {
+	if o != nil && o.InviteId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInviteId gets a reference to the given NullableString and assigns it to the InviteId field.
+func (o *GoogleTokenExchangeRequest) SetInviteId(v string) {
+	o.InviteId.Set(&v)
+}
+// SetInviteIdNil sets the value for InviteId to be an explicit nil
+func (o *GoogleTokenExchangeRequest) SetInviteIdNil() {
+	o.InviteId.Set(nil)
+}
+
+// UnsetInviteId ensures that no value is present for InviteId, not even an explicit nil
+func (o *GoogleTokenExchangeRequest) UnsetInviteId() {
+	o.InviteId.Unset()
+}
+
+// GetInviteToken returns the InviteToken field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GoogleTokenExchangeRequest) GetInviteToken() string {
+	if o == nil || IsNil(o.InviteToken.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.InviteToken.Get()
+}
+
+// GetInviteTokenOk returns a tuple with the InviteToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GoogleTokenExchangeRequest) GetInviteTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InviteToken.Get(), o.InviteToken.IsSet()
+}
+
+// HasInviteToken returns a boolean if a field has been set.
+func (o *GoogleTokenExchangeRequest) HasInviteToken() bool {
+	if o != nil && o.InviteToken.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInviteToken gets a reference to the given NullableString and assigns it to the InviteToken field.
+func (o *GoogleTokenExchangeRequest) SetInviteToken(v string) {
+	o.InviteToken.Set(&v)
+}
+// SetInviteTokenNil sets the value for InviteToken to be an explicit nil
+func (o *GoogleTokenExchangeRequest) SetInviteTokenNil() {
+	o.InviteToken.Set(nil)
+}
+
+// UnsetInviteToken ensures that no value is present for InviteToken, not even an explicit nil
+func (o *GoogleTokenExchangeRequest) UnsetInviteToken() {
+	o.InviteToken.Unset()
+}
+
 func (o GoogleTokenExchangeRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -79,6 +165,12 @@ func (o GoogleTokenExchangeRequest) MarshalJSON() ([]byte, error) {
 func (o GoogleTokenExchangeRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id_token"] = o.IdToken
+	if o.InviteId.IsSet() {
+		toSerialize["invite_id"] = o.InviteId.Get()
+	}
+	if o.InviteToken.IsSet() {
+		toSerialize["invite_token"] = o.InviteToken.Get()
+	}
 	return toSerialize, nil
 }
 

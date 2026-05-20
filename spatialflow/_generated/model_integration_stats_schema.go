@@ -28,7 +28,7 @@ type IntegrationStatsSchema struct {
 	HealthStatus string `json:"health_status"`
 	LastUsedAt NullableString `json:"last_used_at"`
 	LastHealthCheckAt NullableString `json:"last_health_check_at"`
-	RecentErrors []*map[string]interface{} `json:"recent_errors"`
+	RecentErrors []map[string]interface{} `json:"recent_errors"`
 }
 
 type _IntegrationStatsSchema IntegrationStatsSchema
@@ -37,7 +37,7 @@ type _IntegrationStatsSchema IntegrationStatsSchema
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntegrationStatsSchema(totalUses int32, successfulUses int32, successRate float32, averageDurationMs NullableFloat32, healthStatus string, lastUsedAt NullableString, lastHealthCheckAt NullableString, recentErrors []*map[string]interface{}) *IntegrationStatsSchema {
+func NewIntegrationStatsSchema(totalUses int32, successfulUses int32, successRate float32, averageDurationMs NullableFloat32, healthStatus string, lastUsedAt NullableString, lastHealthCheckAt NullableString, recentErrors []map[string]interface{}) *IntegrationStatsSchema {
 	this := IntegrationStatsSchema{}
 	this.TotalUses = totalUses
 	this.SuccessfulUses = successfulUses
@@ -233,9 +233,9 @@ func (o *IntegrationStatsSchema) SetLastHealthCheckAt(v string) {
 }
 
 // GetRecentErrors returns the RecentErrors field value
-func (o *IntegrationStatsSchema) GetRecentErrors() []*map[string]interface{} {
+func (o *IntegrationStatsSchema) GetRecentErrors() []map[string]interface{} {
 	if o == nil {
-		var ret []*map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -244,7 +244,7 @@ func (o *IntegrationStatsSchema) GetRecentErrors() []*map[string]interface{} {
 
 // GetRecentErrorsOk returns a tuple with the RecentErrors field value
 // and a boolean to check if the value has been set.
-func (o *IntegrationStatsSchema) GetRecentErrorsOk() ([]*map[string]interface{}, bool) {
+func (o *IntegrationStatsSchema) GetRecentErrorsOk() ([]map[string]interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -252,7 +252,7 @@ func (o *IntegrationStatsSchema) GetRecentErrorsOk() ([]*map[string]interface{},
 }
 
 // SetRecentErrors sets field value
-func (o *IntegrationStatsSchema) SetRecentErrors(v []*map[string]interface{}) {
+func (o *IntegrationStatsSchema) SetRecentErrors(v []map[string]interface{}) {
 	o.RecentErrors = v
 }
 

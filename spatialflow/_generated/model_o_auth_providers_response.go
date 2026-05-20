@@ -21,7 +21,7 @@ var _ MappedNullable = &OAuthProvidersResponse{}
 
 // OAuthProvidersResponse struct for OAuthProvidersResponse
 type OAuthProvidersResponse struct {
-	Providers []*map[string]interface{} `json:"providers"`
+	Providers []map[string]interface{} `json:"providers"`
 }
 
 type _OAuthProvidersResponse OAuthProvidersResponse
@@ -30,7 +30,7 @@ type _OAuthProvidersResponse OAuthProvidersResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOAuthProvidersResponse(providers []*map[string]interface{}) *OAuthProvidersResponse {
+func NewOAuthProvidersResponse(providers []map[string]interface{}) *OAuthProvidersResponse {
 	this := OAuthProvidersResponse{}
 	this.Providers = providers
 	return &this
@@ -45,9 +45,9 @@ func NewOAuthProvidersResponseWithDefaults() *OAuthProvidersResponse {
 }
 
 // GetProviders returns the Providers field value
-func (o *OAuthProvidersResponse) GetProviders() []*map[string]interface{} {
+func (o *OAuthProvidersResponse) GetProviders() []map[string]interface{} {
 	if o == nil {
-		var ret []*map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *OAuthProvidersResponse) GetProviders() []*map[string]interface{} {
 
 // GetProvidersOk returns a tuple with the Providers field value
 // and a boolean to check if the value has been set.
-func (o *OAuthProvidersResponse) GetProvidersOk() ([]*map[string]interface{}, bool) {
+func (o *OAuthProvidersResponse) GetProvidersOk() ([]map[string]interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *OAuthProvidersResponse) GetProvidersOk() ([]*map[string]interface{}, bo
 }
 
 // SetProviders sets field value
-func (o *OAuthProvidersResponse) SetProviders(v []*map[string]interface{}) {
+func (o *OAuthProvidersResponse) SetProviders(v []map[string]interface{}) {
 	o.Providers = v
 }
 

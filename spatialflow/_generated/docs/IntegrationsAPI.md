@@ -54,7 +54,7 @@ import (
 
 func main() {
 	includeSecrets := true // bool |  (optional) (default to false)
-	requestBody := []*string{"Property_example"} // []*string |  (optional)
+	requestBody := []string{"Property_example"} // []string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -449,7 +449,7 @@ Name | Type | Description  | Notes
 
 ## AppsIntegrationsApiDeleteIntegration
 
-> map[string]interface{} AppsIntegrationsApiDeleteIntegration(ctx, integrationId).Execute()
+> AppsIntegrationsApiDeleteIntegration(ctx, integrationId).Execute()
 
 Delete Integration
 
@@ -472,13 +472,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IntegrationsAPI.AppsIntegrationsApiDeleteIntegration(context.Background(), integrationId).Execute()
+	r, err := apiClient.IntegrationsAPI.AppsIntegrationsApiDeleteIntegration(context.Background(), integrationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IntegrationsAPI.AppsIntegrationsApiDeleteIntegration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsIntegrationsApiDeleteIntegration`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `IntegrationsAPI.AppsIntegrationsApiDeleteIntegration`: %v\n", resp)
 }
 ```
 
@@ -501,7 +499,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+ (empty response body)
 
 ### Authorization
 
@@ -661,7 +659,7 @@ Name | Type | Description  | Notes
 
 ## AppsIntegrationsApiGetAvailableIntegrationTypes
 
-> []map[string]interface{} AppsIntegrationsApiGetAvailableIntegrationTypes(ctx).Execute()
+> []*map[string]interface{} AppsIntegrationsApiGetAvailableIntegrationTypes(ctx).Execute()
 
 Get Available Integration Types
 
@@ -688,7 +686,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `IntegrationsAPI.AppsIntegrationsApiGetAvailableIntegrationTypes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsIntegrationsApiGetAvailableIntegrationTypes`: []map[string]interface{}
+	// response from `AppsIntegrationsApiGetAvailableIntegrationTypes`: []*map[string]interface{}
 	fmt.Fprintf(os.Stdout, "Response from `IntegrationsAPI.AppsIntegrationsApiGetAvailableIntegrationTypes`: %v\n", resp)
 }
 ```
@@ -704,7 +702,7 @@ Other parameters are passed through a pointer to a apiAppsIntegrationsApiGetAvai
 
 ### Return type
 
-[**[]map[string]interface{}**](map.md)
+[**[]*map[string]interface{}**](map.md)
 
 ### Authorization
 
@@ -792,7 +790,7 @@ Name | Type | Description  | Notes
 
 ## AppsIntegrationsApiGetIntegrationErrorStats
 
-> map[string]interface{} AppsIntegrationsApiGetIntegrationErrorStats(ctx).Execute()
+> IntegrationErrorStatsOut AppsIntegrationsApiGetIntegrationErrorStats(ctx).Execute()
 
 Get Integration Error Stats
 
@@ -819,7 +817,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `IntegrationsAPI.AppsIntegrationsApiGetIntegrationErrorStats``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsIntegrationsApiGetIntegrationErrorStats`: map[string]interface{}
+	// response from `AppsIntegrationsApiGetIntegrationErrorStats`: IntegrationErrorStatsOut
 	fmt.Fprintf(os.Stdout, "Response from `IntegrationsAPI.AppsIntegrationsApiGetIntegrationErrorStats`: %v\n", resp)
 }
 ```
@@ -835,7 +833,7 @@ Other parameters are passed through a pointer to a apiAppsIntegrationsApiGetInte
 
 ### Return type
 
-**map[string]interface{}**
+[**IntegrationErrorStatsOut**](IntegrationErrorStatsOut.md)
 
 ### Authorization
 
@@ -1419,7 +1417,7 @@ Name | Type | Description  | Notes
 
 ## AppsIntegrationsApiTestAllIntegrations
 
-> []map[string]interface{} AppsIntegrationsApiTestAllIntegrations(ctx).Execute()
+> []*map[string]interface{} AppsIntegrationsApiTestAllIntegrations(ctx).Execute()
 
 Test All Integrations
 
@@ -1446,7 +1444,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `IntegrationsAPI.AppsIntegrationsApiTestAllIntegrations``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsIntegrationsApiTestAllIntegrations`: []map[string]interface{}
+	// response from `AppsIntegrationsApiTestAllIntegrations`: []*map[string]interface{}
 	fmt.Fprintf(os.Stdout, "Response from `IntegrationsAPI.AppsIntegrationsApiTestAllIntegrations`: %v\n", resp)
 }
 ```
@@ -1462,7 +1460,7 @@ Other parameters are passed through a pointer to a apiAppsIntegrationsApiTestAll
 
 ### Return type
 
-[**[]map[string]interface{}**](map.md)
+[**[]*map[string]interface{}**](map.md)
 
 ### Authorization
 

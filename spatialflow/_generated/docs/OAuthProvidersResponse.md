@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 
 ### NewOAuthProvidersResponse
 
-`func NewOAuthProvidersResponse(providers []*map[string]interface{}, ) *OAuthProvidersResponse`
+`func NewOAuthProvidersResponse(providers []map[string]interface{}, ) *OAuthProvidersResponse`
 
 NewOAuthProvidersResponse instantiates a new OAuthProvidersResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetProviders
 
-`func (o *OAuthProvidersResponse) GetProviders() []*map[string]interface{}`
+`func (o *OAuthProvidersResponse) GetProviders() []map[string]interface{}`
 
 GetProviders returns the Providers field if non-nil, zero value otherwise.
 
 ### GetProvidersOk
 
-`func (o *OAuthProvidersResponse) GetProvidersOk() (*[]*map[string]interface{}, bool)`
+`func (o *OAuthProvidersResponse) GetProvidersOk() (*[]map[string]interface{}, bool)`
 
 GetProvidersOk returns a tuple with the Providers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProviders
 
-`func (o *OAuthProvidersResponse) SetProviders(v []*map[string]interface{})`
+`func (o *OAuthProvidersResponse) SetProviders(v []map[string]interface{})`
 
 SetProviders sets Providers field to given value.
 

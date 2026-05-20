@@ -26,8 +26,8 @@ type WorkflowOut struct {
 	Name string `json:"name"`
 	Description NullableString `json:"description"`
 	Status string `json:"status"`
-	Nodes []*map[string]interface{} `json:"nodes"`
-	Edges []*map[string]interface{} `json:"edges"`
+	Nodes []map[string]interface{} `json:"nodes"`
+	Edges []map[string]interface{} `json:"edges"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 	LastRun NullableString `json:"last_run"`
@@ -45,7 +45,7 @@ type _WorkflowOut WorkflowOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkflowOut(id string, name string, description NullableString, status string, nodes []*map[string]interface{}, edges []*map[string]interface{}, createdAt time.Time, updatedAt time.Time, lastRun NullableString, runCount int32, successRate float32, userId string, version int32) *WorkflowOut {
+func NewWorkflowOut(id string, name string, description NullableString, status string, nodes []map[string]interface{}, edges []map[string]interface{}, createdAt time.Time, updatedAt time.Time, lastRun NullableString, runCount int32, successRate float32, userId string, version int32) *WorkflowOut {
 	this := WorkflowOut{}
 	this.Id = id
 	this.Name = name
@@ -170,9 +170,9 @@ func (o *WorkflowOut) SetStatus(v string) {
 }
 
 // GetNodes returns the Nodes field value
-func (o *WorkflowOut) GetNodes() []*map[string]interface{} {
+func (o *WorkflowOut) GetNodes() []map[string]interface{} {
 	if o == nil {
-		var ret []*map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -181,7 +181,7 @@ func (o *WorkflowOut) GetNodes() []*map[string]interface{} {
 
 // GetNodesOk returns a tuple with the Nodes field value
 // and a boolean to check if the value has been set.
-func (o *WorkflowOut) GetNodesOk() ([]*map[string]interface{}, bool) {
+func (o *WorkflowOut) GetNodesOk() ([]map[string]interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -189,14 +189,14 @@ func (o *WorkflowOut) GetNodesOk() ([]*map[string]interface{}, bool) {
 }
 
 // SetNodes sets field value
-func (o *WorkflowOut) SetNodes(v []*map[string]interface{}) {
+func (o *WorkflowOut) SetNodes(v []map[string]interface{}) {
 	o.Nodes = v
 }
 
 // GetEdges returns the Edges field value
-func (o *WorkflowOut) GetEdges() []*map[string]interface{} {
+func (o *WorkflowOut) GetEdges() []map[string]interface{} {
 	if o == nil {
-		var ret []*map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -205,7 +205,7 @@ func (o *WorkflowOut) GetEdges() []*map[string]interface{} {
 
 // GetEdgesOk returns a tuple with the Edges field value
 // and a boolean to check if the value has been set.
-func (o *WorkflowOut) GetEdgesOk() ([]*map[string]interface{}, bool) {
+func (o *WorkflowOut) GetEdgesOk() ([]map[string]interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -213,7 +213,7 @@ func (o *WorkflowOut) GetEdgesOk() ([]*map[string]interface{}, bool) {
 }
 
 // SetEdges sets field value
-func (o *WorkflowOut) SetEdges(v []*map[string]interface{}) {
+func (o *WorkflowOut) SetEdges(v []map[string]interface{}) {
 	o.Edges = v
 }
 

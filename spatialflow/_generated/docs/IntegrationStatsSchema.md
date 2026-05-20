@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewIntegrationStatsSchema
 
-`func NewIntegrationStatsSchema(totalUses int32, successfulUses int32, successRate float32, averageDurationMs NullableFloat32, healthStatus string, lastUsedAt NullableString, lastHealthCheckAt NullableString, recentErrors []*map[string]interface{}, ) *IntegrationStatsSchema`
+`func NewIntegrationStatsSchema(totalUses int32, successfulUses int32, successRate float32, averageDurationMs NullableFloat32, healthStatus string, lastUsedAt NullableString, lastHealthCheckAt NullableString, recentErrors []map[string]interface{}, ) *IntegrationStatsSchema`
 
 NewIntegrationStatsSchema instantiates a new IntegrationStatsSchema object
 This constructor will assign default values to properties that have it defined,
@@ -204,20 +204,20 @@ SetLastHealthCheckAt sets LastHealthCheckAt field to given value.
 UnsetLastHealthCheckAt ensures that no value is present for LastHealthCheckAt, not even an explicit nil
 ### GetRecentErrors
 
-`func (o *IntegrationStatsSchema) GetRecentErrors() []*map[string]interface{}`
+`func (o *IntegrationStatsSchema) GetRecentErrors() []map[string]interface{}`
 
 GetRecentErrors returns the RecentErrors field if non-nil, zero value otherwise.
 
 ### GetRecentErrorsOk
 
-`func (o *IntegrationStatsSchema) GetRecentErrorsOk() (*[]*map[string]interface{}, bool)`
+`func (o *IntegrationStatsSchema) GetRecentErrorsOk() (*[]map[string]interface{}, bool)`
 
 GetRecentErrorsOk returns a tuple with the RecentErrors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRecentErrors
 
-`func (o *IntegrationStatsSchema) SetRecentErrors(v []*map[string]interface{})`
+`func (o *IntegrationStatsSchema) SetRecentErrors(v []map[string]interface{})`
 
 SetRecentErrors sets RecentErrors field to given value.
 

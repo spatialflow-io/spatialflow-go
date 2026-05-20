@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewTileMetadata
 
-`func NewTileMetadata(name string, format string, minzoom int32, maxzoom int32, bounds []float32, center []float32, layers []*map[string]interface{}, ) *TileMetadata`
+`func NewTileMetadata(name string, format string, minzoom int32, maxzoom int32, bounds []float32, center []float32, layers []map[string]interface{}, ) *TileMetadata`
 
 NewTileMetadata instantiates a new TileMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -153,20 +153,20 @@ SetCenter sets Center field to given value.
 
 ### GetLayers
 
-`func (o *TileMetadata) GetLayers() []*map[string]interface{}`
+`func (o *TileMetadata) GetLayers() []map[string]interface{}`
 
 GetLayers returns the Layers field if non-nil, zero value otherwise.
 
 ### GetLayersOk
 
-`func (o *TileMetadata) GetLayersOk() (*[]*map[string]interface{}, bool)`
+`func (o *TileMetadata) GetLayersOk() (*[]map[string]interface{}, bool)`
 
 GetLayersOk returns a tuple with the Layers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLayers
 
-`func (o *TileMetadata) SetLayers(v []*map[string]interface{})`
+`func (o *TileMetadata) SetLayers(v []map[string]interface{})`
 
 SetLayers sets Layers field to given value.
 

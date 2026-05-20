@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Point** | **map[string]interface{}** |  | 
+**Point** | [**GeoJSONPoint**](GeoJSONPoint.md) |  | 
 **InsideGeofences** | **int32** |  | 
 **TotalGeofences** | **int32** |  | 
 **Results** | [**[]GeofenceTestResult**](GeofenceTestResult.md) |  | 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewTestPointResponse
 
-`func NewTestPointResponse(point map[string]interface{}, insideGeofences int32, totalGeofences int32, results []GeofenceTestResult, ) *TestPointResponse`
+`func NewTestPointResponse(point GeoJSONPoint, insideGeofences int32, totalGeofences int32, results []GeofenceTestResult, ) *TestPointResponse`
 
 NewTestPointResponse instantiates a new TestPointResponse object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPoint
 
-`func (o *TestPointResponse) GetPoint() map[string]interface{}`
+`func (o *TestPointResponse) GetPoint() GeoJSONPoint`
 
 GetPoint returns the Point field if non-nil, zero value otherwise.
 
 ### GetPointOk
 
-`func (o *TestPointResponse) GetPointOk() (*map[string]interface{}, bool)`
+`func (o *TestPointResponse) GetPointOk() (*GeoJSONPoint, bool)`
 
 GetPointOk returns a tuple with the Point field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPoint
 
-`func (o *TestPointResponse) SetPoint(v map[string]interface{})`
+`func (o *TestPointResponse) SetPoint(v GeoJSONPoint)`
 
 SetPoint sets Point field to given value.
 

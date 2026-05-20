@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **ShiftPausedAt** | Pointer to **NullableTime** |  | [optional] 
 **ShiftEndedAt** | Pointer to **NullableTime** |  | [optional] 
 **ShiftResumedAt** | Pointer to **NullableTime** |  | [optional] 
-**LastLocation** | Pointer to **map[string]interface{}** |  | [optional] 
+**LastLocation** | Pointer to [**NullableLatLonOut**](LatLonOut.md) |  | [optional] 
 **LastLocationTime** | Pointer to **NullableTime** |  | [optional] 
 **LastHeading** | Pointer to **NullableFloat32** |  | [optional] 
 **CurrentSessionNotes** | Pointer to **string** |  | [optional] [default to ""]
@@ -304,20 +304,20 @@ HasShiftResumedAt returns a boolean if a field has been set.
 UnsetShiftResumedAt ensures that no value is present for ShiftResumedAt, not even an explicit nil
 ### GetLastLocation
 
-`func (o *DeviceOut) GetLastLocation() map[string]interface{}`
+`func (o *DeviceOut) GetLastLocation() LatLonOut`
 
 GetLastLocation returns the LastLocation field if non-nil, zero value otherwise.
 
 ### GetLastLocationOk
 
-`func (o *DeviceOut) GetLastLocationOk() (*map[string]interface{}, bool)`
+`func (o *DeviceOut) GetLastLocationOk() (*LatLonOut, bool)`
 
 GetLastLocationOk returns a tuple with the LastLocation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastLocation
 
-`func (o *DeviceOut) SetLastLocation(v map[string]interface{})`
+`func (o *DeviceOut) SetLastLocation(v LatLonOut)`
 
 SetLastLocation sets LastLocation field to given value.
 
@@ -434,20 +434,20 @@ HasCurrentSessionNotes returns a boolean if a field has been set.
 
 ### GetInGeofenceIds
 
-`func (o *DeviceOut) GetInGeofenceIds() []*string`
+`func (o *DeviceOut) GetInGeofenceIds() []string`
 
 GetInGeofenceIds returns the InGeofenceIds field if non-nil, zero value otherwise.
 
 ### GetInGeofenceIdsOk
 
-`func (o *DeviceOut) GetInGeofenceIdsOk() (*[]*string, bool)`
+`func (o *DeviceOut) GetInGeofenceIdsOk() (*[]string, bool)`
 
 GetInGeofenceIdsOk returns a tuple with the InGeofenceIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInGeofenceIds
 
-`func (o *DeviceOut) SetInGeofenceIds(v []*string)`
+`func (o *DeviceOut) SetInGeofenceIds(v []string)`
 
 SetInGeofenceIds sets InGeofenceIds field to given value.
 

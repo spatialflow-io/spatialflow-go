@@ -2,7 +2,7 @@
 
 Official Go SDK for the [SpatialFlow](https://spatialflow.io) geospatial automation platform.
 
-> **Alpha Release (v0.1.0)**: This SDK is in alpha. APIs may change before v1.0.
+> **Beta Release**: This SDK is in beta. APIs are usable for early integrations but may change before a stable v1.0 release.
 
 ## Installation
 

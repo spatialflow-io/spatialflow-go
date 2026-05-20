@@ -34,6 +34,8 @@ type UpdateProfileRequest struct {
 	DefaultMapStyle NullableString `json:"default_map_style,omitempty"`
 	DefaultGeofenceColor NullableString `json:"default_geofence_color,omitempty" validate:"regexp=^#[0-9A-Fa-f]{6}$"`
 	ShowTutorialTooltips NullableBool `json:"show_tutorial_tooltips,omitempty"`
+	HasCompletedTour NullableBool `json:"has_completed_tour,omitempty"`
+	HasCompletedWorkflowTour NullableBool `json:"has_completed_workflow_tour,omitempty"`
 	DefaultApiVersion NullableString `json:"default_api_version,omitempty"`
 }
 
@@ -684,6 +686,90 @@ func (o *UpdateProfileRequest) UnsetShowTutorialTooltips() {
 	o.ShowTutorialTooltips.Unset()
 }
 
+// GetHasCompletedTour returns the HasCompletedTour field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateProfileRequest) GetHasCompletedTour() bool {
+	if o == nil || IsNil(o.HasCompletedTour.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.HasCompletedTour.Get()
+}
+
+// GetHasCompletedTourOk returns a tuple with the HasCompletedTour field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateProfileRequest) GetHasCompletedTourOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HasCompletedTour.Get(), o.HasCompletedTour.IsSet()
+}
+
+// HasHasCompletedTour returns a boolean if a field has been set.
+func (o *UpdateProfileRequest) HasHasCompletedTour() bool {
+	if o != nil && o.HasCompletedTour.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHasCompletedTour gets a reference to the given NullableBool and assigns it to the HasCompletedTour field.
+func (o *UpdateProfileRequest) SetHasCompletedTour(v bool) {
+	o.HasCompletedTour.Set(&v)
+}
+// SetHasCompletedTourNil sets the value for HasCompletedTour to be an explicit nil
+func (o *UpdateProfileRequest) SetHasCompletedTourNil() {
+	o.HasCompletedTour.Set(nil)
+}
+
+// UnsetHasCompletedTour ensures that no value is present for HasCompletedTour, not even an explicit nil
+func (o *UpdateProfileRequest) UnsetHasCompletedTour() {
+	o.HasCompletedTour.Unset()
+}
+
+// GetHasCompletedWorkflowTour returns the HasCompletedWorkflowTour field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateProfileRequest) GetHasCompletedWorkflowTour() bool {
+	if o == nil || IsNil(o.HasCompletedWorkflowTour.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.HasCompletedWorkflowTour.Get()
+}
+
+// GetHasCompletedWorkflowTourOk returns a tuple with the HasCompletedWorkflowTour field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateProfileRequest) GetHasCompletedWorkflowTourOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HasCompletedWorkflowTour.Get(), o.HasCompletedWorkflowTour.IsSet()
+}
+
+// HasHasCompletedWorkflowTour returns a boolean if a field has been set.
+func (o *UpdateProfileRequest) HasHasCompletedWorkflowTour() bool {
+	if o != nil && o.HasCompletedWorkflowTour.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHasCompletedWorkflowTour gets a reference to the given NullableBool and assigns it to the HasCompletedWorkflowTour field.
+func (o *UpdateProfileRequest) SetHasCompletedWorkflowTour(v bool) {
+	o.HasCompletedWorkflowTour.Set(&v)
+}
+// SetHasCompletedWorkflowTourNil sets the value for HasCompletedWorkflowTour to be an explicit nil
+func (o *UpdateProfileRequest) SetHasCompletedWorkflowTourNil() {
+	o.HasCompletedWorkflowTour.Set(nil)
+}
+
+// UnsetHasCompletedWorkflowTour ensures that no value is present for HasCompletedWorkflowTour, not even an explicit nil
+func (o *UpdateProfileRequest) UnsetHasCompletedWorkflowTour() {
+	o.HasCompletedWorkflowTour.Unset()
+}
+
 // GetDefaultApiVersion returns the DefaultApiVersion field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateProfileRequest) GetDefaultApiVersion() string {
 	if o == nil || IsNil(o.DefaultApiVersion.Get()) {
@@ -780,6 +866,12 @@ func (o UpdateProfileRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if o.ShowTutorialTooltips.IsSet() {
 		toSerialize["show_tutorial_tooltips"] = o.ShowTutorialTooltips.Get()
+	}
+	if o.HasCompletedTour.IsSet() {
+		toSerialize["has_completed_tour"] = o.HasCompletedTour.Get()
+	}
+	if o.HasCompletedWorkflowTour.IsSet() {
+		toSerialize["has_completed_workflow_tour"] = o.HasCompletedWorkflowTour.Get()
 	}
 	if o.DefaultApiVersion.IsSet() {
 		toSerialize["default_api_version"] = o.DefaultApiVersion.Get()

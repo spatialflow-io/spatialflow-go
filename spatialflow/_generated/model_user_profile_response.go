@@ -45,6 +45,8 @@ type UserProfileResponse struct {
 	DefaultMapStyle *string `json:"default_map_style,omitempty"`
 	DefaultGeofenceColor *string `json:"default_geofence_color,omitempty"`
 	ShowTutorialTooltips *bool `json:"show_tutorial_tooltips,omitempty"`
+	HasCompletedTour *bool `json:"has_completed_tour,omitempty"`
+	HasCompletedWorkflowTour *bool `json:"has_completed_workflow_tour,omitempty"`
 	DefaultApiVersion *string `json:"default_api_version,omitempty"`
 	WorkspaceRole NullableString `json:"workspace_role,omitempty"`
 	WorkspaceId NullableString `json:"workspace_id,omitempty"`
@@ -93,6 +95,10 @@ func NewUserProfileResponse(id string, email string, name string, role string, e
 	this.DefaultGeofenceColor = &defaultGeofenceColor
 	var showTutorialTooltips bool = true
 	this.ShowTutorialTooltips = &showTutorialTooltips
+	var hasCompletedTour bool = false
+	this.HasCompletedTour = &hasCompletedTour
+	var hasCompletedWorkflowTour bool = false
+	this.HasCompletedWorkflowTour = &hasCompletedWorkflowTour
 	var defaultApiVersion string = "v1"
 	this.DefaultApiVersion = &defaultApiVersion
 	var selectedPlan string = "free"
@@ -131,6 +137,10 @@ func NewUserProfileResponseWithDefaults() *UserProfileResponse {
 	this.DefaultGeofenceColor = &defaultGeofenceColor
 	var showTutorialTooltips bool = true
 	this.ShowTutorialTooltips = &showTutorialTooltips
+	var hasCompletedTour bool = false
+	this.HasCompletedTour = &hasCompletedTour
+	var hasCompletedWorkflowTour bool = false
+	this.HasCompletedWorkflowTour = &hasCompletedWorkflowTour
 	var defaultApiVersion string = "v1"
 	this.DefaultApiVersion = &defaultApiVersion
 	var selectedPlan string = "free"
@@ -848,6 +858,70 @@ func (o *UserProfileResponse) SetShowTutorialTooltips(v bool) {
 	o.ShowTutorialTooltips = &v
 }
 
+// GetHasCompletedTour returns the HasCompletedTour field value if set, zero value otherwise.
+func (o *UserProfileResponse) GetHasCompletedTour() bool {
+	if o == nil || IsNil(o.HasCompletedTour) {
+		var ret bool
+		return ret
+	}
+	return *o.HasCompletedTour
+}
+
+// GetHasCompletedTourOk returns a tuple with the HasCompletedTour field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserProfileResponse) GetHasCompletedTourOk() (*bool, bool) {
+	if o == nil || IsNil(o.HasCompletedTour) {
+		return nil, false
+	}
+	return o.HasCompletedTour, true
+}
+
+// HasHasCompletedTour returns a boolean if a field has been set.
+func (o *UserProfileResponse) HasHasCompletedTour() bool {
+	if o != nil && !IsNil(o.HasCompletedTour) {
+		return true
+	}
+
+	return false
+}
+
+// SetHasCompletedTour gets a reference to the given bool and assigns it to the HasCompletedTour field.
+func (o *UserProfileResponse) SetHasCompletedTour(v bool) {
+	o.HasCompletedTour = &v
+}
+
+// GetHasCompletedWorkflowTour returns the HasCompletedWorkflowTour field value if set, zero value otherwise.
+func (o *UserProfileResponse) GetHasCompletedWorkflowTour() bool {
+	if o == nil || IsNil(o.HasCompletedWorkflowTour) {
+		var ret bool
+		return ret
+	}
+	return *o.HasCompletedWorkflowTour
+}
+
+// GetHasCompletedWorkflowTourOk returns a tuple with the HasCompletedWorkflowTour field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserProfileResponse) GetHasCompletedWorkflowTourOk() (*bool, bool) {
+	if o == nil || IsNil(o.HasCompletedWorkflowTour) {
+		return nil, false
+	}
+	return o.HasCompletedWorkflowTour, true
+}
+
+// HasHasCompletedWorkflowTour returns a boolean if a field has been set.
+func (o *UserProfileResponse) HasHasCompletedWorkflowTour() bool {
+	if o != nil && !IsNil(o.HasCompletedWorkflowTour) {
+		return true
+	}
+
+	return false
+}
+
+// SetHasCompletedWorkflowTour gets a reference to the given bool and assigns it to the HasCompletedWorkflowTour field.
+func (o *UserProfileResponse) SetHasCompletedWorkflowTour(v bool) {
+	o.HasCompletedWorkflowTour = &v
+}
+
 // GetDefaultApiVersion returns the DefaultApiVersion field value if set, zero value otherwise.
 func (o *UserProfileResponse) GetDefaultApiVersion() string {
 	if o == nil || IsNil(o.DefaultApiVersion) {
@@ -1102,6 +1176,12 @@ func (o UserProfileResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ShowTutorialTooltips) {
 		toSerialize["show_tutorial_tooltips"] = o.ShowTutorialTooltips
+	}
+	if !IsNil(o.HasCompletedTour) {
+		toSerialize["has_completed_tour"] = o.HasCompletedTour
+	}
+	if !IsNil(o.HasCompletedWorkflowTour) {
+		toSerialize["has_completed_workflow_tour"] = o.HasCompletedWorkflowTour
 	}
 	if !IsNil(o.DefaultApiVersion) {
 		toSerialize["default_api_version"] = o.DefaultApiVersion
