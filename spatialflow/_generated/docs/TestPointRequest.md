@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Geometry** | Pointer to [**NullableGeoJSONPoint**](GeoJSONPoint.md) |  | [optional] 
+**Geometry** | Pointer to [**NullableGeometry2**](Geometry2.md) |  | [optional] 
+**Point** | Pointer to [**NullableTestPointCoordinate**](TestPointCoordinate.md) |  | [optional] 
 **Lat** | Pointer to **NullableFloat32** |  | [optional] 
 **Lng** | Pointer to **NullableFloat32** |  | [optional] 
 **GeofenceIds** | Pointer to **[]string** |  | [optional] 
@@ -32,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetGeometry
 
-`func (o *TestPointRequest) GetGeometry() GeoJSONPoint`
+`func (o *TestPointRequest) GetGeometry() Geometry2`
 
 GetGeometry returns the Geometry field if non-nil, zero value otherwise.
 
 ### GetGeometryOk
 
-`func (o *TestPointRequest) GetGeometryOk() (*GeoJSONPoint, bool)`
+`func (o *TestPointRequest) GetGeometryOk() (*Geometry2, bool)`
 
 GetGeometryOk returns a tuple with the Geometry field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGeometry
 
-`func (o *TestPointRequest) SetGeometry(v GeoJSONPoint)`
+`func (o *TestPointRequest) SetGeometry(v Geometry2)`
 
 SetGeometry sets Geometry field to given value.
 
@@ -65,6 +66,41 @@ HasGeometry returns a boolean if a field has been set.
 `func (o *TestPointRequest) UnsetGeometry()`
 
 UnsetGeometry ensures that no value is present for Geometry, not even an explicit nil
+### GetPoint
+
+`func (o *TestPointRequest) GetPoint() TestPointCoordinate`
+
+GetPoint returns the Point field if non-nil, zero value otherwise.
+
+### GetPointOk
+
+`func (o *TestPointRequest) GetPointOk() (*TestPointCoordinate, bool)`
+
+GetPointOk returns a tuple with the Point field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPoint
+
+`func (o *TestPointRequest) SetPoint(v TestPointCoordinate)`
+
+SetPoint sets Point field to given value.
+
+### HasPoint
+
+`func (o *TestPointRequest) HasPoint() bool`
+
+HasPoint returns a boolean if a field has been set.
+
+### SetPointNil
+
+`func (o *TestPointRequest) SetPointNil(b bool)`
+
+ SetPointNil sets the value for Point to be an explicit nil
+
+### UnsetPoint
+`func (o *TestPointRequest) UnsetPoint()`
+
+UnsetPoint ensures that no value is present for Point, not even an explicit nil
 ### GetLat
 
 `func (o *TestPointRequest) GetLat() float32`

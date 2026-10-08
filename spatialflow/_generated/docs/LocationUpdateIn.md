@@ -11,7 +11,11 @@ Name | Type | Description | Notes
 **Speed** | Pointer to **NullableFloat32** |  | [optional] 
 **Heading** | Pointer to **NullableFloat32** |  | [optional] 
 **Altitude** | Pointer to **NullableFloat32** |  | [optional] 
+**BatteryLevel** | Pointer to **NullableInt32** |  | [optional] 
+**BatteryCharging** | Pointer to **NullableBool** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
+**ClientLocationId** | Pointer to **NullableString** |  | [optional] 
+**Reason** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -247,6 +251,76 @@ HasAltitude returns a boolean if a field has been set.
 `func (o *LocationUpdateIn) UnsetAltitude()`
 
 UnsetAltitude ensures that no value is present for Altitude, not even an explicit nil
+### GetBatteryLevel
+
+`func (o *LocationUpdateIn) GetBatteryLevel() int32`
+
+GetBatteryLevel returns the BatteryLevel field if non-nil, zero value otherwise.
+
+### GetBatteryLevelOk
+
+`func (o *LocationUpdateIn) GetBatteryLevelOk() (*int32, bool)`
+
+GetBatteryLevelOk returns a tuple with the BatteryLevel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBatteryLevel
+
+`func (o *LocationUpdateIn) SetBatteryLevel(v int32)`
+
+SetBatteryLevel sets BatteryLevel field to given value.
+
+### HasBatteryLevel
+
+`func (o *LocationUpdateIn) HasBatteryLevel() bool`
+
+HasBatteryLevel returns a boolean if a field has been set.
+
+### SetBatteryLevelNil
+
+`func (o *LocationUpdateIn) SetBatteryLevelNil(b bool)`
+
+ SetBatteryLevelNil sets the value for BatteryLevel to be an explicit nil
+
+### UnsetBatteryLevel
+`func (o *LocationUpdateIn) UnsetBatteryLevel()`
+
+UnsetBatteryLevel ensures that no value is present for BatteryLevel, not even an explicit nil
+### GetBatteryCharging
+
+`func (o *LocationUpdateIn) GetBatteryCharging() bool`
+
+GetBatteryCharging returns the BatteryCharging field if non-nil, zero value otherwise.
+
+### GetBatteryChargingOk
+
+`func (o *LocationUpdateIn) GetBatteryChargingOk() (*bool, bool)`
+
+GetBatteryChargingOk returns a tuple with the BatteryCharging field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBatteryCharging
+
+`func (o *LocationUpdateIn) SetBatteryCharging(v bool)`
+
+SetBatteryCharging sets BatteryCharging field to given value.
+
+### HasBatteryCharging
+
+`func (o *LocationUpdateIn) HasBatteryCharging() bool`
+
+HasBatteryCharging returns a boolean if a field has been set.
+
+### SetBatteryChargingNil
+
+`func (o *LocationUpdateIn) SetBatteryChargingNil(b bool)`
+
+ SetBatteryChargingNil sets the value for BatteryCharging to be an explicit nil
+
+### UnsetBatteryCharging
+`func (o *LocationUpdateIn) UnsetBatteryCharging()`
+
+UnsetBatteryCharging ensures that no value is present for BatteryCharging, not even an explicit nil
 ### GetMetadata
 
 `func (o *LocationUpdateIn) GetMetadata() map[string]interface{}`
@@ -282,6 +356,76 @@ HasMetadata returns a boolean if a field has been set.
 `func (o *LocationUpdateIn) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+### GetClientLocationId
+
+`func (o *LocationUpdateIn) GetClientLocationId() string`
+
+GetClientLocationId returns the ClientLocationId field if non-nil, zero value otherwise.
+
+### GetClientLocationIdOk
+
+`func (o *LocationUpdateIn) GetClientLocationIdOk() (*string, bool)`
+
+GetClientLocationIdOk returns a tuple with the ClientLocationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientLocationId
+
+`func (o *LocationUpdateIn) SetClientLocationId(v string)`
+
+SetClientLocationId sets ClientLocationId field to given value.
+
+### HasClientLocationId
+
+`func (o *LocationUpdateIn) HasClientLocationId() bool`
+
+HasClientLocationId returns a boolean if a field has been set.
+
+### SetClientLocationIdNil
+
+`func (o *LocationUpdateIn) SetClientLocationIdNil(b bool)`
+
+ SetClientLocationIdNil sets the value for ClientLocationId to be an explicit nil
+
+### UnsetClientLocationId
+`func (o *LocationUpdateIn) UnsetClientLocationId()`
+
+UnsetClientLocationId ensures that no value is present for ClientLocationId, not even an explicit nil
+### GetReason
+
+`func (o *LocationUpdateIn) GetReason() string`
+
+GetReason returns the Reason field if non-nil, zero value otherwise.
+
+### GetReasonOk
+
+`func (o *LocationUpdateIn) GetReasonOk() (*string, bool)`
+
+GetReasonOk returns a tuple with the Reason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReason
+
+`func (o *LocationUpdateIn) SetReason(v string)`
+
+SetReason sets Reason field to given value.
+
+### HasReason
+
+`func (o *LocationUpdateIn) HasReason() bool`
+
+HasReason returns a boolean if a field has been set.
+
+### SetReasonNil
+
+`func (o *LocationUpdateIn) SetReasonNil(b bool)`
+
+ SetReasonNil sets the value for Reason to be an explicit nil
+
+### UnsetReason
+`func (o *LocationUpdateIn) UnsetReason()`
+
+UnsetReason ensures that no value is present for Reason, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

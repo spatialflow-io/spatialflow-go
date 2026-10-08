@@ -34,7 +34,7 @@ Method | HTTP request | Description
 
 ## AppsIntegrationsApiBulkExportIntegrations
 
-> []ExportIntegrationSchema AppsIntegrationsApiBulkExportIntegrations(ctx).IncludeSecrets(includeSecrets).RequestBody(requestBody).Execute()
+> []ExportIntegrationSchema AppsIntegrationsApiBulkExportIntegrations(ctx).RequestBody(requestBody).Execute()
 
 Bulk Export Integrations
 
@@ -53,12 +53,11 @@ import (
 )
 
 func main() {
-	includeSecrets := true // bool |  (optional) (default to false)
 	requestBody := []string{"Property_example"} // []string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IntegrationsAPI.AppsIntegrationsApiBulkExportIntegrations(context.Background()).IncludeSecrets(includeSecrets).RequestBody(requestBody).Execute()
+	resp, r, err := apiClient.IntegrationsAPI.AppsIntegrationsApiBulkExportIntegrations(context.Background()).RequestBody(requestBody).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IntegrationsAPI.AppsIntegrationsApiBulkExportIntegrations``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -79,7 +78,6 @@ Other parameters are passed through a pointer to a apiAppsIntegrationsApiBulkExp
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **includeSecrets** | **bool** |  | [default to false]
  **requestBody** | **[]string** |  | 
 
 ### Return type
@@ -88,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -158,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -296,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -503,7 +501,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -587,7 +585,7 @@ Name | Type | Description  | Notes
 
 ## AppsIntegrationsApiExportIntegration
 
-> ExportIntegrationSchema AppsIntegrationsApiExportIntegration(ctx, integrationId).IncludeSecrets(includeSecrets).Execute()
+> ExportIntegrationSchema AppsIntegrationsApiExportIntegration(ctx, integrationId).Execute()
 
 Export Integration
 
@@ -607,11 +605,10 @@ import (
 
 func main() {
 	integrationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	includeSecrets := true // bool |  (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IntegrationsAPI.AppsIntegrationsApiExportIntegration(context.Background(), integrationId).IncludeSecrets(includeSecrets).Execute()
+	resp, r, err := apiClient.IntegrationsAPI.AppsIntegrationsApiExportIntegration(context.Background(), integrationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IntegrationsAPI.AppsIntegrationsApiExportIntegration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -637,7 +634,6 @@ Other parameters are passed through a pointer to a apiAppsIntegrationsApiExportI
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **includeSecrets** | **bool** |  | [default to false]
 
 ### Return type
 
@@ -645,7 +641,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -776,7 +772,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1043,7 +1039,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1329,7 +1325,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1403,7 +1399,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1464,7 +1460,7 @@ Other parameters are passed through a pointer to a apiAppsIntegrationsApiTestAll
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1534,7 +1530,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1681,7 +1677,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 

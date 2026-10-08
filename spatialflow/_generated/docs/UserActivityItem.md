@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **ResourceId** | Pointer to **NullableString** |  | [optional] 
 **IpAddress** | Pointer to **NullableString** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
-**CreatedAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewUserActivityItem
 
-`func NewUserActivityItem(activityType string, createdAt string, ) *UserActivityItem`
+`func NewUserActivityItem(activityType string, createdAt time.Time, ) *UserActivityItem`
 
 NewUserActivityItem instantiates a new UserActivityItem object
 This constructor will assign default values to properties that have it defined,
@@ -182,20 +182,20 @@ HasMetadata returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
-`func (o *UserActivityItem) GetCreatedAt() string`
+`func (o *UserActivityItem) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *UserActivityItem) GetCreatedAtOk() (*string, bool)`
+`func (o *UserActivityItem) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *UserActivityItem) SetCreatedAt(v string)`
+`func (o *UserActivityItem) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 

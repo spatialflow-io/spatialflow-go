@@ -22,14 +22,14 @@ Name | Type | Description | Notes
 **DeliveredAt** | **NullableTime** |  | 
 **NextRetryAt** | **NullableTime** |  | 
 **Payload** | **map[string]interface{}** |  | 
-**ResponseBody** | **map[string]interface{}** |  | 
+**ResponseBody** | [**NullableResponseBody**](ResponseBody.md) |  | 
 **ResponseHeaders** | **map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewWebhookDeliveryDetailResponse
 
-`func NewWebhookDeliveryDetailResponse(id string, webhookId NullableString, geofenceId NullableString, eventType string, eventId string, url string, method string, status DeliveryStatusEnum, responseStatusCode NullableInt32, responseTimeMs NullableFloat32, errorMessage NullableString, attemptCount int32, createdAt time.Time, deliveredAt NullableTime, nextRetryAt NullableTime, payload map[string]interface{}, responseBody map[string]interface{}, responseHeaders map[string]interface{}, ) *WebhookDeliveryDetailResponse`
+`func NewWebhookDeliveryDetailResponse(id string, webhookId NullableString, geofenceId NullableString, eventType string, eventId string, url string, method string, status DeliveryStatusEnum, responseStatusCode NullableInt32, responseTimeMs NullableFloat32, errorMessage NullableString, attemptCount int32, createdAt time.Time, deliveredAt NullableTime, nextRetryAt NullableTime, payload map[string]interface{}, responseBody NullableResponseBody, responseHeaders map[string]interface{}, ) *WebhookDeliveryDetailResponse`
 
 NewWebhookDeliveryDetailResponse instantiates a new WebhookDeliveryDetailResponse object
 This constructor will assign default values to properties that have it defined,
@@ -506,20 +506,20 @@ SetPayload sets Payload field to given value.
 UnsetPayload ensures that no value is present for Payload, not even an explicit nil
 ### GetResponseBody
 
-`func (o *WebhookDeliveryDetailResponse) GetResponseBody() map[string]interface{}`
+`func (o *WebhookDeliveryDetailResponse) GetResponseBody() ResponseBody`
 
 GetResponseBody returns the ResponseBody field if non-nil, zero value otherwise.
 
 ### GetResponseBodyOk
 
-`func (o *WebhookDeliveryDetailResponse) GetResponseBodyOk() (*map[string]interface{}, bool)`
+`func (o *WebhookDeliveryDetailResponse) GetResponseBodyOk() (*ResponseBody, bool)`
 
 GetResponseBodyOk returns a tuple with the ResponseBody field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResponseBody
 
-`func (o *WebhookDeliveryDetailResponse) SetResponseBody(v map[string]interface{})`
+`func (o *WebhookDeliveryDetailResponse) SetResponseBody(v ResponseBody)`
 
 SetResponseBody sets ResponseBody field to given value.
 

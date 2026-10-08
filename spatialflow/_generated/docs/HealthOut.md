@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **string** |  | 
 **Service** | **string** |  | 
-**Timestamp** | **string** |  | 
+**Timestamp** | **time.Time** |  | 
 **Checks** | [**HealthChecksOut**](HealthChecksOut.md) |  | 
 
 ## Methods
 
 ### NewHealthOut
 
-`func NewHealthOut(status string, service string, timestamp string, checks HealthChecksOut, ) *HealthOut`
+`func NewHealthOut(status string, service string, timestamp time.Time, checks HealthChecksOut, ) *HealthOut`
 
 NewHealthOut instantiates a new HealthOut object
 This constructor will assign default values to properties that have it defined,
@@ -70,20 +70,20 @@ SetService sets Service field to given value.
 
 ### GetTimestamp
 
-`func (o *HealthOut) GetTimestamp() string`
+`func (o *HealthOut) GetTimestamp() time.Time`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *HealthOut) GetTimestampOk() (*string, bool)`
+`func (o *HealthOut) GetTimestampOk() (*time.Time, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *HealthOut) SetTimestamp(v string)`
+`func (o *HealthOut) SetTimestamp(v time.Time)`
 
 SetTimestamp sets Timestamp field to given value.
 

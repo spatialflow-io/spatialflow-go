@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Email** | **string** |  | 
 **EmailVerified** | Pointer to **NullableBool** |  | [optional] 
 **AdminApproved** | Pointer to **NullableBool** |  | [optional] 
-**AdminApprovedAt** | Pointer to **NullableString** |  | [optional] 
+**AdminApprovedAt** | Pointer to **NullableTime** |  | [optional] 
 **PasswordSet** | Pointer to **bool** |  | [optional] [default to false]
 
 ## Methods
@@ -163,20 +163,20 @@ HasAdminApproved returns a boolean if a field has been set.
 UnsetAdminApproved ensures that no value is present for AdminApproved, not even an explicit nil
 ### GetAdminApprovedAt
 
-`func (o *UserActionResponse) GetAdminApprovedAt() string`
+`func (o *UserActionResponse) GetAdminApprovedAt() time.Time`
 
 GetAdminApprovedAt returns the AdminApprovedAt field if non-nil, zero value otherwise.
 
 ### GetAdminApprovedAtOk
 
-`func (o *UserActionResponse) GetAdminApprovedAtOk() (*string, bool)`
+`func (o *UserActionResponse) GetAdminApprovedAtOk() (*time.Time, bool)`
 
 GetAdminApprovedAtOk returns a tuple with the AdminApprovedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdminApprovedAt
 
-`func (o *UserActionResponse) SetAdminApprovedAt(v string)`
+`func (o *UserActionResponse) SetAdminApprovedAt(v time.Time)`
 
 SetAdminApprovedAt sets AdminApprovedAt field to given value.
 

@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **string** |  | 
 **Service** | **string** |  | 
-**Timestamp** | **string** |  | 
+**Timestamp** | **time.Time** |  | 
 
 ## Methods
 
 ### NewPingResponse
 
-`func NewPingResponse(status string, service string, timestamp string, ) *PingResponse`
+`func NewPingResponse(status string, service string, timestamp time.Time, ) *PingResponse`
 
 NewPingResponse instantiates a new PingResponse object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetService sets Service field to given value.
 
 ### GetTimestamp
 
-`func (o *PingResponse) GetTimestamp() string`
+`func (o *PingResponse) GetTimestamp() time.Time`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *PingResponse) GetTimestampOk() (*string, bool)`
+`func (o *PingResponse) GetTimestampOk() (*time.Time, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *PingResponse) SetTimestamp(v string)`
+`func (o *PingResponse) SetTimestamp(v time.Time)`
 
 SetTimestamp sets Timestamp field to given value.
 

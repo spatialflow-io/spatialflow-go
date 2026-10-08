@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **IsWriteOnly** | **bool** |  | 
 **AllowEmpty** | Pointer to **bool** |  | [optional] [default to false]
 **ValidationRules** | **map[string]interface{}** |  | 
-**UpdatedAt** | Pointer to **NullableString** |  | [optional] 
+**UpdatedAt** | Pointer to **NullableTime** |  | [optional] 
 **Error** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
@@ -321,20 +321,20 @@ SetValidationRules sets ValidationRules field to given value.
 
 ### GetUpdatedAt
 
-`func (o *ConfigurationItem) GetUpdatedAt() string`
+`func (o *ConfigurationItem) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *ConfigurationItem) GetUpdatedAtOk() (*string, bool)`
+`func (o *ConfigurationItem) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *ConfigurationItem) SetUpdatedAt(v string)`
+`func (o *ConfigurationItem) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Email** | **string** |  | 
 **FirstName** | **string** |  | 
 **LastName** | **string** |  | 
-**SubscribedAt** | **string** |  | 
+**SubscribedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewMarketingSubscriber
 
-`func NewMarketingSubscriber(email string, firstName string, lastName string, subscribedAt string, ) *MarketingSubscriber`
+`func NewMarketingSubscriber(email string, firstName string, lastName string, subscribedAt time.Time, ) *MarketingSubscriber`
 
 NewMarketingSubscriber instantiates a new MarketingSubscriber object
 This constructor will assign default values to properties that have it defined,
@@ -90,20 +90,20 @@ SetLastName sets LastName field to given value.
 
 ### GetSubscribedAt
 
-`func (o *MarketingSubscriber) GetSubscribedAt() string`
+`func (o *MarketingSubscriber) GetSubscribedAt() time.Time`
 
 GetSubscribedAt returns the SubscribedAt field if non-nil, zero value otherwise.
 
 ### GetSubscribedAtOk
 
-`func (o *MarketingSubscriber) GetSubscribedAtOk() (*string, bool)`
+`func (o *MarketingSubscriber) GetSubscribedAtOk() (*time.Time, bool)`
 
 GetSubscribedAtOk returns a tuple with the SubscribedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubscribedAt
 
-`func (o *MarketingSubscriber) SetSubscribedAt(v string)`
+`func (o *MarketingSubscriber) SetSubscribedAt(v time.Time)`
 
 SetSubscribedAt sets SubscribedAt field to given value.
 

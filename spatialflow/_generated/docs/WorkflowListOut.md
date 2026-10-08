@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **SuccessRate** | **float32** |  | 
 **UserId** | **string** |  | 
 **Version** | **int32** |  | 
+**IsExample** | Pointer to **bool** |  | [optional] [default to false]
+**TriggerCanFire** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -275,6 +277,66 @@ and a boolean to check if the value has been set.
 SetVersion sets Version field to given value.
 
 
+### GetIsExample
+
+`func (o *WorkflowListOut) GetIsExample() bool`
+
+GetIsExample returns the IsExample field if non-nil, zero value otherwise.
+
+### GetIsExampleOk
+
+`func (o *WorkflowListOut) GetIsExampleOk() (*bool, bool)`
+
+GetIsExampleOk returns a tuple with the IsExample field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsExample
+
+`func (o *WorkflowListOut) SetIsExample(v bool)`
+
+SetIsExample sets IsExample field to given value.
+
+### HasIsExample
+
+`func (o *WorkflowListOut) HasIsExample() bool`
+
+HasIsExample returns a boolean if a field has been set.
+
+### GetTriggerCanFire
+
+`func (o *WorkflowListOut) GetTriggerCanFire() bool`
+
+GetTriggerCanFire returns the TriggerCanFire field if non-nil, zero value otherwise.
+
+### GetTriggerCanFireOk
+
+`func (o *WorkflowListOut) GetTriggerCanFireOk() (*bool, bool)`
+
+GetTriggerCanFireOk returns a tuple with the TriggerCanFire field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggerCanFire
+
+`func (o *WorkflowListOut) SetTriggerCanFire(v bool)`
+
+SetTriggerCanFire sets TriggerCanFire field to given value.
+
+### HasTriggerCanFire
+
+`func (o *WorkflowListOut) HasTriggerCanFire() bool`
+
+HasTriggerCanFire returns a boolean if a field has been set.
+
+### SetTriggerCanFireNil
+
+`func (o *WorkflowListOut) SetTriggerCanFireNil(b bool)`
+
+ SetTriggerCanFireNil sets the value for TriggerCanFire to be an explicit nil
+
+### UnsetTriggerCanFire
+`func (o *WorkflowListOut) UnsetTriggerCanFire()`
+
+UnsetTriggerCanFire ensures that no value is present for TriggerCanFire, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

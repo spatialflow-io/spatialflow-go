@@ -14,6 +14,9 @@ Name | Type | Description | Notes
 **CompletedAt** | **NullableTime** |  | 
 **DurationSeconds** | **NullableFloat32** |  | 
 **ErrorMessage** | **NullableString** |  | 
+**EventsCount** | Pointer to **int32** |  | [optional] [default to 0]
+**IsPreview** | Pointer to **bool** |  | [optional] [default to false]
+**OccupancySummary** | Pointer to [**NullableOccupancySummaryOut**](OccupancySummaryOut.md) |  | [optional] 
 
 ## Methods
 
@@ -274,6 +277,91 @@ SetErrorMessage sets ErrorMessage field to given value.
 `func (o *ExecutionOut) UnsetErrorMessage()`
 
 UnsetErrorMessage ensures that no value is present for ErrorMessage, not even an explicit nil
+### GetEventsCount
+
+`func (o *ExecutionOut) GetEventsCount() int32`
+
+GetEventsCount returns the EventsCount field if non-nil, zero value otherwise.
+
+### GetEventsCountOk
+
+`func (o *ExecutionOut) GetEventsCountOk() (*int32, bool)`
+
+GetEventsCountOk returns a tuple with the EventsCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEventsCount
+
+`func (o *ExecutionOut) SetEventsCount(v int32)`
+
+SetEventsCount sets EventsCount field to given value.
+
+### HasEventsCount
+
+`func (o *ExecutionOut) HasEventsCount() bool`
+
+HasEventsCount returns a boolean if a field has been set.
+
+### GetIsPreview
+
+`func (o *ExecutionOut) GetIsPreview() bool`
+
+GetIsPreview returns the IsPreview field if non-nil, zero value otherwise.
+
+### GetIsPreviewOk
+
+`func (o *ExecutionOut) GetIsPreviewOk() (*bool, bool)`
+
+GetIsPreviewOk returns a tuple with the IsPreview field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsPreview
+
+`func (o *ExecutionOut) SetIsPreview(v bool)`
+
+SetIsPreview sets IsPreview field to given value.
+
+### HasIsPreview
+
+`func (o *ExecutionOut) HasIsPreview() bool`
+
+HasIsPreview returns a boolean if a field has been set.
+
+### GetOccupancySummary
+
+`func (o *ExecutionOut) GetOccupancySummary() OccupancySummaryOut`
+
+GetOccupancySummary returns the OccupancySummary field if non-nil, zero value otherwise.
+
+### GetOccupancySummaryOk
+
+`func (o *ExecutionOut) GetOccupancySummaryOk() (*OccupancySummaryOut, bool)`
+
+GetOccupancySummaryOk returns a tuple with the OccupancySummary field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOccupancySummary
+
+`func (o *ExecutionOut) SetOccupancySummary(v OccupancySummaryOut)`
+
+SetOccupancySummary sets OccupancySummary field to given value.
+
+### HasOccupancySummary
+
+`func (o *ExecutionOut) HasOccupancySummary() bool`
+
+HasOccupancySummary returns a boolean if a field has been set.
+
+### SetOccupancySummaryNil
+
+`func (o *ExecutionOut) SetOccupancySummaryNil(b bool)`
+
+ SetOccupancySummaryNil sets the value for OccupancySummary to be an explicit nil
+
+### UnsetOccupancySummary
+`func (o *ExecutionOut) UnsetOccupancySummary()`
+
+UnsetOccupancySummary ensures that no value is present for OccupancySummary, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

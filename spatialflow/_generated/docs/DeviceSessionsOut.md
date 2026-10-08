@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sessions** | [**[]DeviceSessionOut**](DeviceSessionOut.md) |  | 
 **TotalCount** | **int32** |  | 
+**OpenSession** | Pointer to [**NullableDeviceSessionOut**](DeviceSessionOut.md) |  | [optional] 
 
 ## Methods
 
@@ -66,6 +67,41 @@ and a boolean to check if the value has been set.
 SetTotalCount sets TotalCount field to given value.
 
 
+### GetOpenSession
+
+`func (o *DeviceSessionsOut) GetOpenSession() DeviceSessionOut`
+
+GetOpenSession returns the OpenSession field if non-nil, zero value otherwise.
+
+### GetOpenSessionOk
+
+`func (o *DeviceSessionsOut) GetOpenSessionOk() (*DeviceSessionOut, bool)`
+
+GetOpenSessionOk returns a tuple with the OpenSession field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOpenSession
+
+`func (o *DeviceSessionsOut) SetOpenSession(v DeviceSessionOut)`
+
+SetOpenSession sets OpenSession field to given value.
+
+### HasOpenSession
+
+`func (o *DeviceSessionsOut) HasOpenSession() bool`
+
+HasOpenSession returns a boolean if a field has been set.
+
+### SetOpenSessionNil
+
+`func (o *DeviceSessionsOut) SetOpenSessionNil(b bool)`
+
+ SetOpenSessionNil sets the value for OpenSession to be an explicit nil
+
+### UnsetOpenSession
+`func (o *DeviceSessionsOut) UnsetOpenSession()`
+
+UnsetOpenSession ensures that no value is present for OpenSession, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

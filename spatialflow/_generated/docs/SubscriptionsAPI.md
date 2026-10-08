@@ -333,7 +333,7 @@ No authorization required
 
 ## AppsSubscriptionsApiGetUsageMetrics
 
-> UsageResponse AppsSubscriptionsApiGetUsageMetrics(ctx).Execute()
+> SubscriptionUsageResponse AppsSubscriptionsApiGetUsageMetrics(ctx).Execute()
 
 Get Usage Metrics
 
@@ -360,7 +360,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.AppsSubscriptionsApiGetUsageMetrics``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsSubscriptionsApiGetUsageMetrics`: UsageResponse
+	// response from `AppsSubscriptionsApiGetUsageMetrics`: SubscriptionUsageResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.AppsSubscriptionsApiGetUsageMetrics`: %v\n", resp)
 }
 ```
@@ -376,7 +376,7 @@ Other parameters are passed through a pointer to a apiAppsSubscriptionsApiGetUsa
 
 ### Return type
 
-[**UsageResponse**](UsageResponse.md)
+[**SubscriptionUsageResponse**](SubscriptionUsageResponse.md)
 
 ### Authorization
 
@@ -444,7 +444,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

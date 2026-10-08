@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **UnitSystem** | **string** |  | 
 **IsSelected** | **bool** |  | 
 **MemberCount** | Pointer to **int32** |  | [optional] [default to 0]
+**TrackingConsentRequired** | Pointer to **bool** |  | [optional] [default to false]
 
 ## Methods
 
@@ -232,6 +233,31 @@ SetMemberCount sets MemberCount field to given value.
 `func (o *MobileWorkspaceRow) HasMemberCount() bool`
 
 HasMemberCount returns a boolean if a field has been set.
+
+### GetTrackingConsentRequired
+
+`func (o *MobileWorkspaceRow) GetTrackingConsentRequired() bool`
+
+GetTrackingConsentRequired returns the TrackingConsentRequired field if non-nil, zero value otherwise.
+
+### GetTrackingConsentRequiredOk
+
+`func (o *MobileWorkspaceRow) GetTrackingConsentRequiredOk() (*bool, bool)`
+
+GetTrackingConsentRequiredOk returns a tuple with the TrackingConsentRequired field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrackingConsentRequired
+
+`func (o *MobileWorkspaceRow) SetTrackingConsentRequired(v bool)`
+
+SetTrackingConsentRequired sets TrackingConsentRequired field to given value.
+
+### HasTrackingConsentRequired
+
+`func (o *MobileWorkspaceRow) HasTrackingConsentRequired() bool`
+
+HasTrackingConsentRequired returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

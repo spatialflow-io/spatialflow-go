@@ -16,14 +16,14 @@ Name | Type | Description | Notes
 **SubscriptionStatus** | Pointer to **string** |  | [optional] [default to "none"]
 **UsageThisMonth** | Pointer to **float32** |  | [optional] [default to 0.0]
 **LastActivity** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | **NullableString** |  | 
-**UpdatedAt** | **NullableString** |  | 
+**CreatedAt** | **NullableTime** |  | 
+**UpdatedAt** | **NullableTime** |  | 
 
 ## Methods
 
 ### NewEnhancedWorkspaceListItem
 
-`func NewEnhancedWorkspaceListItem(id string, name string, slug string, billingEmail NullableString, website NullableString, logoUrl NullableString, timezone string, memberCount int32, createdAt NullableString, updatedAt NullableString, ) *EnhancedWorkspaceListItem`
+`func NewEnhancedWorkspaceListItem(id string, name string, slug string, billingEmail NullableString, website NullableString, logoUrl NullableString, timezone string, memberCount int32, createdAt NullableTime, updatedAt NullableTime, ) *EnhancedWorkspaceListItem`
 
 NewEnhancedWorkspaceListItem instantiates a new EnhancedWorkspaceListItem object
 This constructor will assign default values to properties that have it defined,
@@ -340,20 +340,20 @@ HasLastActivity returns a boolean if a field has been set.
 UnsetLastActivity ensures that no value is present for LastActivity, not even an explicit nil
 ### GetCreatedAt
 
-`func (o *EnhancedWorkspaceListItem) GetCreatedAt() string`
+`func (o *EnhancedWorkspaceListItem) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *EnhancedWorkspaceListItem) GetCreatedAtOk() (*string, bool)`
+`func (o *EnhancedWorkspaceListItem) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *EnhancedWorkspaceListItem) SetCreatedAt(v string)`
+`func (o *EnhancedWorkspaceListItem) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
@@ -370,20 +370,20 @@ SetCreatedAt sets CreatedAt field to given value.
 UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetUpdatedAt
 
-`func (o *EnhancedWorkspaceListItem) GetUpdatedAt() string`
+`func (o *EnhancedWorkspaceListItem) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *EnhancedWorkspaceListItem) GetUpdatedAtOk() (*string, bool)`
+`func (o *EnhancedWorkspaceListItem) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *EnhancedWorkspaceListItem) SetUpdatedAt(v string)`
+`func (o *EnhancedWorkspaceListItem) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

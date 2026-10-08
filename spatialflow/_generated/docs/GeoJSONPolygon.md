@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**Coordinates** | [**[][][]float32**]([][]float32.md) |  | 
+**Coordinates** | [**[][][]float32**]([][]float32.md) | Polygon rings with at most 1000 total positions, 64 rings, and 32 holes. | 
 
 ## Methods
 

@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Photos** | [**[]PhotoOut**](PhotoOut.md) |  | 
 **HasMore** | **bool** |  | 
+**UnplacedCount** | **int32** | Photos among the newest &#x60;limit&#x60; matches left out because they have no location. | 
 
 ## Methods
 
 ### NewWorkspacePhotosOut
 
-`func NewWorkspacePhotosOut(photos []PhotoOut, hasMore bool, ) *WorkspacePhotosOut`
+`func NewWorkspacePhotosOut(photos []PhotoOut, hasMore bool, unplacedCount int32, ) *WorkspacePhotosOut`
 
 NewWorkspacePhotosOut instantiates a new WorkspacePhotosOut object
 This constructor will assign default values to properties that have it defined,
@@ -64,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *WorkspacePhotosOut) SetHasMore(v bool)`
 
 SetHasMore sets HasMore field to given value.
+
+
+### GetUnplacedCount
+
+`func (o *WorkspacePhotosOut) GetUnplacedCount() int32`
+
+GetUnplacedCount returns the UnplacedCount field if non-nil, zero value otherwise.
+
+### GetUnplacedCountOk
+
+`func (o *WorkspacePhotosOut) GetUnplacedCountOk() (*int32, bool)`
+
+GetUnplacedCountOk returns a tuple with the UnplacedCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUnplacedCount
+
+`func (o *WorkspacePhotosOut) SetUnplacedCount(v int32)`
+
+SetUnplacedCount sets UnplacedCount field to given value.
 
 
 

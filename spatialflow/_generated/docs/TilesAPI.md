@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 ## AppsTilesApiHealthCheck
 
-> AppsTilesApiHealthCheck(ctx).Execute()
+> TileHealthResponse AppsTilesApiHealthCheck(ctx).Execute()
 
 Health Check
 
@@ -316,11 +316,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.TilesAPI.AppsTilesApiHealthCheck(context.Background()).Execute()
+	resp, r, err := apiClient.TilesAPI.AppsTilesApiHealthCheck(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TilesAPI.AppsTilesApiHealthCheck``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `AppsTilesApiHealthCheck`: TileHealthResponse
+	fmt.Fprintf(os.Stdout, "Response from `TilesAPI.AppsTilesApiHealthCheck`: %v\n", resp)
 }
 ```
 
@@ -335,7 +337,7 @@ Other parameters are passed through a pointer to a apiAppsTilesApiHealthCheckReq
 
 ### Return type
 
- (empty response body)
+[**TileHealthResponse**](TileHealthResponse.md)
 
 ### Authorization
 

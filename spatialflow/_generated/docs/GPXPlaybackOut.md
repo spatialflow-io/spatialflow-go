@@ -14,16 +14,16 @@ Name | Type | Description | Notes
 **CurrentPointIndex** | **int32** |  | 
 **ProgressPercent** | **float32** |  | 
 **EventsTriggered** | **int32** |  | 
-**StartedAt** | **NullableString** |  | 
-**PausedAt** | **NullableString** |  | 
-**CompletedAt** | **NullableString** |  | 
+**StartedAt** | **NullableTime** |  | 
+**PausedAt** | **NullableTime** |  | 
+**CompletedAt** | **NullableTime** |  | 
 **ErrorMessage** | **string** |  | 
 
 ## Methods
 
 ### NewGPXPlaybackOut
 
-`func NewGPXPlaybackOut(id string, routeId string, routeName string, deviceId string, status string, speedMultiplier float32, loopEnabled bool, currentPointIndex int32, progressPercent float32, eventsTriggered int32, startedAt NullableString, pausedAt NullableString, completedAt NullableString, errorMessage string, ) *GPXPlaybackOut`
+`func NewGPXPlaybackOut(id string, routeId string, routeName string, deviceId string, status string, speedMultiplier float32, loopEnabled bool, currentPointIndex int32, progressPercent float32, eventsTriggered int32, startedAt NullableTime, pausedAt NullableTime, completedAt NullableTime, errorMessage string, ) *GPXPlaybackOut`
 
 NewGPXPlaybackOut instantiates a new GPXPlaybackOut object
 This constructor will assign default values to properties that have it defined,
@@ -240,20 +240,20 @@ SetEventsTriggered sets EventsTriggered field to given value.
 
 ### GetStartedAt
 
-`func (o *GPXPlaybackOut) GetStartedAt() string`
+`func (o *GPXPlaybackOut) GetStartedAt() time.Time`
 
 GetStartedAt returns the StartedAt field if non-nil, zero value otherwise.
 
 ### GetStartedAtOk
 
-`func (o *GPXPlaybackOut) GetStartedAtOk() (*string, bool)`
+`func (o *GPXPlaybackOut) GetStartedAtOk() (*time.Time, bool)`
 
 GetStartedAtOk returns a tuple with the StartedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartedAt
 
-`func (o *GPXPlaybackOut) SetStartedAt(v string)`
+`func (o *GPXPlaybackOut) SetStartedAt(v time.Time)`
 
 SetStartedAt sets StartedAt field to given value.
 
@@ -270,20 +270,20 @@ SetStartedAt sets StartedAt field to given value.
 UnsetStartedAt ensures that no value is present for StartedAt, not even an explicit nil
 ### GetPausedAt
 
-`func (o *GPXPlaybackOut) GetPausedAt() string`
+`func (o *GPXPlaybackOut) GetPausedAt() time.Time`
 
 GetPausedAt returns the PausedAt field if non-nil, zero value otherwise.
 
 ### GetPausedAtOk
 
-`func (o *GPXPlaybackOut) GetPausedAtOk() (*string, bool)`
+`func (o *GPXPlaybackOut) GetPausedAtOk() (*time.Time, bool)`
 
 GetPausedAtOk returns a tuple with the PausedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPausedAt
 
-`func (o *GPXPlaybackOut) SetPausedAt(v string)`
+`func (o *GPXPlaybackOut) SetPausedAt(v time.Time)`
 
 SetPausedAt sets PausedAt field to given value.
 
@@ -300,20 +300,20 @@ SetPausedAt sets PausedAt field to given value.
 UnsetPausedAt ensures that no value is present for PausedAt, not even an explicit nil
 ### GetCompletedAt
 
-`func (o *GPXPlaybackOut) GetCompletedAt() string`
+`func (o *GPXPlaybackOut) GetCompletedAt() time.Time`
 
 GetCompletedAt returns the CompletedAt field if non-nil, zero value otherwise.
 
 ### GetCompletedAtOk
 
-`func (o *GPXPlaybackOut) GetCompletedAtOk() (*string, bool)`
+`func (o *GPXPlaybackOut) GetCompletedAtOk() (*time.Time, bool)`
 
 GetCompletedAtOk returns a tuple with the CompletedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompletedAt
 
-`func (o *GPXPlaybackOut) SetCompletedAt(v string)`
+`func (o *GPXPlaybackOut) SetCompletedAt(v time.Time)`
 
 SetCompletedAt sets CompletedAt field to given value.
 

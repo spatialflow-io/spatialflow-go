@@ -8,17 +8,18 @@ Name | Type | Description | Notes
 **EventType** | **string** |  | 
 **Device** | [**EventDeviceOut**](EventDeviceOut.md) |  | 
 **Geofence** | [**EventGeofenceOut**](EventGeofenceOut.md) |  | 
-**Timestamp** | **string** |  | 
+**Timestamp** | **time.Time** |  | 
 **Location** | [**EventLocationOut**](EventLocationOut.md) |  | 
 **WorkflowsTriggered** | Pointer to **[]string** |  | [optional] [default to []]
+**WorkflowRuns** | Pointer to [**[]EventWorkflowRunOut**](EventWorkflowRunOut.md) |  | [optional] [default to []]
 **WebhooksTriggered** | Pointer to **[]string** |  | [optional] [default to []]
-**CreatedAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewGeofenceEventOut
 
-`func NewGeofenceEventOut(id string, eventType string, device EventDeviceOut, geofence EventGeofenceOut, timestamp string, location EventLocationOut, createdAt string, ) *GeofenceEventOut`
+`func NewGeofenceEventOut(id string, eventType string, device EventDeviceOut, geofence EventGeofenceOut, timestamp time.Time, location EventLocationOut, createdAt time.Time, ) *GeofenceEventOut`
 
 NewGeofenceEventOut instantiates a new GeofenceEventOut object
 This constructor will assign default values to properties that have it defined,
@@ -115,20 +116,20 @@ SetGeofence sets Geofence field to given value.
 
 ### GetTimestamp
 
-`func (o *GeofenceEventOut) GetTimestamp() string`
+`func (o *GeofenceEventOut) GetTimestamp() time.Time`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *GeofenceEventOut) GetTimestampOk() (*string, bool)`
+`func (o *GeofenceEventOut) GetTimestampOk() (*time.Time, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *GeofenceEventOut) SetTimestamp(v string)`
+`func (o *GeofenceEventOut) SetTimestamp(v time.Time)`
 
 SetTimestamp sets Timestamp field to given value.
 
@@ -178,6 +179,31 @@ SetWorkflowsTriggered sets WorkflowsTriggered field to given value.
 
 HasWorkflowsTriggered returns a boolean if a field has been set.
 
+### GetWorkflowRuns
+
+`func (o *GeofenceEventOut) GetWorkflowRuns() []EventWorkflowRunOut`
+
+GetWorkflowRuns returns the WorkflowRuns field if non-nil, zero value otherwise.
+
+### GetWorkflowRunsOk
+
+`func (o *GeofenceEventOut) GetWorkflowRunsOk() (*[]EventWorkflowRunOut, bool)`
+
+GetWorkflowRunsOk returns a tuple with the WorkflowRuns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflowRuns
+
+`func (o *GeofenceEventOut) SetWorkflowRuns(v []EventWorkflowRunOut)`
+
+SetWorkflowRuns sets WorkflowRuns field to given value.
+
+### HasWorkflowRuns
+
+`func (o *GeofenceEventOut) HasWorkflowRuns() bool`
+
+HasWorkflowRuns returns a boolean if a field has been set.
+
 ### GetWebhooksTriggered
 
 `func (o *GeofenceEventOut) GetWebhooksTriggered() []string`
@@ -205,20 +231,20 @@ HasWebhooksTriggered returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
-`func (o *GeofenceEventOut) GetCreatedAt() string`
+`func (o *GeofenceEventOut) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *GeofenceEventOut) GetCreatedAtOk() (*string, bool)`
+`func (o *GeofenceEventOut) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *GeofenceEventOut) SetCreatedAt(v string)`
+`func (o *GeofenceEventOut) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 

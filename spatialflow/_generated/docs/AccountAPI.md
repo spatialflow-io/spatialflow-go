@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**AppsAccountsApiAccountHealthCheck**](AccountAPI.md#AppsAccountsApiAccountHealthCheck) | **Get** /api/v1/account/health | Account Health Check
 [**AppsAccountsApiCreateApiKey**](AccountAPI.md#AppsAccountsApiCreateApiKey) | **Post** /api/v1/account/api-keys | Create Api Key
 [**AppsAccountsApiCreateErasureJob**](AccountAPI.md#AppsAccountsApiCreateErasureJob) | **Post** /api/v1/account/privacy/erasure | Create Erasure Job
+[**AppsAccountsApiCreateIssueReport**](AccountAPI.md#AppsAccountsApiCreateIssueReport) | **Post** /api/v1/account/issue-reports | Create Issue Report
 [**AppsAccountsApiDeleteApiKey**](AccountAPI.md#AppsAccountsApiDeleteApiKey) | **Delete** /api/v1/account/api-keys/{api_key_id} | Delete Api Key
 [**AppsAccountsApiDeleteOwnAccount**](AccountAPI.md#AppsAccountsApiDeleteOwnAccount) | **Delete** /api/v1/account/me | Delete Own Account
 [**AppsAccountsApiGetApiKey**](AccountAPI.md#AppsAccountsApiGetApiKey) | **Get** /api/v1/account/api-keys/{api_key_id} | Get Api Key
@@ -141,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -219,6 +220,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## AppsAccountsApiCreateIssueReport
+
+> IssueReportResponse AppsAccountsApiCreateIssueReport(ctx).IssueReportRequest(issueReportRequest).Execute()
+
+Create Issue Report
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	issueReportRequest := *openapiclient.NewIssueReportRequest("Description_example") // IssueReportRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AccountAPI.AppsAccountsApiCreateIssueReport(context.Background()).IssueReportRequest(issueReportRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.AppsAccountsApiCreateIssueReport``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAccountsApiCreateIssueReport`: IssueReportResponse
+	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.AppsAccountsApiCreateIssueReport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAccountsApiCreateIssueReportRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **issueReportRequest** | [**IssueReportRequest**](IssueReportRequest.md) |  | 
+
+### Return type
+
+[**IssueReportResponse**](IssueReportResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsAccountsApiDeleteApiKey
 
 > AppsAccountsApiDeleteApiKey(ctx, apiKeyId).Execute()
@@ -275,7 +342,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -334,7 +401,7 @@ Other parameters are passed through a pointer to a apiAppsAccountsApiDeleteOwnAc
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -404,7 +471,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -465,7 +532,7 @@ Other parameters are passed through a pointer to a apiAppsAccountsApiGetApiKeysR
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -620,7 +687,7 @@ Name | Type | Description  | Notes
 
 ## AppsAccountsApiGetNotifications
 
-> AppsAccountsApiGetNotifications(ctx).UnreadOnly(unreadOnly).Execute()
+> NotificationListResponse AppsAccountsApiGetNotifications(ctx).UnreadOnly(unreadOnly).Execute()
 
 Get Notifications
 
@@ -643,11 +710,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.AccountAPI.AppsAccountsApiGetNotifications(context.Background()).UnreadOnly(unreadOnly).Execute()
+	resp, r, err := apiClient.AccountAPI.AppsAccountsApiGetNotifications(context.Background()).UnreadOnly(unreadOnly).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.AppsAccountsApiGetNotifications``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `AppsAccountsApiGetNotifications`: NotificationListResponse
+	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.AppsAccountsApiGetNotifications`: %v\n", resp)
 }
 ```
 
@@ -666,11 +735,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**NotificationListResponse**](NotificationListResponse.md)
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -731,7 +800,7 @@ Other parameters are passed through a pointer to a apiAppsAccountsApiGetUserProf
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -797,7 +866,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -858,7 +927,7 @@ Other parameters are passed through a pointer to a apiAppsAccountsApiMarkAllNoti
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -928,7 +997,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -998,7 +1067,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1070,7 +1139,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1143,7 +1212,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1215,7 +1284,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1281,7 +1350,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 

@@ -4,8 +4,11 @@ All URIs are relative to *https://api.spatialflow.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AppsWorkspacesApiAcceptMobileTrackingConsent**](WorkspacesAPI.md#AppsWorkspacesApiAcceptMobileTrackingConsent) | **Post** /api/v1/workspaces/mobile/tracking-consent | Accept Mobile Tracking Consent
+[**AppsWorkspacesApiAvailableWebWorkspaces**](WorkspacesAPI.md#AppsWorkspacesApiAvailableWebWorkspaces) | **Get** /api/v1/workspaces/available | Available Web Workspaces
 [**AppsWorkspacesApiCancelInvitation**](WorkspacesAPI.md#AppsWorkspacesApiCancelInvitation) | **Delete** /api/v1/workspaces/invitations/{invite_id} | Cancel Invitation
 [**AppsWorkspacesApiCreateInvitation**](WorkspacesAPI.md#AppsWorkspacesApiCreateInvitation) | **Post** /api/v1/workspaces/invitations | Create Invitation
+[**AppsWorkspacesApiDeleteExampleData**](WorkspacesAPI.md#AppsWorkspacesApiDeleteExampleData) | **Delete** /api/v1/workspaces/example-data | Remove all example/starter content from the workspace
 [**AppsWorkspacesApiDeleteSamlConfig**](WorkspacesAPI.md#AppsWorkspacesApiDeleteSamlConfig) | **Delete** /api/v1/workspaces/saml-config | Delete Saml Config
 [**AppsWorkspacesApiExtendInvitation**](WorkspacesAPI.md#AppsWorkspacesApiExtendInvitation) | **Patch** /api/v1/workspaces/invitations/{invite_id} | Extend Invitation
 [**AppsWorkspacesApiGetSamlConfig**](WorkspacesAPI.md#AppsWorkspacesApiGetSamlConfig) | **Get** /api/v1/workspaces/saml-config | Get Saml Config
@@ -14,14 +17,144 @@ Method | HTTP request | Description
 [**AppsWorkspacesApiListInvitations**](WorkspacesAPI.md#AppsWorkspacesApiListInvitations) | **Get** /api/v1/workspaces/invitations | List Invitations
 [**AppsWorkspacesApiListWorkspaceMembers**](WorkspacesAPI.md#AppsWorkspacesApiListWorkspaceMembers) | **Get** /api/v1/workspaces/members | List Workspace Members
 [**AppsWorkspacesApiMobileWorkspaceBootstrap**](WorkspacesAPI.md#AppsWorkspacesApiMobileWorkspaceBootstrap) | **Get** /api/v1/workspaces/mobile/bootstrap | Mobile Workspace Bootstrap
+[**AppsWorkspacesApiPatchWorkspace**](WorkspacesAPI.md#AppsWorkspacesApiPatchWorkspace) | **Patch** /api/v1/workspaces/ | Patch Workspace
 [**AppsWorkspacesApiRemoveMember**](WorkspacesAPI.md#AppsWorkspacesApiRemoveMember) | **Delete** /api/v1/workspaces/members/{user_id} | Remove Member
 [**AppsWorkspacesApiResendInvitation**](WorkspacesAPI.md#AppsWorkspacesApiResendInvitation) | **Post** /api/v1/workspaces/invitations/{invite_id}/resend | Resend Invitation
+[**AppsWorkspacesApiResendMissingInvitations**](WorkspacesAPI.md#AppsWorkspacesApiResendMissingInvitations) | **Post** /api/v1/workspaces/invitations/resend-missing | Resend Missing Invitations
 [**AppsWorkspacesApiRevokeAllWorkspaceSessions**](WorkspacesAPI.md#AppsWorkspacesApiRevokeAllWorkspaceSessions) | **Post** /api/v1/workspaces/revoke-all-sessions | Revoke All Workspace Sessions
 [**AppsWorkspacesApiSelectMobileWorkspace**](WorkspacesAPI.md#AppsWorkspacesApiSelectMobileWorkspace) | **Post** /api/v1/workspaces/mobile/select | Select Mobile Workspace
+[**AppsWorkspacesApiSelectWebWorkspace**](WorkspacesAPI.md#AppsWorkspacesApiSelectWebWorkspace) | **Post** /api/v1/workspaces/select | Select Web Workspace
 [**AppsWorkspacesApiUpdateMemberRole**](WorkspacesAPI.md#AppsWorkspacesApiUpdateMemberRole) | **Patch** /api/v1/workspaces/members/{user_id} | Update Member Role
 [**AppsWorkspacesApiUpdateWorkspace**](WorkspacesAPI.md#AppsWorkspacesApiUpdateWorkspace) | **Put** /api/v1/workspaces/ | Update Workspace
 [**AppsWorkspacesApiUpsertSamlConfig**](WorkspacesAPI.md#AppsWorkspacesApiUpsertSamlConfig) | **Put** /api/v1/workspaces/saml-config | Upsert Saml Config
 
+
+
+## AppsWorkspacesApiAcceptMobileTrackingConsent
+
+> MobileTrackingConsentOut AppsWorkspacesApiAcceptMobileTrackingConsent(ctx).MobileTrackingConsentIn(mobileTrackingConsentIn).Execute()
+
+Accept Mobile Tracking Consent
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	mobileTrackingConsentIn := *openapiclient.NewMobileTrackingConsentIn("ConsentVersion_example", "WorkspaceId_example") // MobileTrackingConsentIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiAcceptMobileTrackingConsent(context.Background()).MobileTrackingConsentIn(mobileTrackingConsentIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiAcceptMobileTrackingConsent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkspacesApiAcceptMobileTrackingConsent`: MobileTrackingConsentOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiAcceptMobileTrackingConsent`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkspacesApiAcceptMobileTrackingConsentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mobileTrackingConsentIn** | [**MobileTrackingConsentIn**](MobileTrackingConsentIn.md) |  | 
+
+### Return type
+
+[**MobileTrackingConsentOut**](MobileTrackingConsentOut.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWorkspacesApiAvailableWebWorkspaces
+
+> MobileWorkspaceBootstrapOut AppsWorkspacesApiAvailableWebWorkspaces(ctx).Execute()
+
+Available Web Workspaces
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiAvailableWebWorkspaces(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiAvailableWebWorkspaces``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkspacesApiAvailableWebWorkspaces`: MobileWorkspaceBootstrapOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiAvailableWebWorkspaces`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkspacesApiAvailableWebWorkspacesRequest struct via the builder pattern
+
+
+### Return type
+
+[**MobileWorkspaceBootstrapOut**](MobileWorkspaceBootstrapOut.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## AppsWorkspacesApiCancelInvitation
@@ -96,7 +229,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkspacesApiCreateInvitation
 
-> InvitationOut AppsWorkspacesApiCreateInvitation(ctx).CreateInvitationIn(createInvitationIn).Execute()
+> InvitationIssuedOut AppsWorkspacesApiCreateInvitation(ctx).CreateInvitationIn(createInvitationIn).Execute()
 
 Create Invitation
 
@@ -124,7 +257,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiCreateInvitation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkspacesApiCreateInvitation`: InvitationOut
+	// response from `AppsWorkspacesApiCreateInvitation`: InvitationIssuedOut
 	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiCreateInvitation`: %v\n", resp)
 }
 ```
@@ -144,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InvitationOut**](InvitationOut.md)
+[**InvitationIssuedOut**](InvitationIssuedOut.md)
 
 ### Authorization
 
@@ -153,6 +286,67 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWorkspacesApiDeleteExampleData
+
+> map[string]interface{} AppsWorkspacesApiDeleteExampleData(ctx).Execute()
+
+Remove all example/starter content from the workspace
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiDeleteExampleData(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiDeleteExampleData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkspacesApiDeleteExampleData`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiDeleteExampleData`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkspacesApiDeleteExampleDataRequest struct via the builder pattern
+
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -479,7 +673,7 @@ Other parameters are passed through a pointer to a apiAppsWorkspacesApiGetWorksp
 
 ## AppsWorkspacesApiListInvitations
 
-> InvitationListResponse AppsWorkspacesApiListInvitations(ctx).Execute()
+> InvitationListResponse AppsWorkspacesApiListInvitations(ctx).Limit(limit).Offset(offset).Before(before).Execute()
 
 List Invitations
 
@@ -498,10 +692,13 @@ import (
 )
 
 func main() {
+	limit := int32(56) // int32 |  (optional) (default to 100)
+	offset := int32(56) // int32 |  (optional) (default to 0)
+	before := "before_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiListInvitations(context.Background()).Execute()
+	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiListInvitations(context.Background()).Limit(limit).Offset(offset).Before(before).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiListInvitations``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -513,12 +710,18 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiAppsWorkspacesApiListInvitationsRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int32** |  | [default to 100]
+ **offset** | **int32** |  | [default to 0]
+ **before** | **string** |  | 
 
 ### Return type
 
@@ -660,6 +863,72 @@ Other parameters are passed through a pointer to a apiAppsWorkspacesApiMobileWor
 [[Back to README]](../README.md)
 
 
+## AppsWorkspacesApiPatchWorkspace
+
+> WorkspaceOut AppsWorkspacesApiPatchWorkspace(ctx).WorkspacePatchIn(workspacePatchIn).Execute()
+
+Patch Workspace
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	workspacePatchIn := *openapiclient.NewWorkspacePatchIn() // WorkspacePatchIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiPatchWorkspace(context.Background()).WorkspacePatchIn(workspacePatchIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiPatchWorkspace``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkspacesApiPatchWorkspace`: WorkspaceOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiPatchWorkspace`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkspacesApiPatchWorkspaceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspacePatchIn** | [**WorkspacePatchIn**](WorkspacePatchIn.md) |  | 
+
+### Return type
+
+[**WorkspaceOut**](WorkspaceOut.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsWorkspacesApiRemoveMember
 
 > AppsWorkspacesApiRemoveMember(ctx, userId).Execute()
@@ -730,7 +999,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkspacesApiResendInvitation
 
-> InvitationOut AppsWorkspacesApiResendInvitation(ctx, inviteId).Execute()
+> InvitationIssuedOut AppsWorkspacesApiResendInvitation(ctx, inviteId).Execute()
 
 Resend Invitation
 
@@ -758,7 +1027,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiResendInvitation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWorkspacesApiResendInvitation`: InvitationOut
+	// response from `AppsWorkspacesApiResendInvitation`: InvitationIssuedOut
 	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiResendInvitation`: %v\n", resp)
 }
 ```
@@ -782,7 +1051,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InvitationOut**](InvitationOut.md)
+[**InvitationIssuedOut**](InvitationIssuedOut.md)
 
 ### Authorization
 
@@ -791,6 +1060,72 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWorkspacesApiResendMissingInvitations
+
+> BatchResendOut AppsWorkspacesApiResendMissingInvitations(ctx).BatchResendIn(batchResendIn).Execute()
+
+Resend Missing Invitations
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	batchResendIn := *openapiclient.NewBatchResendIn() // BatchResendIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiResendMissingInvitations(context.Background()).BatchResendIn(batchResendIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiResendMissingInvitations``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkspacesApiResendMissingInvitations`: BatchResendOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiResendMissingInvitations`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkspacesApiResendMissingInvitationsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batchResendIn** | [**BatchResendIn**](BatchResendIn.md) |  | 
+
+### Return type
+
+[**BatchResendOut**](BatchResendOut.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -901,6 +1236,72 @@ func main() {
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiAppsWorkspacesApiSelectMobileWorkspaceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mobileWorkspaceSelectIn** | [**MobileWorkspaceSelectIn**](MobileWorkspaceSelectIn.md) |  | 
+
+### Return type
+
+[**MobileWorkspaceSelectionOut**](MobileWorkspaceSelectionOut.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWorkspacesApiSelectWebWorkspace
+
+> MobileWorkspaceSelectionOut AppsWorkspacesApiSelectWebWorkspace(ctx).MobileWorkspaceSelectIn(mobileWorkspaceSelectIn).Execute()
+
+Select Web Workspace
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	mobileWorkspaceSelectIn := *openapiclient.NewMobileWorkspaceSelectIn("WorkspaceId_example") // MobileWorkspaceSelectIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspacesAPI.AppsWorkspacesApiSelectWebWorkspace(context.Background()).MobileWorkspaceSelectIn(mobileWorkspaceSelectIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.AppsWorkspacesApiSelectWebWorkspace``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkspacesApiSelectWebWorkspace`: MobileWorkspaceSelectionOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkspacesAPI.AppsWorkspacesApiSelectWebWorkspace`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkspacesApiSelectWebWorkspaceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

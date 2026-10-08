@@ -10,14 +10,14 @@ Name | Type | Description | Notes
 **CurrentPeriodStart** | Pointer to **NullableString** |  | [optional] 
 **CurrentPeriodEnd** | Pointer to **NullableString** |  | [optional] 
 **CancelAtPeriodEnd** | Pointer to **bool** |  | [optional] [default to false]
-**CreatedAt** | **string** | ISO 8601 datetime | 
-**UpdatedAt** | **string** | ISO 8601 datetime | 
+**CreatedAt** | **time.Time** | ISO 8601 datetime | 
+**UpdatedAt** | **time.Time** | ISO 8601 datetime | 
 
 ## Methods
 
 ### NewSubscriptionResponse
 
-`func NewSubscriptionResponse(userId string, plan PlanResponse, status string, createdAt string, updatedAt string, ) *SubscriptionResponse`
+`func NewSubscriptionResponse(userId string, plan PlanResponse, status string, createdAt time.Time, updatedAt time.Time, ) *SubscriptionResponse`
 
 NewSubscriptionResponse instantiates a new SubscriptionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -189,40 +189,40 @@ HasCancelAtPeriodEnd returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
-`func (o *SubscriptionResponse) GetCreatedAt() string`
+`func (o *SubscriptionResponse) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *SubscriptionResponse) GetCreatedAtOk() (*string, bool)`
+`func (o *SubscriptionResponse) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *SubscriptionResponse) SetCreatedAt(v string)`
+`func (o *SubscriptionResponse) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *SubscriptionResponse) GetUpdatedAt() string`
+`func (o *SubscriptionResponse) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *SubscriptionResponse) GetUpdatedAtOk() (*string, bool)`
+`func (o *SubscriptionResponse) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *SubscriptionResponse) SetUpdatedAt(v string)`
+`func (o *SubscriptionResponse) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

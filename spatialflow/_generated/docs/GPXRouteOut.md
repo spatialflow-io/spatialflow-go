@@ -15,13 +15,13 @@ Name | Type | Description | Notes
 **StartTime** | **NullableString** |  | 
 **EndTime** | **NullableString** |  | 
 **IsActive** | **bool** |  | 
-**CreatedAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewGPXRouteOut
 
-`func NewGPXRouteOut(id string, name string, description string, deviceId string, deviceName string, totalPoints int32, totalDistanceKm float32, totalDurationSeconds float32, startTime NullableString, endTime NullableString, isActive bool, createdAt string, ) *GPXRouteOut`
+`func NewGPXRouteOut(id string, name string, description string, deviceId string, deviceName string, totalPoints int32, totalDistanceKm float32, totalDurationSeconds float32, startTime NullableString, endTime NullableString, isActive bool, createdAt time.Time, ) *GPXRouteOut`
 
 NewGPXRouteOut instantiates a new GPXRouteOut object
 This constructor will assign default values to properties that have it defined,
@@ -278,20 +278,20 @@ SetIsActive sets IsActive field to given value.
 
 ### GetCreatedAt
 
-`func (o *GPXRouteOut) GetCreatedAt() string`
+`func (o *GPXRouteOut) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *GPXRouteOut) GetCreatedAtOk() (*string, bool)`
+`func (o *GPXRouteOut) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *GPXRouteOut) SetCreatedAt(v string)`
+`func (o *GPXRouteOut) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 

@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/spatialflow-io/spatialflow-go/spatialflow"
+	"github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
 )
 
 // Integration tests against local API
@@ -25,7 +25,7 @@ func getTestToken(t *testing.T) string {
 		baseURL = "http://localhost:8000"
 	}
 
-	loginPayload := []byte(`{"email":"test@spatialflow.io","password":"TestPassword123!"}`)
+	loginPayload := []byte(`{"email":"test@spatialflow.io","password":"TestPassword123!"}`) // pragma: allowlist secret
 	resp, err := http.Post(baseURL+"/api/v1/auth/login", "application/json",
 		bytes.NewReader(loginPayload))
 	if err != nil {

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | Pointer to **string** |  | [optional] [default to "healthy"]
 **Service** | Pointer to **string** |  | [optional] [default to "subscription"]
-**Timestamp** | Pointer to **string** |  | [optional] 
+**Timestamp** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasService returns a boolean if a field has been set.
 
 ### GetTimestamp
 
-`func (o *HealthResponse) GetTimestamp() string`
+`func (o *HealthResponse) GetTimestamp() time.Time`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *HealthResponse) GetTimestampOk() (*string, bool)`
+`func (o *HealthResponse) GetTimestampOk() (*time.Time, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *HealthResponse) SetTimestamp(v string)`
+`func (o *HealthResponse) SetTimestamp(v time.Time)`
 
 SetTimestamp sets Timestamp field to given value.
 

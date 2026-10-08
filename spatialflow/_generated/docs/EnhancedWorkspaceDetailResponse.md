@@ -15,14 +15,14 @@ Name | Type | Description | Notes
 **MemberCount** | **int32** |  | 
 **Subscription** | [**SubscriptionInfo**](SubscriptionInfo.md) |  | 
 **Usage** | [**UsageLimits**](UsageLimits.md) |  | 
-**CreatedAt** | **NullableString** |  | 
-**UpdatedAt** | **NullableString** |  | 
+**CreatedAt** | **NullableTime** |  | 
+**UpdatedAt** | **NullableTime** |  | 
 
 ## Methods
 
 ### NewEnhancedWorkspaceDetailResponse
 
-`func NewEnhancedWorkspaceDetailResponse(id string, name string, slug string, billingEmail NullableString, website NullableString, logoUrl NullableString, timezone string, stripeCustomerId NullableString, memberCount int32, subscription SubscriptionInfo, usage UsageLimits, createdAt NullableString, updatedAt NullableString, ) *EnhancedWorkspaceDetailResponse`
+`func NewEnhancedWorkspaceDetailResponse(id string, name string, slug string, billingEmail NullableString, website NullableString, logoUrl NullableString, timezone string, stripeCustomerId NullableString, memberCount int32, subscription SubscriptionInfo, usage UsageLimits, createdAt NullableTime, updatedAt NullableTime, ) *EnhancedWorkspaceDetailResponse`
 
 NewEnhancedWorkspaceDetailResponse instantiates a new EnhancedWorkspaceDetailResponse object
 This constructor will assign default values to properties that have it defined,
@@ -299,20 +299,20 @@ SetUsage sets Usage field to given value.
 
 ### GetCreatedAt
 
-`func (o *EnhancedWorkspaceDetailResponse) GetCreatedAt() string`
+`func (o *EnhancedWorkspaceDetailResponse) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *EnhancedWorkspaceDetailResponse) GetCreatedAtOk() (*string, bool)`
+`func (o *EnhancedWorkspaceDetailResponse) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *EnhancedWorkspaceDetailResponse) SetCreatedAt(v string)`
+`func (o *EnhancedWorkspaceDetailResponse) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
@@ -329,20 +329,20 @@ SetCreatedAt sets CreatedAt field to given value.
 UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetUpdatedAt
 
-`func (o *EnhancedWorkspaceDetailResponse) GetUpdatedAt() string`
+`func (o *EnhancedWorkspaceDetailResponse) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *EnhancedWorkspaceDetailResponse) GetUpdatedAtOk() (*string, bool)`
+`func (o *EnhancedWorkspaceDetailResponse) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *EnhancedWorkspaceDetailResponse) SetUpdatedAt(v string)`
+`func (o *EnhancedWorkspaceDetailResponse) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

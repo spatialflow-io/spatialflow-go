@@ -5,11 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SessionId** | **string** |  | 
+**SnapshotAt** | Pointer to **NullableTime** |  | [optional] 
 **Locations** | [**[]LocationPointOut**](LocationPointOut.md) |  | 
 **TotalCount** | **int32** |  | 
 **Offset** | **int32** |  | 
 **Limit** | **int32** |  | 
 **Simplified** | Pointer to **bool** |  | [optional] [default to false]
+**RenderedTrack** | Pointer to **[][]float32** |  | [optional] 
+**TrackSource** | Pointer to **string** |  | [optional] [default to "raw"]
 
 ## Methods
 
@@ -50,6 +53,41 @@ and a boolean to check if the value has been set.
 SetSessionId sets SessionId field to given value.
 
 
+### GetSnapshotAt
+
+`func (o *SessionLocationsOut) GetSnapshotAt() time.Time`
+
+GetSnapshotAt returns the SnapshotAt field if non-nil, zero value otherwise.
+
+### GetSnapshotAtOk
+
+`func (o *SessionLocationsOut) GetSnapshotAtOk() (*time.Time, bool)`
+
+GetSnapshotAtOk returns a tuple with the SnapshotAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnapshotAt
+
+`func (o *SessionLocationsOut) SetSnapshotAt(v time.Time)`
+
+SetSnapshotAt sets SnapshotAt field to given value.
+
+### HasSnapshotAt
+
+`func (o *SessionLocationsOut) HasSnapshotAt() bool`
+
+HasSnapshotAt returns a boolean if a field has been set.
+
+### SetSnapshotAtNil
+
+`func (o *SessionLocationsOut) SetSnapshotAtNil(b bool)`
+
+ SetSnapshotAtNil sets the value for SnapshotAt to be an explicit nil
+
+### UnsetSnapshotAt
+`func (o *SessionLocationsOut) UnsetSnapshotAt()`
+
+UnsetSnapshotAt ensures that no value is present for SnapshotAt, not even an explicit nil
 ### GetLocations
 
 `func (o *SessionLocationsOut) GetLocations() []LocationPointOut`
@@ -154,6 +192,66 @@ SetSimplified sets Simplified field to given value.
 `func (o *SessionLocationsOut) HasSimplified() bool`
 
 HasSimplified returns a boolean if a field has been set.
+
+### GetRenderedTrack
+
+`func (o *SessionLocationsOut) GetRenderedTrack() [][]float32`
+
+GetRenderedTrack returns the RenderedTrack field if non-nil, zero value otherwise.
+
+### GetRenderedTrackOk
+
+`func (o *SessionLocationsOut) GetRenderedTrackOk() (*[][]float32, bool)`
+
+GetRenderedTrackOk returns a tuple with the RenderedTrack field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRenderedTrack
+
+`func (o *SessionLocationsOut) SetRenderedTrack(v [][]float32)`
+
+SetRenderedTrack sets RenderedTrack field to given value.
+
+### HasRenderedTrack
+
+`func (o *SessionLocationsOut) HasRenderedTrack() bool`
+
+HasRenderedTrack returns a boolean if a field has been set.
+
+### SetRenderedTrackNil
+
+`func (o *SessionLocationsOut) SetRenderedTrackNil(b bool)`
+
+ SetRenderedTrackNil sets the value for RenderedTrack to be an explicit nil
+
+### UnsetRenderedTrack
+`func (o *SessionLocationsOut) UnsetRenderedTrack()`
+
+UnsetRenderedTrack ensures that no value is present for RenderedTrack, not even an explicit nil
+### GetTrackSource
+
+`func (o *SessionLocationsOut) GetTrackSource() string`
+
+GetTrackSource returns the TrackSource field if non-nil, zero value otherwise.
+
+### GetTrackSourceOk
+
+`func (o *SessionLocationsOut) GetTrackSourceOk() (*string, bool)`
+
+GetTrackSourceOk returns a tuple with the TrackSource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrackSource
+
+`func (o *SessionLocationsOut) SetTrackSource(v string)`
+
+SetTrackSource sets TrackSource field to given value.
+
+### HasTrackSource
+
+`func (o *SessionLocationsOut) HasTrackSource() bool`
+
+HasTrackSource returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

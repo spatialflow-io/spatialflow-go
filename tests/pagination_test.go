@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/spatialflow-io/spatialflow-go/spatialflow"
+	"github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
 )
 
 func TestPager_Next(t *testing.T) {

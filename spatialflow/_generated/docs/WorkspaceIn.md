@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **SupportEmail** | Pointer to **NullableString** |  | [optional] 
 **SlackConnectUrl** | Pointer to **NullableString** |  | [optional] 
 **UnitSystem** | Pointer to **NullableString** |  | [optional] 
+**MapHome** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -333,6 +334,41 @@ HasUnitSystem returns a boolean if a field has been set.
 `func (o *WorkspaceIn) UnsetUnitSystem()`
 
 UnsetUnitSystem ensures that no value is present for UnitSystem, not even an explicit nil
+### GetMapHome
+
+`func (o *WorkspaceIn) GetMapHome() map[string]interface{}`
+
+GetMapHome returns the MapHome field if non-nil, zero value otherwise.
+
+### GetMapHomeOk
+
+`func (o *WorkspaceIn) GetMapHomeOk() (*map[string]interface{}, bool)`
+
+GetMapHomeOk returns a tuple with the MapHome field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMapHome
+
+`func (o *WorkspaceIn) SetMapHome(v map[string]interface{})`
+
+SetMapHome sets MapHome field to given value.
+
+### HasMapHome
+
+`func (o *WorkspaceIn) HasMapHome() bool`
+
+HasMapHome returns a boolean if a field has been set.
+
+### SetMapHomeNil
+
+`func (o *WorkspaceIn) SetMapHomeNil(b bool)`
+
+ SetMapHomeNil sets the value for MapHome to be an explicit nil
+
+### UnsetMapHome
+`func (o *WorkspaceIn) UnsetMapHome()`
+
+UnsetMapHome ensures that no value is present for MapHome, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **WebhookUrl** | Pointer to **NullableString** |  | [optional] 
 **IsEnabled** | Pointer to **NullableBool** |  | [optional] 
 **NotifyNewSignups** | Pointer to **NullableBool** |  | [optional] 
+**NotifyIssueSubmissions** | Pointer to **NullableBool** |  | [optional] 
 **NotifyAdminApprovals** | Pointer to **NullableBool** |  | [optional] 
 **NotifySubscriptionChanges** | Pointer to **NullableBool** |  | [optional] 
 **NotifyPaymentFailures** | Pointer to **NullableBool** |  | [optional] 
@@ -175,6 +176,41 @@ HasNotifyNewSignups returns a boolean if a field has been set.
 `func (o *NotificationConfigUpdateRequest) UnsetNotifyNewSignups()`
 
 UnsetNotifyNewSignups ensures that no value is present for NotifyNewSignups, not even an explicit nil
+### GetNotifyIssueSubmissions
+
+`func (o *NotificationConfigUpdateRequest) GetNotifyIssueSubmissions() bool`
+
+GetNotifyIssueSubmissions returns the NotifyIssueSubmissions field if non-nil, zero value otherwise.
+
+### GetNotifyIssueSubmissionsOk
+
+`func (o *NotificationConfigUpdateRequest) GetNotifyIssueSubmissionsOk() (*bool, bool)`
+
+GetNotifyIssueSubmissionsOk returns a tuple with the NotifyIssueSubmissions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotifyIssueSubmissions
+
+`func (o *NotificationConfigUpdateRequest) SetNotifyIssueSubmissions(v bool)`
+
+SetNotifyIssueSubmissions sets NotifyIssueSubmissions field to given value.
+
+### HasNotifyIssueSubmissions
+
+`func (o *NotificationConfigUpdateRequest) HasNotifyIssueSubmissions() bool`
+
+HasNotifyIssueSubmissions returns a boolean if a field has been set.
+
+### SetNotifyIssueSubmissionsNil
+
+`func (o *NotificationConfigUpdateRequest) SetNotifyIssueSubmissionsNil(b bool)`
+
+ SetNotifyIssueSubmissionsNil sets the value for NotifyIssueSubmissions to be an explicit nil
+
+### UnsetNotifyIssueSubmissions
+`func (o *NotificationConfigUpdateRequest) UnsetNotifyIssueSubmissions()`
+
+UnsetNotifyIssueSubmissions ensures that no value is present for NotifyIssueSubmissions, not even an explicit nil
 ### GetNotifyAdminApprovals
 
 `func (o *NotificationConfigUpdateRequest) GetNotifyAdminApprovals() bool`

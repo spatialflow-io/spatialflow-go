@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **Description** | Pointer to **NullableString** |  | [optional] 
 **GroupId** | **string** |  | 
 **GroupName** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | **string** |  | 
-**UpdatedAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
+**UpdatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewGroupGeofenceItemOut
 
-`func NewGroupGeofenceItemOut(id string, name string, groupId string, createdAt string, updatedAt string, ) *GroupGeofenceItemOut`
+`func NewGroupGeofenceItemOut(id string, name string, groupId string, createdAt time.Time, updatedAt time.Time, ) *GroupGeofenceItemOut`
 
 NewGroupGeofenceItemOut instantiates a new GroupGeofenceItemOut object
 This constructor will assign default values to properties that have it defined,
@@ -163,40 +163,40 @@ HasGroupName returns a boolean if a field has been set.
 UnsetGroupName ensures that no value is present for GroupName, not even an explicit nil
 ### GetCreatedAt
 
-`func (o *GroupGeofenceItemOut) GetCreatedAt() string`
+`func (o *GroupGeofenceItemOut) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *GroupGeofenceItemOut) GetCreatedAtOk() (*string, bool)`
+`func (o *GroupGeofenceItemOut) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *GroupGeofenceItemOut) SetCreatedAt(v string)`
+`func (o *GroupGeofenceItemOut) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *GroupGeofenceItemOut) GetUpdatedAt() string`
+`func (o *GroupGeofenceItemOut) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *GroupGeofenceItemOut) GetUpdatedAtOk() (*string, bool)`
+`func (o *GroupGeofenceItemOut) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *GroupGeofenceItemOut) SetUpdatedAt(v string)`
+`func (o *GroupGeofenceItemOut) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

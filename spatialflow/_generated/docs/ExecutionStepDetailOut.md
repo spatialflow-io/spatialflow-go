@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **StepName** | **string** |  | 
 **StepType** | **string** |  | 
 **Status** | **string** |  | 
-**StartedAt** | Pointer to **NullableString** |  | [optional] 
-**CompletedAt** | Pointer to **NullableString** |  | [optional] 
+**StartedAt** | Pointer to **NullableTime** |  | [optional] 
+**CompletedAt** | Pointer to **NullableTime** |  | [optional] 
 **DurationMs** | Pointer to **NullableFloat32** |  | [optional] 
 **ErrorMessage** | Pointer to **NullableString** |  | [optional] 
 **InputData** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -152,20 +152,20 @@ SetStatus sets Status field to given value.
 
 ### GetStartedAt
 
-`func (o *ExecutionStepDetailOut) GetStartedAt() string`
+`func (o *ExecutionStepDetailOut) GetStartedAt() time.Time`
 
 GetStartedAt returns the StartedAt field if non-nil, zero value otherwise.
 
 ### GetStartedAtOk
 
-`func (o *ExecutionStepDetailOut) GetStartedAtOk() (*string, bool)`
+`func (o *ExecutionStepDetailOut) GetStartedAtOk() (*time.Time, bool)`
 
 GetStartedAtOk returns a tuple with the StartedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartedAt
 
-`func (o *ExecutionStepDetailOut) SetStartedAt(v string)`
+`func (o *ExecutionStepDetailOut) SetStartedAt(v time.Time)`
 
 SetStartedAt sets StartedAt field to given value.
 
@@ -187,20 +187,20 @@ HasStartedAt returns a boolean if a field has been set.
 UnsetStartedAt ensures that no value is present for StartedAt, not even an explicit nil
 ### GetCompletedAt
 
-`func (o *ExecutionStepDetailOut) GetCompletedAt() string`
+`func (o *ExecutionStepDetailOut) GetCompletedAt() time.Time`
 
 GetCompletedAt returns the CompletedAt field if non-nil, zero value otherwise.
 
 ### GetCompletedAtOk
 
-`func (o *ExecutionStepDetailOut) GetCompletedAtOk() (*string, bool)`
+`func (o *ExecutionStepDetailOut) GetCompletedAtOk() (*time.Time, bool)`
 
 GetCompletedAtOk returns a tuple with the CompletedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompletedAt
 
-`func (o *ExecutionStepDetailOut) SetCompletedAt(v string)`
+`func (o *ExecutionStepDetailOut) SetCompletedAt(v time.Time)`
 
 SetCompletedAt sets CompletedAt field to given value.
 

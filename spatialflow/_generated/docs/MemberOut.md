@@ -8,13 +8,15 @@ Name | Type | Description | Notes
 **Email** | **string** |  | 
 **Name** | **NullableString** |  | 
 **Role** | **string** |  | 
-**JoinedAt** | **string** |  | 
+**JoinedAt** | **time.Time** |  | 
+**TrackingState** | Pointer to **NullableString** |  | [optional] 
+**LastLocationAt** | Pointer to **NullableTime** |  | [optional] 
 
 ## Methods
 
 ### NewMemberOut
 
-`func NewMemberOut(id string, email string, name NullableString, role string, joinedAt string, ) *MemberOut`
+`func NewMemberOut(id string, email string, name NullableString, role string, joinedAt time.Time, ) *MemberOut`
 
 NewMemberOut instantiates a new MemberOut object
 This constructor will assign default values to properties that have it defined,
@@ -121,24 +123,94 @@ SetRole sets Role field to given value.
 
 ### GetJoinedAt
 
-`func (o *MemberOut) GetJoinedAt() string`
+`func (o *MemberOut) GetJoinedAt() time.Time`
 
 GetJoinedAt returns the JoinedAt field if non-nil, zero value otherwise.
 
 ### GetJoinedAtOk
 
-`func (o *MemberOut) GetJoinedAtOk() (*string, bool)`
+`func (o *MemberOut) GetJoinedAtOk() (*time.Time, bool)`
 
 GetJoinedAtOk returns a tuple with the JoinedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetJoinedAt
 
-`func (o *MemberOut) SetJoinedAt(v string)`
+`func (o *MemberOut) SetJoinedAt(v time.Time)`
 
 SetJoinedAt sets JoinedAt field to given value.
 
 
+### GetTrackingState
+
+`func (o *MemberOut) GetTrackingState() string`
+
+GetTrackingState returns the TrackingState field if non-nil, zero value otherwise.
+
+### GetTrackingStateOk
+
+`func (o *MemberOut) GetTrackingStateOk() (*string, bool)`
+
+GetTrackingStateOk returns a tuple with the TrackingState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrackingState
+
+`func (o *MemberOut) SetTrackingState(v string)`
+
+SetTrackingState sets TrackingState field to given value.
+
+### HasTrackingState
+
+`func (o *MemberOut) HasTrackingState() bool`
+
+HasTrackingState returns a boolean if a field has been set.
+
+### SetTrackingStateNil
+
+`func (o *MemberOut) SetTrackingStateNil(b bool)`
+
+ SetTrackingStateNil sets the value for TrackingState to be an explicit nil
+
+### UnsetTrackingState
+`func (o *MemberOut) UnsetTrackingState()`
+
+UnsetTrackingState ensures that no value is present for TrackingState, not even an explicit nil
+### GetLastLocationAt
+
+`func (o *MemberOut) GetLastLocationAt() time.Time`
+
+GetLastLocationAt returns the LastLocationAt field if non-nil, zero value otherwise.
+
+### GetLastLocationAtOk
+
+`func (o *MemberOut) GetLastLocationAtOk() (*time.Time, bool)`
+
+GetLastLocationAtOk returns a tuple with the LastLocationAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastLocationAt
+
+`func (o *MemberOut) SetLastLocationAt(v time.Time)`
+
+SetLastLocationAt sets LastLocationAt field to given value.
+
+### HasLastLocationAt
+
+`func (o *MemberOut) HasLastLocationAt() bool`
+
+HasLastLocationAt returns a boolean if a field has been set.
+
+### SetLastLocationAtNil
+
+`func (o *MemberOut) SetLastLocationAtNil(b bool)`
+
+ SetLastLocationAtNil sets the value for LastLocationAt to be an explicit nil
+
+### UnsetLastLocationAt
+`func (o *MemberOut) UnsetLastLocationAt()`
+
+UnsetLastLocationAt ensures that no value is present for LastLocationAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

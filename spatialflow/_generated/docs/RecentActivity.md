@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ActivityType** | **string** |  | 
-**Timestamp** | **string** |  | 
+**Timestamp** | **time.Time** |  | 
 **Metadata** | **map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewRecentActivity
 
-`func NewRecentActivity(activityType string, timestamp string, metadata map[string]interface{}, ) *RecentActivity`
+`func NewRecentActivity(activityType string, timestamp time.Time, metadata map[string]interface{}, ) *RecentActivity`
 
 NewRecentActivity instantiates a new RecentActivity object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetActivityType sets ActivityType field to given value.
 
 ### GetTimestamp
 
-`func (o *RecentActivity) GetTimestamp() string`
+`func (o *RecentActivity) GetTimestamp() time.Time`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *RecentActivity) GetTimestampOk() (*string, bool)`
+`func (o *RecentActivity) GetTimestampOk() (*time.Time, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *RecentActivity) SetTimestamp(v string)`
+`func (o *RecentActivity) SetTimestamp(v time.Time)`
 
 SetTimestamp sets Timestamp field to given value.
 

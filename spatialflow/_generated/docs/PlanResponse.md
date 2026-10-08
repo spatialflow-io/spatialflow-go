@@ -7,15 +7,15 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **Description** | **string** |  | 
-**Price** | **float32** |  | 
+**Price** | **NullableFloat32** |  | 
 **Interval** | **string** | Billing interval (month/year) | 
 **Features** | [**PlanFeatures**](PlanFeatures.md) |  | 
 **Limits** | [**PlanLimits**](PlanLimits.md) |  | 
 **StripePriceId** | Pointer to **NullableString** |  | [optional] 
 **Tier** | Pointer to **string** | Lowercase plan name (e.g., &#39;free&#39;, &#39;pro&#39;) | [optional] [default to ""]
 **DisplayName** | Pointer to **string** | Human-readable plan name | [optional] [default to ""]
-**PriceMonthly** | Pointer to **float32** | Monthly price in dollars | [optional] [default to 0]
-**PriceYearly** | Pointer to **float32** | Yearly price in dollars | [optional] [default to 0]
+**PriceMonthly** | Pointer to **NullableFloat32** |  | [optional] 
+**PriceYearly** | Pointer to **NullableFloat32** |  | [optional] 
 **StripePriceMonthlyId** | Pointer to **NullableString** |  | [optional] 
 **StripePriceYearlyId** | Pointer to **NullableString** |  | [optional] 
 **EventOverageRate** | Pointer to **float32** | Price per extra 100k events | [optional] [default to 0]
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewPlanResponse
 
-`func NewPlanResponse(id string, name string, description string, price float32, interval string, features PlanFeatures, limits PlanLimits, ) *PlanResponse`
+`func NewPlanResponse(id string, name string, description string, price NullableFloat32, interval string, features PlanFeatures, limits PlanLimits, ) *PlanResponse`
 
 NewPlanResponse instantiates a new PlanResponse object
 This constructor will assign default values to properties that have it defined,
@@ -121,6 +121,16 @@ and a boolean to check if the value has been set.
 SetPrice sets Price field to given value.
 
 
+### SetPriceNil
+
+`func (o *PlanResponse) SetPriceNil(b bool)`
+
+ SetPriceNil sets the value for Price to be an explicit nil
+
+### UnsetPrice
+`func (o *PlanResponse) UnsetPrice()`
+
+UnsetPrice ensures that no value is present for Price, not even an explicit nil
 ### GetInterval
 
 `func (o *PlanResponse) GetInterval() string`
@@ -291,6 +301,16 @@ SetPriceMonthly sets PriceMonthly field to given value.
 
 HasPriceMonthly returns a boolean if a field has been set.
 
+### SetPriceMonthlyNil
+
+`func (o *PlanResponse) SetPriceMonthlyNil(b bool)`
+
+ SetPriceMonthlyNil sets the value for PriceMonthly to be an explicit nil
+
+### UnsetPriceMonthly
+`func (o *PlanResponse) UnsetPriceMonthly()`
+
+UnsetPriceMonthly ensures that no value is present for PriceMonthly, not even an explicit nil
 ### GetPriceYearly
 
 `func (o *PlanResponse) GetPriceYearly() float32`
@@ -316,6 +336,16 @@ SetPriceYearly sets PriceYearly field to given value.
 
 HasPriceYearly returns a boolean if a field has been set.
 
+### SetPriceYearlyNil
+
+`func (o *PlanResponse) SetPriceYearlyNil(b bool)`
+
+ SetPriceYearlyNil sets the value for PriceYearly to be an explicit nil
+
+### UnsetPriceYearly
+`func (o *PlanResponse) UnsetPriceYearly()`
+
+UnsetPriceYearly ensures that no value is present for PriceYearly, not even an explicit nil
 ### GetStripePriceMonthlyId
 
 `func (o *PlanResponse) GetStripePriceMonthlyId() string`

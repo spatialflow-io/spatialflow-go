@@ -8,15 +8,15 @@ Name | Type | Description | Notes
 **ToEmail** | **string** |  | 
 **Subject** | **string** |  | 
 **Status** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**DeliveredAt** | Pointer to **NullableString** |  | [optional] 
+**CreatedAt** | **time.Time** |  | 
+**DeliveredAt** | Pointer to **NullableTime** |  | [optional] 
 **Template** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewEmailHistoryItemOut
 
-`func NewEmailHistoryItemOut(id string, toEmail string, subject string, status string, createdAt string, ) *EmailHistoryItemOut`
+`func NewEmailHistoryItemOut(id string, toEmail string, subject string, status string, createdAt time.Time, ) *EmailHistoryItemOut`
 
 NewEmailHistoryItemOut instantiates a new EmailHistoryItemOut object
 This constructor will assign default values to properties that have it defined,
@@ -113,40 +113,40 @@ SetStatus sets Status field to given value.
 
 ### GetCreatedAt
 
-`func (o *EmailHistoryItemOut) GetCreatedAt() string`
+`func (o *EmailHistoryItemOut) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *EmailHistoryItemOut) GetCreatedAtOk() (*string, bool)`
+`func (o *EmailHistoryItemOut) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *EmailHistoryItemOut) SetCreatedAt(v string)`
+`func (o *EmailHistoryItemOut) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetDeliveredAt
 
-`func (o *EmailHistoryItemOut) GetDeliveredAt() string`
+`func (o *EmailHistoryItemOut) GetDeliveredAt() time.Time`
 
 GetDeliveredAt returns the DeliveredAt field if non-nil, zero value otherwise.
 
 ### GetDeliveredAtOk
 
-`func (o *EmailHistoryItemOut) GetDeliveredAtOk() (*string, bool)`
+`func (o *EmailHistoryItemOut) GetDeliveredAtOk() (*time.Time, bool)`
 
 GetDeliveredAtOk returns a tuple with the DeliveredAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeliveredAt
 
-`func (o *EmailHistoryItemOut) SetDeliveredAt(v string)`
+`func (o *EmailHistoryItemOut) SetDeliveredAt(v time.Time)`
 
 SetDeliveredAt sets DeliveredAt field to given value.
 

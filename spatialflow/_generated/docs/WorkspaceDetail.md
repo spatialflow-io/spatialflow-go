@@ -11,13 +11,13 @@ Name | Type | Description | Notes
 **Website** | **NullableString** |  | 
 **Timezone** | **string** |  | 
 **MemberCount** | **int32** |  | 
-**CreatedAt** | **NullableString** |  | 
+**CreatedAt** | **NullableTime** |  | 
 
 ## Methods
 
 ### NewWorkspaceDetail
 
-`func NewWorkspaceDetail(id string, name string, slug string, billingEmail NullableString, website NullableString, timezone string, memberCount int32, createdAt NullableString, ) *WorkspaceDetail`
+`func NewWorkspaceDetail(id string, name string, slug string, billingEmail NullableString, website NullableString, timezone string, memberCount int32, createdAt NullableTime, ) *WorkspaceDetail`
 
 NewWorkspaceDetail instantiates a new WorkspaceDetail object
 This constructor will assign default values to properties that have it defined,
@@ -194,20 +194,20 @@ SetMemberCount sets MemberCount field to given value.
 
 ### GetCreatedAt
 
-`func (o *WorkspaceDetail) GetCreatedAt() string`
+`func (o *WorkspaceDetail) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *WorkspaceDetail) GetCreatedAtOk() (*string, bool)`
+`func (o *WorkspaceDetail) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *WorkspaceDetail) SetCreatedAt(v string)`
+`func (o *WorkspaceDetail) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 

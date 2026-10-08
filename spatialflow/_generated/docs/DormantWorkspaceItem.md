@@ -11,13 +11,13 @@ Name | Type | Description | Notes
 **SubscriptionTier** | Pointer to **string** |  | [optional] [default to "free"]
 **LastActivity** | Pointer to **NullableString** |  | [optional] 
 **InactiveDays** | **int32** |  | 
-**CreatedAt** | **NullableString** |  | 
+**CreatedAt** | **NullableTime** |  | 
 
 ## Methods
 
 ### NewDormantWorkspaceItem
 
-`func NewDormantWorkspaceItem(id string, name string, slug string, memberCount int32, inactiveDays int32, createdAt NullableString, ) *DormantWorkspaceItem`
+`func NewDormantWorkspaceItem(id string, name string, slug string, memberCount int32, inactiveDays int32, createdAt NullableTime, ) *DormantWorkspaceItem`
 
 NewDormantWorkspaceItem instantiates a new DormantWorkspaceItem object
 This constructor will assign default values to properties that have it defined,
@@ -194,20 +194,20 @@ SetInactiveDays sets InactiveDays field to given value.
 
 ### GetCreatedAt
 
-`func (o *DormantWorkspaceItem) GetCreatedAt() string`
+`func (o *DormantWorkspaceItem) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *DormantWorkspaceItem) GetCreatedAtOk() (*string, bool)`
+`func (o *DormantWorkspaceItem) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *DormantWorkspaceItem) SetCreatedAt(v string)`
+`func (o *DormantWorkspaceItem) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 

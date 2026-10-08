@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **ExecutionId** | **string** |  | 
 **Status** | **string** |  | 
 **TriggerSource** | **string** |  | 
-**StartedAt** | Pointer to **NullableString** |  | [optional] 
+**StartedAt** | Pointer to **NullableTime** |  | [optional] 
 **DurationSeconds** | Pointer to **NullableFloat32** |  | [optional] 
 
 ## Methods
@@ -112,20 +112,20 @@ SetTriggerSource sets TriggerSource field to given value.
 
 ### GetStartedAt
 
-`func (o *RecentExecutionOut) GetStartedAt() string`
+`func (o *RecentExecutionOut) GetStartedAt() time.Time`
 
 GetStartedAt returns the StartedAt field if non-nil, zero value otherwise.
 
 ### GetStartedAtOk
 
-`func (o *RecentExecutionOut) GetStartedAtOk() (*string, bool)`
+`func (o *RecentExecutionOut) GetStartedAtOk() (*time.Time, bool)`
 
 GetStartedAtOk returns a tuple with the StartedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartedAt
 
-`func (o *RecentExecutionOut) SetStartedAt(v string)`
+`func (o *RecentExecutionOut) SetStartedAt(v time.Time)`
 
 SetStartedAt sets StartedAt field to given value.
 

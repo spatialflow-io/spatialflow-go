@@ -10,13 +10,13 @@ Name | Type | Description | Notes
 **WorkflowTriggered** | **bool** |  | 
 **ExecutionResults** | Pointer to **map[string]interface{}** |  | [optional] 
 **TestMetadata** | Pointer to **map[string]interface{}** |  | [optional] 
-**CreatedAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewTestEventItemOut
 
-`func NewTestEventItemOut(testEventId string, eventType string, webhookTriggered bool, workflowTriggered bool, createdAt string, ) *TestEventItemOut`
+`func NewTestEventItemOut(testEventId string, eventType string, webhookTriggered bool, workflowTriggered bool, createdAt time.Time, ) *TestEventItemOut`
 
 NewTestEventItemOut instantiates a new TestEventItemOut object
 This constructor will assign default values to properties that have it defined,
@@ -183,20 +183,20 @@ HasTestMetadata returns a boolean if a field has been set.
 UnsetTestMetadata ensures that no value is present for TestMetadata, not even an explicit nil
 ### GetCreatedAt
 
-`func (o *TestEventItemOut) GetCreatedAt() string`
+`func (o *TestEventItemOut) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *TestEventItemOut) GetCreatedAtOk() (*string, bool)`
+`func (o *TestEventItemOut) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *TestEventItemOut) SetCreatedAt(v string)`
+`func (o *TestEventItemOut) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AppsDevicesApiActivateDevice**](DevicesAPI.md#AppsDevicesApiActivateDevice) | **Post** /api/v1/devices/{device_id}/activate | Activate Device
 [**AppsDevicesApiBatchUpdateLocations**](DevicesAPI.md#AppsDevicesApiBatchUpdateLocations) | **Post** /api/v1/devices/batch-update | Batch Update Locations
+[**AppsDevicesApiCancelShiftRecovery**](DevicesAPI.md#AppsDevicesApiCancelShiftRecovery) | **Post** /api/v1/devices/{device_id}/cancel-shift-recovery | Cancel Shift Recovery
 [**AppsDevicesApiCreateDevice**](DevicesAPI.md#AppsDevicesApiCreateDevice) | **Post** /api/v1/devices/ | Create Device
 [**AppsDevicesApiCreateManagerSessionNote**](DevicesAPI.md#AppsDevicesApiCreateManagerSessionNote) | **Post** /api/v1/devices/{device_uuid}/sessions/{session_id}/notes | Create Manager Session Note
 [**AppsDevicesApiDeactivateDevice**](DevicesAPI.md#AppsDevicesApiDeactivateDevice) | **Post** /api/v1/devices/{device_id}/deactivate | Deactivate Device
@@ -13,6 +14,7 @@ Method | HTTP request | Description
 [**AppsDevicesApiEndShift**](DevicesAPI.md#AppsDevicesApiEndShift) | **Post** /api/v1/devices/{device_id}/end-shift | End Shift
 [**AppsDevicesApiExportEventsEndpoint**](DevicesAPI.md#AppsDevicesApiExportEventsEndpoint) | **Get** /api/v1/devices/events/export | Export Events Endpoint
 [**AppsDevicesApiGetActiveSession**](DevicesAPI.md#AppsDevicesApiGetActiveSession) | **Get** /api/v1/devices/{device_uuid}/active-session | Get Active Session
+[**AppsDevicesApiGetAnomalyStatus**](DevicesAPI.md#AppsDevicesApiGetAnomalyStatus) | **Get** /api/v1/devices/anomaly-status | Get Anomaly Status
 [**AppsDevicesApiGetDashboardStats**](DevicesAPI.md#AppsDevicesApiGetDashboardStats) | **Get** /api/v1/devices/dashboard-stats | Get Dashboard Stats
 [**AppsDevicesApiGetDashboardStatsTimeline**](DevicesAPI.md#AppsDevicesApiGetDashboardStatsTimeline) | **Get** /api/v1/devices/dashboard-stats/timeline | Get Dashboard Stats Timeline
 [**AppsDevicesApiGetDevice**](DevicesAPI.md#AppsDevicesApiGetDevice) | **Get** /api/v1/devices/{device_id} | Get Device
@@ -25,12 +27,14 @@ Method | HTTP request | Description
 [**AppsDevicesApiGetRecentLocations**](DevicesAPI.md#AppsDevicesApiGetRecentLocations) | **Get** /api/v1/devices/{device_id}/locations/recent | Get Recent Locations
 [**AppsDevicesApiGetSessionDetail**](DevicesAPI.md#AppsDevicesApiGetSessionDetail) | **Get** /api/v1/devices/{device_id}/sessions/{session_id} | Get Session Detail
 [**AppsDevicesApiGetSessionLocations**](DevicesAPI.md#AppsDevicesApiGetSessionLocations) | **Get** /api/v1/devices/{device_id}/sessions/{session_id}/locations | Get Session Locations
+[**AppsDevicesApiListCaptureActivity**](DevicesAPI.md#AppsDevicesApiListCaptureActivity) | **Get** /api/v1/devices/captures | List Capture Activity
 [**AppsDevicesApiListDevices**](DevicesAPI.md#AppsDevicesApiListDevices) | **Get** /api/v1/devices/ | List Devices
 [**AppsDevicesApiListSessionAttachments**](DevicesAPI.md#AppsDevicesApiListSessionAttachments) | **Get** /api/v1/devices/{device_uuid}/sessions/{session_id}/attachments | List Session Attachments
 [**AppsDevicesApiListSessionNotes**](DevicesAPI.md#AppsDevicesApiListSessionNotes) | **Get** /api/v1/devices/{device_uuid}/sessions/{session_id}/notes | List Session Notes
 [**AppsDevicesApiListSessionPhotos**](DevicesAPI.md#AppsDevicesApiListSessionPhotos) | **Get** /api/v1/devices/{device_uuid}/sessions/{session_id}/photos | List Session Photos
 [**AppsDevicesApiListWorkspacePhotos**](DevicesAPI.md#AppsDevicesApiListWorkspacePhotos) | **Get** /api/v1/devices/photos | List Workspace Photos
 [**AppsDevicesApiPauseShift**](DevicesAPI.md#AppsDevicesApiPauseShift) | **Post** /api/v1/devices/{device_id}/pause-shift | Pause Shift
+[**AppsDevicesApiRecoverShift**](DevicesAPI.md#AppsDevicesApiRecoverShift) | **Post** /api/v1/devices/{device_id}/recover-shift | Recover Shift
 [**AppsDevicesApiResumeShift**](DevicesAPI.md#AppsDevicesApiResumeShift) | **Post** /api/v1/devices/{device_id}/resume-shift | Resume Shift
 [**AppsDevicesApiStartShift**](DevicesAPI.md#AppsDevicesApiStartShift) | **Post** /api/v1/devices/{device_id}/start-shift | Start Shift
 [**AppsDevicesApiUpdateDevice**](DevicesAPI.md#AppsDevicesApiUpdateDevice) | **Put** /api/v1/devices/{device_id} | Update Device
@@ -161,6 +165,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]LocationUpdateOut**](LocationUpdateOut.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsDevicesApiCancelShiftRecovery
+
+> ShiftRecoveryOut AppsDevicesApiCancelShiftRecovery(ctx, deviceId).ShiftRecoveryIn(shiftRecoveryIn).Execute()
+
+Cancel Shift Recovery
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	deviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	shiftRecoveryIn := *openapiclient.NewShiftRecoveryIn("SourceSessionId_example") // ShiftRecoveryIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiCancelShiftRecovery(context.Background(), deviceId).ShiftRecoveryIn(shiftRecoveryIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.AppsDevicesApiCancelShiftRecovery``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsDevicesApiCancelShiftRecovery`: ShiftRecoveryOut
+	fmt.Fprintf(os.Stdout, "Response from `DevicesAPI.AppsDevicesApiCancelShiftRecovery`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**deviceId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsDevicesApiCancelShiftRecoveryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shiftRecoveryIn** | [**ShiftRecoveryIn**](ShiftRecoveryIn.md) |  | 
+
+### Return type
+
+[**ShiftRecoveryOut**](ShiftRecoveryOut.md)
 
 ### Authorization
 
@@ -457,7 +533,7 @@ Name | Type | Description  | Notes
 
 ## AppsDevicesApiEndShift
 
-> ShiftActionOut AppsDevicesApiEndShift(ctx, deviceId).Execute()
+> ShiftActionOut AppsDevicesApiEndShift(ctx, deviceId).LocalShiftStopIn(localShiftStopIn).Execute()
 
 End Shift
 
@@ -472,15 +548,17 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
 )
 
 func main() {
 	deviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	localShiftStopIn := *openapiclient.NewLocalShiftStopIn(time.Now(), time.Now()) // LocalShiftStopIn |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiEndShift(context.Background(), deviceId).Execute()
+	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiEndShift(context.Background(), deviceId).LocalShiftStopIn(localShiftStopIn).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.AppsDevicesApiEndShift``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -506,6 +584,7 @@ Other parameters are passed through a pointer to a apiAppsDevicesApiEndShiftRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **localShiftStopIn** | [**LocalShiftStopIn**](LocalShiftStopIn.md) |  | 
 
 ### Return type
 
@@ -517,7 +596,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -656,6 +735,67 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DeviceSessionOut**](DeviceSessionOut.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsDevicesApiGetAnomalyStatus
+
+> AnomalyStatusOut AppsDevicesApiGetAnomalyStatus(ctx).Execute()
+
+Get Anomaly Status
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiGetAnomalyStatus(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.AppsDevicesApiGetAnomalyStatus``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsDevicesApiGetAnomalyStatus`: AnomalyStatusOut
+	fmt.Fprintf(os.Stdout, "Response from `DevicesAPI.AppsDevicesApiGetAnomalyStatus`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsDevicesApiGetAnomalyStatusRequest struct via the builder pattern
+
+
+### Return type
+
+[**AnomalyStatusOut**](AnomalyStatusOut.md)
 
 ### Authorization
 
@@ -948,7 +1088,7 @@ Name | Type | Description  | Notes
 
 ## AppsDevicesApiGetDeviceSessions
 
-> DeviceSessionsOut AppsDevicesApiGetDeviceSessions(ctx, deviceId).Limit(limit).Offset(offset).Execute()
+> DeviceSessionsOut AppsDevicesApiGetDeviceSessions(ctx, deviceId).Limit(limit).Offset(offset).StartedAfter(startedAfter).StartedBefore(startedBefore).IncludeOpen(includeOpen).Execute()
 
 Get Device Sessions
 
@@ -963,6 +1103,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
 )
 
@@ -970,10 +1111,13 @@ func main() {
 	deviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	limit := int32(56) // int32 |  (optional) (default to 20)
 	offset := int32(56) // int32 |  (optional) (default to 0)
+	startedAfter := time.Now() // time.Time |  (optional)
+	startedBefore := time.Now() // time.Time |  (optional)
+	includeOpen := true // bool | Also return the current shift's open session as open_session (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiGetDeviceSessions(context.Background(), deviceId).Limit(limit).Offset(offset).Execute()
+	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiGetDeviceSessions(context.Background(), deviceId).Limit(limit).Offset(offset).StartedAfter(startedAfter).StartedBefore(startedBefore).IncludeOpen(includeOpen).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.AppsDevicesApiGetDeviceSessions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1001,6 +1145,9 @@ Name | Type | Description  | Notes
 
  **limit** | **int32** |  | [default to 20]
  **offset** | **int32** |  | [default to 0]
+ **startedAfter** | **time.Time** |  | 
+ **startedBefore** | **time.Time** |  | 
+ **includeOpen** | **bool** | Also return the current shift&#39;s open session as open_session | [default to false]
 
 ### Return type
 
@@ -1223,7 +1370,7 @@ Other parameters are passed through a pointer to a apiAppsDevicesApiGetLocationS
 
 ## AppsDevicesApiGetRecentEvents
 
-> RecentEventsOut AppsDevicesApiGetRecentEvents(ctx).Limit(limit).Offset(offset).DeviceId(deviceId).GeofenceId(geofenceId).EventType(eventType).TimeRange(timeRange).StartDate(startDate).EndDate(endDate).Sort(sort).Execute()
+> RecentEventsOut AppsDevicesApiGetRecentEvents(ctx).Limit(limit).Offset(offset).DeviceId(deviceId).GeofenceId(geofenceId).EventType(eventType).OperationalOnly(operationalOnly).TimeRange(timeRange).StartDate(startDate).EndDate(endDate).Since(since).Sort(sort).Execute()
 
 Get Recent Events
 
@@ -1247,14 +1394,16 @@ func main() {
 	deviceId := "deviceId_example" // string |  (optional)
 	geofenceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string |  (optional)
 	eventType := "eventType_example" // string |  (optional)
+	operationalOnly := true // bool | Exclude seeded example-device events from operational activity feeds. (optional) (default to false)
 	timeRange := "timeRange_example" // string | Time range: today, 7d, 30d, or custom (optional)
 	startDate := "startDate_example" // string | Custom start date (YYYY-MM-DD) (optional)
 	endDate := "endDate_example" // string | Custom end date (YYYY-MM-DD) (optional)
+	since := "since_example" // string | ISO 8601 timestamp; returns events with timestamp strictly greater than since (use for incremental sync / WebSocket reconnect backfill). (optional)
 	sort := "sort_example" // string | Sort order: -timestamp (default) or timestamp (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiGetRecentEvents(context.Background()).Limit(limit).Offset(offset).DeviceId(deviceId).GeofenceId(geofenceId).EventType(eventType).TimeRange(timeRange).StartDate(startDate).EndDate(endDate).Sort(sort).Execute()
+	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiGetRecentEvents(context.Background()).Limit(limit).Offset(offset).DeviceId(deviceId).GeofenceId(geofenceId).EventType(eventType).OperationalOnly(operationalOnly).TimeRange(timeRange).StartDate(startDate).EndDate(endDate).Since(since).Sort(sort).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.AppsDevicesApiGetRecentEvents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1280,9 +1429,11 @@ Name | Type | Description  | Notes
  **deviceId** | **string** |  | 
  **geofenceId** | **string** |  | 
  **eventType** | **string** |  | 
+ **operationalOnly** | **bool** | Exclude seeded example-device events from operational activity feeds. | [default to false]
  **timeRange** | **string** | Time range: today, 7d, 30d, or custom | 
  **startDate** | **string** | Custom start date (YYYY-MM-DD) | 
  **endDate** | **string** | Custom end date (YYYY-MM-DD) | 
+ **since** | **string** | ISO 8601 timestamp; returns events with timestamp strictly greater than since (use for incremental sync / WebSocket reconnect backfill). | 
  **sort** | **string** | Sort order: -timestamp (default) or timestamp | 
 
 ### Return type
@@ -1450,7 +1601,7 @@ Name | Type | Description  | Notes
 
 ## AppsDevicesApiGetSessionLocations
 
-> SessionLocationsOut AppsDevicesApiGetSessionLocations(ctx, deviceId, sessionId).Limit(limit).Offset(offset).MaxPoints(maxPoints).Execute()
+> SessionLocationsOut AppsDevicesApiGetSessionLocations(ctx, deviceId, sessionId).Limit(limit).Offset(offset).SnapshotAt(snapshotAt).MaxPoints(maxPoints).Format(format).Execute()
 
 Get Session Locations
 
@@ -1465,6 +1616,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
 )
 
@@ -1473,11 +1625,13 @@ func main() {
 	sessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	limit := int32(56) // int32 |  (optional) (default to 1000)
 	offset := int32(56) // int32 |  (optional) (default to 0)
+	snapshotAt := time.Now() // time.Time | Snapshot returned by the first page; reuse it for every later page. (optional)
 	maxPoints := int32(56) // int32 |  (optional)
+	format := "format_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiGetSessionLocations(context.Background(), deviceId, sessionId).Limit(limit).Offset(offset).MaxPoints(maxPoints).Execute()
+	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiGetSessionLocations(context.Background(), deviceId, sessionId).Limit(limit).Offset(offset).SnapshotAt(snapshotAt).MaxPoints(maxPoints).Format(format).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.AppsDevicesApiGetSessionLocations``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1507,11 +1661,84 @@ Name | Type | Description  | Notes
 
  **limit** | **int32** |  | [default to 1000]
  **offset** | **int32** |  | [default to 0]
+ **snapshotAt** | **time.Time** | Snapshot returned by the first page; reuse it for every later page. | 
  **maxPoints** | **int32** |  | 
+ **format** | **string** |  | 
 
 ### Return type
 
 [**SessionLocationsOut**](SessionLocationsOut.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsDevicesApiListCaptureActivity
+
+> CaptureActivityListOut AppsDevicesApiListCaptureActivity(ctx).From(from).To(to).Limit(limit).Execute()
+
+List Capture Activity
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+    "time"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	from := time.Now() // time.Time | Earliest activity time (default: now - 24h) (optional)
+	to := time.Now() // time.Time | Latest activity time (default: now) (optional)
+	limit := int32(56) // int32 | Maximum groups, newest first (optional) (default to 50)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiListCaptureActivity(context.Background()).From(from).To(to).Limit(limit).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.AppsDevicesApiListCaptureActivity``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsDevicesApiListCaptureActivity`: CaptureActivityListOut
+	fmt.Fprintf(os.Stdout, "Response from `DevicesAPI.AppsDevicesApiListCaptureActivity`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsDevicesApiListCaptureActivityRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **from** | **time.Time** | Earliest activity time (default: now - 24h) | 
+ **to** | **time.Time** | Latest activity time (default: now) | 
+ **limit** | **int32** | Maximum groups, newest first | [default to 50]
+
+### Return type
+
+[**CaptureActivityListOut**](CaptureActivityListOut.md)
 
 ### Authorization
 
@@ -1529,7 +1756,7 @@ Name | Type | Description  | Notes
 
 ## AppsDevicesApiListDevices
 
-> []DeviceOut AppsDevicesApiListDevices(ctx).IsActive(isActive).IncludeGeofences(includeGeofences).Execute()
+> []DeviceOut AppsDevicesApiListDevices(ctx).IsActive(isActive).IncludeGeofences(includeGeofences).Group(group).Execute()
 
 List Devices
 
@@ -1550,10 +1777,11 @@ import (
 func main() {
 	isActive := true // bool |  (optional)
 	includeGeofences := true // bool |  (optional) (default to false)
+	group := "group_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiListDevices(context.Background()).IsActive(isActive).IncludeGeofences(includeGeofences).Execute()
+	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiListDevices(context.Background()).IsActive(isActive).IncludeGeofences(includeGeofences).Group(group).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.AppsDevicesApiListDevices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1576,6 +1804,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **isActive** | **bool** |  | 
  **includeGeofences** | **bool** |  | [default to false]
+ **group** | **string** |  | 
 
 ### Return type
 
@@ -1889,7 +2118,7 @@ Name | Type | Description  | Notes
 
 ## AppsDevicesApiPauseShift
 
-> ShiftActionOut AppsDevicesApiPauseShift(ctx, deviceId).Execute()
+> ShiftActionOut AppsDevicesApiPauseShift(ctx, deviceId).LocalShiftStopIn(localShiftStopIn).Execute()
 
 Pause Shift
 
@@ -1904,15 +2133,17 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
 )
 
 func main() {
 	deviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	localShiftStopIn := *openapiclient.NewLocalShiftStopIn(time.Now(), time.Now()) // LocalShiftStopIn |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiPauseShift(context.Background(), deviceId).Execute()
+	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiPauseShift(context.Background(), deviceId).LocalShiftStopIn(localShiftStopIn).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.AppsDevicesApiPauseShift``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1938,6 +2169,7 @@ Other parameters are passed through a pointer to a apiAppsDevicesApiPauseShiftRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **localShiftStopIn** | [**LocalShiftStopIn**](LocalShiftStopIn.md) |  | 
 
 ### Return type
 
@@ -1949,7 +2181,79 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsDevicesApiRecoverShift
+
+> ShiftRecoveryOut AppsDevicesApiRecoverShift(ctx, deviceId).ShiftRecoveryIn(shiftRecoveryIn).Execute()
+
+Recover Shift
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	deviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	shiftRecoveryIn := *openapiclient.NewShiftRecoveryIn("SourceSessionId_example") // ShiftRecoveryIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DevicesAPI.AppsDevicesApiRecoverShift(context.Background(), deviceId).ShiftRecoveryIn(shiftRecoveryIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.AppsDevicesApiRecoverShift``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsDevicesApiRecoverShift`: ShiftRecoveryOut
+	fmt.Fprintf(os.Stdout, "Response from `DevicesAPI.AppsDevicesApiRecoverShift`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**deviceId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsDevicesApiRecoverShiftRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shiftRecoveryIn** | [**ShiftRecoveryIn**](ShiftRecoveryIn.md) |  | 
+
+### Return type
+
+[**ShiftRecoveryOut**](ShiftRecoveryOut.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

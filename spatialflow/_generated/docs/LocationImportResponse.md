@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **InvalidRows** | Pointer to **int32** |  | [optional] [default to 0]
 **ProcessedRows** | Pointer to **int32** |  | [optional] [default to 0]
 **ErrorRate** | Pointer to **float32** |  | [optional] [default to 0.0]
-**Errors** | Pointer to **[]map[string]interface{}** |  | [optional] [default to []]
+**Errors** | Pointer to **[]map[string]interface{}** |  | [optional] 
 **CreatedAt** | **time.Time** |  | 
 **StartedAt** | Pointer to **NullableTime** |  | [optional] 
 **CompletedAt** | Pointer to **NullableTime** |  | [optional] 

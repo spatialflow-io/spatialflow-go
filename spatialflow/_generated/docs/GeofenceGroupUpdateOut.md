@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **GroupId** | Pointer to **NullableString** |  | [optional] 
 **GroupName** | Pointer to **NullableString** |  | [optional] 
-**UpdatedAt** | **string** |  | 
+**UpdatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewGeofenceGroupUpdateOut
 
-`func NewGeofenceGroupUpdateOut(id string, name string, updatedAt string, ) *GeofenceGroupUpdateOut`
+`func NewGeofenceGroupUpdateOut(id string, name string, updatedAt time.Time, ) *GeofenceGroupUpdateOut`
 
 NewGeofenceGroupUpdateOut instantiates a new GeofenceGroupUpdateOut object
 This constructor will assign default values to properties that have it defined,
@@ -141,20 +141,20 @@ HasGroupName returns a boolean if a field has been set.
 UnsetGroupName ensures that no value is present for GroupName, not even an explicit nil
 ### GetUpdatedAt
 
-`func (o *GeofenceGroupUpdateOut) GetUpdatedAt() string`
+`func (o *GeofenceGroupUpdateOut) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *GeofenceGroupUpdateOut) GetUpdatedAtOk() (*string, bool)`
+`func (o *GeofenceGroupUpdateOut) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *GeofenceGroupUpdateOut) SetUpdatedAt(v string)`
+`func (o *GeofenceGroupUpdateOut) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

@@ -4,13 +4,84 @@ All URIs are relative to *https://api.spatialflow.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AppsStorageApiCompletePresignedUpload**](StorageAPI.md#AppsStorageApiCompletePresignedUpload) | **Post** /api/v1/storage/uploads/{file_id}/complete | Complete Presigned Upload
 [**AppsStorageApiCreatePresignedUrl**](StorageAPI.md#AppsStorageApiCreatePresignedUrl) | **Post** /api/v1/storage/presigned-url | Create Presigned Url
-[**AppsStorageApiDeleteFile**](StorageAPI.md#AppsStorageApiDeleteFile) | **Delete** /api/v1/storage/{file_type}/{filename} | Delete File
+[**AppsStorageApiDeleteFile**](StorageAPI.md#AppsStorageApiDeleteFile) | **Delete** /api/v1/storage/{file_id} | Delete File
 [**AppsStorageApiGetDownloadUrl**](StorageAPI.md#AppsStorageApiGetDownloadUrl) | **Get** /api/v1/storage/download/{file_id} | Get Download Url
 [**AppsStorageApiGetFileTypes**](StorageAPI.md#AppsStorageApiGetFileTypes) | **Get** /api/v1/storage/types | Get File Types
 [**AppsStorageApiHealthCheck**](StorageAPI.md#AppsStorageApiHealthCheck) | **Get** /api/v1/storage/health | Health Check
 [**AppsStorageApiListFiles**](StorageAPI.md#AppsStorageApiListFiles) | **Get** /api/v1/storage/list/{file_type} | List Files
 
+
+
+## AppsStorageApiCompletePresignedUpload
+
+> CompleteUploadResponse AppsStorageApiCompletePresignedUpload(ctx, fileId).Execute()
+
+Complete Presigned Upload
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	fileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StorageAPI.AppsStorageApiCompletePresignedUpload(context.Background(), fileId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.AppsStorageApiCompletePresignedUpload``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsStorageApiCompletePresignedUpload`: CompleteUploadResponse
+	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.AppsStorageApiCompletePresignedUpload`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fileId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsStorageApiCompletePresignedUploadRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**CompleteUploadResponse**](CompleteUploadResponse.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## AppsStorageApiCreatePresignedUrl
@@ -81,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## AppsStorageApiDeleteFile
 
-> AppsStorageApiDeleteFile(ctx, fileType, filename).Execute()
+> AppsStorageApiDeleteFile(ctx, fileId).Execute()
 
 Delete File
 
@@ -100,12 +171,11 @@ import (
 )
 
 func main() {
-	fileType := "fileType_example" // string | 
-	filename := "filename_example" // string | 
+	fileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.StorageAPI.AppsStorageApiDeleteFile(context.Background(), fileType, filename).Execute()
+	r, err := apiClient.StorageAPI.AppsStorageApiDeleteFile(context.Background(), fileId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.AppsStorageApiDeleteFile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -119,8 +189,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fileType** | **string** |  | 
-**filename** | **string** |  | 
+**fileId** | **string** |  | 
 
 ### Other Parameters
 
@@ -129,7 +198,6 @@ Other parameters are passed through a pointer to a apiAppsStorageApiDeleteFileRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type

@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **Status** | **string** |  | 
 **CurrentStep** | Pointer to **NullableInt32** |  | [optional] 
 **ErrorMessage** | Pointer to **NullableString** |  | [optional] 
-**StartedAt** | Pointer to **NullableString** |  | [optional] 
-**CompletedAt** | Pointer to **NullableString** |  | [optional] 
+**StartedAt** | Pointer to **NullableTime** |  | [optional] 
+**CompletedAt** | Pointer to **NullableTime** |  | [optional] 
 **DurationSeconds** | Pointer to **NullableFloat32** |  | [optional] 
 **Steps** | [**[]ExecutionStepDetailOut**](ExecutionStepDetailOut.md) |  | 
 
@@ -264,20 +264,20 @@ HasErrorMessage returns a boolean if a field has been set.
 UnsetErrorMessage ensures that no value is present for ErrorMessage, not even an explicit nil
 ### GetStartedAt
 
-`func (o *ExecutionDetailOut) GetStartedAt() string`
+`func (o *ExecutionDetailOut) GetStartedAt() time.Time`
 
 GetStartedAt returns the StartedAt field if non-nil, zero value otherwise.
 
 ### GetStartedAtOk
 
-`func (o *ExecutionDetailOut) GetStartedAtOk() (*string, bool)`
+`func (o *ExecutionDetailOut) GetStartedAtOk() (*time.Time, bool)`
 
 GetStartedAtOk returns a tuple with the StartedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartedAt
 
-`func (o *ExecutionDetailOut) SetStartedAt(v string)`
+`func (o *ExecutionDetailOut) SetStartedAt(v time.Time)`
 
 SetStartedAt sets StartedAt field to given value.
 
@@ -299,20 +299,20 @@ HasStartedAt returns a boolean if a field has been set.
 UnsetStartedAt ensures that no value is present for StartedAt, not even an explicit nil
 ### GetCompletedAt
 
-`func (o *ExecutionDetailOut) GetCompletedAt() string`
+`func (o *ExecutionDetailOut) GetCompletedAt() time.Time`
 
 GetCompletedAt returns the CompletedAt field if non-nil, zero value otherwise.
 
 ### GetCompletedAtOk
 
-`func (o *ExecutionDetailOut) GetCompletedAtOk() (*string, bool)`
+`func (o *ExecutionDetailOut) GetCompletedAtOk() (*time.Time, bool)`
 
 GetCompletedAtOk returns a tuple with the CompletedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompletedAt
 
-`func (o *ExecutionDetailOut) SetCompletedAt(v string)`
+`func (o *ExecutionDetailOut) SetCompletedAt(v time.Time)`
 
 SetCompletedAt sets CompletedAt field to given value.
 

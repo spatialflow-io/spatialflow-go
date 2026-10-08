@@ -11,12 +11,17 @@ Name | Type | Description | Notes
 **LocationCount** | **int32** |  | 
 **DistanceMeters** | Pointer to **NullableFloat32** |  | [optional] 
 **HasTrackGeometry** | Pointer to **bool** |  | [optional] [default to false]
+**AutoClosedAt** | Pointer to **NullableTime** |  | [optional] 
+**CloseReason** | Pointer to **string** |  | [optional] [default to ""]
+**AutoClosedFromShiftStatus** | Pointer to **NullableString** |  | [optional] 
+**PhotoCount** | **NullableInt32** |  | 
+**NoteCount** | **NullableInt32** |  | 
 
 ## Methods
 
 ### NewDeviceSessionOut
 
-`func NewDeviceSessionOut(id string, startedAt time.Time, locationCount int32, ) *DeviceSessionOut`
+`func NewDeviceSessionOut(id string, startedAt time.Time, locationCount int32, photoCount NullableInt32, noteCount NullableInt32, ) *DeviceSessionOut`
 
 NewDeviceSessionOut instantiates a new DeviceSessionOut object
 This constructor will assign default values to properties that have it defined,
@@ -221,6 +226,161 @@ SetHasTrackGeometry sets HasTrackGeometry field to given value.
 
 HasHasTrackGeometry returns a boolean if a field has been set.
 
+### GetAutoClosedAt
+
+`func (o *DeviceSessionOut) GetAutoClosedAt() time.Time`
+
+GetAutoClosedAt returns the AutoClosedAt field if non-nil, zero value otherwise.
+
+### GetAutoClosedAtOk
+
+`func (o *DeviceSessionOut) GetAutoClosedAtOk() (*time.Time, bool)`
+
+GetAutoClosedAtOk returns a tuple with the AutoClosedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoClosedAt
+
+`func (o *DeviceSessionOut) SetAutoClosedAt(v time.Time)`
+
+SetAutoClosedAt sets AutoClosedAt field to given value.
+
+### HasAutoClosedAt
+
+`func (o *DeviceSessionOut) HasAutoClosedAt() bool`
+
+HasAutoClosedAt returns a boolean if a field has been set.
+
+### SetAutoClosedAtNil
+
+`func (o *DeviceSessionOut) SetAutoClosedAtNil(b bool)`
+
+ SetAutoClosedAtNil sets the value for AutoClosedAt to be an explicit nil
+
+### UnsetAutoClosedAt
+`func (o *DeviceSessionOut) UnsetAutoClosedAt()`
+
+UnsetAutoClosedAt ensures that no value is present for AutoClosedAt, not even an explicit nil
+### GetCloseReason
+
+`func (o *DeviceSessionOut) GetCloseReason() string`
+
+GetCloseReason returns the CloseReason field if non-nil, zero value otherwise.
+
+### GetCloseReasonOk
+
+`func (o *DeviceSessionOut) GetCloseReasonOk() (*string, bool)`
+
+GetCloseReasonOk returns a tuple with the CloseReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCloseReason
+
+`func (o *DeviceSessionOut) SetCloseReason(v string)`
+
+SetCloseReason sets CloseReason field to given value.
+
+### HasCloseReason
+
+`func (o *DeviceSessionOut) HasCloseReason() bool`
+
+HasCloseReason returns a boolean if a field has been set.
+
+### GetAutoClosedFromShiftStatus
+
+`func (o *DeviceSessionOut) GetAutoClosedFromShiftStatus() string`
+
+GetAutoClosedFromShiftStatus returns the AutoClosedFromShiftStatus field if non-nil, zero value otherwise.
+
+### GetAutoClosedFromShiftStatusOk
+
+`func (o *DeviceSessionOut) GetAutoClosedFromShiftStatusOk() (*string, bool)`
+
+GetAutoClosedFromShiftStatusOk returns a tuple with the AutoClosedFromShiftStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoClosedFromShiftStatus
+
+`func (o *DeviceSessionOut) SetAutoClosedFromShiftStatus(v string)`
+
+SetAutoClosedFromShiftStatus sets AutoClosedFromShiftStatus field to given value.
+
+### HasAutoClosedFromShiftStatus
+
+`func (o *DeviceSessionOut) HasAutoClosedFromShiftStatus() bool`
+
+HasAutoClosedFromShiftStatus returns a boolean if a field has been set.
+
+### SetAutoClosedFromShiftStatusNil
+
+`func (o *DeviceSessionOut) SetAutoClosedFromShiftStatusNil(b bool)`
+
+ SetAutoClosedFromShiftStatusNil sets the value for AutoClosedFromShiftStatus to be an explicit nil
+
+### UnsetAutoClosedFromShiftStatus
+`func (o *DeviceSessionOut) UnsetAutoClosedFromShiftStatus()`
+
+UnsetAutoClosedFromShiftStatus ensures that no value is present for AutoClosedFromShiftStatus, not even an explicit nil
+### GetPhotoCount
+
+`func (o *DeviceSessionOut) GetPhotoCount() int32`
+
+GetPhotoCount returns the PhotoCount field if non-nil, zero value otherwise.
+
+### GetPhotoCountOk
+
+`func (o *DeviceSessionOut) GetPhotoCountOk() (*int32, bool)`
+
+GetPhotoCountOk returns a tuple with the PhotoCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhotoCount
+
+`func (o *DeviceSessionOut) SetPhotoCount(v int32)`
+
+SetPhotoCount sets PhotoCount field to given value.
+
+
+### SetPhotoCountNil
+
+`func (o *DeviceSessionOut) SetPhotoCountNil(b bool)`
+
+ SetPhotoCountNil sets the value for PhotoCount to be an explicit nil
+
+### UnsetPhotoCount
+`func (o *DeviceSessionOut) UnsetPhotoCount()`
+
+UnsetPhotoCount ensures that no value is present for PhotoCount, not even an explicit nil
+### GetNoteCount
+
+`func (o *DeviceSessionOut) GetNoteCount() int32`
+
+GetNoteCount returns the NoteCount field if non-nil, zero value otherwise.
+
+### GetNoteCountOk
+
+`func (o *DeviceSessionOut) GetNoteCountOk() (*int32, bool)`
+
+GetNoteCountOk returns a tuple with the NoteCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNoteCount
+
+`func (o *DeviceSessionOut) SetNoteCount(v int32)`
+
+SetNoteCount sets NoteCount field to given value.
+
+
+### SetNoteCountNil
+
+`func (o *DeviceSessionOut) SetNoteCountNil(b bool)`
+
+ SetNoteCountNil sets the value for NoteCount to be an explicit nil
+
+### UnsetNoteCount
+`func (o *DeviceSessionOut) UnsetNoteCount()`
+
+UnsetNoteCount ensures that no value is present for NoteCount, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

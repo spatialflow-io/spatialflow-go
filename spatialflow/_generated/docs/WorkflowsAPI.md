@@ -21,6 +21,9 @@ Method | HTTP request | Description
 [**AppsWorkflowsApiGetWorkflowExecutions**](WorkflowsAPI.md#AppsWorkflowsApiGetWorkflowExecutions) | **Get** /api/v1/workflows/{workflow_id}/executions | Get Workflow Executions
 [**AppsWorkflowsApiGetWorkflowPerformance**](WorkflowsAPI.md#AppsWorkflowsApiGetWorkflowPerformance) | **Get** /api/v1/workflows/{workflow_id}/performance | Get Workflow Performance
 [**AppsWorkflowsApiGetWorkflowRetryPolicy**](WorkflowsAPI.md#AppsWorkflowsApiGetWorkflowRetryPolicy) | **Get** /api/v1/workflows/{workflow_id}/retry-policy | Get Workflow Retry Policy
+[**AppsWorkflowsApiGetWorkflowRun**](WorkflowsAPI.md#AppsWorkflowsApiGetWorkflowRun) | **Get** /api/v1/workflows/{workflow_id}/runs/{run_id} | Get Workflow Run
+[**AppsWorkflowsApiGetWorkflowRunHistory**](WorkflowsAPI.md#AppsWorkflowsApiGetWorkflowRunHistory) | **Get** /api/v1/workflows/{workflow_id}/runs | Get Workflow Run History
+[**AppsWorkflowsApiGetWorkflowRunsStats**](WorkflowsAPI.md#AppsWorkflowsApiGetWorkflowRunsStats) | **Get** /api/v1/workflows/runs/stats | Get Workflow Runs Stats
 [**AppsWorkflowsApiGetWorkflowStatistics**](WorkflowsAPI.md#AppsWorkflowsApiGetWorkflowStatistics) | **Get** /api/v1/workflows/{workflow_id}/statistics | Get Workflow Statistics
 [**AppsWorkflowsApiGetWorkflowStepPerformance**](WorkflowsAPI.md#AppsWorkflowsApiGetWorkflowStepPerformance) | **Get** /api/v1/workflows/{workflow_id}/performance/steps | Get Workflow Step Performance
 [**AppsWorkflowsApiGetWorkflowTemplate**](WorkflowsAPI.md#AppsWorkflowsApiGetWorkflowTemplate) | **Get** /api/v1/workflows/templates/{template_id} | Get Workflow Template
@@ -30,6 +33,7 @@ Method | HTTP request | Description
 [**AppsWorkflowsApiListWorkflowTemplates**](WorkflowsAPI.md#AppsWorkflowsApiListWorkflowTemplates) | **Get** /api/v1/workflows/templates | List Workflow Templates
 [**AppsWorkflowsApiListWorkflowVersions**](WorkflowsAPI.md#AppsWorkflowsApiListWorkflowVersions) | **Get** /api/v1/workflows/{workflow_id}/versions | List Workflow Versions
 [**AppsWorkflowsApiListWorkflows**](WorkflowsAPI.md#AppsWorkflowsApiListWorkflows) | **Get** /api/v1/workflows | List Workflows
+[**AppsWorkflowsApiPreviewWorkflow**](WorkflowsAPI.md#AppsWorkflowsApiPreviewWorkflow) | **Post** /api/v1/workflows/{workflow_id}/preview | Preview Workflow
 [**AppsWorkflowsApiRestoreWorkflowVersion**](WorkflowsAPI.md#AppsWorkflowsApiRestoreWorkflowVersion) | **Post** /api/v1/workflows/{workflow_id}/versions/{version_number}/restore | Restore Workflow Version
 [**AppsWorkflowsApiTestWorkflow**](WorkflowsAPI.md#AppsWorkflowsApiTestWorkflow) | **Post** /api/v1/workflows/{workflow_id}/test | Test Workflow
 [**AppsWorkflowsApiToggleWorkflow**](WorkflowsAPI.md#AppsWorkflowsApiToggleWorkflow) | **Post** /api/v1/workflows/{workflow_id}/toggle | Toggle Workflow
@@ -1227,6 +1231,216 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## AppsWorkflowsApiGetWorkflowRun
+
+> RunHistoryEntryOut AppsWorkflowsApiGetWorkflowRun(ctx, workflowId, runId).Execute()
+
+Get Workflow Run
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	workflowId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	runId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkflowsAPI.AppsWorkflowsApiGetWorkflowRun(context.Background(), workflowId, runId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiGetWorkflowRun``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkflowsApiGetWorkflowRun`: RunHistoryEntryOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiGetWorkflowRun`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workflowId** | **string** |  | 
+**runId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkflowsApiGetWorkflowRunRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**RunHistoryEntryOut**](RunHistoryEntryOut.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWorkflowsApiGetWorkflowRunHistory
+
+> []RunHistoryEntryOut AppsWorkflowsApiGetWorkflowRunHistory(ctx, workflowId).Limit(limit).Offset(offset).IncludeOtherGeofences(includeOtherGeofences).Execute()
+
+Get Workflow Run History
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	workflowId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	limit := int32(56) // int32 |  (optional) (default to 50)
+	offset := int32(56) // int32 |  (optional) (default to 0)
+	includeOtherGeofences := true // bool |  (optional) (default to false)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkflowsAPI.AppsWorkflowsApiGetWorkflowRunHistory(context.Background(), workflowId).Limit(limit).Offset(offset).IncludeOtherGeofences(includeOtherGeofences).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiGetWorkflowRunHistory``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkflowsApiGetWorkflowRunHistory`: []RunHistoryEntryOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiGetWorkflowRunHistory`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workflowId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkflowsApiGetWorkflowRunHistoryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **limit** | **int32** |  | [default to 50]
+ **offset** | **int32** |  | [default to 0]
+ **includeOtherGeofences** | **bool** |  | [default to false]
+
+### Return type
+
+[**[]RunHistoryEntryOut**](RunHistoryEntryOut.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWorkflowsApiGetWorkflowRunsStats
+
+> WorkflowRunsStatsOut AppsWorkflowsApiGetWorkflowRunsStats(ctx).Execute()
+
+Get Workflow Runs Stats
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkflowsAPI.AppsWorkflowsApiGetWorkflowRunsStats(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiGetWorkflowRunsStats``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkflowsApiGetWorkflowRunsStats`: WorkflowRunsStatsOut
+	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiGetWorkflowRunsStats`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkflowsApiGetWorkflowRunsStatsRequest struct via the builder pattern
+
+
+### Return type
+
+[**WorkflowRunsStatsOut**](WorkflowRunsStatsOut.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsWorkflowsApiGetWorkflowStatistics
 
 > WorkflowStatisticsOut AppsWorkflowsApiGetWorkflowStatistics(ctx, workflowId).Execute()
@@ -1776,7 +1990,7 @@ Name | Type | Description  | Notes
 
 ## AppsWorkflowsApiListWorkflows
 
-> WorkflowListResponse AppsWorkflowsApiListWorkflows(ctx).Limit(limit).Offset(offset).IsActive(isActive).Category(category).Search(search).Execute()
+> WorkflowListResponse AppsWorkflowsApiListWorkflows(ctx).Limit(limit).Offset(offset).IsActive(isActive).Status(status).Category(category).Search(search).Execute()
 
 List Workflows
 
@@ -1798,12 +2012,13 @@ func main() {
 	limit := int32(56) // int32 |  (optional) (default to 50)
 	offset := int32(56) // int32 |  (optional) (default to 0)
 	isActive := true // bool |  (optional)
+	status := "status_example" // string |  (optional)
 	category := "category_example" // string |  (optional)
 	search := "search_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkflowsAPI.AppsWorkflowsApiListWorkflows(context.Background()).Limit(limit).Offset(offset).IsActive(isActive).Category(category).Search(search).Execute()
+	resp, r, err := apiClient.WorkflowsAPI.AppsWorkflowsApiListWorkflows(context.Background()).Limit(limit).Offset(offset).IsActive(isActive).Status(status).Category(category).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiListWorkflows``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1827,6 +2042,7 @@ Name | Type | Description  | Notes
  **limit** | **int32** |  | [default to 50]
  **offset** | **int32** |  | [default to 0]
  **isActive** | **bool** |  | 
+ **status** | **string** |  | 
  **category** | **string** |  | 
  **search** | **string** |  | 
 
@@ -1841,6 +2057,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWorkflowsApiPreviewWorkflow
+
+> map[string]interface{} AppsWorkflowsApiPreviewWorkflow(ctx, workflowId).TestWorkflowIn(testWorkflowIn).Execute()
+
+Preview Workflow
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	workflowId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	testWorkflowIn := *openapiclient.NewTestWorkflowIn(map[string]interface{}{"key": interface{}(123)}) // TestWorkflowIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkflowsAPI.AppsWorkflowsApiPreviewWorkflow(context.Background(), workflowId).TestWorkflowIn(testWorkflowIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowsAPI.AppsWorkflowsApiPreviewWorkflow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWorkflowsApiPreviewWorkflow`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `WorkflowsAPI.AppsWorkflowsApiPreviewWorkflow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workflowId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWorkflowsApiPreviewWorkflowRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **testWorkflowIn** | [**TestWorkflowIn**](TestWorkflowIn.md) |  | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

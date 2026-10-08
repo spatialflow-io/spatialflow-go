@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Subscribers** | [**[]MarketingSubscriber**](MarketingSubscriber.md) |  | 
 **Count** | **int32** |  | 
-**ExportedAt** | **string** |  | 
+**ExportedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewMarketingSubscriberExportResponse
 
-`func NewMarketingSubscriberExportResponse(subscribers []MarketingSubscriber, count int32, exportedAt string, ) *MarketingSubscriberExportResponse`
+`func NewMarketingSubscriberExportResponse(subscribers []MarketingSubscriber, count int32, exportedAt time.Time, ) *MarketingSubscriberExportResponse`
 
 NewMarketingSubscriberExportResponse instantiates a new MarketingSubscriberExportResponse object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetCount sets Count field to given value.
 
 ### GetExportedAt
 
-`func (o *MarketingSubscriberExportResponse) GetExportedAt() string`
+`func (o *MarketingSubscriberExportResponse) GetExportedAt() time.Time`
 
 GetExportedAt returns the ExportedAt field if non-nil, zero value otherwise.
 
 ### GetExportedAtOk
 
-`func (o *MarketingSubscriberExportResponse) GetExportedAtOk() (*string, bool)`
+`func (o *MarketingSubscriberExportResponse) GetExportedAtOk() (*time.Time, bool)`
 
 GetExportedAtOk returns a tuple with the ExportedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExportedAt
 
-`func (o *MarketingSubscriberExportResponse) SetExportedAt(v string)`
+`func (o *MarketingSubscriberExportResponse) SetExportedAt(v time.Time)`
 
 SetExportedAt sets ExportedAt field to given value.
 

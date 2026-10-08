@@ -5,6 +5,7 @@ All URIs are relative to *https://api.spatialflow.io*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AppsAuthenticationApiAcceptInvitation**](AuthenticationAPI.md#AppsAuthenticationApiAcceptInvitation) | **Post** /api/v1/auth/accept-invite | Accept Invitation
+[**AppsAuthenticationApiAcceptInvitationPasswordless**](AuthenticationAPI.md#AppsAuthenticationApiAcceptInvitationPasswordless) | **Post** /api/v1/auth/accept-invite/passwordless | Accept Invitation Passwordless
 [**AppsAuthenticationApiChangePassword**](AuthenticationAPI.md#AppsAuthenticationApiChangePassword) | **Post** /api/v1/auth/change-password | Change Password
 [**AppsAuthenticationApiConfirmPasswordReset**](AuthenticationAPI.md#AppsAuthenticationApiConfirmPasswordReset) | **Post** /api/v1/auth/password-reset/confirm | Confirm Password Reset
 [**AppsAuthenticationApiForgotPassword**](AuthenticationAPI.md#AppsAuthenticationApiForgotPassword) | **Post** /api/v1/auth/forgot-password | Forgot Password
@@ -20,9 +21,8 @@ Method | HTTP request | Description
 [**AppsAuthenticationApiResendVerificationAlias**](AuthenticationAPI.md#AppsAuthenticationApiResendVerificationAlias) | **Post** /api/v1/auth/resend-verification | Resend Verification Alias
 [**AppsAuthenticationApiResendVerificationEmail**](AuthenticationAPI.md#AppsAuthenticationApiResendVerificationEmail) | **Post** /api/v1/auth/resend-verification-email | Resend Verification Email
 [**AppsAuthenticationApiResetPassword**](AuthenticationAPI.md#AppsAuthenticationApiResetPassword) | **Post** /api/v1/auth/reset-password | Reset Password
+[**AppsAuthenticationApiSsoExchange**](AuthenticationAPI.md#AppsAuthenticationApiSsoExchange) | **Post** /api/v1/auth/sso/exchange | Sso Exchange
 [**AppsAuthenticationApiSsoStart**](AuthenticationAPI.md#AppsAuthenticationApiSsoStart) | **Get** /api/v1/auth/sso/start | Sso Start
-[**AppsAuthenticationApiVerifyEmail**](AuthenticationAPI.md#AppsAuthenticationApiVerifyEmail) | **Get** /api/v1/auth/verify-email | Verify Email
-[**AppsAuthenticationApiVerifyEmailPath**](AuthenticationAPI.md#AppsAuthenticationApiVerifyEmailPath) | **Get** /api/v1/auth/verify-email/{token} | Verify Email Path
 [**AppsAuthenticationApiVerifyEmailPost**](AuthenticationAPI.md#AppsAuthenticationApiVerifyEmailPost) | **Post** /api/v1/auth/verify-email | Verify Email Post
 [**AppsAuthenticationAppleMobileApiAppleNonce**](AuthenticationAPI.md#AppsAuthenticationAppleMobileApiAppleNonce) | **Post** /api/v1/auth/apple/nonce | Apple Nonce
 [**AppsAuthenticationAppleMobileApiAppleTokenExchange**](AuthenticationAPI.md#AppsAuthenticationAppleMobileApiAppleTokenExchange) | **Post** /api/v1/auth/apple/token-exchange | Apple Token Exchange
@@ -87,6 +87,72 @@ Other parameters are passed through a pointer to a apiAppsAuthenticationApiAccep
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **acceptInviteSchema** | [**AcceptInviteSchema**](AcceptInviteSchema.md) |  | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAuthenticationApiAcceptInvitationPasswordless
+
+> map[string]interface{} AppsAuthenticationApiAcceptInvitationPasswordless(ctx).AcceptInvitePasswordlessSchema(acceptInvitePasswordlessSchema).Execute()
+
+Accept Invitation Passwordless
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	acceptInvitePasswordlessSchema := *openapiclient.NewAcceptInvitePasswordlessSchema("Token_example", "InviteId_example") // AcceptInvitePasswordlessSchema | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.AppsAuthenticationApiAcceptInvitationPasswordless(context.Background()).AcceptInvitePasswordlessSchema(acceptInvitePasswordlessSchema).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.AppsAuthenticationApiAcceptInvitationPasswordless``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAuthenticationApiAcceptInvitationPasswordless`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.AppsAuthenticationApiAcceptInvitationPasswordless`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAuthenticationApiAcceptInvitationPasswordlessRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **acceptInvitePasswordlessSchema** | [**AcceptInvitePasswordlessSchema**](AcceptInvitePasswordlessSchema.md) |  | 
 
 ### Return type
 
@@ -555,7 +621,7 @@ No authorization required
 
 ## AppsAuthenticationApiLogout
 
-> AppsAuthenticationApiLogout(ctx).Execute()
+> MessageResponse AppsAuthenticationApiLogout(ctx).Execute()
 
 Logout
 
@@ -577,11 +643,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.AuthenticationAPI.AppsAuthenticationApiLogout(context.Background()).Execute()
+	resp, r, err := apiClient.AuthenticationAPI.AppsAuthenticationApiLogout(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.AppsAuthenticationApiLogout``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `AppsAuthenticationApiLogout`: MessageResponse
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.AppsAuthenticationApiLogout`: %v\n", resp)
 }
 ```
 
@@ -596,7 +664,7 @@ Other parameters are passed through a pointer to a apiAppsAuthenticationApiLogou
 
 ### Return type
 
- (empty response body)
+[**MessageResponse**](MessageResponse.md)
 
 ### Authorization
 
@@ -1065,9 +1133,75 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## AppsAuthenticationApiSsoExchange
+
+> SsoExchangeResponse AppsAuthenticationApiSsoExchange(ctx).SsoExchangeRequest(ssoExchangeRequest).Execute()
+
+Sso Exchange
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	ssoExchangeRequest := *openapiclient.NewSsoExchangeRequest("Code_example", "CodeVerifier_example", "State_example") // SsoExchangeRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.AppsAuthenticationApiSsoExchange(context.Background()).SsoExchangeRequest(ssoExchangeRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.AppsAuthenticationApiSsoExchange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAuthenticationApiSsoExchange`: SsoExchangeResponse
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.AppsAuthenticationApiSsoExchange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAuthenticationApiSsoExchangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ssoExchangeRequest** | [**SsoExchangeRequest**](SsoExchangeRequest.md) |  | 
+
+### Return type
+
+[**SsoExchangeResponse**](SsoExchangeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsAuthenticationApiSsoStart
 
-> AppsAuthenticationApiSsoStart(ctx).Return_(return_).WorkspaceSlug(workspaceSlug).Execute()
+> AppsAuthenticationApiSsoStart(ctx).Return_(return_).WorkspaceSlug(workspaceSlug).CodeChallenge(codeChallenge).CodeChallengeMethod(codeChallengeMethod).State(state).Execute()
 
 Sso Start
 
@@ -1088,10 +1222,13 @@ import (
 func main() {
 	return_ := "return__example" // string | 
 	workspaceSlug := "workspaceSlug_example" // string | 
+	codeChallenge := "codeChallenge_example" // string |  (optional)
+	codeChallengeMethod := "codeChallengeMethod_example" // string |  (optional)
+	state := "state_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.AuthenticationAPI.AppsAuthenticationApiSsoStart(context.Background()).Return_(return_).WorkspaceSlug(workspaceSlug).Execute()
+	r, err := apiClient.AuthenticationAPI.AppsAuthenticationApiSsoStart(context.Background()).Return_(return_).WorkspaceSlug(workspaceSlug).CodeChallenge(codeChallenge).CodeChallengeMethod(codeChallengeMethod).State(state).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.AppsAuthenticationApiSsoStart``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1112,146 +1249,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **return_** | **string** |  | 
  **workspaceSlug** | **string** |  | 
+ **codeChallenge** | **string** |  | 
+ **codeChallengeMethod** | **string** |  | 
+ **state** | **string** |  | 
 
 ### Return type
 
  (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## AppsAuthenticationApiVerifyEmail
-
-> map[string]interface{} AppsAuthenticationApiVerifyEmail(ctx).Token(token).Execute()
-
-Verify Email
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
-)
-
-func main() {
-	token := "token_example" // string | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthenticationAPI.AppsAuthenticationApiVerifyEmail(context.Background()).Token(token).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.AppsAuthenticationApiVerifyEmail``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `AppsAuthenticationApiVerifyEmail`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.AppsAuthenticationApiVerifyEmail`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAppsAuthenticationApiVerifyEmailRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **string** |  | 
-
-### Return type
-
-**map[string]interface{}**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## AppsAuthenticationApiVerifyEmailPath
-
-> map[string]interface{} AppsAuthenticationApiVerifyEmailPath(ctx, token).Execute()
-
-Verify Email Path
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
-)
-
-func main() {
-	token := "token_example" // string | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthenticationAPI.AppsAuthenticationApiVerifyEmailPath(context.Background(), token).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.AppsAuthenticationApiVerifyEmailPath``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `AppsAuthenticationApiVerifyEmailPath`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.AppsAuthenticationApiVerifyEmailPath`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**token** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAppsAuthenticationApiVerifyEmailPathRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-**map[string]interface{}**
 
 ### Authorization
 
@@ -1598,7 +1602,7 @@ Name | Type | Description  | Notes
 
 ## AppsAuthenticationOauthApiGetLinkedAccounts
 
-> AppsAuthenticationOauthApiGetLinkedAccounts(ctx).Execute()
+> LinkedAccountsResponse AppsAuthenticationOauthApiGetLinkedAccounts(ctx).Execute()
 
 Get Linked Accounts
 
@@ -1620,11 +1624,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.AuthenticationAPI.AppsAuthenticationOauthApiGetLinkedAccounts(context.Background()).Execute()
+	resp, r, err := apiClient.AuthenticationAPI.AppsAuthenticationOauthApiGetLinkedAccounts(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.AppsAuthenticationOauthApiGetLinkedAccounts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `AppsAuthenticationOauthApiGetLinkedAccounts`: LinkedAccountsResponse
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.AppsAuthenticationOauthApiGetLinkedAccounts`: %v\n", resp)
 }
 ```
 
@@ -1639,7 +1645,7 @@ Other parameters are passed through a pointer to a apiAppsAuthenticationOauthApi
 
 ### Return type
 
- (empty response body)
+[**LinkedAccountsResponse**](LinkedAccountsResponse.md)
 
 ### Authorization
 
@@ -2074,7 +2080,7 @@ No authorization required
 
 ## AppsAuthenticationSamlApiMetadata
 
-> AppsAuthenticationSamlApiMetadata(ctx, slug).Execute()
+> string AppsAuthenticationSamlApiMetadata(ctx, slug).Execute()
 
 Metadata
 
@@ -2097,11 +2103,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.AuthenticationAPI.AppsAuthenticationSamlApiMetadata(context.Background(), slug).Execute()
+	resp, r, err := apiClient.AuthenticationAPI.AppsAuthenticationSamlApiMetadata(context.Background(), slug).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.AppsAuthenticationSamlApiMetadata``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `AppsAuthenticationSamlApiMetadata`: string
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.AppsAuthenticationSamlApiMetadata`: %v\n", resp)
 }
 ```
 
@@ -2124,7 +2132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+**string**
 
 ### Authorization
 
@@ -2133,7 +2141,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

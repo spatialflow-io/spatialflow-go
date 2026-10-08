@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Error** | **string** |  | 
 **Limit** | **int32** |  | 
-**ResetAt** | **string** |  | 
+**ResetAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewRateLimitResponse
 
-`func NewRateLimitResponse(error_ string, limit int32, resetAt string, ) *RateLimitResponse`
+`func NewRateLimitResponse(error_ string, limit int32, resetAt time.Time, ) *RateLimitResponse`
 
 NewRateLimitResponse instantiates a new RateLimitResponse object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetLimit sets Limit field to given value.
 
 ### GetResetAt
 
-`func (o *RateLimitResponse) GetResetAt() string`
+`func (o *RateLimitResponse) GetResetAt() time.Time`
 
 GetResetAt returns the ResetAt field if non-nil, zero value otherwise.
 
 ### GetResetAtOk
 
-`func (o *RateLimitResponse) GetResetAtOk() (*string, bool)`
+`func (o *RateLimitResponse) GetResetAtOk() (*time.Time, bool)`
 
 GetResetAtOk returns a tuple with the ResetAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResetAt
 
-`func (o *RateLimitResponse) SetResetAt(v string)`
+`func (o *RateLimitResponse) SetResetAt(v time.Time)`
 
 SetResetAt sets ResetAt field to given value.
 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **ExpiresIn** | **int32** |  | 
 **User** | **map[string]interface{}** |  | 
 **Created** | **bool** |  | 
+**ConsumedInviteId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -150,6 +151,41 @@ and a boolean to check if the value has been set.
 SetCreated sets Created field to given value.
 
 
+### GetConsumedInviteId
+
+`func (o *AppleTokenExchangeResponse) GetConsumedInviteId() string`
+
+GetConsumedInviteId returns the ConsumedInviteId field if non-nil, zero value otherwise.
+
+### GetConsumedInviteIdOk
+
+`func (o *AppleTokenExchangeResponse) GetConsumedInviteIdOk() (*string, bool)`
+
+GetConsumedInviteIdOk returns a tuple with the ConsumedInviteId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConsumedInviteId
+
+`func (o *AppleTokenExchangeResponse) SetConsumedInviteId(v string)`
+
+SetConsumedInviteId sets ConsumedInviteId field to given value.
+
+### HasConsumedInviteId
+
+`func (o *AppleTokenExchangeResponse) HasConsumedInviteId() bool`
+
+HasConsumedInviteId returns a boolean if a field has been set.
+
+### SetConsumedInviteIdNil
+
+`func (o *AppleTokenExchangeResponse) SetConsumedInviteIdNil(b bool)`
+
+ SetConsumedInviteIdNil sets the value for ConsumedInviteId to be an explicit nil
+
+### UnsetConsumedInviteId
+`func (o *AppleTokenExchangeResponse) UnsetConsumedInviteId()`
+
+UnsetConsumedInviteId ensures that no value is present for ConsumedInviteId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

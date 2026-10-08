@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **UtmTerm** | Pointer to **NullableString** |  | [optional] 
 **UtmContent** | Pointer to **NullableString** |  | [optional] 
 **Website** | Pointer to **NullableString** |  | [optional] 
+**Lane** | Pointer to **NullableString** |  | [optional] 
+**Timezone** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -416,6 +418,76 @@ HasWebsite returns a boolean if a field has been set.
 `func (o *SignupRequest) UnsetWebsite()`
 
 UnsetWebsite ensures that no value is present for Website, not even an explicit nil
+### GetLane
+
+`func (o *SignupRequest) GetLane() string`
+
+GetLane returns the Lane field if non-nil, zero value otherwise.
+
+### GetLaneOk
+
+`func (o *SignupRequest) GetLaneOk() (*string, bool)`
+
+GetLaneOk returns a tuple with the Lane field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLane
+
+`func (o *SignupRequest) SetLane(v string)`
+
+SetLane sets Lane field to given value.
+
+### HasLane
+
+`func (o *SignupRequest) HasLane() bool`
+
+HasLane returns a boolean if a field has been set.
+
+### SetLaneNil
+
+`func (o *SignupRequest) SetLaneNil(b bool)`
+
+ SetLaneNil sets the value for Lane to be an explicit nil
+
+### UnsetLane
+`func (o *SignupRequest) UnsetLane()`
+
+UnsetLane ensures that no value is present for Lane, not even an explicit nil
+### GetTimezone
+
+`func (o *SignupRequest) GetTimezone() string`
+
+GetTimezone returns the Timezone field if non-nil, zero value otherwise.
+
+### GetTimezoneOk
+
+`func (o *SignupRequest) GetTimezoneOk() (*string, bool)`
+
+GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimezone
+
+`func (o *SignupRequest) SetTimezone(v string)`
+
+SetTimezone sets Timezone field to given value.
+
+### HasTimezone
+
+`func (o *SignupRequest) HasTimezone() bool`
+
+HasTimezone returns a boolean if a field has been set.
+
+### SetTimezoneNil
+
+`func (o *SignupRequest) SetTimezoneNil(b bool)`
+
+ SetTimezoneNil sets the value for Timezone to be an explicit nil
+
+### UnsetTimezone
+`func (o *SignupRequest) UnsetTimezone()`
+
+UnsetTimezone ensures that no value is present for Timezone, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

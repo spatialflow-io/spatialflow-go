@@ -8,15 +8,15 @@ Name | Type | Description | Notes
 **Email** | **string** |  | 
 **Role** | **string** |  | 
 **Status** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**ExpiresAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
+**ExpiresAt** | **time.Time** |  | 
 **InvitedByEmail** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewInvitationOut
 
-`func NewInvitationOut(id string, email string, role string, status string, createdAt string, expiresAt string, ) *InvitationOut`
+`func NewInvitationOut(id string, email string, role string, status string, createdAt time.Time, expiresAt time.Time, ) *InvitationOut`
 
 NewInvitationOut instantiates a new InvitationOut object
 This constructor will assign default values to properties that have it defined,
@@ -113,40 +113,40 @@ SetStatus sets Status field to given value.
 
 ### GetCreatedAt
 
-`func (o *InvitationOut) GetCreatedAt() string`
+`func (o *InvitationOut) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *InvitationOut) GetCreatedAtOk() (*string, bool)`
+`func (o *InvitationOut) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *InvitationOut) SetCreatedAt(v string)`
+`func (o *InvitationOut) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetExpiresAt
 
-`func (o *InvitationOut) GetExpiresAt() string`
+`func (o *InvitationOut) GetExpiresAt() time.Time`
 
 GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
 
 ### GetExpiresAtOk
 
-`func (o *InvitationOut) GetExpiresAtOk() (*string, bool)`
+`func (o *InvitationOut) GetExpiresAtOk() (*time.Time, bool)`
 
 GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpiresAt
 
-`func (o *InvitationOut) SetExpiresAt(v string)`
+`func (o *InvitationOut) SetExpiresAt(v time.Time)`
 
 SetExpiresAt sets ExpiresAt field to given value.
 

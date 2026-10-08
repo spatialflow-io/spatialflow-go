@@ -8,7 +8,9 @@ Name | Type | Description | Notes
 **DeviceId** | **string** |  | 
 **Name** | **string** |  | 
 **DeviceType** | **string** |  | 
+**RegistrationSource** | **string** |  | 
 **IsActive** | **bool** |  | 
+**IsExample** | Pointer to **bool** |  | [optional] [default to false]
 **ShiftStatus** | **string** |  | 
 **ShiftStartedAt** | Pointer to **NullableTime** |  | [optional] 
 **ShiftPausedAt** | Pointer to **NullableTime** |  | [optional] 
@@ -16,8 +18,22 @@ Name | Type | Description | Notes
 **ShiftResumedAt** | Pointer to **NullableTime** |  | [optional] 
 **LastLocation** | Pointer to [**NullableLatLonOut**](LatLonOut.md) |  | [optional] 
 **LastLocationTime** | Pointer to **NullableTime** |  | [optional] 
+**LastAccuracy** | Pointer to **NullableFloat32** |  | [optional] 
 **LastHeading** | Pointer to **NullableFloat32** |  | [optional] 
+**LastBatteryLevel** | Pointer to **NullableInt32** |  | [optional] 
+**LastBatteryCharging** | Pointer to **NullableBool** |  | [optional] 
+**LastBatteryTime** | Pointer to **NullableTime** |  | [optional] 
+**DriverName** | Pointer to **string** |  | [optional] [default to ""]
+**VehicleLabel** | Pointer to **string** |  | [optional] [default to ""]
+**EmployeeId** | Pointer to **string** |  | [optional] [default to ""]
+**LicensePlate** | Pointer to **string** |  | [optional] [default to ""]
+**Group** | Pointer to **string** |  | [optional] [default to ""]
+**Status** | **string** |  | 
+**LastSeenSeconds** | Pointer to **NullableInt32** |  | [optional] 
+**Parked** | Pointer to **bool** |  | [optional] [default to false]
+**TodayDistanceMeters** | Pointer to **NullableFloat32** |  | [optional] 
 **CurrentSessionNotes** | Pointer to **string** |  | [optional] [default to ""]
+**CurrentSession** | Pointer to [**NullableCurrentSessionOut**](CurrentSessionOut.md) |  | [optional] 
 **InGeofenceIds** | Pointer to **[]string** |  | [optional] [default to []]
 **InGeofenceEntries** | Pointer to **map[string]string** |  | [optional] [default to {}]
 **CreatedAt** | **time.Time** |  | 
@@ -27,7 +43,7 @@ Name | Type | Description | Notes
 
 ### NewDeviceOut
 
-`func NewDeviceOut(id string, deviceId string, name string, deviceType string, isActive bool, shiftStatus string, createdAt time.Time, updatedAt time.Time, ) *DeviceOut`
+`func NewDeviceOut(id string, deviceId string, name string, deviceType string, registrationSource string, isActive bool, shiftStatus string, status string, createdAt time.Time, updatedAt time.Time, ) *DeviceOut`
 
 NewDeviceOut instantiates a new DeviceOut object
 This constructor will assign default values to properties that have it defined,
@@ -122,6 +138,26 @@ and a boolean to check if the value has been set.
 SetDeviceType sets DeviceType field to given value.
 
 
+### GetRegistrationSource
+
+`func (o *DeviceOut) GetRegistrationSource() string`
+
+GetRegistrationSource returns the RegistrationSource field if non-nil, zero value otherwise.
+
+### GetRegistrationSourceOk
+
+`func (o *DeviceOut) GetRegistrationSourceOk() (*string, bool)`
+
+GetRegistrationSourceOk returns a tuple with the RegistrationSource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationSource
+
+`func (o *DeviceOut) SetRegistrationSource(v string)`
+
+SetRegistrationSource sets RegistrationSource field to given value.
+
+
 ### GetIsActive
 
 `func (o *DeviceOut) GetIsActive() bool`
@@ -141,6 +177,31 @@ and a boolean to check if the value has been set.
 
 SetIsActive sets IsActive field to given value.
 
+
+### GetIsExample
+
+`func (o *DeviceOut) GetIsExample() bool`
+
+GetIsExample returns the IsExample field if non-nil, zero value otherwise.
+
+### GetIsExampleOk
+
+`func (o *DeviceOut) GetIsExampleOk() (*bool, bool)`
+
+GetIsExampleOk returns a tuple with the IsExample field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsExample
+
+`func (o *DeviceOut) SetIsExample(v bool)`
+
+SetIsExample sets IsExample field to given value.
+
+### HasIsExample
+
+`func (o *DeviceOut) HasIsExample() bool`
+
+HasIsExample returns a boolean if a field has been set.
 
 ### GetShiftStatus
 
@@ -372,6 +433,41 @@ HasLastLocationTime returns a boolean if a field has been set.
 `func (o *DeviceOut) UnsetLastLocationTime()`
 
 UnsetLastLocationTime ensures that no value is present for LastLocationTime, not even an explicit nil
+### GetLastAccuracy
+
+`func (o *DeviceOut) GetLastAccuracy() float32`
+
+GetLastAccuracy returns the LastAccuracy field if non-nil, zero value otherwise.
+
+### GetLastAccuracyOk
+
+`func (o *DeviceOut) GetLastAccuracyOk() (*float32, bool)`
+
+GetLastAccuracyOk returns a tuple with the LastAccuracy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastAccuracy
+
+`func (o *DeviceOut) SetLastAccuracy(v float32)`
+
+SetLastAccuracy sets LastAccuracy field to given value.
+
+### HasLastAccuracy
+
+`func (o *DeviceOut) HasLastAccuracy() bool`
+
+HasLastAccuracy returns a boolean if a field has been set.
+
+### SetLastAccuracyNil
+
+`func (o *DeviceOut) SetLastAccuracyNil(b bool)`
+
+ SetLastAccuracyNil sets the value for LastAccuracy to be an explicit nil
+
+### UnsetLastAccuracy
+`func (o *DeviceOut) UnsetLastAccuracy()`
+
+UnsetLastAccuracy ensures that no value is present for LastAccuracy, not even an explicit nil
 ### GetLastHeading
 
 `func (o *DeviceOut) GetLastHeading() float32`
@@ -407,6 +503,351 @@ HasLastHeading returns a boolean if a field has been set.
 `func (o *DeviceOut) UnsetLastHeading()`
 
 UnsetLastHeading ensures that no value is present for LastHeading, not even an explicit nil
+### GetLastBatteryLevel
+
+`func (o *DeviceOut) GetLastBatteryLevel() int32`
+
+GetLastBatteryLevel returns the LastBatteryLevel field if non-nil, zero value otherwise.
+
+### GetLastBatteryLevelOk
+
+`func (o *DeviceOut) GetLastBatteryLevelOk() (*int32, bool)`
+
+GetLastBatteryLevelOk returns a tuple with the LastBatteryLevel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastBatteryLevel
+
+`func (o *DeviceOut) SetLastBatteryLevel(v int32)`
+
+SetLastBatteryLevel sets LastBatteryLevel field to given value.
+
+### HasLastBatteryLevel
+
+`func (o *DeviceOut) HasLastBatteryLevel() bool`
+
+HasLastBatteryLevel returns a boolean if a field has been set.
+
+### SetLastBatteryLevelNil
+
+`func (o *DeviceOut) SetLastBatteryLevelNil(b bool)`
+
+ SetLastBatteryLevelNil sets the value for LastBatteryLevel to be an explicit nil
+
+### UnsetLastBatteryLevel
+`func (o *DeviceOut) UnsetLastBatteryLevel()`
+
+UnsetLastBatteryLevel ensures that no value is present for LastBatteryLevel, not even an explicit nil
+### GetLastBatteryCharging
+
+`func (o *DeviceOut) GetLastBatteryCharging() bool`
+
+GetLastBatteryCharging returns the LastBatteryCharging field if non-nil, zero value otherwise.
+
+### GetLastBatteryChargingOk
+
+`func (o *DeviceOut) GetLastBatteryChargingOk() (*bool, bool)`
+
+GetLastBatteryChargingOk returns a tuple with the LastBatteryCharging field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastBatteryCharging
+
+`func (o *DeviceOut) SetLastBatteryCharging(v bool)`
+
+SetLastBatteryCharging sets LastBatteryCharging field to given value.
+
+### HasLastBatteryCharging
+
+`func (o *DeviceOut) HasLastBatteryCharging() bool`
+
+HasLastBatteryCharging returns a boolean if a field has been set.
+
+### SetLastBatteryChargingNil
+
+`func (o *DeviceOut) SetLastBatteryChargingNil(b bool)`
+
+ SetLastBatteryChargingNil sets the value for LastBatteryCharging to be an explicit nil
+
+### UnsetLastBatteryCharging
+`func (o *DeviceOut) UnsetLastBatteryCharging()`
+
+UnsetLastBatteryCharging ensures that no value is present for LastBatteryCharging, not even an explicit nil
+### GetLastBatteryTime
+
+`func (o *DeviceOut) GetLastBatteryTime() time.Time`
+
+GetLastBatteryTime returns the LastBatteryTime field if non-nil, zero value otherwise.
+
+### GetLastBatteryTimeOk
+
+`func (o *DeviceOut) GetLastBatteryTimeOk() (*time.Time, bool)`
+
+GetLastBatteryTimeOk returns a tuple with the LastBatteryTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastBatteryTime
+
+`func (o *DeviceOut) SetLastBatteryTime(v time.Time)`
+
+SetLastBatteryTime sets LastBatteryTime field to given value.
+
+### HasLastBatteryTime
+
+`func (o *DeviceOut) HasLastBatteryTime() bool`
+
+HasLastBatteryTime returns a boolean if a field has been set.
+
+### SetLastBatteryTimeNil
+
+`func (o *DeviceOut) SetLastBatteryTimeNil(b bool)`
+
+ SetLastBatteryTimeNil sets the value for LastBatteryTime to be an explicit nil
+
+### UnsetLastBatteryTime
+`func (o *DeviceOut) UnsetLastBatteryTime()`
+
+UnsetLastBatteryTime ensures that no value is present for LastBatteryTime, not even an explicit nil
+### GetDriverName
+
+`func (o *DeviceOut) GetDriverName() string`
+
+GetDriverName returns the DriverName field if non-nil, zero value otherwise.
+
+### GetDriverNameOk
+
+`func (o *DeviceOut) GetDriverNameOk() (*string, bool)`
+
+GetDriverNameOk returns a tuple with the DriverName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriverName
+
+`func (o *DeviceOut) SetDriverName(v string)`
+
+SetDriverName sets DriverName field to given value.
+
+### HasDriverName
+
+`func (o *DeviceOut) HasDriverName() bool`
+
+HasDriverName returns a boolean if a field has been set.
+
+### GetVehicleLabel
+
+`func (o *DeviceOut) GetVehicleLabel() string`
+
+GetVehicleLabel returns the VehicleLabel field if non-nil, zero value otherwise.
+
+### GetVehicleLabelOk
+
+`func (o *DeviceOut) GetVehicleLabelOk() (*string, bool)`
+
+GetVehicleLabelOk returns a tuple with the VehicleLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVehicleLabel
+
+`func (o *DeviceOut) SetVehicleLabel(v string)`
+
+SetVehicleLabel sets VehicleLabel field to given value.
+
+### HasVehicleLabel
+
+`func (o *DeviceOut) HasVehicleLabel() bool`
+
+HasVehicleLabel returns a boolean if a field has been set.
+
+### GetEmployeeId
+
+`func (o *DeviceOut) GetEmployeeId() string`
+
+GetEmployeeId returns the EmployeeId field if non-nil, zero value otherwise.
+
+### GetEmployeeIdOk
+
+`func (o *DeviceOut) GetEmployeeIdOk() (*string, bool)`
+
+GetEmployeeIdOk returns a tuple with the EmployeeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmployeeId
+
+`func (o *DeviceOut) SetEmployeeId(v string)`
+
+SetEmployeeId sets EmployeeId field to given value.
+
+### HasEmployeeId
+
+`func (o *DeviceOut) HasEmployeeId() bool`
+
+HasEmployeeId returns a boolean if a field has been set.
+
+### GetLicensePlate
+
+`func (o *DeviceOut) GetLicensePlate() string`
+
+GetLicensePlate returns the LicensePlate field if non-nil, zero value otherwise.
+
+### GetLicensePlateOk
+
+`func (o *DeviceOut) GetLicensePlateOk() (*string, bool)`
+
+GetLicensePlateOk returns a tuple with the LicensePlate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLicensePlate
+
+`func (o *DeviceOut) SetLicensePlate(v string)`
+
+SetLicensePlate sets LicensePlate field to given value.
+
+### HasLicensePlate
+
+`func (o *DeviceOut) HasLicensePlate() bool`
+
+HasLicensePlate returns a boolean if a field has been set.
+
+### GetGroup
+
+`func (o *DeviceOut) GetGroup() string`
+
+GetGroup returns the Group field if non-nil, zero value otherwise.
+
+### GetGroupOk
+
+`func (o *DeviceOut) GetGroupOk() (*string, bool)`
+
+GetGroupOk returns a tuple with the Group field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroup
+
+`func (o *DeviceOut) SetGroup(v string)`
+
+SetGroup sets Group field to given value.
+
+### HasGroup
+
+`func (o *DeviceOut) HasGroup() bool`
+
+HasGroup returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *DeviceOut) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *DeviceOut) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *DeviceOut) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+
+### GetLastSeenSeconds
+
+`func (o *DeviceOut) GetLastSeenSeconds() int32`
+
+GetLastSeenSeconds returns the LastSeenSeconds field if non-nil, zero value otherwise.
+
+### GetLastSeenSecondsOk
+
+`func (o *DeviceOut) GetLastSeenSecondsOk() (*int32, bool)`
+
+GetLastSeenSecondsOk returns a tuple with the LastSeenSeconds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastSeenSeconds
+
+`func (o *DeviceOut) SetLastSeenSeconds(v int32)`
+
+SetLastSeenSeconds sets LastSeenSeconds field to given value.
+
+### HasLastSeenSeconds
+
+`func (o *DeviceOut) HasLastSeenSeconds() bool`
+
+HasLastSeenSeconds returns a boolean if a field has been set.
+
+### SetLastSeenSecondsNil
+
+`func (o *DeviceOut) SetLastSeenSecondsNil(b bool)`
+
+ SetLastSeenSecondsNil sets the value for LastSeenSeconds to be an explicit nil
+
+### UnsetLastSeenSeconds
+`func (o *DeviceOut) UnsetLastSeenSeconds()`
+
+UnsetLastSeenSeconds ensures that no value is present for LastSeenSeconds, not even an explicit nil
+### GetParked
+
+`func (o *DeviceOut) GetParked() bool`
+
+GetParked returns the Parked field if non-nil, zero value otherwise.
+
+### GetParkedOk
+
+`func (o *DeviceOut) GetParkedOk() (*bool, bool)`
+
+GetParkedOk returns a tuple with the Parked field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParked
+
+`func (o *DeviceOut) SetParked(v bool)`
+
+SetParked sets Parked field to given value.
+
+### HasParked
+
+`func (o *DeviceOut) HasParked() bool`
+
+HasParked returns a boolean if a field has been set.
+
+### GetTodayDistanceMeters
+
+`func (o *DeviceOut) GetTodayDistanceMeters() float32`
+
+GetTodayDistanceMeters returns the TodayDistanceMeters field if non-nil, zero value otherwise.
+
+### GetTodayDistanceMetersOk
+
+`func (o *DeviceOut) GetTodayDistanceMetersOk() (*float32, bool)`
+
+GetTodayDistanceMetersOk returns a tuple with the TodayDistanceMeters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTodayDistanceMeters
+
+`func (o *DeviceOut) SetTodayDistanceMeters(v float32)`
+
+SetTodayDistanceMeters sets TodayDistanceMeters field to given value.
+
+### HasTodayDistanceMeters
+
+`func (o *DeviceOut) HasTodayDistanceMeters() bool`
+
+HasTodayDistanceMeters returns a boolean if a field has been set.
+
+### SetTodayDistanceMetersNil
+
+`func (o *DeviceOut) SetTodayDistanceMetersNil(b bool)`
+
+ SetTodayDistanceMetersNil sets the value for TodayDistanceMeters to be an explicit nil
+
+### UnsetTodayDistanceMeters
+`func (o *DeviceOut) UnsetTodayDistanceMeters()`
+
+UnsetTodayDistanceMeters ensures that no value is present for TodayDistanceMeters, not even an explicit nil
 ### GetCurrentSessionNotes
 
 `func (o *DeviceOut) GetCurrentSessionNotes() string`
@@ -432,6 +873,41 @@ SetCurrentSessionNotes sets CurrentSessionNotes field to given value.
 
 HasCurrentSessionNotes returns a boolean if a field has been set.
 
+### GetCurrentSession
+
+`func (o *DeviceOut) GetCurrentSession() CurrentSessionOut`
+
+GetCurrentSession returns the CurrentSession field if non-nil, zero value otherwise.
+
+### GetCurrentSessionOk
+
+`func (o *DeviceOut) GetCurrentSessionOk() (*CurrentSessionOut, bool)`
+
+GetCurrentSessionOk returns a tuple with the CurrentSession field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrentSession
+
+`func (o *DeviceOut) SetCurrentSession(v CurrentSessionOut)`
+
+SetCurrentSession sets CurrentSession field to given value.
+
+### HasCurrentSession
+
+`func (o *DeviceOut) HasCurrentSession() bool`
+
+HasCurrentSession returns a boolean if a field has been set.
+
+### SetCurrentSessionNil
+
+`func (o *DeviceOut) SetCurrentSessionNil(b bool)`
+
+ SetCurrentSessionNil sets the value for CurrentSession to be an explicit nil
+
+### UnsetCurrentSession
+`func (o *DeviceOut) UnsetCurrentSession()`
+
+UnsetCurrentSession ensures that no value is present for CurrentSession, not even an explicit nil
 ### GetInGeofenceIds
 
 `func (o *DeviceOut) GetInGeofenceIds() []string`

@@ -7,20 +7,20 @@ import (
 	"testing"
 	"time"
 
-	"github.com/spatialflow-io/spatialflow-go/spatialflow"
+	"github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
 )
 
 func TestTransport_AuthHeaders(t *testing.T) {
 	tests := []struct {
-		name        string
-		apiKey      string
-		token       string
-		wantHeader  string
-		wantValue   string
+		name       string
+		apiKey     string
+		token      string
+		wantHeader string
+		wantValue  string
 	}{
 		{
 			name:       "API key auth",
-			apiKey:     "sf_test_key",
+			apiKey:     "sf_test_key", // pragma: allowlist secret
 			wantHeader: "X-API-KEY",
 			wantValue:  "sf_test_key",
 		},
@@ -42,7 +42,7 @@ func TestTransport_AuthHeaders(t *testing.T) {
 			defer server.Close()
 
 			transport := &spatialflow.Transport{
-				APIKey: tt.apiKey,
+				APIKey: tt.apiKey, // pragma: allowlist secret
 				Token:  tt.token,
 			}
 			client := &http.Client{Transport: transport}
@@ -77,7 +77,7 @@ func TestTransport_Retry(t *testing.T) {
 	defer server.Close()
 
 	transport := &spatialflow.Transport{
-		APIKey:     "sf_test",
+		APIKey:     "sf_test", // pragma: allowlist secret
 		MaxRetries: 3,
 		BaseDelay:  10 * time.Millisecond,
 	}
@@ -107,7 +107,7 @@ func TestTransport_NoRetryOnPOST(t *testing.T) {
 	defer server.Close()
 
 	transport := &spatialflow.Transport{
-		APIKey:     "sf_test",
+		APIKey:     "sf_test", // pragma: allowlist secret
 		MaxRetries: 3,
 	}
 	client := &http.Client{Transport: transport}
@@ -132,7 +132,7 @@ func TestTransport_ContextCancellation(t *testing.T) {
 	defer server.Close()
 
 	transport := &spatialflow.Transport{
-		APIKey: "sf_test",
+		APIKey: "sf_test", // pragma: allowlist secret
 	}
 	client := &http.Client{Transport: transport}
 
@@ -162,7 +162,7 @@ func TestTransport_RateLimitRetryAfter(t *testing.T) {
 	defer server.Close()
 
 	transport := &spatialflow.Transport{
-		APIKey:     "sf_test",
+		APIKey:     "sf_test", // pragma: allowlist secret
 		MaxRetries: 3,
 		BaseDelay:  10 * time.Millisecond, // Would be much shorter without Retry-After
 	}

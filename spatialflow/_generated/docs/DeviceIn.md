@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **DeviceId** | **string** |  | 
 **Name** | **string** |  | 
 **DeviceType** | Pointer to **string** |  | [optional] [default to "mobile"]
+**RegistrationSource** | Pointer to **string** |  | [optional] [default to "api"]
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
@@ -92,6 +93,31 @@ SetDeviceType sets DeviceType field to given value.
 `func (o *DeviceIn) HasDeviceType() bool`
 
 HasDeviceType returns a boolean if a field has been set.
+
+### GetRegistrationSource
+
+`func (o *DeviceIn) GetRegistrationSource() string`
+
+GetRegistrationSource returns the RegistrationSource field if non-nil, zero value otherwise.
+
+### GetRegistrationSourceOk
+
+`func (o *DeviceIn) GetRegistrationSourceOk() (*string, bool)`
+
+GetRegistrationSourceOk returns a tuple with the RegistrationSource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationSource
+
+`func (o *DeviceIn) SetRegistrationSource(v string)`
+
+SetRegistrationSource sets RegistrationSource field to given value.
+
+### HasRegistrationSource
+
+`func (o *DeviceIn) HasRegistrationSource() bool`
+
+HasRegistrationSource returns a boolean if a field has been set.
 
 ### GetMetadata
 

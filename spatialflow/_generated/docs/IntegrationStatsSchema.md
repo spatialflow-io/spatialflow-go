@@ -9,15 +9,15 @@ Name | Type | Description | Notes
 **SuccessRate** | **float32** |  | 
 **AverageDurationMs** | **NullableFloat32** |  | 
 **HealthStatus** | **string** |  | 
-**LastUsedAt** | **NullableString** |  | 
-**LastHealthCheckAt** | **NullableString** |  | 
+**LastUsedAt** | **NullableTime** |  | 
+**LastHealthCheckAt** | **NullableTime** |  | 
 **RecentErrors** | **[]map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewIntegrationStatsSchema
 
-`func NewIntegrationStatsSchema(totalUses int32, successfulUses int32, successRate float32, averageDurationMs NullableFloat32, healthStatus string, lastUsedAt NullableString, lastHealthCheckAt NullableString, recentErrors []map[string]interface{}, ) *IntegrationStatsSchema`
+`func NewIntegrationStatsSchema(totalUses int32, successfulUses int32, successRate float32, averageDurationMs NullableFloat32, healthStatus string, lastUsedAt NullableTime, lastHealthCheckAt NullableTime, recentErrors []map[string]interface{}, ) *IntegrationStatsSchema`
 
 NewIntegrationStatsSchema instantiates a new IntegrationStatsSchema object
 This constructor will assign default values to properties that have it defined,
@@ -144,20 +144,20 @@ SetHealthStatus sets HealthStatus field to given value.
 
 ### GetLastUsedAt
 
-`func (o *IntegrationStatsSchema) GetLastUsedAt() string`
+`func (o *IntegrationStatsSchema) GetLastUsedAt() time.Time`
 
 GetLastUsedAt returns the LastUsedAt field if non-nil, zero value otherwise.
 
 ### GetLastUsedAtOk
 
-`func (o *IntegrationStatsSchema) GetLastUsedAtOk() (*string, bool)`
+`func (o *IntegrationStatsSchema) GetLastUsedAtOk() (*time.Time, bool)`
 
 GetLastUsedAtOk returns a tuple with the LastUsedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastUsedAt
 
-`func (o *IntegrationStatsSchema) SetLastUsedAt(v string)`
+`func (o *IntegrationStatsSchema) SetLastUsedAt(v time.Time)`
 
 SetLastUsedAt sets LastUsedAt field to given value.
 
@@ -174,20 +174,20 @@ SetLastUsedAt sets LastUsedAt field to given value.
 UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
 ### GetLastHealthCheckAt
 
-`func (o *IntegrationStatsSchema) GetLastHealthCheckAt() string`
+`func (o *IntegrationStatsSchema) GetLastHealthCheckAt() time.Time`
 
 GetLastHealthCheckAt returns the LastHealthCheckAt field if non-nil, zero value otherwise.
 
 ### GetLastHealthCheckAtOk
 
-`func (o *IntegrationStatsSchema) GetLastHealthCheckAtOk() (*string, bool)`
+`func (o *IntegrationStatsSchema) GetLastHealthCheckAtOk() (*time.Time, bool)`
 
 GetLastHealthCheckAtOk returns a tuple with the LastHealthCheckAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastHealthCheckAt
 
-`func (o *IntegrationStatsSchema) SetLastHealthCheckAt(v string)`
+`func (o *IntegrationStatsSchema) SetLastHealthCheckAt(v time.Time)`
 
 SetLastHealthCheckAt sets LastHealthCheckAt field to given value.
 

@@ -6,12 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **NullableString** |  | [optional] 
 **Description** | Pointer to **NullableString** |  | [optional] 
-**Geometry** | Pointer to [**NullableGeometry1**](Geometry1.md) |  | [optional] 
+**Geometry** | Pointer to [**NullableGeometry3**](Geometry3.md) |  | [optional] 
 **WebhookUrl** | Pointer to **NullableString** |  | [optional] 
 **WebhookEvents** | Pointer to **[]string** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **IsActive** | Pointer to **NullableBool** |  | [optional] 
 **GroupName** | Pointer to **NullableString** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Address** | Pointer to **NullableString** |  | [optional] 
+**BufferMeters** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
 
@@ -104,20 +107,20 @@ HasDescription returns a boolean if a field has been set.
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetGeometry
 
-`func (o *UpdateGeofenceRequest) GetGeometry() Geometry1`
+`func (o *UpdateGeofenceRequest) GetGeometry() Geometry3`
 
 GetGeometry returns the Geometry field if non-nil, zero value otherwise.
 
 ### GetGeometryOk
 
-`func (o *UpdateGeofenceRequest) GetGeometryOk() (*Geometry1, bool)`
+`func (o *UpdateGeofenceRequest) GetGeometryOk() (*Geometry3, bool)`
 
 GetGeometryOk returns a tuple with the Geometry field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGeometry
 
-`func (o *UpdateGeofenceRequest) SetGeometry(v Geometry1)`
+`func (o *UpdateGeofenceRequest) SetGeometry(v Geometry3)`
 
 SetGeometry sets Geometry field to given value.
 
@@ -312,6 +315,111 @@ HasGroupName returns a boolean if a field has been set.
 `func (o *UpdateGeofenceRequest) UnsetGroupName()`
 
 UnsetGroupName ensures that no value is present for GroupName, not even an explicit nil
+### GetTags
+
+`func (o *UpdateGeofenceRequest) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *UpdateGeofenceRequest) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *UpdateGeofenceRequest) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *UpdateGeofenceRequest) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### SetTagsNil
+
+`func (o *UpdateGeofenceRequest) SetTagsNil(b bool)`
+
+ SetTagsNil sets the value for Tags to be an explicit nil
+
+### UnsetTags
+`func (o *UpdateGeofenceRequest) UnsetTags()`
+
+UnsetTags ensures that no value is present for Tags, not even an explicit nil
+### GetAddress
+
+`func (o *UpdateGeofenceRequest) GetAddress() string`
+
+GetAddress returns the Address field if non-nil, zero value otherwise.
+
+### GetAddressOk
+
+`func (o *UpdateGeofenceRequest) GetAddressOk() (*string, bool)`
+
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddress
+
+`func (o *UpdateGeofenceRequest) SetAddress(v string)`
+
+SetAddress sets Address field to given value.
+
+### HasAddress
+
+`func (o *UpdateGeofenceRequest) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
+
+### SetAddressNil
+
+`func (o *UpdateGeofenceRequest) SetAddressNil(b bool)`
+
+ SetAddressNil sets the value for Address to be an explicit nil
+
+### UnsetAddress
+`func (o *UpdateGeofenceRequest) UnsetAddress()`
+
+UnsetAddress ensures that no value is present for Address, not even an explicit nil
+### GetBufferMeters
+
+`func (o *UpdateGeofenceRequest) GetBufferMeters() int32`
+
+GetBufferMeters returns the BufferMeters field if non-nil, zero value otherwise.
+
+### GetBufferMetersOk
+
+`func (o *UpdateGeofenceRequest) GetBufferMetersOk() (*int32, bool)`
+
+GetBufferMetersOk returns a tuple with the BufferMeters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBufferMeters
+
+`func (o *UpdateGeofenceRequest) SetBufferMeters(v int32)`
+
+SetBufferMeters sets BufferMeters field to given value.
+
+### HasBufferMeters
+
+`func (o *UpdateGeofenceRequest) HasBufferMeters() bool`
+
+HasBufferMeters returns a boolean if a field has been set.
+
+### SetBufferMetersNil
+
+`func (o *UpdateGeofenceRequest) SetBufferMetersNil(b bool)`
+
+ SetBufferMetersNil sets the value for BufferMeters to be an explicit nil
+
+### UnsetBufferMeters
+`func (o *UpdateGeofenceRequest) UnsetBufferMeters()`
+
+UnsetBufferMeters ensures that no value is present for BufferMeters, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

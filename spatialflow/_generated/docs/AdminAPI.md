@@ -12,7 +12,9 @@ Method | HTTP request | Description
 [**AppsAdminPortalApiBulkApproveUsers**](AdminAPI.md#AppsAdminPortalApiBulkApproveUsers) | **Post** /api/v1/admin/users/bulk-approve | Bulk Approve Users
 [**AppsAdminPortalApiBulkDeactivateUsers**](AdminAPI.md#AppsAdminPortalApiBulkDeactivateUsers) | **Post** /api/v1/admin/users/bulk-deactivate | Bulk Deactivate Users
 [**AppsAdminPortalApiBulkInviteUsers**](AdminAPI.md#AppsAdminPortalApiBulkInviteUsers) | **Post** /api/v1/admin/users/bulk-invite | Bulk Invite Users
+[**AppsAdminPortalApiCreateNotificationRoute**](AdminAPI.md#AppsAdminPortalApiCreateNotificationRoute) | **Post** /api/v1/admin/slack-config/routes | Create Notification Route
 [**AppsAdminPortalApiDeactivateUser**](AdminAPI.md#AppsAdminPortalApiDeactivateUser) | **Put** /api/v1/admin/users/{user_id}/deactivate | Deactivate User
+[**AppsAdminPortalApiDeleteNotificationRoute**](AdminAPI.md#AppsAdminPortalApiDeleteNotificationRoute) | **Delete** /api/v1/admin/slack-config/routes/{route_id} | Delete Notification Route
 [**AppsAdminPortalApiDeleteUser**](AdminAPI.md#AppsAdminPortalApiDeleteUser) | **Delete** /api/v1/admin/users/{user_id} | Delete User
 [**AppsAdminPortalApiDeleteWorkspace**](AdminAPI.md#AppsAdminPortalApiDeleteWorkspace) | **Delete** /api/v1/admin/workspaces/{workspace_id} | Delete Workspace
 [**AppsAdminPortalApiExportMarketingSubscribers**](AdminAPI.md#AppsAdminPortalApiExportMarketingSubscribers) | **Get** /api/v1/admin/users/marketing-subscribers | Export Marketing Subscribers
@@ -32,6 +34,7 @@ Method | HTTP request | Description
 [**AppsAdminPortalApiGetWorkspaceMembers**](AdminAPI.md#AppsAdminPortalApiGetWorkspaceMembers) | **Get** /api/v1/admin/workspaces/{workspace_id}/members | Get Workspace Members
 [**AppsAdminPortalApiInviteUser**](AdminAPI.md#AppsAdminPortalApiInviteUser) | **Post** /api/v1/admin/users/invite | Invite User
 [**AppsAdminPortalApiListConfigurations**](AdminAPI.md#AppsAdminPortalApiListConfigurations) | **Get** /api/v1/admin/configurations | List Configurations
+[**AppsAdminPortalApiListNotificationRoutes**](AdminAPI.md#AppsAdminPortalApiListNotificationRoutes) | **Get** /api/v1/admin/slack-config/routes | List Notification Routes
 [**AppsAdminPortalApiListPendingUsers**](AdminAPI.md#AppsAdminPortalApiListPendingUsers) | **Get** /api/v1/admin/users/pending | List Pending Users
 [**AppsAdminPortalApiListUsers**](AdminAPI.md#AppsAdminPortalApiListUsers) | **Get** /api/v1/admin/users | List Users
 [**AppsAdminPortalApiListWorkspaces**](AdminAPI.md#AppsAdminPortalApiListWorkspaces) | **Get** /api/v1/admin/workspaces | List Workspaces
@@ -44,10 +47,12 @@ Method | HTTP request | Description
 [**AppsAdminPortalApiRevokeInvitation**](AdminAPI.md#AppsAdminPortalApiRevokeInvitation) | **Delete** /api/v1/admin/invitations/{invite_id} | Revoke Invitation
 [**AppsAdminPortalApiSendTestEmail**](AdminAPI.md#AppsAdminPortalApiSendTestEmail) | **Post** /api/v1/admin/email/test | Send Test Email
 [**AppsAdminPortalApiTestNotification**](AdminAPI.md#AppsAdminPortalApiTestNotification) | **Post** /api/v1/admin/slack-config/test | Test Notification
+[**AppsAdminPortalApiTestNotificationRoute**](AdminAPI.md#AppsAdminPortalApiTestNotificationRoute) | **Post** /api/v1/admin/slack-config/routes/{route_id}/test | Test Notification Route
 [**AppsAdminPortalApiTransferWorkspaceOwnership**](AdminAPI.md#AppsAdminPortalApiTransferWorkspaceOwnership) | **Post** /api/v1/admin/workspaces/{workspace_id}/transfer-ownership | Transfer Workspace Ownership
 [**AppsAdminPortalApiUpdateConfiguration**](AdminAPI.md#AppsAdminPortalApiUpdateConfiguration) | **Put** /api/v1/admin/configurations/{key} | Update Configuration
 [**AppsAdminPortalApiUpdateMemberRole**](AdminAPI.md#AppsAdminPortalApiUpdateMemberRole) | **Patch** /api/v1/admin/workspaces/{workspace_id}/members/{user_id} | Update Member Role
 [**AppsAdminPortalApiUpdateNotificationConfig**](AdminAPI.md#AppsAdminPortalApiUpdateNotificationConfig) | **Put** /api/v1/admin/slack-config | Update Notification Config
+[**AppsAdminPortalApiUpdateNotificationRoute**](AdminAPI.md#AppsAdminPortalApiUpdateNotificationRoute) | **Patch** /api/v1/admin/slack-config/routes/{route_id} | Update Notification Route
 [**AppsAdminPortalApiUpdateUserWorkspace**](AdminAPI.md#AppsAdminPortalApiUpdateUserWorkspace) | **Patch** /api/v1/admin/users/{user_id}/workspace | Update User Workspace
 [**AppsAdminPortalApiUpdateWorkspace**](AdminAPI.md#AppsAdminPortalApiUpdateWorkspace) | **Put** /api/v1/admin/workspaces/{workspace_id} | Update Workspace
 
@@ -585,6 +590,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## AppsAdminPortalApiCreateNotificationRoute
+
+> NotificationRouteResponse AppsAdminPortalApiCreateNotificationRoute(ctx).NotificationRouteRequest(notificationRouteRequest).Execute()
+
+Create Notification Route
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	notificationRouteRequest := *openapiclient.NewNotificationRouteRequest("Name_example") // NotificationRouteRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiCreateNotificationRoute(context.Background()).NotificationRouteRequest(notificationRouteRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiCreateNotificationRoute``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiCreateNotificationRoute`: NotificationRouteResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiCreateNotificationRoute`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiCreateNotificationRouteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **notificationRouteRequest** | [**NotificationRouteRequest**](NotificationRouteRequest.md) |  | 
+
+### Return type
+
+[**NotificationRouteResponse**](NotificationRouteResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsAdminPortalApiDeactivateUser
 
 > UserActionResponse AppsAdminPortalApiDeactivateUser(ctx, userId).Execute()
@@ -640,6 +711,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserActionResponse**](UserActionResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAdminPortalApiDeleteNotificationRoute
+
+> map[string]interface{} AppsAdminPortalApiDeleteNotificationRoute(ctx, routeId).Execute()
+
+Delete Notification Route
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	routeId := "routeId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiDeleteNotificationRoute(context.Background(), routeId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiDeleteNotificationRoute``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiDeleteNotificationRoute`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiDeleteNotificationRoute`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**routeId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiDeleteNotificationRouteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**map[string]interface{}**
 
 ### Authorization
 
@@ -1943,6 +2084,67 @@ Other parameters are passed through a pointer to a apiAppsAdminPortalApiListConf
 [[Back to README]](../README.md)
 
 
+## AppsAdminPortalApiListNotificationRoutes
+
+> NotificationRouteListResponse AppsAdminPortalApiListNotificationRoutes(ctx).Execute()
+
+List Notification Routes
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiListNotificationRoutes(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiListNotificationRoutes``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiListNotificationRoutes`: NotificationRouteListResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiListNotificationRoutes`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiListNotificationRoutesRequest struct via the builder pattern
+
+
+### Return type
+
+[**NotificationRouteListResponse**](NotificationRouteListResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsAdminPortalApiListPendingUsers
 
 > UserListResponse AppsAdminPortalApiListPendingUsers(ctx).Limit(limit).Cursor(cursor).Execute()
@@ -1965,7 +2167,7 @@ import (
 
 func main() {
 	limit := int32(56) // int32 |  (optional) (default to 20)
-	cursor := "cursor_example" // string |  (optional)
+	cursor := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2782,6 +2984,76 @@ Other parameters are passed through a pointer to a apiAppsAdminPortalApiTestNoti
 [[Back to README]](../README.md)
 
 
+## AppsAdminPortalApiTestNotificationRoute
+
+> NotificationTestResponse AppsAdminPortalApiTestNotificationRoute(ctx, routeId).Execute()
+
+Test Notification Route
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	routeId := "routeId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiTestNotificationRoute(context.Background(), routeId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiTestNotificationRoute``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiTestNotificationRoute`: NotificationTestResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiTestNotificationRoute`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**routeId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiTestNotificationRouteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**NotificationTestResponse**](NotificationTestResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsAdminPortalApiTransferWorkspaceOwnership
 
 > OwnershipTransferResponse AppsAdminPortalApiTransferWorkspaceOwnership(ctx, workspaceId).OwnershipTransferRequest(ownershipTransferRequest).Execute()
@@ -3052,6 +3324,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NotificationConfigResponse**](NotificationConfigResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsAdminPortalApiUpdateNotificationRoute
+
+> NotificationRouteResponse AppsAdminPortalApiUpdateNotificationRoute(ctx, routeId).NotificationRoutePatchRequest(notificationRoutePatchRequest).Execute()
+
+Update Notification Route
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	routeId := "routeId_example" // string | 
+	notificationRoutePatchRequest := *openapiclient.NewNotificationRoutePatchRequest() // NotificationRoutePatchRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AppsAdminPortalApiUpdateNotificationRoute(context.Background(), routeId).NotificationRoutePatchRequest(notificationRoutePatchRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AppsAdminPortalApiUpdateNotificationRoute``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsAdminPortalApiUpdateNotificationRoute`: NotificationRouteResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AppsAdminPortalApiUpdateNotificationRoute`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**routeId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsAdminPortalApiUpdateNotificationRouteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **notificationRoutePatchRequest** | [**NotificationRoutePatchRequest**](NotificationRoutePatchRequest.md) |  | 
+
+### Return type
+
+[**NotificationRouteResponse**](NotificationRouteResponse.md)
 
 ### Authorization
 

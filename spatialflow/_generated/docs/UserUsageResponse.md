@@ -13,14 +13,14 @@ Name | Type | Description | Notes
 **ActivitySummary** | [**[]ActivitySummary**](ActivitySummary.md) |  | 
 **RecentActivities** | [**[]RecentActivity**](RecentActivity.md) |  | 
 **AccountCreated** | **NullableString** |  | 
-**LastLogin** | **NullableString** |  | 
-**LastSeenAt** | Pointer to **NullableString** |  | [optional] 
+**LastLogin** | **NullableTime** |  | 
+**LastSeenAt** | Pointer to **NullableTime** |  | [optional] 
 
 ## Methods
 
 ### NewUserUsageResponse
 
-`func NewUserUsageResponse(userId string, email string, apiUsage APIUsageStats, emailStats EmailStats, geofenceStats GeofenceStats, activitySummary []ActivitySummary, recentActivities []RecentActivity, accountCreated NullableString, lastLogin NullableString, ) *UserUsageResponse`
+`func NewUserUsageResponse(userId string, email string, apiUsage APIUsageStats, emailStats EmailStats, geofenceStats GeofenceStats, activitySummary []ActivitySummary, recentActivities []RecentActivity, accountCreated NullableString, lastLogin NullableTime, ) *UserUsageResponse`
 
 NewUserUsageResponse instantiates a new UserUsageResponse object
 This constructor will assign default values to properties that have it defined,
@@ -242,20 +242,20 @@ SetAccountCreated sets AccountCreated field to given value.
 UnsetAccountCreated ensures that no value is present for AccountCreated, not even an explicit nil
 ### GetLastLogin
 
-`func (o *UserUsageResponse) GetLastLogin() string`
+`func (o *UserUsageResponse) GetLastLogin() time.Time`
 
 GetLastLogin returns the LastLogin field if non-nil, zero value otherwise.
 
 ### GetLastLoginOk
 
-`func (o *UserUsageResponse) GetLastLoginOk() (*string, bool)`
+`func (o *UserUsageResponse) GetLastLoginOk() (*time.Time, bool)`
 
 GetLastLoginOk returns a tuple with the LastLogin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastLogin
 
-`func (o *UserUsageResponse) SetLastLogin(v string)`
+`func (o *UserUsageResponse) SetLastLogin(v time.Time)`
 
 SetLastLogin sets LastLogin field to given value.
 
@@ -272,20 +272,20 @@ SetLastLogin sets LastLogin field to given value.
 UnsetLastLogin ensures that no value is present for LastLogin, not even an explicit nil
 ### GetLastSeenAt
 
-`func (o *UserUsageResponse) GetLastSeenAt() string`
+`func (o *UserUsageResponse) GetLastSeenAt() time.Time`
 
 GetLastSeenAt returns the LastSeenAt field if non-nil, zero value otherwise.
 
 ### GetLastSeenAtOk
 
-`func (o *UserUsageResponse) GetLastSeenAtOk() (*string, bool)`
+`func (o *UserUsageResponse) GetLastSeenAtOk() (*time.Time, bool)`
 
 GetLastSeenAtOk returns a tuple with the LastSeenAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastSeenAt
 
-`func (o *UserUsageResponse) SetLastSeenAt(v string)`
+`func (o *UserUsageResponse) SetLastSeenAt(v time.Time)`
 
 SetLastSeenAt sets LastSeenAt field to given value.
 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **IsEnabled** | **bool** |  | 
 **WebhookUrlConfigured** | **bool** |  | 
 **NotifyNewSignups** | **bool** |  | 
+**NotifyIssueSubmissions** | **bool** |  | 
 **NotifyAdminApprovals** | **bool** |  | 
 **NotifySubscriptionChanges** | **bool** |  | 
 **NotifyPaymentFailures** | **bool** |  | 
@@ -17,14 +18,15 @@ Name | Type | Description | Notes
 **NotifyDlqThreshold** | **bool** |  | 
 **NotifyServiceHealth** | **bool** |  | 
 **DlqThreshold** | **int32** |  | 
-**UpdatedAt** | Pointer to **NullableString** |  | [optional] 
+**RouteCount** | Pointer to **int32** |  | [optional] [default to 0]
+**UpdatedAt** | Pointer to **NullableTime** |  | [optional] 
 **UpdatedByEmail** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewNotificationConfigResponse
 
-`func NewNotificationConfigResponse(provider string, providerName string, webhookUrlPlaceholder string, isEnabled bool, webhookUrlConfigured bool, notifyNewSignups bool, notifyAdminApprovals bool, notifySubscriptionChanges bool, notifyPaymentFailures bool, notifyPrivacyErasures bool, notifyDlqThreshold bool, notifyServiceHealth bool, dlqThreshold int32, ) *NotificationConfigResponse`
+`func NewNotificationConfigResponse(provider string, providerName string, webhookUrlPlaceholder string, isEnabled bool, webhookUrlConfigured bool, notifyNewSignups bool, notifyIssueSubmissions bool, notifyAdminApprovals bool, notifySubscriptionChanges bool, notifyPaymentFailures bool, notifyPrivacyErasures bool, notifyDlqThreshold bool, notifyServiceHealth bool, dlqThreshold int32, ) *NotificationConfigResponse`
 
 NewNotificationConfigResponse instantiates a new NotificationConfigResponse object
 This constructor will assign default values to properties that have it defined,
@@ -157,6 +159,26 @@ and a boolean to check if the value has been set.
 `func (o *NotificationConfigResponse) SetNotifyNewSignups(v bool)`
 
 SetNotifyNewSignups sets NotifyNewSignups field to given value.
+
+
+### GetNotifyIssueSubmissions
+
+`func (o *NotificationConfigResponse) GetNotifyIssueSubmissions() bool`
+
+GetNotifyIssueSubmissions returns the NotifyIssueSubmissions field if non-nil, zero value otherwise.
+
+### GetNotifyIssueSubmissionsOk
+
+`func (o *NotificationConfigResponse) GetNotifyIssueSubmissionsOk() (*bool, bool)`
+
+GetNotifyIssueSubmissionsOk returns a tuple with the NotifyIssueSubmissions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotifyIssueSubmissions
+
+`func (o *NotificationConfigResponse) SetNotifyIssueSubmissions(v bool)`
+
+SetNotifyIssueSubmissions sets NotifyIssueSubmissions field to given value.
 
 
 ### GetNotifyAdminApprovals
@@ -299,22 +321,47 @@ and a boolean to check if the value has been set.
 SetDlqThreshold sets DlqThreshold field to given value.
 
 
+### GetRouteCount
+
+`func (o *NotificationConfigResponse) GetRouteCount() int32`
+
+GetRouteCount returns the RouteCount field if non-nil, zero value otherwise.
+
+### GetRouteCountOk
+
+`func (o *NotificationConfigResponse) GetRouteCountOk() (*int32, bool)`
+
+GetRouteCountOk returns a tuple with the RouteCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRouteCount
+
+`func (o *NotificationConfigResponse) SetRouteCount(v int32)`
+
+SetRouteCount sets RouteCount field to given value.
+
+### HasRouteCount
+
+`func (o *NotificationConfigResponse) HasRouteCount() bool`
+
+HasRouteCount returns a boolean if a field has been set.
+
 ### GetUpdatedAt
 
-`func (o *NotificationConfigResponse) GetUpdatedAt() string`
+`func (o *NotificationConfigResponse) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *NotificationConfigResponse) GetUpdatedAtOk() (*string, bool)`
+`func (o *NotificationConfigResponse) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *NotificationConfigResponse) SetUpdatedAt(v string)`
+`func (o *NotificationConfigResponse) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

@@ -10,14 +10,18 @@ Name | Type | Description | Notes
 **Certificate** | **string** |  | 
 **CoveredDomain** | **string** |  | 
 **IsEnabled** | **bool** |  | 
-**CreatedAt** | **string** |  | 
-**UpdatedAt** | **string** |  | 
+**DomainVerified** | **bool** |  | 
+**DomainVerifiedAt** | Pointer to **NullableTime** |  | [optional] 
+**DomainVerificationDnsName** | **string** |  | 
+**DomainVerificationDnsValue** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
+**UpdatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewSAMLConfigOut
 
-`func NewSAMLConfigOut(id string, entityId string, ssoUrl string, certificate string, coveredDomain string, isEnabled bool, createdAt string, updatedAt string, ) *SAMLConfigOut`
+`func NewSAMLConfigOut(id string, entityId string, ssoUrl string, certificate string, coveredDomain string, isEnabled bool, domainVerified bool, domainVerificationDnsName string, domainVerificationDnsValue string, createdAt time.Time, updatedAt time.Time, ) *SAMLConfigOut`
 
 NewSAMLConfigOut instantiates a new SAMLConfigOut object
 This constructor will assign default values to properties that have it defined,
@@ -152,42 +156,137 @@ and a boolean to check if the value has been set.
 SetIsEnabled sets IsEnabled field to given value.
 
 
+### GetDomainVerified
+
+`func (o *SAMLConfigOut) GetDomainVerified() bool`
+
+GetDomainVerified returns the DomainVerified field if non-nil, zero value otherwise.
+
+### GetDomainVerifiedOk
+
+`func (o *SAMLConfigOut) GetDomainVerifiedOk() (*bool, bool)`
+
+GetDomainVerifiedOk returns a tuple with the DomainVerified field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomainVerified
+
+`func (o *SAMLConfigOut) SetDomainVerified(v bool)`
+
+SetDomainVerified sets DomainVerified field to given value.
+
+
+### GetDomainVerifiedAt
+
+`func (o *SAMLConfigOut) GetDomainVerifiedAt() time.Time`
+
+GetDomainVerifiedAt returns the DomainVerifiedAt field if non-nil, zero value otherwise.
+
+### GetDomainVerifiedAtOk
+
+`func (o *SAMLConfigOut) GetDomainVerifiedAtOk() (*time.Time, bool)`
+
+GetDomainVerifiedAtOk returns a tuple with the DomainVerifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomainVerifiedAt
+
+`func (o *SAMLConfigOut) SetDomainVerifiedAt(v time.Time)`
+
+SetDomainVerifiedAt sets DomainVerifiedAt field to given value.
+
+### HasDomainVerifiedAt
+
+`func (o *SAMLConfigOut) HasDomainVerifiedAt() bool`
+
+HasDomainVerifiedAt returns a boolean if a field has been set.
+
+### SetDomainVerifiedAtNil
+
+`func (o *SAMLConfigOut) SetDomainVerifiedAtNil(b bool)`
+
+ SetDomainVerifiedAtNil sets the value for DomainVerifiedAt to be an explicit nil
+
+### UnsetDomainVerifiedAt
+`func (o *SAMLConfigOut) UnsetDomainVerifiedAt()`
+
+UnsetDomainVerifiedAt ensures that no value is present for DomainVerifiedAt, not even an explicit nil
+### GetDomainVerificationDnsName
+
+`func (o *SAMLConfigOut) GetDomainVerificationDnsName() string`
+
+GetDomainVerificationDnsName returns the DomainVerificationDnsName field if non-nil, zero value otherwise.
+
+### GetDomainVerificationDnsNameOk
+
+`func (o *SAMLConfigOut) GetDomainVerificationDnsNameOk() (*string, bool)`
+
+GetDomainVerificationDnsNameOk returns a tuple with the DomainVerificationDnsName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomainVerificationDnsName
+
+`func (o *SAMLConfigOut) SetDomainVerificationDnsName(v string)`
+
+SetDomainVerificationDnsName sets DomainVerificationDnsName field to given value.
+
+
+### GetDomainVerificationDnsValue
+
+`func (o *SAMLConfigOut) GetDomainVerificationDnsValue() string`
+
+GetDomainVerificationDnsValue returns the DomainVerificationDnsValue field if non-nil, zero value otherwise.
+
+### GetDomainVerificationDnsValueOk
+
+`func (o *SAMLConfigOut) GetDomainVerificationDnsValueOk() (*string, bool)`
+
+GetDomainVerificationDnsValueOk returns a tuple with the DomainVerificationDnsValue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomainVerificationDnsValue
+
+`func (o *SAMLConfigOut) SetDomainVerificationDnsValue(v string)`
+
+SetDomainVerificationDnsValue sets DomainVerificationDnsValue field to given value.
+
+
 ### GetCreatedAt
 
-`func (o *SAMLConfigOut) GetCreatedAt() string`
+`func (o *SAMLConfigOut) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *SAMLConfigOut) GetCreatedAtOk() (*string, bool)`
+`func (o *SAMLConfigOut) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *SAMLConfigOut) SetCreatedAt(v string)`
+`func (o *SAMLConfigOut) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *SAMLConfigOut) GetUpdatedAt() string`
+`func (o *SAMLConfigOut) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *SAMLConfigOut) GetUpdatedAtOk() (*string, bool)`
+`func (o *SAMLConfigOut) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *SAMLConfigOut) SetUpdatedAt(v string)`
+`func (o *SAMLConfigOut) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **Accuracy** | Pointer to **NullableFloat32** |  | [optional] 
 **Speed** | Pointer to **NullableFloat32** |  | [optional] 
 **Heading** | Pointer to **NullableFloat32** |  | [optional] 
+**BatteryLevel** | Pointer to **NullableInt32** |  | [optional] 
+**BatteryCharging** | Pointer to **NullableBool** |  | [optional] 
+**IsHeartbeat** | Pointer to **bool** |  | [optional] [default to false]
 
 ## Methods
 
@@ -195,6 +198,101 @@ HasHeading returns a boolean if a field has been set.
 `func (o *LocationPointOut) UnsetHeading()`
 
 UnsetHeading ensures that no value is present for Heading, not even an explicit nil
+### GetBatteryLevel
+
+`func (o *LocationPointOut) GetBatteryLevel() int32`
+
+GetBatteryLevel returns the BatteryLevel field if non-nil, zero value otherwise.
+
+### GetBatteryLevelOk
+
+`func (o *LocationPointOut) GetBatteryLevelOk() (*int32, bool)`
+
+GetBatteryLevelOk returns a tuple with the BatteryLevel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBatteryLevel
+
+`func (o *LocationPointOut) SetBatteryLevel(v int32)`
+
+SetBatteryLevel sets BatteryLevel field to given value.
+
+### HasBatteryLevel
+
+`func (o *LocationPointOut) HasBatteryLevel() bool`
+
+HasBatteryLevel returns a boolean if a field has been set.
+
+### SetBatteryLevelNil
+
+`func (o *LocationPointOut) SetBatteryLevelNil(b bool)`
+
+ SetBatteryLevelNil sets the value for BatteryLevel to be an explicit nil
+
+### UnsetBatteryLevel
+`func (o *LocationPointOut) UnsetBatteryLevel()`
+
+UnsetBatteryLevel ensures that no value is present for BatteryLevel, not even an explicit nil
+### GetBatteryCharging
+
+`func (o *LocationPointOut) GetBatteryCharging() bool`
+
+GetBatteryCharging returns the BatteryCharging field if non-nil, zero value otherwise.
+
+### GetBatteryChargingOk
+
+`func (o *LocationPointOut) GetBatteryChargingOk() (*bool, bool)`
+
+GetBatteryChargingOk returns a tuple with the BatteryCharging field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBatteryCharging
+
+`func (o *LocationPointOut) SetBatteryCharging(v bool)`
+
+SetBatteryCharging sets BatteryCharging field to given value.
+
+### HasBatteryCharging
+
+`func (o *LocationPointOut) HasBatteryCharging() bool`
+
+HasBatteryCharging returns a boolean if a field has been set.
+
+### SetBatteryChargingNil
+
+`func (o *LocationPointOut) SetBatteryChargingNil(b bool)`
+
+ SetBatteryChargingNil sets the value for BatteryCharging to be an explicit nil
+
+### UnsetBatteryCharging
+`func (o *LocationPointOut) UnsetBatteryCharging()`
+
+UnsetBatteryCharging ensures that no value is present for BatteryCharging, not even an explicit nil
+### GetIsHeartbeat
+
+`func (o *LocationPointOut) GetIsHeartbeat() bool`
+
+GetIsHeartbeat returns the IsHeartbeat field if non-nil, zero value otherwise.
+
+### GetIsHeartbeatOk
+
+`func (o *LocationPointOut) GetIsHeartbeatOk() (*bool, bool)`
+
+GetIsHeartbeatOk returns a tuple with the IsHeartbeat field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsHeartbeat
+
+`func (o *LocationPointOut) SetIsHeartbeat(v bool)`
+
+SetIsHeartbeat sets IsHeartbeat field to given value.
+
+### HasIsHeartbeat
+
+`func (o *LocationPointOut) HasIsHeartbeat() bool`
+
+HasIsHeartbeat returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

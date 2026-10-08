@@ -12,14 +12,14 @@ Name | Type | Description | Notes
 **SelectedPlan** | **string** |  | 
 **Company** | **NullableString** |  | 
 **LanguagePreference** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**UpdatedAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
+**UpdatedAt** | **time.Time** |  | 
 **IsSuperuser** | **bool** |  | 
 **IsStaff** | **bool** |  | 
 **Roles** | Pointer to **[]string** |  | [optional] 
 **IsBetaUser** | Pointer to **NullableBool** |  | [optional] 
 **AdminApproved** | Pointer to **NullableBool** |  | [optional] 
-**AdminApprovedAt** | Pointer to **NullableString** |  | [optional] 
+**AdminApprovedAt** | Pointer to **NullableTime** |  | [optional] 
 **WorkspaceId** | Pointer to **NullableString** |  | [optional] 
 **WorkspaceSlug** | Pointer to **NullableString** |  | [optional] 
 **WorkspaceRole** | Pointer to **NullableString** |  | [optional] 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewUserResponse
 
-`func NewUserResponse(id string, email string, name string, role string, emailVerified bool, selectedPlan string, company NullableString, languagePreference string, createdAt string, updatedAt string, isSuperuser bool, isStaff bool, ) *UserResponse`
+`func NewUserResponse(id string, email string, name string, role string, emailVerified bool, selectedPlan string, company NullableString, languagePreference string, createdAt time.Time, updatedAt time.Time, isSuperuser bool, isStaff bool, ) *UserResponse`
 
 NewUserResponse instantiates a new UserResponse object
 This constructor will assign default values to properties that have it defined,
@@ -215,40 +215,40 @@ SetLanguagePreference sets LanguagePreference field to given value.
 
 ### GetCreatedAt
 
-`func (o *UserResponse) GetCreatedAt() string`
+`func (o *UserResponse) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *UserResponse) GetCreatedAtOk() (*string, bool)`
+`func (o *UserResponse) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *UserResponse) SetCreatedAt(v string)`
+`func (o *UserResponse) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *UserResponse) GetUpdatedAt() string`
+`func (o *UserResponse) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *UserResponse) GetUpdatedAtOk() (*string, bool)`
+`func (o *UserResponse) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *UserResponse) SetUpdatedAt(v string)`
+`func (o *UserResponse) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
@@ -400,20 +400,20 @@ HasAdminApproved returns a boolean if a field has been set.
 UnsetAdminApproved ensures that no value is present for AdminApproved, not even an explicit nil
 ### GetAdminApprovedAt
 
-`func (o *UserResponse) GetAdminApprovedAt() string`
+`func (o *UserResponse) GetAdminApprovedAt() time.Time`
 
 GetAdminApprovedAt returns the AdminApprovedAt field if non-nil, zero value otherwise.
 
 ### GetAdminApprovedAtOk
 
-`func (o *UserResponse) GetAdminApprovedAtOk() (*string, bool)`
+`func (o *UserResponse) GetAdminApprovedAtOk() (*time.Time, bool)`
 
 GetAdminApprovedAtOk returns a tuple with the AdminApprovedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdminApprovedAt
 
-`func (o *UserResponse) SetAdminApprovedAt(v string)`
+`func (o *UserResponse) SetAdminApprovedAt(v time.Time)`
 
 SetAdminApprovedAt sets AdminApprovedAt field to given value.
 

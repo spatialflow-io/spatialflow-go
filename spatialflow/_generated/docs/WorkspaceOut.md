@@ -11,10 +11,12 @@ Name | Type | Description | Notes
 **Website** | Pointer to **NullableString** |  | [optional] 
 **BillingEmail** | Pointer to **NullableString** |  | [optional] 
 **Description** | Pointer to **NullableString** |  | [optional] 
-**Timezone** | Pointer to **string** | Workspace default timezone | [optional] [default to "UTC"]
+**Timezone** | Pointer to **NullableString** |  | [optional] 
 **SupportEmail** | Pointer to **NullableString** |  | [optional] 
 **SlackConnectUrl** | Pointer to **NullableString** |  | [optional] 
 **UnitSystem** | Pointer to **string** | Unit system for display (imperial: mi/mph/ft, metric: km/kph/m) | [optional] [default to "imperial"]
+**Lane** | Pointer to **NullableString** |  | [optional] 
+**MapHome** | Pointer to **map[string]interface{}** |  | [optional] 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
 
@@ -277,6 +279,16 @@ SetTimezone sets Timezone field to given value.
 
 HasTimezone returns a boolean if a field has been set.
 
+### SetTimezoneNil
+
+`func (o *WorkspaceOut) SetTimezoneNil(b bool)`
+
+ SetTimezoneNil sets the value for Timezone to be an explicit nil
+
+### UnsetTimezone
+`func (o *WorkspaceOut) UnsetTimezone()`
+
+UnsetTimezone ensures that no value is present for Timezone, not even an explicit nil
 ### GetSupportEmail
 
 `func (o *WorkspaceOut) GetSupportEmail() string`
@@ -372,6 +384,76 @@ SetUnitSystem sets UnitSystem field to given value.
 
 HasUnitSystem returns a boolean if a field has been set.
 
+### GetLane
+
+`func (o *WorkspaceOut) GetLane() string`
+
+GetLane returns the Lane field if non-nil, zero value otherwise.
+
+### GetLaneOk
+
+`func (o *WorkspaceOut) GetLaneOk() (*string, bool)`
+
+GetLaneOk returns a tuple with the Lane field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLane
+
+`func (o *WorkspaceOut) SetLane(v string)`
+
+SetLane sets Lane field to given value.
+
+### HasLane
+
+`func (o *WorkspaceOut) HasLane() bool`
+
+HasLane returns a boolean if a field has been set.
+
+### SetLaneNil
+
+`func (o *WorkspaceOut) SetLaneNil(b bool)`
+
+ SetLaneNil sets the value for Lane to be an explicit nil
+
+### UnsetLane
+`func (o *WorkspaceOut) UnsetLane()`
+
+UnsetLane ensures that no value is present for Lane, not even an explicit nil
+### GetMapHome
+
+`func (o *WorkspaceOut) GetMapHome() map[string]interface{}`
+
+GetMapHome returns the MapHome field if non-nil, zero value otherwise.
+
+### GetMapHomeOk
+
+`func (o *WorkspaceOut) GetMapHomeOk() (*map[string]interface{}, bool)`
+
+GetMapHomeOk returns a tuple with the MapHome field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMapHome
+
+`func (o *WorkspaceOut) SetMapHome(v map[string]interface{})`
+
+SetMapHome sets MapHome field to given value.
+
+### HasMapHome
+
+`func (o *WorkspaceOut) HasMapHome() bool`
+
+HasMapHome returns a boolean if a field has been set.
+
+### SetMapHomeNil
+
+`func (o *WorkspaceOut) SetMapHomeNil(b bool)`
+
+ SetMapHomeNil sets the value for MapHome to be an explicit nil
+
+### UnsetMapHome
+`func (o *WorkspaceOut) UnsetMapHome()`
+
+UnsetMapHome ensures that no value is present for MapHome, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *WorkspaceOut) GetCreatedAt() time.Time`

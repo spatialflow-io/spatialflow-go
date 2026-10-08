@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **string** |  | 
-**Timestamp** | **string** |  | 
+**Timestamp** | **time.Time** |  | 
 **Services** | **map[string]string** |  | 
 
 ## Methods
 
 ### NewHealthCheckResponse
 
-`func NewHealthCheckResponse(status string, timestamp string, services map[string]string, ) *HealthCheckResponse`
+`func NewHealthCheckResponse(status string, timestamp time.Time, services map[string]string, ) *HealthCheckResponse`
 
 NewHealthCheckResponse instantiates a new HealthCheckResponse object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetStatus sets Status field to given value.
 
 ### GetTimestamp
 
-`func (o *HealthCheckResponse) GetTimestamp() string`
+`func (o *HealthCheckResponse) GetTimestamp() time.Time`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *HealthCheckResponse) GetTimestampOk() (*string, bool)`
+`func (o *HealthCheckResponse) GetTimestampOk() (*time.Time, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *HealthCheckResponse) SetTimestamp(v string)`
+`func (o *HealthCheckResponse) SetTimestamp(v time.Time)`
 
 SetTimestamp sets Timestamp field to given value.
 

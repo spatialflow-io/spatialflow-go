@@ -4,29 +4,106 @@ All URIs are relative to *https://api.spatialflow.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AppsGeofencesApiArchiveGeofence**](GeofencesAPI.md#AppsGeofencesApiArchiveGeofence) | **Post** /api/v1/geofences/{geofence_id}/archive | Archive Geofence
 [**AppsGeofencesApiBulkCreateGeofences**](GeofencesAPI.md#AppsGeofencesApiBulkCreateGeofences) | **Post** /api/v1/geofences/bulk | Bulk Create Geofences
+[**AppsGeofencesApiBulkPreviewGeofences**](GeofencesAPI.md#AppsGeofencesApiBulkPreviewGeofences) | **Post** /api/v1/geofences/preview | Bulk Preview Geofences
 [**AppsGeofencesApiCreateGeofence**](GeofencesAPI.md#AppsGeofencesApiCreateGeofence) | **Post** /api/v1/geofences/ | Create Geofence
 [**AppsGeofencesApiDeleteGeofence**](GeofencesAPI.md#AppsGeofencesApiDeleteGeofence) | **Delete** /api/v1/geofences/{geofence_id} | Delete Geofence
+[**AppsGeofencesApiGeocodeAutocomplete**](GeofencesAPI.md#AppsGeofencesApiGeocodeAutocomplete) | **Get** /api/v1/geofences/geocode/autocomplete | Geocode Autocomplete
+[**AppsGeofencesApiGeocodePlace**](GeofencesAPI.md#AppsGeofencesApiGeocodePlace) | **Get** /api/v1/geofences/geocode/place | Geocode Place
 [**AppsGeofencesApiGeofenceHealthCheck**](GeofencesAPI.md#AppsGeofencesApiGeofenceHealthCheck) | **Get** /api/v1/geofences/health | Geofence Health Check
 [**AppsGeofencesApiGetActiveGeofencesSummary**](GeofencesAPI.md#AppsGeofencesApiGetActiveGeofencesSummary) | **Get** /api/v1/geofences/active-summary | Get Active Geofences Summary
 [**AppsGeofencesApiGetGeofence**](GeofencesAPI.md#AppsGeofencesApiGetGeofence) | **Get** /api/v1/geofences/{geofence_id} | Get Geofence
 [**AppsGeofencesApiGetTestEventHistory**](GeofencesAPI.md#AppsGeofencesApiGetTestEventHistory) | **Get** /api/v1/geofences/{geofence_id}/test-events | Get Test Event History
 [**AppsGeofencesApiGetUploadJobStatus**](GeofencesAPI.md#AppsGeofencesApiGetUploadJobStatus) | **Get** /api/v1/geofences/upload/{job_id}/status | Get Upload Job Status
 [**AppsGeofencesApiListGeofenceGroups**](GeofencesAPI.md#AppsGeofencesApiListGeofenceGroups) | **Get** /api/v1/geofences/groups | List Geofence Groups
+[**AppsGeofencesApiListGeofenceWorkflows**](GeofencesAPI.md#AppsGeofencesApiListGeofenceWorkflows) | **Get** /api/v1/geofences/{geofence_id}/workflows | List Geofence Workflows
 [**AppsGeofencesApiListGeofences**](GeofencesAPI.md#AppsGeofencesApiListGeofences) | **Get** /api/v1/geofences/ | List Geofences
 [**AppsGeofencesApiListGroupGeofences**](GeofencesAPI.md#AppsGeofencesApiListGroupGeofences) | **Get** /api/v1/geofences/groups/{group_id}/geofences | List Group Geofences
+[**AppsGeofencesApiListWorkspaceTags**](GeofencesAPI.md#AppsGeofencesApiListWorkspaceTags) | **Get** /api/v1/geofences/tags | List Workspace Tags
 [**AppsGeofencesApiTestGroupPoint**](GeofencesAPI.md#AppsGeofencesApiTestGroupPoint) | **Post** /api/v1/geofences/groups/{group_id}/test-point | Test Group Point
 [**AppsGeofencesApiTestPoint**](GeofencesAPI.md#AppsGeofencesApiTestPoint) | **Post** /api/v1/geofences/test-point | Test Point
 [**AppsGeofencesApiTriggerTestEvent**](GeofencesAPI.md#AppsGeofencesApiTriggerTestEvent) | **Post** /api/v1/geofences/{geofence_id}/test-event | Trigger Test Event
+[**AppsGeofencesApiUnarchiveGeofence**](GeofencesAPI.md#AppsGeofencesApiUnarchiveGeofence) | **Post** /api/v1/geofences/{geofence_id}/unarchive | Unarchive Geofence
 [**AppsGeofencesApiUpdateGeofence**](GeofencesAPI.md#AppsGeofencesApiUpdateGeofence) | **Put** /api/v1/geofences/{geofence_id} | Update Geofence
 [**AppsGeofencesApiUpdateGeofenceGroup**](GeofencesAPI.md#AppsGeofencesApiUpdateGeofenceGroup) | **Put** /api/v1/geofences/{geofence_id}/group | Update Geofence Group
 [**AppsGeofencesApiUploadGeofencesAsync**](GeofencesAPI.md#AppsGeofencesApiUploadGeofencesAsync) | **Post** /api/v1/geofences/upload | Upload Geofences Async
 
 
 
+## AppsGeofencesApiArchiveGeofence
+
+> GeofenceResponse AppsGeofencesApiArchiveGeofence(ctx, geofenceId).Execute()
+
+Archive Geofence
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	geofenceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiArchiveGeofence(context.Background(), geofenceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiArchiveGeofence``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsGeofencesApiArchiveGeofence`: GeofenceResponse
+	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiArchiveGeofence`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**geofenceId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsGeofencesApiArchiveGeofenceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GeofenceResponse**](GeofenceResponse.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsGeofencesApiBulkCreateGeofences
 
-> map[string]interface{} AppsGeofencesApiBulkCreateGeofences(ctx).BulkGeofenceRequest(bulkGeofenceRequest).Execute()
+> BulkCreateResponse AppsGeofencesApiBulkCreateGeofences(ctx).BulkCreateRequest(bulkCreateRequest).Execute()
 
 Bulk Create Geofences
 
@@ -45,16 +122,16 @@ import (
 )
 
 func main() {
-	bulkGeofenceRequest := *openapiclient.NewBulkGeofenceRequest([]openapiclient.CreateGeofenceRequest{*openapiclient.NewCreateGeofenceRequest("Name_example", *openapiclient.NewGeometry("Type_example", [][][][]float32{[][][]float32{[][]float32{[]float32{float32(123)}}}}, []float32{float32(123)}, float32(123)))}) // BulkGeofenceRequest | 
+	bulkCreateRequest := *openapiclient.NewBulkCreateRequest([]openapiclient.BulkItemCommit{*openapiclient.NewBulkItemCommit(int32(123), "Address_example", "Status_example")}) // BulkCreateRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiBulkCreateGeofences(context.Background()).BulkGeofenceRequest(bulkGeofenceRequest).Execute()
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiBulkCreateGeofences(context.Background()).BulkCreateRequest(bulkCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiBulkCreateGeofences``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsGeofencesApiBulkCreateGeofences`: map[string]interface{}
+	// response from `AppsGeofencesApiBulkCreateGeofences`: BulkCreateResponse
 	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiBulkCreateGeofences`: %v\n", resp)
 }
 ```
@@ -70,11 +147,77 @@ Other parameters are passed through a pointer to a apiAppsGeofencesApiBulkCreate
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bulkGeofenceRequest** | [**BulkGeofenceRequest**](BulkGeofenceRequest.md) |  | 
+ **bulkCreateRequest** | [**BulkCreateRequest**](BulkCreateRequest.md) |  | 
 
 ### Return type
 
-**map[string]interface{}**
+[**BulkCreateResponse**](BulkCreateResponse.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsGeofencesApiBulkPreviewGeofences
+
+> BulkPreviewResponse AppsGeofencesApiBulkPreviewGeofences(ctx).BulkPreviewRequest(bulkPreviewRequest).Execute()
+
+Bulk Preview Geofences
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	bulkPreviewRequest := *openapiclient.NewBulkPreviewRequest([]openapiclient.BulkItemInput{*openapiclient.NewBulkItemInput("Address_example")}) // BulkPreviewRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiBulkPreviewGeofences(context.Background()).BulkPreviewRequest(bulkPreviewRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiBulkPreviewGeofences``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsGeofencesApiBulkPreviewGeofences`: BulkPreviewResponse
+	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiBulkPreviewGeofences`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsGeofencesApiBulkPreviewGeofencesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bulkPreviewRequest** | [**BulkPreviewRequest**](BulkPreviewRequest.md) |  | 
+
+### Return type
+
+[**BulkPreviewResponse**](BulkPreviewResponse.md)
 
 ### Authorization
 
@@ -111,7 +254,7 @@ import (
 )
 
 func main() {
-	createGeofenceRequest := *openapiclient.NewCreateGeofenceRequest("Name_example", *openapiclient.NewGeometry("Type_example", [][][][]float32{[][][]float32{[][]float32{[]float32{float32(123)}}}}, []float32{float32(123)}, float32(123))) // CreateGeofenceRequest | 
+	createGeofenceRequest := *openapiclient.NewCreateGeofenceRequest("Name_example") // CreateGeofenceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -209,6 +352,140 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsGeofencesApiGeocodeAutocomplete
+
+> AutocompleteResponse AppsGeofencesApiGeocodeAutocomplete(ctx).Query(query).MaxResults(maxResults).Execute()
+
+Geocode Autocomplete
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	query := "query_example" // string | 
+	maxResults := int32(56) // int32 |  (optional) (default to 5)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiGeocodeAutocomplete(context.Background()).Query(query).MaxResults(maxResults).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiGeocodeAutocomplete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsGeofencesApiGeocodeAutocomplete`: AutocompleteResponse
+	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiGeocodeAutocomplete`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsGeofencesApiGeocodeAutocompleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query** | **string** |  | 
+ **maxResults** | **int32** |  | [default to 5]
+
+### Return type
+
+[**AutocompleteResponse**](AutocompleteResponse.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsGeofencesApiGeocodePlace
+
+> GeocodePlaceResponse AppsGeofencesApiGeocodePlace(ctx).PlaceId(placeId).Execute()
+
+Geocode Place
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	placeId := "placeId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiGeocodePlace(context.Background()).PlaceId(placeId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiGeocodePlace``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsGeofencesApiGeocodePlace`: GeocodePlaceResponse
+	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiGeocodePlace`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsGeofencesApiGeocodePlaceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **placeId** | **string** |  | 
+
+### Return type
+
+[**GeocodePlaceResponse**](GeocodePlaceResponse.md)
 
 ### Authorization
 
@@ -621,9 +898,79 @@ Other parameters are passed through a pointer to a apiAppsGeofencesApiListGeofen
 [[Back to README]](../README.md)
 
 
+## AppsGeofencesApiListGeofenceWorkflows
+
+> GeofenceWorkflowReferencesOut AppsGeofencesApiListGeofenceWorkflows(ctx, geofenceId).Execute()
+
+List Geofence Workflows
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	geofenceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiListGeofenceWorkflows(context.Background(), geofenceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiListGeofenceWorkflows``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsGeofencesApiListGeofenceWorkflows`: GeofenceWorkflowReferencesOut
+	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiListGeofenceWorkflows`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**geofenceId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsGeofencesApiListGeofenceWorkflowsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GeofenceWorkflowReferencesOut**](GeofenceWorkflowReferencesOut.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AppsGeofencesApiListGeofences
 
-> GeofenceListResponse AppsGeofencesApiListGeofences(ctx).Limit(limit).Offset(offset).ActiveOnly(activeOnly).Execute()
+> GeofenceListResponse AppsGeofencesApiListGeofences(ctx).Limit(limit).Offset(offset).ActiveOnly(activeOnly).Tags(tags).IncludeArchived(includeArchived).Execute()
 
 List Geofences
 
@@ -642,13 +989,15 @@ import (
 )
 
 func main() {
-	limit := int32(56) // int32 |  (optional) (default to 50)
+	limit := int32(56) // int32 | Maximum 500; larger values are capped (optional) (default to 50)
 	offset := int32(56) // int32 |  (optional) (default to 0)
 	activeOnly := true // bool |  (optional) (default to true)
+	tags := []string{"Inner_example"} // []string | Filter by tag names. Repeat key for AND-semantics: ?tags=foo&tags=bar. (optional)
+	includeArchived := true // bool |  (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiListGeofences(context.Background()).Limit(limit).Offset(offset).ActiveOnly(activeOnly).Execute()
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiListGeofences(context.Background()).Limit(limit).Offset(offset).ActiveOnly(activeOnly).Tags(tags).IncludeArchived(includeArchived).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiListGeofences``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -669,9 +1018,11 @@ Other parameters are passed through a pointer to a apiAppsGeofencesApiListGeofen
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | [default to 50]
+ **limit** | **int32** | Maximum 500; larger values are capped | [default to 50]
  **offset** | **int32** |  | [default to 0]
  **activeOnly** | **bool** |  | [default to true]
+ **tags** | **[]string** | Filter by tag names. Repeat key for AND-semantics: ?tags&#x3D;foo&amp;tags&#x3D;bar. | 
+ **includeArchived** | **bool** |  | [default to false]
 
 ### Return type
 
@@ -746,6 +1097,67 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GroupGeofencesOut**](GroupGeofencesOut.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsGeofencesApiListWorkspaceTags
+
+> TagListResponse AppsGeofencesApiListWorkspaceTags(ctx).Execute()
+
+List Workspace Tags
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiListWorkspaceTags(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiListWorkspaceTags``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsGeofencesApiListWorkspaceTags`: TagListResponse
+	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiListWorkspaceTags`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsGeofencesApiListWorkspaceTagsRequest struct via the builder pattern
+
+
+### Return type
+
+[**TagListResponse**](TagListResponse.md)
 
 ### Authorization
 
@@ -964,6 +1376,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsGeofencesApiUnarchiveGeofence
+
+> GeofenceResponse AppsGeofencesApiUnarchiveGeofence(ctx, geofenceId).Execute()
+
+Unarchive Geofence
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	geofenceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GeofencesAPI.AppsGeofencesApiUnarchiveGeofence(context.Background(), geofenceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GeofencesAPI.AppsGeofencesApiUnarchiveGeofence``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsGeofencesApiUnarchiveGeofence`: GeofenceResponse
+	fmt.Fprintf(os.Stdout, "Response from `GeofencesAPI.AppsGeofencesApiUnarchiveGeofence`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**geofenceId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsGeofencesApiUnarchiveGeofenceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GeofenceResponse**](GeofenceResponse.md)
+
+### Authorization
+
+[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

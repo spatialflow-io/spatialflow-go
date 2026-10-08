@@ -4,26 +4,25 @@ import (
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
-	"fmt"
 	"testing"
 	"time"
 
-	"github.com/spatialflow-io/spatialflow-go/spatialflow"
+	"github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
 )
 
-func createSignature(payload, secret string, timestamp int64) string {
-	signedPayload := fmt.Sprintf("%d.%s", timestamp, payload)
+// createSignature mirrors the backend: HMAC-SHA256 of the raw body, hex-encoded,
+// prefixed with "sha256=".
+func createSignature(payload, secret string) string {
 	mac := hmac.New(sha256.New, []byte(secret))
-	mac.Write([]byte(signedPayload))
-	sig := hex.EncodeToString(mac.Sum(nil))
-	return fmt.Sprintf("t=%d,v1=%s", timestamp, sig)
+	mac.Write([]byte(payload))
+	return "sha256=" + hex.EncodeToString(mac.Sum(nil))
 }
 
 func TestVerifyWebhookSignature_Valid(t *testing.T) {
 	secret := "whsec_test_secret"
-	payload := `{"type":"geofence.enter","data":{"device_id":"dev123"}}`
-	timestamp := time.Now().Unix()
-	signature := createSignature(payload, secret, timestamp)
+	// Backend delivery shape: {"id", "event", "timestamp", "data"}.
+	payload := `{"id":"del-1","event":"geofence.enter","timestamp":"2025-10-01T14:30:00Z","data":{"device_id":"dev123"}}`
+	signature := createSignature(payload, secret)
 
 	event, err := spatialflow.VerifyWebhookSignature([]byte(payload), signature, secret, 0)
 	if err != nil {
@@ -31,7 +30,13 @@ func TestVerifyWebhookSignature_Valid(t *testing.T) {
 	}
 
 	if event.Type != "geofence.enter" {
-		t.Errorf("event.Type = %q, want %q", event.Type, "geofence.enter")
+		t.Errorf("event.Type = %q, want %q (from backend \"event\" key)", event.Type, "geofence.enter")
+	}
+	if event.ID != "del-1" {
+		t.Errorf("event.ID = %q, want %q", event.ID, "del-1")
+	}
+	if event.CreatedAt != "2025-10-01T14:30:00Z" {
+		t.Errorf("event.CreatedAt = %q, want the backend timestamp", event.CreatedAt)
 	}
 
 	data, ok := event.Data["device_id"].(string)
@@ -40,43 +45,52 @@ func TestVerifyWebhookSignature_Valid(t *testing.T) {
 	}
 }
 
-func TestVerifyWebhookSignature_InvalidSignature(t *testing.T) {
+func TestVerifyWebhookSignature_LegacyTypePayload(t *testing.T) {
+	secret := "whsec_test_secret"
+	// Legacy/custom payload using "type"/"created_at" instead of "event"/"timestamp".
+	payload := `{"type":"geofence.exit","created_at":"2025-10-01T15:00:00Z","data":{}}`
+	signature := createSignature(payload, secret)
+
+	event, err := spatialflow.VerifyWebhookSignature([]byte(payload), signature, secret, 0)
+	if err != nil {
+		t.Fatalf("verification failed: %v", err)
+	}
+	if event.Type != "geofence.exit" {
+		t.Errorf("event.Type = %q, want %q (legacy \"type\" key)", event.Type, "geofence.exit")
+	}
+	if event.CreatedAt != "2025-10-01T15:00:00Z" {
+		t.Errorf("event.CreatedAt = %q, want the legacy created_at", event.CreatedAt)
+	}
+}
+
+func TestVerifyWebhookSignature_BareHexNoPrefix(t *testing.T) {
 	secret := "whsec_test_secret"
 	payload := `{"type":"geofence.enter","data":{}}`
-	timestamp := time.Now().Unix()
+	mac := hmac.New(sha256.New, []byte(secret))
+	mac.Write([]byte(payload))
+	bareHex := hex.EncodeToString(mac.Sum(nil))
 
-	// Create signature with wrong secret
-	signature := createSignature(payload, "wrong_secret", timestamp)
+	if _, err := spatialflow.VerifyWebhookSignature([]byte(payload), bareHex, secret, 0); err != nil {
+		t.Errorf("bare hex signature should verify: %v", err)
+	}
+}
 
-	_, err := spatialflow.VerifyWebhookSignature([]byte(payload), signature, secret, 0)
-	if err == nil {
+func TestVerifyWebhookSignature_WrongSecret(t *testing.T) {
+	secret := "whsec_test_secret"
+	payload := `{"type":"geofence.enter","data":{}}`
+	signature := createSignature(payload, "wrong_secret")
+
+	if _, err := spatialflow.VerifyWebhookSignature([]byte(payload), signature, secret, 0); err == nil {
 		t.Error("expected verification to fail with wrong secret")
 	}
 }
 
-func TestVerifyWebhookSignature_ExpiredTimestamp(t *testing.T) {
+func TestVerifyWebhookSignature_TamperedPayload(t *testing.T) {
 	secret := "whsec_test_secret"
-	payload := `{"type":"geofence.enter","data":{}}`
-	// 10 minutes ago (past default 5 minute tolerance)
-	timestamp := time.Now().Add(-10 * time.Minute).Unix()
-	signature := createSignature(payload, secret, timestamp)
+	signature := createSignature(`{"type":"original"}`, secret)
 
-	_, err := spatialflow.VerifyWebhookSignature([]byte(payload), signature, secret, 0)
-	if err == nil {
-		t.Error("expected verification to fail with expired timestamp")
-	}
-}
-
-func TestVerifyWebhookSignature_FutureTimestamp(t *testing.T) {
-	secret := "whsec_test_secret"
-	payload := `{"type":"geofence.enter","data":{}}`
-	// 10 minutes in the future (past default 5 minute tolerance)
-	timestamp := time.Now().Add(10 * time.Minute).Unix()
-	signature := createSignature(payload, secret, timestamp)
-
-	_, err := spatialflow.VerifyWebhookSignature([]byte(payload), signature, secret, 0)
-	if err == nil {
-		t.Error("expected verification to fail with future timestamp")
+	if _, err := spatialflow.VerifyWebhookSignature([]byte(`{"type":"tampered"}`), signature, secret, 0); err == nil {
+		t.Error("expected verification to fail with tampered payload")
 	}
 }
 
@@ -89,38 +103,28 @@ func TestVerifyWebhookSignature_InvalidFormat(t *testing.T) {
 		signature string
 	}{
 		{"empty signature", ""},
-		{"missing timestamp", "v1=abc123"},
-		{"missing signature", "t=1234567890"},
-		{"invalid timestamp", "t=notanumber,v1=abc123"},
-		{"invalid hex", "t=1234567890,v1=notvalidhex"},
+		{"empty digest", "sha256="},
+		{"invalid hex", "sha256=notvalidhex"},
+		{"non-ascii", "sha256=éé"},
+		{"old t=,v1= format", "t=1234567890,v1=abc123"},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			_, err := spatialflow.VerifyWebhookSignature([]byte(payload), tt.signature, secret, 0)
-			if err == nil {
+			if _, err := spatialflow.VerifyWebhookSignature([]byte(payload), tt.signature, secret, 0); err == nil {
 				t.Errorf("expected verification to fail for %s", tt.name)
 			}
 		})
 	}
 }
 
-func TestVerifyWebhookSignature_CustomTolerance(t *testing.T) {
+func TestVerifyWebhookSignature_ToleranceIgnored(t *testing.T) {
 	secret := "whsec_test_secret"
 	payload := `{"type":"geofence.enter","data":{}}`
-	// 3 minutes ago
-	timestamp := time.Now().Add(-3 * time.Minute).Unix()
-	signature := createSignature(payload, secret, timestamp)
+	signature := createSignature(payload, secret)
 
-	// Should fail with 1 minute tolerance
-	_, err := spatialflow.VerifyWebhookSignature([]byte(payload), signature, secret, 1*time.Minute)
-	if err == nil {
-		t.Error("expected verification to fail with 1 minute tolerance")
-	}
-
-	// Should succeed with 5 minute tolerance
-	_, err = spatialflow.VerifyWebhookSignature([]byte(payload), signature, secret, 5*time.Minute)
-	if err != nil {
-		t.Errorf("verification should succeed with 5 minute tolerance: %v", err)
+	// A non-zero tolerance must not change the outcome (deprecated/ignored).
+	if _, err := spatialflow.VerifyWebhookSignature([]byte(payload), signature, secret, 1*time.Minute); err != nil {
+		t.Errorf("tolerance should be ignored; verification should succeed: %v", err)
 	}
 }

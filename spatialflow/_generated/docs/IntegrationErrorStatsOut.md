@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ErrorCount24h** | **int32** |  | 
-**LastErrorAt** | Pointer to **NullableString** |  | [optional] 
+**LastErrorAt** | Pointer to **NullableTime** |  | [optional] 
 
 ## Methods
 
@@ -48,20 +48,20 @@ SetErrorCount24h sets ErrorCount24h field to given value.
 
 ### GetLastErrorAt
 
-`func (o *IntegrationErrorStatsOut) GetLastErrorAt() string`
+`func (o *IntegrationErrorStatsOut) GetLastErrorAt() time.Time`
 
 GetLastErrorAt returns the LastErrorAt field if non-nil, zero value otherwise.
 
 ### GetLastErrorAtOk
 
-`func (o *IntegrationErrorStatsOut) GetLastErrorAtOk() (*string, bool)`
+`func (o *IntegrationErrorStatsOut) GetLastErrorAtOk() (*time.Time, bool)`
 
 GetLastErrorAtOk returns a tuple with the LastErrorAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastErrorAt
 
-`func (o *IntegrationErrorStatsOut) SetLastErrorAt(v string)`
+`func (o *IntegrationErrorStatsOut) SetLastErrorAt(v time.Time)`
 
 SetLastErrorAt sets LastErrorAt field to given value.
 

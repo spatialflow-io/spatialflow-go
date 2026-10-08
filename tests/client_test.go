@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/spatialflow-io/spatialflow-go/spatialflow"
+	"github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
 )
 
 func TestNewClient_APIKey(t *testing.T) {
@@ -85,9 +85,9 @@ func TestAPIError_Unwrap(t *testing.T) {
 
 func TestAPIError_Error(t *testing.T) {
 	tests := []struct {
-		name    string
-		err     *spatialflow.APIError
-		want    string
+		name string
+		err  *spatialflow.APIError
+		want string
 	}{
 		{
 			name: "message only",

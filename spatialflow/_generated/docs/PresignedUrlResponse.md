@@ -11,12 +11,13 @@ Name | Type | Description | Notes
 **Filename** | **string** |  | 
 **FileId** | **string** |  | 
 **ContentType** | **string** |  | 
+**RequiredHeaders** | **map[string]string** |  | 
 
 ## Methods
 
 ### NewPresignedUrlResponse
 
-`func NewPresignedUrlResponse(uploadUrl string, key string, expiresIn int32, fileType string, filename string, fileId string, contentType string, ) *PresignedUrlResponse`
+`func NewPresignedUrlResponse(uploadUrl string, key string, expiresIn int32, fileType string, filename string, fileId string, contentType string, requiredHeaders map[string]string, ) *PresignedUrlResponse`
 
 NewPresignedUrlResponse instantiates a new PresignedUrlResponse object
 This constructor will assign default values to properties that have it defined,
@@ -169,6 +170,26 @@ and a boolean to check if the value has been set.
 `func (o *PresignedUrlResponse) SetContentType(v string)`
 
 SetContentType sets ContentType field to given value.
+
+
+### GetRequiredHeaders
+
+`func (o *PresignedUrlResponse) GetRequiredHeaders() map[string]string`
+
+GetRequiredHeaders returns the RequiredHeaders field if non-nil, zero value otherwise.
+
+### GetRequiredHeadersOk
+
+`func (o *PresignedUrlResponse) GetRequiredHeadersOk() (*map[string]string, bool)`
+
+GetRequiredHeadersOk returns a tuple with the RequiredHeaders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequiredHeaders
+
+`func (o *PresignedUrlResponse) SetRequiredHeaders(v map[string]string)`
+
+SetRequiredHeaders sets RequiredHeaders field to given value.
 
 
 

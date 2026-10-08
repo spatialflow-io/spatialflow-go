@@ -65,8 +65,9 @@ type UploadGeofencesResponse struct {
 // Workflow:
 // 1. POST /api/v1/storage/presigned-url → get upload_url + file_id
 // 2. PUT file to presigned URL (S3)
-// 3. POST /api/v1/geofences/upload with file_id → get job_id
-// 4. Poll GET /api/v1/geofences/upload/{job_id}/status until complete
+// 3. POST /api/v1/storage/uploads/{file_id}/complete → verify S3 metadata
+// 4. POST /api/v1/geofences/upload with file_id → get job_id
+// 5. Poll GET /api/v1/geofences/upload/{job_id}/status until complete
 //
 // Example:
 //
@@ -127,6 +128,7 @@ func (c *Client) UploadGeofences(ctx context.Context, opts UploadGeofencesOption
 		return nil, fmt.Errorf("failed to create upload request: %w", err)
 	}
 	req.Header.Set("Content-Type", contentType)
+	req.Header.Set("If-None-Match", "*")
 	req.ContentLength = stat.Size()
 
 	// Use a plain HTTP client (no auth needed for S3 presigned URLs)
@@ -135,14 +137,21 @@ func (c *Client) UploadGeofences(ctx context.Context, opts UploadGeofencesOption
 	if err != nil {
 		return nil, fmt.Errorf("failed to upload file: %w", err)
 	}
-	defer resp.Body.Close()
 
 	// S3 returns 200 or 204 on success
 	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusNoContent {
+		resp.Body.Close()
 		return nil, fmt.Errorf("upload failed with status %d", resp.StatusCode)
 	}
+	resp.Body.Close()
 
-	// Step 3: Start import job
+	// Step 3: Finalize the upload so the API verifies the S3 object's actual
+	// size and content type before making it available to import jobs.
+	if err := c.completePresignedUpload(ctx, presignResp.FileID); err != nil {
+		return nil, fmt.Errorf("failed to complete upload: %w", err)
+	}
+
+	// Step 4: Start import job
 	var groupName *string
 	if opts.GroupName != "" {
 		groupName = &opts.GroupName
@@ -158,7 +167,7 @@ func (c *Client) UploadGeofences(ctx context.Context, opts UploadGeofencesOption
 		return nil, fmt.Errorf("failed to start import: %w", err)
 	}
 
-	// Step 4: Poll for completion
+	// Step 5: Poll for completion
 	return c.PollJob(ctx, PollJobOptions{
 		JobID: uploadResp.JobID,
 		FetchStatus: func(ctx context.Context) (*JobStatus, error) {
@@ -167,6 +176,27 @@ func (c *Client) UploadGeofences(ctx context.Context, opts UploadGeofencesOption
 		PollInterval: opts.PollInterval,
 		OnStatus:     opts.OnStatus,
 	})
+}
+
+// completePresignedUpload finalizes a direct upload after S3 accepts the object.
+func (c *Client) completePresignedUpload(ctx context.Context, fileID string) error {
+	httpReq, err := http.NewRequestWithContext(
+		ctx,
+		http.MethodPost,
+		c.config.BaseURL+"/api/v1/storage/uploads/"+fileID+"/complete",
+		nil,
+	)
+	if err != nil {
+		return err
+	}
+
+	resp, err := c.httpClient.Do(httpReq)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	return CheckResponse(resp)
 }
 
 func contentTypeFromExt(ext string) string {

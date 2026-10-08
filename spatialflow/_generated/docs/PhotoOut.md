@@ -11,17 +11,21 @@ Name | Type | Description | Notes
 **SizeBytes** | **int32** |  | 
 **Latitude** | Pointer to **NullableFloat32** |  | [optional] 
 **Longitude** | Pointer to **NullableFloat32** |  | [optional] 
+**LocationSource** | Pointer to **NullableString** |  | [optional] 
+**LocationApproximate** | **bool** | True when the location is an estimate rather than a fix at the photo time. | 
 **DownloadUrl** | **string** |  | 
 **DeviceUuid** | **string** |  | 
 **DeviceName** | **string** |  | 
 **SessionId** | **string** |  | 
-**CapturedAt** | **time.Time** |  | 
+**CapturedAt** | **time.Time** | taken_at when the phone sent it, else uploaded_at. | 
+**TakenAt** | Pointer to **NullableTime** |  | [optional] 
+**UploadedAt** | **time.Time** | When the upload finished. | 
 
 ## Methods
 
 ### NewPhotoOut
 
-`func NewPhotoOut(id string, fileKey string, originalName string, contentType string, sizeBytes int32, downloadUrl string, deviceUuid string, deviceName string, sessionId string, capturedAt time.Time, ) *PhotoOut`
+`func NewPhotoOut(id string, fileKey string, originalName string, contentType string, sizeBytes int32, locationApproximate bool, downloadUrl string, deviceUuid string, deviceName string, sessionId string, capturedAt time.Time, uploadedAt time.Time, ) *PhotoOut`
 
 NewPhotoOut instantiates a new PhotoOut object
 This constructor will assign default values to properties that have it defined,
@@ -206,6 +210,61 @@ HasLongitude returns a boolean if a field has been set.
 `func (o *PhotoOut) UnsetLongitude()`
 
 UnsetLongitude ensures that no value is present for Longitude, not even an explicit nil
+### GetLocationSource
+
+`func (o *PhotoOut) GetLocationSource() string`
+
+GetLocationSource returns the LocationSource field if non-nil, zero value otherwise.
+
+### GetLocationSourceOk
+
+`func (o *PhotoOut) GetLocationSourceOk() (*string, bool)`
+
+GetLocationSourceOk returns a tuple with the LocationSource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocationSource
+
+`func (o *PhotoOut) SetLocationSource(v string)`
+
+SetLocationSource sets LocationSource field to given value.
+
+### HasLocationSource
+
+`func (o *PhotoOut) HasLocationSource() bool`
+
+HasLocationSource returns a boolean if a field has been set.
+
+### SetLocationSourceNil
+
+`func (o *PhotoOut) SetLocationSourceNil(b bool)`
+
+ SetLocationSourceNil sets the value for LocationSource to be an explicit nil
+
+### UnsetLocationSource
+`func (o *PhotoOut) UnsetLocationSource()`
+
+UnsetLocationSource ensures that no value is present for LocationSource, not even an explicit nil
+### GetLocationApproximate
+
+`func (o *PhotoOut) GetLocationApproximate() bool`
+
+GetLocationApproximate returns the LocationApproximate field if non-nil, zero value otherwise.
+
+### GetLocationApproximateOk
+
+`func (o *PhotoOut) GetLocationApproximateOk() (*bool, bool)`
+
+GetLocationApproximateOk returns a tuple with the LocationApproximate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocationApproximate
+
+`func (o *PhotoOut) SetLocationApproximate(v bool)`
+
+SetLocationApproximate sets LocationApproximate field to given value.
+
+
 ### GetDownloadUrl
 
 `func (o *PhotoOut) GetDownloadUrl() string`
@@ -304,6 +363,61 @@ and a boolean to check if the value has been set.
 `func (o *PhotoOut) SetCapturedAt(v time.Time)`
 
 SetCapturedAt sets CapturedAt field to given value.
+
+
+### GetTakenAt
+
+`func (o *PhotoOut) GetTakenAt() time.Time`
+
+GetTakenAt returns the TakenAt field if non-nil, zero value otherwise.
+
+### GetTakenAtOk
+
+`func (o *PhotoOut) GetTakenAtOk() (*time.Time, bool)`
+
+GetTakenAtOk returns a tuple with the TakenAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTakenAt
+
+`func (o *PhotoOut) SetTakenAt(v time.Time)`
+
+SetTakenAt sets TakenAt field to given value.
+
+### HasTakenAt
+
+`func (o *PhotoOut) HasTakenAt() bool`
+
+HasTakenAt returns a boolean if a field has been set.
+
+### SetTakenAtNil
+
+`func (o *PhotoOut) SetTakenAtNil(b bool)`
+
+ SetTakenAtNil sets the value for TakenAt to be an explicit nil
+
+### UnsetTakenAt
+`func (o *PhotoOut) UnsetTakenAt()`
+
+UnsetTakenAt ensures that no value is present for TakenAt, not even an explicit nil
+### GetUploadedAt
+
+`func (o *PhotoOut) GetUploadedAt() time.Time`
+
+GetUploadedAt returns the UploadedAt field if non-nil, zero value otherwise.
+
+### GetUploadedAtOk
+
+`func (o *PhotoOut) GetUploadedAtOk() (*time.Time, bool)`
+
+GetUploadedAtOk returns a tuple with the UploadedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUploadedAt
+
+`func (o *PhotoOut) SetUploadedAt(v time.Time)`
+
+SetUploadedAt sets UploadedAt field to given value.
 
 
 

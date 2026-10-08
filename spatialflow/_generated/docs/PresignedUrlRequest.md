@@ -9,6 +9,10 @@ Name | Type | Description | Notes
 **FileSize** | **int32** |  | 
 **RelatedObjectType** | Pointer to **NullableString** |  | [optional] 
 **RelatedObjectId** | Pointer to **NullableString** |  | [optional] 
+**CapturedAt** | Pointer to **NullableTime** |  | [optional] 
+**CaptureLatitude** | Pointer to **NullableFloat32** |  | [optional] 
+**CaptureLongitude** | Pointer to **NullableFloat32** |  | [optional] 
+**CaptureAccuracyM** | Pointer to **NullableFloat32** |  | [optional] 
 
 ## Methods
 
@@ -159,6 +163,146 @@ HasRelatedObjectId returns a boolean if a field has been set.
 `func (o *PresignedUrlRequest) UnsetRelatedObjectId()`
 
 UnsetRelatedObjectId ensures that no value is present for RelatedObjectId, not even an explicit nil
+### GetCapturedAt
+
+`func (o *PresignedUrlRequest) GetCapturedAt() time.Time`
+
+GetCapturedAt returns the CapturedAt field if non-nil, zero value otherwise.
+
+### GetCapturedAtOk
+
+`func (o *PresignedUrlRequest) GetCapturedAtOk() (*time.Time, bool)`
+
+GetCapturedAtOk returns a tuple with the CapturedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCapturedAt
+
+`func (o *PresignedUrlRequest) SetCapturedAt(v time.Time)`
+
+SetCapturedAt sets CapturedAt field to given value.
+
+### HasCapturedAt
+
+`func (o *PresignedUrlRequest) HasCapturedAt() bool`
+
+HasCapturedAt returns a boolean if a field has been set.
+
+### SetCapturedAtNil
+
+`func (o *PresignedUrlRequest) SetCapturedAtNil(b bool)`
+
+ SetCapturedAtNil sets the value for CapturedAt to be an explicit nil
+
+### UnsetCapturedAt
+`func (o *PresignedUrlRequest) UnsetCapturedAt()`
+
+UnsetCapturedAt ensures that no value is present for CapturedAt, not even an explicit nil
+### GetCaptureLatitude
+
+`func (o *PresignedUrlRequest) GetCaptureLatitude() float32`
+
+GetCaptureLatitude returns the CaptureLatitude field if non-nil, zero value otherwise.
+
+### GetCaptureLatitudeOk
+
+`func (o *PresignedUrlRequest) GetCaptureLatitudeOk() (*float32, bool)`
+
+GetCaptureLatitudeOk returns a tuple with the CaptureLatitude field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCaptureLatitude
+
+`func (o *PresignedUrlRequest) SetCaptureLatitude(v float32)`
+
+SetCaptureLatitude sets CaptureLatitude field to given value.
+
+### HasCaptureLatitude
+
+`func (o *PresignedUrlRequest) HasCaptureLatitude() bool`
+
+HasCaptureLatitude returns a boolean if a field has been set.
+
+### SetCaptureLatitudeNil
+
+`func (o *PresignedUrlRequest) SetCaptureLatitudeNil(b bool)`
+
+ SetCaptureLatitudeNil sets the value for CaptureLatitude to be an explicit nil
+
+### UnsetCaptureLatitude
+`func (o *PresignedUrlRequest) UnsetCaptureLatitude()`
+
+UnsetCaptureLatitude ensures that no value is present for CaptureLatitude, not even an explicit nil
+### GetCaptureLongitude
+
+`func (o *PresignedUrlRequest) GetCaptureLongitude() float32`
+
+GetCaptureLongitude returns the CaptureLongitude field if non-nil, zero value otherwise.
+
+### GetCaptureLongitudeOk
+
+`func (o *PresignedUrlRequest) GetCaptureLongitudeOk() (*float32, bool)`
+
+GetCaptureLongitudeOk returns a tuple with the CaptureLongitude field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCaptureLongitude
+
+`func (o *PresignedUrlRequest) SetCaptureLongitude(v float32)`
+
+SetCaptureLongitude sets CaptureLongitude field to given value.
+
+### HasCaptureLongitude
+
+`func (o *PresignedUrlRequest) HasCaptureLongitude() bool`
+
+HasCaptureLongitude returns a boolean if a field has been set.
+
+### SetCaptureLongitudeNil
+
+`func (o *PresignedUrlRequest) SetCaptureLongitudeNil(b bool)`
+
+ SetCaptureLongitudeNil sets the value for CaptureLongitude to be an explicit nil
+
+### UnsetCaptureLongitude
+`func (o *PresignedUrlRequest) UnsetCaptureLongitude()`
+
+UnsetCaptureLongitude ensures that no value is present for CaptureLongitude, not even an explicit nil
+### GetCaptureAccuracyM
+
+`func (o *PresignedUrlRequest) GetCaptureAccuracyM() float32`
+
+GetCaptureAccuracyM returns the CaptureAccuracyM field if non-nil, zero value otherwise.
+
+### GetCaptureAccuracyMOk
+
+`func (o *PresignedUrlRequest) GetCaptureAccuracyMOk() (*float32, bool)`
+
+GetCaptureAccuracyMOk returns a tuple with the CaptureAccuracyM field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCaptureAccuracyM
+
+`func (o *PresignedUrlRequest) SetCaptureAccuracyM(v float32)`
+
+SetCaptureAccuracyM sets CaptureAccuracyM field to given value.
+
+### HasCaptureAccuracyM
+
+`func (o *PresignedUrlRequest) HasCaptureAccuracyM() bool`
+
+HasCaptureAccuracyM returns a boolean if a field has been set.
+
+### SetCaptureAccuracyMNil
+
+`func (o *PresignedUrlRequest) SetCaptureAccuracyMNil(b bool)`
+
+ SetCaptureAccuracyMNil sets the value for CaptureAccuracyM to be an explicit nil
+
+### UnsetCaptureAccuracyM
+`func (o *PresignedUrlRequest) UnsetCaptureAccuracyM()`
+
+UnsetCaptureAccuracyM ensures that no value is present for CaptureAccuracyM, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

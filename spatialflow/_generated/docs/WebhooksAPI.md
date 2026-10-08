@@ -12,11 +12,13 @@ Method | HTTP request | Description
 [**AppsWebhooksApiGetWebhookDeliveryDetail**](WebhooksAPI.md#AppsWebhooksApiGetWebhookDeliveryDetail) | **Get** /api/v1/webhooks/{webhook_id}/deliveries/{delivery_id} | Get Webhook Delivery Detail
 [**AppsWebhooksApiGetWebhookMetrics**](WebhooksAPI.md#AppsWebhooksApiGetWebhookMetrics) | **Get** /api/v1/webhooks/metrics | Get Webhook Metrics
 [**AppsWebhooksApiGetWebhookSuccessTimeline**](WebhooksAPI.md#AppsWebhooksApiGetWebhookSuccessTimeline) | **Get** /api/v1/webhooks/success-timeline | Get Webhook Success Timeline
+[**AppsWebhooksApiGetWorkspaceWebhookMetrics**](WebhooksAPI.md#AppsWebhooksApiGetWorkspaceWebhookMetrics) | **Get** /api/v1/webhooks/metrics/workspace | Get Workspace Webhook Metrics
 [**AppsWebhooksApiListDlqEntries**](WebhooksAPI.md#AppsWebhooksApiListDlqEntries) | **Get** /api/v1/webhooks/dlq | List Dlq Entries
 [**AppsWebhooksApiListWebhooks**](WebhooksAPI.md#AppsWebhooksApiListWebhooks) | **Get** /api/v1/webhooks/ | List Webhooks
 [**AppsWebhooksApiReceiveWebhook**](WebhooksAPI.md#AppsWebhooksApiReceiveWebhook) | **Post** /api/v1/webhooks/receive/{webhook_id} | Receive Webhook
 [**AppsWebhooksApiRetryFromDlq**](WebhooksAPI.md#AppsWebhooksApiRetryFromDlq) | **Post** /api/v1/webhooks/dlq/{dlq_id}/retry | Retry From Dlq
 [**AppsWebhooksApiRetryWebhookDelivery**](WebhooksAPI.md#AppsWebhooksApiRetryWebhookDelivery) | **Post** /api/v1/webhooks/{webhook_id}/deliveries/{delivery_id}/retry | Retry Webhook Delivery
+[**AppsWebhooksApiRotateWebhookSecret**](WebhooksAPI.md#AppsWebhooksApiRotateWebhookSecret) | **Post** /api/v1/webhooks/{webhook_id}/rotate-secret | Rotate Webhook Secret
 [**AppsWebhooksApiTestWebhook**](WebhooksAPI.md#AppsWebhooksApiTestWebhook) | **Post** /api/v1/webhooks/{webhook_id}/test | Test Webhook
 [**AppsWebhooksApiUpdateWebhook**](WebhooksAPI.md#AppsWebhooksApiUpdateWebhook) | **Put** /api/v1/webhooks/{webhook_id} | Update Webhook
 [**AppsWebhooksApiWebhookHealthCheck**](WebhooksAPI.md#AppsWebhooksApiWebhookHealthCheck) | **Get** /api/v1/webhooks/health | Webhook Health Check
@@ -25,7 +27,7 @@ Method | HTTP request | Description
 
 ## AppsWebhooksApiCreateWebhook
 
-> WebhookResponse AppsWebhooksApiCreateWebhook(ctx).CreateWebhookRequest(createWebhookRequest).Execute()
+> WebhookSecretResponse AppsWebhooksApiCreateWebhook(ctx).CreateWebhookRequest(createWebhookRequest).Execute()
 
 Create Webhook
 
@@ -53,7 +55,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.AppsWebhooksApiCreateWebhook``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AppsWebhooksApiCreateWebhook`: WebhookResponse
+	// response from `AppsWebhooksApiCreateWebhook`: WebhookSecretResponse
 	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.AppsWebhooksApiCreateWebhook`: %v\n", resp)
 }
 ```
@@ -73,11 +75,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WebhookResponse**](WebhookResponse.md)
+[**WebhookSecretResponse**](WebhookSecretResponse.md)
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -145,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -276,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -354,7 +356,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -427,7 +429,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -488,7 +490,7 @@ Other parameters are passed through a pointer to a apiAppsWebhooksApiGetWebhookM
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -555,6 +557,67 @@ Name | Type | Description  | Notes
 ### Return type
 
 **map[string]interface{}**
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWebhooksApiGetWorkspaceWebhookMetrics
+
+> WorkspaceWebhookMetricsResponse AppsWebhooksApiGetWorkspaceWebhookMetrics(ctx).Execute()
+
+Get Workspace Webhook Metrics
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WebhooksAPI.AppsWebhooksApiGetWorkspaceWebhookMetrics(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.AppsWebhooksApiGetWorkspaceWebhookMetrics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWebhooksApiGetWorkspaceWebhookMetrics`: WorkspaceWebhookMetricsResponse
+	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.AppsWebhooksApiGetWorkspaceWebhookMetrics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWebhooksApiGetWorkspaceWebhookMetricsRequest struct via the builder pattern
+
+
+### Return type
+
+[**WorkspaceWebhookMetricsResponse**](WorkspaceWebhookMetricsResponse.md)
 
 ### Authorization
 
@@ -698,7 +761,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -911,7 +974,77 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsWebhooksApiRotateWebhookSecret
+
+> WebhookSecretResponse AppsWebhooksApiRotateWebhookSecret(ctx, webhookId).Execute()
+
+Rotate Webhook Secret
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/generated"
+)
+
+func main() {
+	webhookId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WebhooksAPI.AppsWebhooksApiRotateWebhookSecret(context.Background(), webhookId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.AppsWebhooksApiRotateWebhookSecret``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsWebhooksApiRotateWebhookSecret`: WebhookSecretResponse
+	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.AppsWebhooksApiRotateWebhookSecret`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**webhookId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsWebhooksApiRotateWebhookSecretRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**WebhookSecretResponse**](WebhookSecretResponse.md)
+
+### Authorization
+
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -983,7 +1116,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 
@@ -1055,7 +1188,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyBearer](../README.md#APIKeyBearer), [JWTBearer](../README.md#JWTBearer)
+[JWTBearer](../README.md#JWTBearer)
 
 ### HTTP request headers
 

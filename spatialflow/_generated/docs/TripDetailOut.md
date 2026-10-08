@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **SessionId** | Pointer to **NullableString** |  | [optional] 
 **HasPlannedRoute** | Pointer to **bool** |  | [optional] [default to false]
 **HasTrackGeometry** | Pointer to **bool** |  | [optional] [default to false]
+**CorridorWidthMeters** | Pointer to **int32** |  | [optional] [default to 100]
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
@@ -365,6 +366,31 @@ SetHasTrackGeometry sets HasTrackGeometry field to given value.
 `func (o *TripDetailOut) HasHasTrackGeometry() bool`
 
 HasHasTrackGeometry returns a boolean if a field has been set.
+
+### GetCorridorWidthMeters
+
+`func (o *TripDetailOut) GetCorridorWidthMeters() int32`
+
+GetCorridorWidthMeters returns the CorridorWidthMeters field if non-nil, zero value otherwise.
+
+### GetCorridorWidthMetersOk
+
+`func (o *TripDetailOut) GetCorridorWidthMetersOk() (*int32, bool)`
+
+GetCorridorWidthMetersOk returns a tuple with the CorridorWidthMeters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCorridorWidthMeters
+
+`func (o *TripDetailOut) SetCorridorWidthMeters(v int32)`
+
+SetCorridorWidthMeters sets CorridorWidthMeters field to given value.
+
+### HasCorridorWidthMeters
+
+`func (o *TripDetailOut) HasCorridorWidthMeters() bool`
+
+HasCorridorWidthMeters returns a boolean if a field has been set.
 
 ### GetMetadata
 

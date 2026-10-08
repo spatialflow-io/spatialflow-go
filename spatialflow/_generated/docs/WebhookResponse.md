@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Url** | **string** |  | 
 **Events** | **[]string** |  | 
 **Headers** | **map[string]string** |  | 
+**SensitiveHeadersConfigured** | Pointer to **[]string** |  | [optional] 
 **AuthType** | **string** |  | 
 **Method** | **string** |  | 
 **ContentType** | **string** |  | 
@@ -25,6 +26,7 @@ Name | Type | Description | Notes
 **SuccessfulDeliveries** | **int32** |  | 
 **FailedDeliveries** | **int32** |  | 
 **SuccessRate** | **NullableFloat32** |  | 
+**AttachedGeofenceCount** | Pointer to **int32** |  | [optional] [default to 0]
 
 ## Methods
 
@@ -174,6 +176,31 @@ and a boolean to check if the value has been set.
 
 SetHeaders sets Headers field to given value.
 
+
+### GetSensitiveHeadersConfigured
+
+`func (o *WebhookResponse) GetSensitiveHeadersConfigured() []string`
+
+GetSensitiveHeadersConfigured returns the SensitiveHeadersConfigured field if non-nil, zero value otherwise.
+
+### GetSensitiveHeadersConfiguredOk
+
+`func (o *WebhookResponse) GetSensitiveHeadersConfiguredOk() (*[]string, bool)`
+
+GetSensitiveHeadersConfiguredOk returns a tuple with the SensitiveHeadersConfigured field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSensitiveHeadersConfigured
+
+`func (o *WebhookResponse) SetSensitiveHeadersConfigured(v []string)`
+
+SetSensitiveHeadersConfigured sets SensitiveHeadersConfigured field to given value.
+
+### HasSensitiveHeadersConfigured
+
+`func (o *WebhookResponse) HasSensitiveHeadersConfigured() bool`
+
+HasSensitiveHeadersConfigured returns a boolean if a field has been set.
 
 ### GetAuthType
 
@@ -505,6 +532,31 @@ SetSuccessRate sets SuccessRate field to given value.
 `func (o *WebhookResponse) UnsetSuccessRate()`
 
 UnsetSuccessRate ensures that no value is present for SuccessRate, not even an explicit nil
+### GetAttachedGeofenceCount
+
+`func (o *WebhookResponse) GetAttachedGeofenceCount() int32`
+
+GetAttachedGeofenceCount returns the AttachedGeofenceCount field if non-nil, zero value otherwise.
+
+### GetAttachedGeofenceCountOk
+
+`func (o *WebhookResponse) GetAttachedGeofenceCountOk() (*int32, bool)`
+
+GetAttachedGeofenceCountOk returns a tuple with the AttachedGeofenceCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachedGeofenceCount
+
+`func (o *WebhookResponse) SetAttachedGeofenceCount(v int32)`
+
+SetAttachedGeofenceCount sets AttachedGeofenceCount field to given value.
+
+### HasAttachedGeofenceCount
+
+`func (o *WebhookResponse) HasAttachedGeofenceCount() bool`
+
+HasAttachedGeofenceCount returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApiCalls** | **int32** | Monthly API call limit (-1 for unlimited) | 
+**Events** | **int32** | Monthly event limit (-1 for unlimited) | 
 **Geofences** | **int32** | Maximum number of geofences (-1 for unlimited) | 
 **WebhooksDelivered** | **int32** | Monthly webhook delivery limit (-1 for unlimited) | 
 **TestPoints** | **int32** | Monthly test point limit (-1 for unlimited) | 
@@ -17,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewPlanLimits
 
-`func NewPlanLimits(apiCalls int32, geofences int32, webhooksDelivered int32, testPoints int32, rateLimitPerHour int32, ) *PlanLimits`
+`func NewPlanLimits(apiCalls int32, events int32, geofences int32, webhooksDelivered int32, testPoints int32, rateLimitPerHour int32, ) *PlanLimits`
 
 NewPlanLimits instantiates a new PlanLimits object
 This constructor will assign default values to properties that have it defined,
@@ -50,6 +51,26 @@ and a boolean to check if the value has been set.
 `func (o *PlanLimits) SetApiCalls(v int32)`
 
 SetApiCalls sets ApiCalls field to given value.
+
+
+### GetEvents
+
+`func (o *PlanLimits) GetEvents() int32`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *PlanLimits) GetEventsOk() (*int32, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *PlanLimits) SetEvents(v int32)`
+
+SetEvents sets Events field to given value.
 
 
 ### GetGeofences

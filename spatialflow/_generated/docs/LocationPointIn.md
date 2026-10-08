@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **Speed** | Pointer to **NullableFloat32** |  | [optional] 
 **Heading** | Pointer to **NullableFloat32** |  | [optional] 
 **Altitude** | Pointer to **NullableFloat32** |  | [optional] 
+**BatteryLevel** | Pointer to **NullableInt32** |  | [optional] 
+**BatteryCharging** | Pointer to **NullableBool** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
@@ -253,6 +255,76 @@ HasAltitude returns a boolean if a field has been set.
 `func (o *LocationPointIn) UnsetAltitude()`
 
 UnsetAltitude ensures that no value is present for Altitude, not even an explicit nil
+### GetBatteryLevel
+
+`func (o *LocationPointIn) GetBatteryLevel() int32`
+
+GetBatteryLevel returns the BatteryLevel field if non-nil, zero value otherwise.
+
+### GetBatteryLevelOk
+
+`func (o *LocationPointIn) GetBatteryLevelOk() (*int32, bool)`
+
+GetBatteryLevelOk returns a tuple with the BatteryLevel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBatteryLevel
+
+`func (o *LocationPointIn) SetBatteryLevel(v int32)`
+
+SetBatteryLevel sets BatteryLevel field to given value.
+
+### HasBatteryLevel
+
+`func (o *LocationPointIn) HasBatteryLevel() bool`
+
+HasBatteryLevel returns a boolean if a field has been set.
+
+### SetBatteryLevelNil
+
+`func (o *LocationPointIn) SetBatteryLevelNil(b bool)`
+
+ SetBatteryLevelNil sets the value for BatteryLevel to be an explicit nil
+
+### UnsetBatteryLevel
+`func (o *LocationPointIn) UnsetBatteryLevel()`
+
+UnsetBatteryLevel ensures that no value is present for BatteryLevel, not even an explicit nil
+### GetBatteryCharging
+
+`func (o *LocationPointIn) GetBatteryCharging() bool`
+
+GetBatteryCharging returns the BatteryCharging field if non-nil, zero value otherwise.
+
+### GetBatteryChargingOk
+
+`func (o *LocationPointIn) GetBatteryChargingOk() (*bool, bool)`
+
+GetBatteryChargingOk returns a tuple with the BatteryCharging field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBatteryCharging
+
+`func (o *LocationPointIn) SetBatteryCharging(v bool)`
+
+SetBatteryCharging sets BatteryCharging field to given value.
+
+### HasBatteryCharging
+
+`func (o *LocationPointIn) HasBatteryCharging() bool`
+
+HasBatteryCharging returns a boolean if a field has been set.
+
+### SetBatteryChargingNil
+
+`func (o *LocationPointIn) SetBatteryChargingNil(b bool)`
+
+ SetBatteryChargingNil sets the value for BatteryCharging to be an explicit nil
+
+### UnsetBatteryCharging
+`func (o *LocationPointIn) UnsetBatteryCharging()`
+
+UnsetBatteryCharging ensures that no value is present for BatteryCharging, not even an explicit nil
 ### GetMetadata
 
 `func (o *LocationPointIn) GetMetadata() map[string]interface{}`

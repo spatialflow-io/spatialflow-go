@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **string** |  | 
-**CheckedAt** | **string** |  | 
+**CheckedAt** | **time.Time** |  | 
 **Environment** | **string** |  | 
 **Version** | **string** |  | 
 **Components** | [**map[string]SystemHealthComponent**](SystemHealthComponent.md) |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewSystemHealthResponse
 
-`func NewSystemHealthResponse(status string, checkedAt string, environment string, version string, components map[string]SystemHealthComponent, ) *SystemHealthResponse`
+`func NewSystemHealthResponse(status string, checkedAt time.Time, environment string, version string, components map[string]SystemHealthComponent, ) *SystemHealthResponse`
 
 NewSystemHealthResponse instantiates a new SystemHealthResponse object
 This constructor will assign default values to properties that have it defined,
@@ -51,20 +51,20 @@ SetStatus sets Status field to given value.
 
 ### GetCheckedAt
 
-`func (o *SystemHealthResponse) GetCheckedAt() string`
+`func (o *SystemHealthResponse) GetCheckedAt() time.Time`
 
 GetCheckedAt returns the CheckedAt field if non-nil, zero value otherwise.
 
 ### GetCheckedAtOk
 
-`func (o *SystemHealthResponse) GetCheckedAtOk() (*string, bool)`
+`func (o *SystemHealthResponse) GetCheckedAtOk() (*time.Time, bool)`
 
 GetCheckedAtOk returns a tuple with the CheckedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCheckedAt
 
-`func (o *SystemHealthResponse) SetCheckedAt(v string)`
+`func (o *SystemHealthResponse) SetCheckedAt(v time.Time)`
 
 SetCheckedAt sets CheckedAt field to given value.
 

@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **DeviceId** | **string** |  | 
 **EventsTriggered** | **int32** |  | 
 **Message** | **string** |  | 
+**ErrorCode** | Pointer to **NullableString** |  | [optional] 
+**LocationResults** | Pointer to [**[]BatchLocationResultOut**](BatchLocationResultOut.md) |  | [optional] 
 
 ## Methods
 
@@ -107,6 +109,66 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
+
+### GetErrorCode
+
+`func (o *LocationUpdateOut) GetErrorCode() string`
+
+GetErrorCode returns the ErrorCode field if non-nil, zero value otherwise.
+
+### GetErrorCodeOk
+
+`func (o *LocationUpdateOut) GetErrorCodeOk() (*string, bool)`
+
+GetErrorCodeOk returns a tuple with the ErrorCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetErrorCode
+
+`func (o *LocationUpdateOut) SetErrorCode(v string)`
+
+SetErrorCode sets ErrorCode field to given value.
+
+### HasErrorCode
+
+`func (o *LocationUpdateOut) HasErrorCode() bool`
+
+HasErrorCode returns a boolean if a field has been set.
+
+### SetErrorCodeNil
+
+`func (o *LocationUpdateOut) SetErrorCodeNil(b bool)`
+
+ SetErrorCodeNil sets the value for ErrorCode to be an explicit nil
+
+### UnsetErrorCode
+`func (o *LocationUpdateOut) UnsetErrorCode()`
+
+UnsetErrorCode ensures that no value is present for ErrorCode, not even an explicit nil
+### GetLocationResults
+
+`func (o *LocationUpdateOut) GetLocationResults() []BatchLocationResultOut`
+
+GetLocationResults returns the LocationResults field if non-nil, zero value otherwise.
+
+### GetLocationResultsOk
+
+`func (o *LocationUpdateOut) GetLocationResultsOk() (*[]BatchLocationResultOut, bool)`
+
+GetLocationResultsOk returns a tuple with the LocationResults field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocationResults
+
+`func (o *LocationUpdateOut) SetLocationResults(v []BatchLocationResultOut)`
+
+SetLocationResults sets LocationResults field to given value.
+
+### HasLocationResults
+
+`func (o *LocationUpdateOut) HasLocationResults() bool`
+
+HasLocationResults returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

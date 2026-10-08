@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **Name** | **NullableString** |  | 
 **Role** | **string** |  | 
 **EmailVerified** | **bool** |  | 
-**CreatedAt** | **NullableString** |  | 
-**LastLogin** | **NullableString** |  | 
+**CreatedAt** | **NullableTime** |  | 
+**LastLogin** | **NullableTime** |  | 
 
 ## Methods
 
 ### NewMemberSummary
 
-`func NewMemberSummary(id string, email string, name NullableString, role string, emailVerified bool, createdAt NullableString, lastLogin NullableString, ) *MemberSummary`
+`func NewMemberSummary(id string, email string, name NullableString, role string, emailVerified bool, createdAt NullableTime, lastLogin NullableTime, ) *MemberSummary`
 
 NewMemberSummary instantiates a new MemberSummary object
 This constructor will assign default values to properties that have it defined,
@@ -143,20 +143,20 @@ SetEmailVerified sets EmailVerified field to given value.
 
 ### GetCreatedAt
 
-`func (o *MemberSummary) GetCreatedAt() string`
+`func (o *MemberSummary) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *MemberSummary) GetCreatedAtOk() (*string, bool)`
+`func (o *MemberSummary) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *MemberSummary) SetCreatedAt(v string)`
+`func (o *MemberSummary) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
@@ -173,20 +173,20 @@ SetCreatedAt sets CreatedAt field to given value.
 UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetLastLogin
 
-`func (o *MemberSummary) GetLastLogin() string`
+`func (o *MemberSummary) GetLastLogin() time.Time`
 
 GetLastLogin returns the LastLogin field if non-nil, zero value otherwise.
 
 ### GetLastLoginOk
 
-`func (o *MemberSummary) GetLastLoginOk() (*string, bool)`
+`func (o *MemberSummary) GetLastLoginOk() (*time.Time, bool)`
 
 GetLastLoginOk returns a tuple with the LastLogin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastLogin
 
-`func (o *MemberSummary) SetLastLogin(v string)`
+`func (o *MemberSummary) SetLastLogin(v time.Time)`
 
 SetLastLogin sets LastLogin field to given value.
 

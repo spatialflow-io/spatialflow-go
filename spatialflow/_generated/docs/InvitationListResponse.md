@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Invitations** | [**[]InvitationOut**](InvitationOut.md) |  | 
 **Total** | **int32** |  | 
+**NextCursor** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -66,6 +67,41 @@ and a boolean to check if the value has been set.
 SetTotal sets Total field to given value.
 
 
+### GetNextCursor
+
+`func (o *InvitationListResponse) GetNextCursor() string`
+
+GetNextCursor returns the NextCursor field if non-nil, zero value otherwise.
+
+### GetNextCursorOk
+
+`func (o *InvitationListResponse) GetNextCursorOk() (*string, bool)`
+
+GetNextCursorOk returns a tuple with the NextCursor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextCursor
+
+`func (o *InvitationListResponse) SetNextCursor(v string)`
+
+SetNextCursor sets NextCursor field to given value.
+
+### HasNextCursor
+
+`func (o *InvitationListResponse) HasNextCursor() bool`
+
+HasNextCursor returns a boolean if a field has been set.
+
+### SetNextCursorNil
+
+`func (o *InvitationListResponse) SetNextCursorNil(b bool)`
+
+ SetNextCursorNil sets the value for NextCursor to be an explicit nil
+
+### UnsetNextCursor
+`func (o *InvitationListResponse) UnsetNextCursor()`
+
+UnsetNextCursor ensures that no value is present for NextCursor, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

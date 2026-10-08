@@ -11,11 +11,11 @@ Name | Type | Description | Notes
 **EmailVerified** | **bool** |  | 
 **IsBetaUser** | Pointer to **bool** |  | [optional] [default to false]
 **AdminApproved** | Pointer to **bool** |  | [optional] [default to false]
-**AdminApprovedAt** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | **NullableString** |  | 
-**LastLogin** | **NullableString** |  | 
-**LastSeenAt** | Pointer to **NullableString** |  | [optional] 
-**UpdatedAt** | Pointer to **NullableString** |  | [optional] 
+**AdminApprovedAt** | Pointer to **NullableTime** |  | [optional] 
+**CreatedAt** | **NullableTime** |  | 
+**LastLogin** | **NullableTime** |  | 
+**LastSeenAt** | Pointer to **NullableTime** |  | [optional] 
+**UpdatedAt** | Pointer to **NullableTime** |  | [optional] 
 **SubscriptionTier** | Pointer to **string** |  | [optional] [default to "free"]
 **ApiKeysCount** | **int32** |  | 
 **Workspace** | Pointer to [**NullableWorkspaceSummary**](WorkspaceSummary.md) |  | [optional] 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewUserSummary
 
-`func NewUserSummary(id string, email string, name NullableString, role string, emailVerified bool, createdAt NullableString, lastLogin NullableString, apiKeysCount int32, ) *UserSummary`
+`func NewUserSummary(id string, email string, name NullableString, role string, emailVerified bool, createdAt NullableTime, lastLogin NullableTime, apiKeysCount int32, ) *UserSummary`
 
 NewUserSummary instantiates a new UserSummary object
 This constructor will assign default values to properties that have it defined,
@@ -201,20 +201,20 @@ HasAdminApproved returns a boolean if a field has been set.
 
 ### GetAdminApprovedAt
 
-`func (o *UserSummary) GetAdminApprovedAt() string`
+`func (o *UserSummary) GetAdminApprovedAt() time.Time`
 
 GetAdminApprovedAt returns the AdminApprovedAt field if non-nil, zero value otherwise.
 
 ### GetAdminApprovedAtOk
 
-`func (o *UserSummary) GetAdminApprovedAtOk() (*string, bool)`
+`func (o *UserSummary) GetAdminApprovedAtOk() (*time.Time, bool)`
 
 GetAdminApprovedAtOk returns a tuple with the AdminApprovedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdminApprovedAt
 
-`func (o *UserSummary) SetAdminApprovedAt(v string)`
+`func (o *UserSummary) SetAdminApprovedAt(v time.Time)`
 
 SetAdminApprovedAt sets AdminApprovedAt field to given value.
 
@@ -236,20 +236,20 @@ HasAdminApprovedAt returns a boolean if a field has been set.
 UnsetAdminApprovedAt ensures that no value is present for AdminApprovedAt, not even an explicit nil
 ### GetCreatedAt
 
-`func (o *UserSummary) GetCreatedAt() string`
+`func (o *UserSummary) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *UserSummary) GetCreatedAtOk() (*string, bool)`
+`func (o *UserSummary) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *UserSummary) SetCreatedAt(v string)`
+`func (o *UserSummary) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
@@ -266,20 +266,20 @@ SetCreatedAt sets CreatedAt field to given value.
 UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetLastLogin
 
-`func (o *UserSummary) GetLastLogin() string`
+`func (o *UserSummary) GetLastLogin() time.Time`
 
 GetLastLogin returns the LastLogin field if non-nil, zero value otherwise.
 
 ### GetLastLoginOk
 
-`func (o *UserSummary) GetLastLoginOk() (*string, bool)`
+`func (o *UserSummary) GetLastLoginOk() (*time.Time, bool)`
 
 GetLastLoginOk returns a tuple with the LastLogin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastLogin
 
-`func (o *UserSummary) SetLastLogin(v string)`
+`func (o *UserSummary) SetLastLogin(v time.Time)`
 
 SetLastLogin sets LastLogin field to given value.
 
@@ -296,20 +296,20 @@ SetLastLogin sets LastLogin field to given value.
 UnsetLastLogin ensures that no value is present for LastLogin, not even an explicit nil
 ### GetLastSeenAt
 
-`func (o *UserSummary) GetLastSeenAt() string`
+`func (o *UserSummary) GetLastSeenAt() time.Time`
 
 GetLastSeenAt returns the LastSeenAt field if non-nil, zero value otherwise.
 
 ### GetLastSeenAtOk
 
-`func (o *UserSummary) GetLastSeenAtOk() (*string, bool)`
+`func (o *UserSummary) GetLastSeenAtOk() (*time.Time, bool)`
 
 GetLastSeenAtOk returns a tuple with the LastSeenAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastSeenAt
 
-`func (o *UserSummary) SetLastSeenAt(v string)`
+`func (o *UserSummary) SetLastSeenAt(v time.Time)`
 
 SetLastSeenAt sets LastSeenAt field to given value.
 
@@ -331,20 +331,20 @@ HasLastSeenAt returns a boolean if a field has been set.
 UnsetLastSeenAt ensures that no value is present for LastSeenAt, not even an explicit nil
 ### GetUpdatedAt
 
-`func (o *UserSummary) GetUpdatedAt() string`
+`func (o *UserSummary) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *UserSummary) GetUpdatedAtOk() (*string, bool)`
+`func (o *UserSummary) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *UserSummary) SetUpdatedAt(v string)`
+`func (o *UserSummary) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

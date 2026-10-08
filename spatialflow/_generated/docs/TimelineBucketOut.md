@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timestamp** | **string** |  | 
+**Timestamp** | **time.Time** |  | 
 **LiveCount** | **int32** |  | 
 **OfflineStaleCount** | **int32** |  | 
 **InGeofenceCount** | **int32** |  | 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewTimelineBucketOut
 
-`func NewTimelineBucketOut(timestamp string, liveCount int32, offlineStaleCount int32, inGeofenceCount int32, ) *TimelineBucketOut`
+`func NewTimelineBucketOut(timestamp time.Time, liveCount int32, offlineStaleCount int32, inGeofenceCount int32, ) *TimelineBucketOut`
 
 NewTimelineBucketOut instantiates a new TimelineBucketOut object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTimestamp
 
-`func (o *TimelineBucketOut) GetTimestamp() string`
+`func (o *TimelineBucketOut) GetTimestamp() time.Time`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *TimelineBucketOut) GetTimestampOk() (*string, bool)`
+`func (o *TimelineBucketOut) GetTimestampOk() (*time.Time, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *TimelineBucketOut) SetTimestamp(v string)`
+`func (o *TimelineBucketOut) SetTimestamp(v time.Time)`
 
 SetTimestamp sets Timestamp field to given value.
 

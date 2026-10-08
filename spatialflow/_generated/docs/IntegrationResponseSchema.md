@@ -13,17 +13,18 @@ Name | Type | Description | Notes
 **HealthStatus** | **string** |  | 
 **HealthMessage** | **string** |  | 
 **UsageCount** | **int32** |  | 
-**LastUsedAt** | Pointer to **NullableString** |  | [optional] 
-**LastVerifiedAt** | Pointer to **NullableString** |  | [optional] 
+**LastUsedAt** | Pointer to **NullableTime** |  | [optional] 
+**LastVerifiedAt** | Pointer to **NullableTime** |  | [optional] 
 **Tags** | **[]string** |  | 
-**CreatedAt** | **string** |  | 
-**UpdatedAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
+**UpdatedAt** | **time.Time** |  | 
+**HasDefaultTopic** | **bool** |  | 
 
 ## Methods
 
 ### NewIntegrationResponseSchema
 
-`func NewIntegrationResponseSchema(id string, name string, type_ string, description string, isActive bool, isVerified bool, healthStatus string, healthMessage string, usageCount int32, tags []string, createdAt string, updatedAt string, ) *IntegrationResponseSchema`
+`func NewIntegrationResponseSchema(id string, name string, type_ string, description string, isActive bool, isVerified bool, healthStatus string, healthMessage string, usageCount int32, tags []string, createdAt time.Time, updatedAt time.Time, hasDefaultTopic bool, ) *IntegrationResponseSchema`
 
 NewIntegrationResponseSchema instantiates a new IntegrationResponseSchema object
 This constructor will assign default values to properties that have it defined,
@@ -220,20 +221,20 @@ SetUsageCount sets UsageCount field to given value.
 
 ### GetLastUsedAt
 
-`func (o *IntegrationResponseSchema) GetLastUsedAt() string`
+`func (o *IntegrationResponseSchema) GetLastUsedAt() time.Time`
 
 GetLastUsedAt returns the LastUsedAt field if non-nil, zero value otherwise.
 
 ### GetLastUsedAtOk
 
-`func (o *IntegrationResponseSchema) GetLastUsedAtOk() (*string, bool)`
+`func (o *IntegrationResponseSchema) GetLastUsedAtOk() (*time.Time, bool)`
 
 GetLastUsedAtOk returns a tuple with the LastUsedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastUsedAt
 
-`func (o *IntegrationResponseSchema) SetLastUsedAt(v string)`
+`func (o *IntegrationResponseSchema) SetLastUsedAt(v time.Time)`
 
 SetLastUsedAt sets LastUsedAt field to given value.
 
@@ -255,20 +256,20 @@ HasLastUsedAt returns a boolean if a field has been set.
 UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
 ### GetLastVerifiedAt
 
-`func (o *IntegrationResponseSchema) GetLastVerifiedAt() string`
+`func (o *IntegrationResponseSchema) GetLastVerifiedAt() time.Time`
 
 GetLastVerifiedAt returns the LastVerifiedAt field if non-nil, zero value otherwise.
 
 ### GetLastVerifiedAtOk
 
-`func (o *IntegrationResponseSchema) GetLastVerifiedAtOk() (*string, bool)`
+`func (o *IntegrationResponseSchema) GetLastVerifiedAtOk() (*time.Time, bool)`
 
 GetLastVerifiedAtOk returns a tuple with the LastVerifiedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastVerifiedAt
 
-`func (o *IntegrationResponseSchema) SetLastVerifiedAt(v string)`
+`func (o *IntegrationResponseSchema) SetLastVerifiedAt(v time.Time)`
 
 SetLastVerifiedAt sets LastVerifiedAt field to given value.
 
@@ -310,42 +311,62 @@ SetTags sets Tags field to given value.
 
 ### GetCreatedAt
 
-`func (o *IntegrationResponseSchema) GetCreatedAt() string`
+`func (o *IntegrationResponseSchema) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *IntegrationResponseSchema) GetCreatedAtOk() (*string, bool)`
+`func (o *IntegrationResponseSchema) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *IntegrationResponseSchema) SetCreatedAt(v string)`
+`func (o *IntegrationResponseSchema) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *IntegrationResponseSchema) GetUpdatedAt() string`
+`func (o *IntegrationResponseSchema) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *IntegrationResponseSchema) GetUpdatedAtOk() (*string, bool)`
+`func (o *IntegrationResponseSchema) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *IntegrationResponseSchema) SetUpdatedAt(v string)`
+`func (o *IntegrationResponseSchema) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
+
+
+### GetHasDefaultTopic
+
+`func (o *IntegrationResponseSchema) GetHasDefaultTopic() bool`
+
+GetHasDefaultTopic returns the HasDefaultTopic field if non-nil, zero value otherwise.
+
+### GetHasDefaultTopicOk
+
+`func (o *IntegrationResponseSchema) GetHasDefaultTopicOk() (*bool, bool)`
+
+GetHasDefaultTopicOk returns a tuple with the HasDefaultTopic field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasDefaultTopic
+
+`func (o *IntegrationResponseSchema) SetHasDefaultTopic(v bool)`
+
+SetHasDefaultTopic sets HasDefaultTopic field to given value.
 
 
 

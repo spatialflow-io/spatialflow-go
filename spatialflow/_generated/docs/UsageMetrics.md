@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApiCalls** | Pointer to **int32** |  | [optional] [default to 0]
+**Events** | Pointer to **int32** | Metered event count for the current month, from period_start to period_end | [optional] [default to 0]
 **Geofences** | Pointer to **int32** |  | [optional] [default to 0]
 **WebhooksDelivered** | Pointer to **int32** |  | [optional] [default to 0]
 **TestPoints** | Pointer to **int32** |  | [optional] [default to 0]
@@ -53,6 +54,31 @@ SetApiCalls sets ApiCalls field to given value.
 `func (o *UsageMetrics) HasApiCalls() bool`
 
 HasApiCalls returns a boolean if a field has been set.
+
+### GetEvents
+
+`func (o *UsageMetrics) GetEvents() int32`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *UsageMetrics) GetEventsOk() (*int32, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *UsageMetrics) SetEvents(v int32)`
+
+SetEvents sets Events field to given value.
+
+### HasEvents
+
+`func (o *UsageMetrics) HasEvents() bool`
+
+HasEvents returns a boolean if a field has been set.
 
 ### GetGeofences
 

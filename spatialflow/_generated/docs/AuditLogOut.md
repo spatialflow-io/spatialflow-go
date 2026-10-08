@@ -16,13 +16,13 @@ Name | Type | Description | Notes
 **HttpMethod** | **string** |  | 
 **Path** | **string** |  | 
 **StatusCode** | Pointer to **NullableInt32** |  | [optional] 
-**CreatedAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewAuditLogOut
 
-`func NewAuditLogOut(id string, userEmail string, action string, resourceType string, description string, changes interface{}, httpMethod string, path string, createdAt string, ) *AuditLogOut`
+`func NewAuditLogOut(id string, userEmail string, action string, resourceType string, description string, changes interface{}, httpMethod string, path string, createdAt time.Time, ) *AuditLogOut`
 
 NewAuditLogOut instantiates a new AuditLogOut object
 This constructor will assign default values to properties that have it defined,
@@ -349,20 +349,20 @@ HasStatusCode returns a boolean if a field has been set.
 UnsetStatusCode ensures that no value is present for StatusCode, not even an explicit nil
 ### GetCreatedAt
 
-`func (o *AuditLogOut) GetCreatedAt() string`
+`func (o *AuditLogOut) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *AuditLogOut) GetCreatedAtOk() (*string, bool)`
+`func (o *AuditLogOut) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *AuditLogOut) SetCreatedAt(v string)`
+`func (o *AuditLogOut) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 

@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DeviceId** | **string** |  | 
 **Name** | Pointer to **string** |  | [optional] [default to ""]
-**PlannedRoute** | Pointer to **map[string]interface{}** |  | [optional] 
+**PlannedRoute** | Pointer to [**NullableGeoJSONLineString**](GeoJSONLineString.md) |  | [optional] 
+**CorridorWidthMeters** | Pointer to **NullableInt32** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
@@ -75,20 +76,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetPlannedRoute
 
-`func (o *TripCreateIn) GetPlannedRoute() map[string]interface{}`
+`func (o *TripCreateIn) GetPlannedRoute() GeoJSONLineString`
 
 GetPlannedRoute returns the PlannedRoute field if non-nil, zero value otherwise.
 
 ### GetPlannedRouteOk
 
-`func (o *TripCreateIn) GetPlannedRouteOk() (*map[string]interface{}, bool)`
+`func (o *TripCreateIn) GetPlannedRouteOk() (*GeoJSONLineString, bool)`
 
 GetPlannedRouteOk returns a tuple with the PlannedRoute field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPlannedRoute
 
-`func (o *TripCreateIn) SetPlannedRoute(v map[string]interface{})`
+`func (o *TripCreateIn) SetPlannedRoute(v GeoJSONLineString)`
 
 SetPlannedRoute sets PlannedRoute field to given value.
 
@@ -108,6 +109,41 @@ HasPlannedRoute returns a boolean if a field has been set.
 `func (o *TripCreateIn) UnsetPlannedRoute()`
 
 UnsetPlannedRoute ensures that no value is present for PlannedRoute, not even an explicit nil
+### GetCorridorWidthMeters
+
+`func (o *TripCreateIn) GetCorridorWidthMeters() int32`
+
+GetCorridorWidthMeters returns the CorridorWidthMeters field if non-nil, zero value otherwise.
+
+### GetCorridorWidthMetersOk
+
+`func (o *TripCreateIn) GetCorridorWidthMetersOk() (*int32, bool)`
+
+GetCorridorWidthMetersOk returns a tuple with the CorridorWidthMeters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCorridorWidthMeters
+
+`func (o *TripCreateIn) SetCorridorWidthMeters(v int32)`
+
+SetCorridorWidthMeters sets CorridorWidthMeters field to given value.
+
+### HasCorridorWidthMeters
+
+`func (o *TripCreateIn) HasCorridorWidthMeters() bool`
+
+HasCorridorWidthMeters returns a boolean if a field has been set.
+
+### SetCorridorWidthMetersNil
+
+`func (o *TripCreateIn) SetCorridorWidthMetersNil(b bool)`
+
+ SetCorridorWidthMetersNil sets the value for CorridorWidthMeters to be an explicit nil
+
+### UnsetCorridorWidthMeters
+`func (o *TripCreateIn) UnsetCorridorWidthMeters()`
+
+UnsetCorridorWidthMeters ensures that no value is present for CorridorWidthMeters, not even an explicit nil
 ### GetMetadata
 
 `func (o *TripCreateIn) GetMetadata() map[string]interface{}`

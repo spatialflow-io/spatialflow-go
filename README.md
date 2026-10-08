@@ -2,12 +2,18 @@
 
 Official Go SDK for the [SpatialFlow](https://spatialflow.io) geospatial automation platform.
 
-> **Beta Release**: This SDK is in beta. APIs are usable for early integrations but may change before a stable v1.0 release.
+Versions follow [Semantic Versioning](https://semver.org/): breaking changes bump the major version, so 2.x is stable to build on. Upgrading from 1.1.0 is a major version: the changelog lists what was removed.
+
+## Versioning
+
+The Go SDK shares one version line with the Python and Node SDKs. A release that ships the same change in all three uses the same number. `spatialflow.SDKVersion`, the `User-Agent` header and the newest released heading in `CHANGELOG.md` must agree, and a test checks this. Go modules are published by pushing a `vX.Y.Z` tag to the public `spatialflow-go` repository.
+
+Matching version numbers do not mean matching features. Check `CHANGELOG.md` for what each release contains.
 
 ## Installation
 
 ```bash
-go get github.com/spatialflow-io/spatialflow-go
+go get github.com/spatialflow-io/spatialflow-go/v2
 ```
 
 **Requirements:** Go 1.21+
@@ -22,7 +28,7 @@ import (
     "log"
     "net/http"
 
-    "github.com/spatialflow-io/spatialflow-go/spatialflow"
+    "github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
 )
 
 func main() {
@@ -169,20 +175,25 @@ if err := spatialflow.CheckResponse(resp); err != nil {
 
 ## Webhook Verification
 
-Verify incoming webhook signatures using HMAC-SHA256:
+Verify incoming webhook signatures using HMAC-SHA256. A workspace webhook, created through the API, receives test deliveries only for now; to receive real geofence events at an endpoint, add a Webhook action to a workflow, which signs differently (see [Workflow webhook actions](#workflow-webhook-actions) below):
 
 ```go
-import "github.com/spatialflow-io/spatialflow-go/spatialflow"
+import "github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
 
 func handleWebhook(w http.ResponseWriter, r *http.Request) {
-    body, _ := io.ReadAll(r.Body)
+    r.Body = http.MaxBytesReader(w, r.Body, 1<<20) // limit the body to 1 MiB
+    body, err := io.ReadAll(r.Body)
+    if err != nil {
+        http.Error(w, "Payload too large", http.StatusRequestEntityTooLarge)
+        return
+    }
     signature := r.Header.Get("X-SF-Signature")
 
     event, err := spatialflow.VerifyWebhookSignature(
         body,
         signature,
         webhookSecret,
-        0, // Use default 5 minute tolerance
+        0, // tolerance is ignored
     )
     if err != nil {
         http.Error(w, "Invalid signature", http.StatusUnauthorized)
@@ -199,6 +210,26 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
     w.WriteHeader(http.StatusOK)
 }
 ```
+
+### Workflow webhook actions
+
+A workflow Webhook action with a signing secret sends `X-SpatialFlow-Timestamp` (unix seconds) and `X-SpatialFlow-Signature`, an HMAC-SHA256 of `<timestamp>.<raw body>` prefixed with `sha256=`. Verify it with `VerifyWorkflowSignature`:
+
+```go
+body, err := spatialflow.VerifyWorkflowSignature(
+    rawBody,
+    r.Header.Get("X-SpatialFlow-Signature"),
+    r.Header.Get("X-SpatialFlow-Timestamp"),
+    webhookSecret,
+    0, // zero selects the default tolerance of 5 minutes
+)
+if err != nil {
+    http.Error(w, "Invalid signature", http.StatusUnauthorized)
+    return
+}
+```
+
+It rejects a missing or non-integer timestamp, one outside the tolerance in the past or the future, and a signature that does not match. Because the workflow configures the body, a JSON body is returned as an `any` (a `map[string]any` for an object) and any other body as a `string`. If the action sets a custom `signature_header`, read the signature from that header instead.
 
 ## File Uploads
 
@@ -293,8 +324,8 @@ After generation, you can configure the generated client with the SDK's HTTP cli
 
 ```go
 import (
-    "github.com/spatialflow-io/spatialflow-go/spatialflow"
-    generated "github.com/spatialflow-io/spatialflow-go/spatialflow/_generated"
+    "github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
+    generated "github.com/spatialflow-io/spatialflow-go/v2/spatialflow/_generated"
 )
 
 client, _ := spatialflow.NewClient(spatialflow.WithAPIKey("sf_xxx"))
