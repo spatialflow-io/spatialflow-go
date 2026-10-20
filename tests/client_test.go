@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
+	"github.com/spatialflow-io/spatialflow-go/v3/spatialflow"
 )
 
 func TestNewClient_APIKey(t *testing.T) {

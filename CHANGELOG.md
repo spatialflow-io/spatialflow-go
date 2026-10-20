@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [3.0.0] - 2026-10-19
+
+**Breaking changes.** The module path is now `github.com/spatialflow-io/spatialflow-go/v3`, so every import changes. The unbuildable generated package under `spatialflow/_generated` is no longer shipped.
+
+### Changed
+
+- The generated API client under `spatialflow/_generated` is no longer generated or shipped, so the next sync removes it from the public repository: it did not compile on the current spec (undefined `AnyOf` and `NullableAnyOf`) and nothing in the SDK imported it. The hand-written client covers the SDK's surface.
+
 ## [2.0.0] - 2026-10-08
 
 The Go, Python and Node SDKs ship this release together.
@@ -55,6 +65,7 @@ The Go, Python and Node SDKs ship this release together.
 - Integration tests require live API (env-gated)
 - No streaming support yet
 
+[3.0.0]: https://github.com/spatialflow-io/spatialflow-go/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/spatialflow-io/spatialflow-go/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/spatialflow-io/spatialflow-go/compare/v0.1.0...v1.1.0
 [0.1.0]: https://github.com/spatialflow-io/spatialflow-go/releases/tag/v0.1.0

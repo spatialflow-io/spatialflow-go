@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
+	"github.com/spatialflow-io/spatialflow-go/v3/spatialflow"
 )
 
 // createSignature mirrors the backend: HMAC-SHA256 of the raw body, hex-encoded,

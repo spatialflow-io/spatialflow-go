@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
+	"github.com/spatialflow-io/spatialflow-go/v3/spatialflow"
 )
 
 func TestUserAgentReportsSDKVersion(t *testing.T) {

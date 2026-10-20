@@ -2,7 +2,7 @@
 
 Official Go SDK for the [SpatialFlow](https://spatialflow.io) geospatial automation platform.
 
-Versions follow [Semantic Versioning](https://semver.org/): breaking changes bump the major version, so 2.x is stable to build on. Upgrading from 1.1.0 is a major version: the changelog lists what was removed.
+Versions follow [Semantic Versioning](https://semver.org/): breaking changes bump the major version, so read the changelog before a major upgrade.
 
 ## Versioning
 
@@ -13,7 +13,7 @@ Matching version numbers do not mean matching features. Check `CHANGELOG.md` for
 ## Installation
 
 ```bash
-go get github.com/spatialflow-io/spatialflow-go/v2
+go get github.com/spatialflow-io/spatialflow-go/v3
 ```
 
 **Requirements:** Go 1.21+
@@ -28,7 +28,7 @@ import (
     "log"
     "net/http"
 
-    "github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
+    "github.com/spatialflow-io/spatialflow-go/v3/spatialflow"
 )
 
 func main() {
@@ -70,9 +70,6 @@ This SDK provides:
 | **File Uploads** | ✅ | Presigned URL workflow with job polling |
 | **Pagination Helper** | ✅ | Generic `Pager[T]` for offset-based APIs |
 | **Typed Errors** | ✅ | Sentinel errors with `errors.Is()` support |
-| **Generated API Client** | 🔜 | Run `./scripts/generate.sh go` after setup |
-
-The generated API client (for full CRUD on geofences, workflows, webhooks, devices) requires running code generation. See [Code Generation](#code-generation) below.
 
 ## Authentication
 
@@ -178,7 +175,7 @@ if err := spatialflow.CheckResponse(resp); err != nil {
 Verify incoming webhook signatures using HMAC-SHA256. A workspace webhook, created through the API, receives test deliveries only for now; to receive real geofence events at an endpoint, add a Webhook action to a workflow, which signs differently (see [Workflow webhook actions](#workflow-webhook-actions) below):
 
 ```go
-import "github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
+import "github.com/spatialflow-io/spatialflow-go/v3/spatialflow"
 
 func handleWebhook(w http.ResponseWriter, r *http.Request) {
     r.Body = http.MaxBytesReader(w, r.Body, 1<<20) // limit the body to 1 MiB
@@ -305,41 +302,6 @@ client, err := spatialflow.NewClient(
     spatialflow.WithAPIKey("sf_xxx"),
     spatialflow.WithMaxRetries(5),  // Default: 3
 )
-```
-
-## Code Generation
-
-To generate the full API client from the OpenAPI spec:
-
-```bash
-# From the monorepo root
-cd sdks/scripts
-./generate.sh go
-
-# The generated client will be at:
-# sdks/go/spatialflow/_generated/
-```
-
-After generation, you can configure the generated client with the SDK's HTTP client:
-
-```go
-import (
-    "github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
-    generated "github.com/spatialflow-io/spatialflow-go/v2/spatialflow/_generated"
-)
-
-client, _ := spatialflow.NewClient(spatialflow.WithAPIKey("sf_xxx"))
-
-// Configure generated client with SDK's HTTP client (includes auth/retry)
-genConfig := generated.NewConfiguration()
-genConfig.Scheme = client.Scheme()  // "https" or "http"
-genConfig.Host = client.Host()      // "api.spatialflow.io"
-genConfig.HTTPClient = client.HTTPClient()
-
-genClient := generated.NewAPIClient(genConfig)
-
-// Now use generated methods
-geofences, resp, err := genClient.GeofencesApi.AppsGeofencesApiListGeofences(ctx).Execute()
 ```
 
 ## Local Development

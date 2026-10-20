@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
+	"github.com/spatialflow-io/spatialflow-go/v3/spatialflow"
 )
 
 func TestTransport_AuthHeaders(t *testing.T) {

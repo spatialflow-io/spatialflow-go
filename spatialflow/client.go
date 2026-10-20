@@ -19,8 +19,7 @@ const (
 
 // Client is the main SpatialFlow API client.
 //
-// After running code generation (./scripts/generate.sh go), the generated
-// API client will be available. Use the raw HTTP client for direct API calls:
+// Use the raw HTTP client for direct API calls:
 //
 //	resp, err := client.HTTPClient().Get(client.BaseURL() + "/api/v1/geofences")
 //
@@ -60,7 +59,7 @@ func NewClient(opts ...Option) (*Client, error) {
 	// Create transport with auth and retry
 	transport := &Transport{
 		Base:       http.DefaultTransport,
-		APIKey:     config.APIKey,
+		APIKey:     config.APIKey, // pragma: allowlist secret
 		Token:      config.AccessToken,
 		MaxRetries: config.MaxRetries,
 	}

@@ -1,4 +1,4 @@
-module github.com/spatialflow-io/spatialflow-go/v2
+module github.com/spatialflow-io/spatialflow-go/v3
 
 go 1.21
 

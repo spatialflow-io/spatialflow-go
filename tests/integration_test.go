@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/spatialflow-io/spatialflow-go/v2/spatialflow"
+	"github.com/spatialflow-io/spatialflow-go/v3/spatialflow"
 )
 
 // Integration tests against local API
