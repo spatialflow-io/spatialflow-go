@@ -12,7 +12,7 @@ import (
 
 const (
 	// SDKVersion is the current version of the SDK.
-	SDKVersion = "3.1.0"
+	SDKVersion = "3.2.0"
 
 	// UserAgent is the User-Agent header value.
 	UserAgent = "spatialflow-go/" + SDKVersion

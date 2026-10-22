@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-10-22
+
+### Changed
+
+- No change to the Go module's API. Its version moves with the Python and Node SDKs, which carry this release's API changes, so `SDKVersion` and the User-Agent report the new version.
+
 ## [3.1.0] - 2026-10-21
 
 ### Changed
@@ -71,6 +77,7 @@ The Go, Python and Node SDKs ship this release together.
 - Integration tests require live API (env-gated)
 - No streaming support yet
 
+[3.2.0]: https://github.com/spatialflow-io/spatialflow-go/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/spatialflow-io/spatialflow-go/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/spatialflow-io/spatialflow-go/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/spatialflow-io/spatialflow-go/compare/v1.1.0...v2.0.0
